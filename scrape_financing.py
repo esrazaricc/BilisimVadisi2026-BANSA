@@ -1,33 +1,3 @@
-"""
-TEKNOFEST 2026 - Katılım bankaları finansman ürünleri ham veri toplayıcısı V22.
-
-Bu script mevcut kampanya veri setini değiştirmez. Konut, ihtiyaç, taşıt,
-iş yeri ve ticari finansman ürünlerini ayrı bir veri katmanında toplar.
-
-Tek banka testi:
-    python scrape_financing.py --bank "Türkiye Finans"
-
-Tüm bankalar:
-    python scrape_financing.py
-
-Çıktılar:
-    data/financing_raw/<banka>_<tarih>.json
-    data/financing_raw_all.csv
-    data/financing_errors.json
-    data/financing_coverage.json
-    data/financing_calculators.json
-
-Tek banka testinde:
-    data/test_financing_<banka>.csv
-
-Notlar:
-- Önce requests kullanılır.
-- Sayfa metni yetersizse Selenium denenir.
-- Metinde bulunmayan oran, vade veya tutar uydurulmaz.
-- Bu dosya ham toplama katmanıdır; finansal alan çıkarımı sonraki aşamada
-  ayrı bir script ile yapılacaktır.
-"""
-
 from __future__ import annotations
 
 import argparse
@@ -651,13 +621,6 @@ def normalize_text(value: Any) -> str:
 
 
 def normalize_key(value: Any) -> str:
-    """
-    Arama ve sınıflandırma için Türkçe metni güvenli biçimde sadeleştirir.
-
-    Özellikle büyük "İ" harfinin casefold sonrasında ürettiği birleşik
-    nokta karakterini kaldırır:
-        İhtiyaç -> ihtiyac
-    """
     text = normalize_text(value).casefold()
     text = unicodedata.normalize("NFKD", text)
     text = "".join(
@@ -825,7 +788,6 @@ def soup_text_length(soup: BeautifulSoup | None) -> int:
     )
 
 
-
 REJECTED_PAGE_SIGNALS = (
     "request rejected",
     "access denied",
@@ -894,11 +856,6 @@ def get_soup(
     use_selenium: bool,
     prefer_selenium: bool = False,
 ) -> tuple[BeautifulSoup | None, str]:
-    """
-    Sayfayı alır. Albaraka gibi WAF yanıtı verebilen sitelerde Selenium
-    öncelikli kullanılabilir. "Request Rejected" sayfaları geçerli içerik
-    olarak kabul edilmez.
-    """
     if prefer_selenium and use_selenium:
         selenium_soup = get_soup_selenium(url)
 
@@ -936,8 +893,6 @@ def get_soup(
         return request_soup, "requests_kismi"
 
     return None, "request_rejected"
-
-
 
 
 BLOCK_TAGS = {
@@ -981,14 +936,6 @@ BLOCK_TAGS = {
 
 
 def extract_semantic_text(element: Tag) -> str:
-    """
-    Blok etiketlerinin arasına boşluk ekleyerek sayfa metnini çıkarır.
-
-    Türkiye Finans sayfalarında metinler çok sayıda span/strong/a etiketi
-    içinde parçalanabildiği için doğrudan get_text(" ") kullanıldığında
-    bazı kelimeler yapay biçimde bölünebilir. Bu yardımcı fonksiyon blok
-    sınırlarını korur ve görünmeyen teknik etiketleri atlar.
-    """
     parts: list[str] = []
 
     def walk(node: Tag) -> None:
@@ -1112,19 +1059,10 @@ def extract_main_text(
     return normalize_text(best)
 
 
-
 def extract_turkiye_finans_text(
     soup: BeautifulSoup,
     title: str,
 ) -> tuple[str, str]:
-    """
-    Türkiye Finans ASP.NET sayfalarında ürün içeriğini çıkarır.
-
-    Genel CSS aday seçimi bu sitede aynı 424 karakterlik ortak CMS
-    alanını seçebildiği için, metin doğrudan sayfa gövdesinden alınır.
-    Gerçek içerik "Sayfa İçeriği" işaretinden sonra başlar ve teknik
-    footer/CMS işaretlerinden önce kesilir.
-    """
     body = soup.body
 
     if body is None:
@@ -1149,8 +1087,8 @@ def extract_turkiye_finans_text(
         key_position = text_key.find(marker_key)
 
         if key_position >= 0:
-            # Normalize edilmiş anahtarın konumu çoğu durumda gerçek metinle
-            # aynıdır. Gerçek marker bulunabiliyorsa onu kullan.
+
+
             real_position = text.find(marker)
             start_position = (
                 real_position
@@ -1165,8 +1103,8 @@ def extract_turkiye_finans_text(
             start_position + marker_length:
         ]
     else:
-        # Marker görünmüyorsa başlığın son tekrarından başla. Menüdeki ilk
-        # başlık yerine içerik bölümündeki son tekrar tercih edilir.
+
+
         title_position = (
             text_key.rfind(title_key)
             if title_key
@@ -1180,7 +1118,7 @@ def extract_turkiye_finans_text(
 
     content = normalize_text(content)
 
-    # İçeriğin başında paylaşım ve yazdırma metinleri bulunabiliyor.
+
     removable_phrases = [
         "Sayfayı Yazdır",
         "Facebook'da Paylaş",
@@ -1223,8 +1161,7 @@ def extract_turkiye_finans_text(
 
     content = normalize_text(content)
 
-    # Aynı ortak CMS özetinin alınmasını önlemek için gerçek ürün başlığı
-    # veya ürün türü metinde görünmelidir.
+
     content_key = normalize_key(content)
     required_signals = [
         title_key,
@@ -1334,12 +1271,6 @@ def classify_product(
     text: str,
     url: str,
 ) -> str:
-    """
-    Ürün türünü öncelikle başlık ve URL'den belirler.
-
-    Sayfa gövdesinde menü ve başka ürün bağlantıları bulunabildiği için
-    sınıflandırmada başlık + URL ana sinyal olarak kullanılır.
-    """
     primary = normalize_key(
         f"{title} {url}"
     )
@@ -1620,29 +1551,24 @@ def create_id(
     ).hexdigest()[:20]
 
 
-
 def normalize_product_title(
     bank_name: str,
     title: str,
     url: str,
 ) -> str:
-    """
-    Sayfanın H1/meta başlığı ürün yerine üst kategori adı döndürdüğünde,
-    URL'ye dayalı güvenli ürün başlığı düzeltmesi yapar.
-    """
     normalized_title = normalize_text(title)
     path = urlparse(url).path.casefold().rstrip("/")
 
     if bank_name == "Kuveyt Türk":
         title_overrides = {
-            # Sayfanın keşfedilen URL'si canonical etiketi nedeniyle
-            # leasing altındaki bu adrese dönüşebiliyor.
+
+
             (
                 "/isim-icin/leasing/"
                 "surdurulebilir-urunlerimiz"
             ): "Sürdürülebilir Leasing Finansmanı",
 
-            # Eski/alternatif ürün yolu da desteklenir.
+
             (
                 "/isim-icin/surdurulebilir-urunler/"
                 "surdurulebilir-leasing-finansmani"
@@ -1734,9 +1660,7 @@ def normalize_product_title(
         if path in ziraat_title_overrides:
             return ziraat_title_overrides[path]
 
-        # Ziraat bazı sayfalarda H1/meta başlığı olarak yalnızca banka adını
-        # döndürüyor. Böyle durumlarda son URL parçasından okunabilir başlık
-        # üretilir.
+
         generic_titles = {
             "ziraat katilim bankasi",
             "ziraat katilim",
@@ -1779,15 +1703,10 @@ def normalize_product_title(
     return normalized_title
 
 
-
 def invalid_page_reason(
     title: str,
     text: str,
 ) -> str | None:
-    """
-    Bankanın gerçek ürün sayfası yerine hata/WAF yanıtı döndürdüğü
-    durumları veri setine almadan yakalar.
-    """
     combined = normalize_key(
         f"{title} {text[:500]}"
     )
@@ -1899,8 +1818,7 @@ KUVEYT_EXCLUDED_PREFIXES = (
     "/isim-icin/dis-ticaret/finansmanlar",
 )
 
-# Aynı ürünlerin çalışan ana URL'leri zaten bulunduğu için bu bozuk veya
-# yönlendirme niteliğindeki alias yolları ayrıca taranmaz.
+
 KUVEYT_EXCLUDED_ALIAS_PATHS = {
     (
         "/kendim-icin/finansmanlar/surdurulebilir-finansmanlar/"
@@ -2008,19 +1926,18 @@ VAKIF_EXCLUDED_PATHS = {
     "/tr/isim-icin/kobi",
     "/tr/isim-icin/ticari-kartlar",
 
-    # Başvuru/form sayfası; ayrı finansman ürünü değildir.
+
     (
         "/tr/isim-icin/finansmanlar/"
         "finansal-kiralamalar/finansal-kiralama-basvurusu"
     ),
 
-    # İhracat alacak sigortası ürünüdür; finansman ürünü değildir.
+
     (
         "/tr/isim-icin/finansmanlar/nakdi-finansmanlar/"
         "eximbank-katilim-esasli-ihracat-alacak-sigortasi-keas"
     ),
 }
-
 
 
 DUNYA_INDEX_PATHS = {
@@ -2053,7 +1970,6 @@ DUNYA_EXCLUDED_PREFIXES = (
 )
 
 
-
 HAYAT_INDEX_PATHS = {
     "/krediler",
     "/finansmanlar",
@@ -2069,7 +1985,6 @@ HAYAT_PRODUCT_PATHS = {
     "/finansmanlar-is/ticari-finansman",
     "/finansmanlar-is/e-teminat-mektubu",
 }
-
 
 
 EMLAK_INDEX_PATHS = {
@@ -2094,9 +2009,7 @@ EMLAK_EXCLUDED_PATHS = {
 ALBARAKA_EXCLUDED_PATHS = {
     "/tr/bireysel/finansmanlar/kredi-notu-ogrenme",
 
-    # Aynı gayri nakdi ürünlerin çalışan KOBİ sayfaları zaten taranıyor.
-    # Ticari menüdeki bu kopyalar bazı isteklerde "Request Rejected"
-    # döndürdüğü için hedef listesine alınmaz.
+
     (
         "/tr/ticari-ve-kurumsal/finansmanlar/"
         "ticari-gayri-nakdi-finansman/teminat-mektuplari"
@@ -2125,15 +2038,6 @@ def resolve_link_role(
     label: str,
     url: str,
 ) -> str | None:
-    """
-    Bağlantının veri setindeki rolünü belirler.
-
-    Dönen değerler:
-        "urun_sayfasi"   -> veri kaydı oluştur
-        "hesaplama_araci" -> ayrı araç raporuna yaz
-        "index"          -> ürün keşfetmek için tara, kayıt oluşturma
-        None             -> ilgisiz bağlantı
-    """
     if not should_include_link(
         label,
         url,
@@ -2158,7 +2062,7 @@ def resolve_link_role(
         if path in KUVEYT_INDEX_PATHS:
             return "index"
 
-        # Kuveyt Türk'te yalnızca açık finansman ürün rotalarını kabul et.
+
         allowed_prefixes = (
             "/kendim-icin/finansmanlar/",
             "/isim-icin/finansman-urunleri/",
@@ -2189,8 +2093,7 @@ def resolve_link_role(
         ):
             return "urun_sayfasi"
 
-        # Kampanya, sigorta, POS, kart, yatırım ve nakit yönetimi gibi
-        # finansman ürünü olmayan menü alanları veri setine girmez.
+
         return None
 
     if bank["name"] == "Ziraat Katılım":
@@ -2206,8 +2109,7 @@ def resolve_link_role(
         ):
             return "urun_sayfasi"
 
-        # Yatırım, POS, kart, dijital bankacılık, nakit yönetimi ve benzeri
-        # genel menü alanları finansman veri setine alınmaz.
+
         return None
 
     if bank["name"] == "Vakıf Katılım":
@@ -2226,8 +2128,7 @@ def resolve_link_role(
         ):
             return "urun_sayfasi"
 
-        # Genel ticari/KOBİ tanıtım, kart ve hesaplama kategori sayfaları
-        # finansman ürünü olarak kaydedilmez.
+
         return None
 
     if bank["name"] == "Dünya Katılım":
@@ -2249,8 +2150,7 @@ def resolve_link_role(
         ):
             return "urun_sayfasi"
 
-        # Kampanya, politika, genel KOBİ ve sürdürülebilirlik tanıtım
-        # sayfaları finansman ürün veri setine alınmaz.
+
         return None
 
     if bank["name"] == "Hayat Finans Katılım":
@@ -2260,8 +2160,7 @@ def resolve_link_role(
         if path in HAYAT_PRODUCT_PATHS:
             return "urun_sayfasi"
 
-        # Kart, kampanya, hesap, dış ticaret ve diğer genel menü
-        # bağlantıları finansman ürün veri setine alınmaz.
+
         return None
 
     if bank["name"] == "Türkiye Emlak Katılım":
@@ -2277,8 +2176,7 @@ def resolve_link_role(
         ):
             return "urun_sayfasi"
 
-        # Ana site, ön başvuru, TOKİ işlemleri, satılık varlıklar ve
-        # finansman kapsamı dışındaki genel bağlantılar alınmaz.
+
         return None
 
     if "hesaplama" in normalize_key(
@@ -2292,13 +2190,6 @@ def resolve_link_role(
 def discover_targets(
     bank: dict[str, Any],
 ) -> list[PageTarget]:
-    """
-    Sabit URL'leri ekler ve listeleme sayfalarını en fazla iki düzeyli
-    kuyruk mantığıyla tarar.
-
-    Kuveyt Türk'te kategori sayfaları veri kaydı olmaz; yalnızca alt ürün
-    sayfalarını keşfetmek için kullanılır.
-    """
     targets: dict[str, PageTarget] = {}
 
     overview_seed_urls: list[str] = []
@@ -2470,8 +2361,8 @@ def scrape_adil_products(
         )
 
         if title_position >= 0:
-            # Sayfa tek parça döndüğü için güvenilir bölme yapılamıyorsa
-            # resmî sayfadaki kısa doğrulanmış metin kullanılır.
+
+
             text = fallback_text
             method_used = (
                 f"{method}_resmi_metin_geri_donusu"
@@ -2563,10 +2454,7 @@ def scrape_bank(
             canonical_url,
         )
 
-        # Hesaplama araçları bir finansman ürünü değildir. Sayfa metinleri
-        # çoğu zaman bütün ürün seçeneklerini ve form alanlarını birlikte
-        # içerdiği için ürün veri setini kirletebilir. Bu nedenle yalnızca
-        # erişim ve kaynak bilgisi ayrı bir raporda saklanır.
+
         if target.source_type == "hesaplama_araci":
             CALCULATORS.append(
                 {
@@ -2676,9 +2564,7 @@ def scrape_bank(
     exact_duplicate_count = 0
     alias_duplicate_count = 0
 
-    # Yalnızca farklı menü yollarında aynı ürünü temsil ettiği doğrulanan
-    # başlıklar alias olarak birleştirilir. Aynı başlıklı fakat farklı ürün
-    # varyantları (ör. Sürdürülebilir İşletme Finansmanı) korunur.
+
     known_alias_titles = {
         "tarim ve hayvancilik finansmani",
         "togg finansmani",
@@ -2754,7 +2640,7 @@ def scrape_bank(
             alias_groups[alias_key] = record
             continue
 
-        # Bilinen alias ürünlerde daha uzun ve zengin metin korunur.
+
         alias_duplicate_count += 1
 
         if len(record["ham_metin"]) > len(
@@ -3082,4 +2968,3 @@ def main() -> None:
 
 if __name__ == "__main__":
     main()
-
