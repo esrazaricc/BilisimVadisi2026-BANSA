@@ -1,0 +1,47 @@
+BU AŞAMADAKİ TAM PROJE DOSYALARI
+
+Ana klasör:
+- app.py
+- requirements.txt
+- README.md
+- .env.example
+- .gitignore
+- Dockerfile
+- docker-compose.yml
+
+config:
+- config/banks.json
+
+pages:
+- pages/1_Metin_Analizi.py
+- pages/2_Kampanyalar.py
+- pages/3_Karsilastirma.py
+- pages/4_Chatbot.py
+- pages/5_Ham_Sayfalar.py
+- pages/6_Banka_Taramasi.py
+
+scripts:
+- scripts/init_db.py
+- scripts/load_demo.py
+
+src:
+- src/__init__.py
+- src/banks.py
+- src/chatbot.py
+- src/config.py
+- src/db.py
+- src/pipeline.py
+- src/repository.py
+- src/classification/__init__.py
+- src/classification/campaign_detector.py
+- src/extraction/__init__.py
+- src/extraction/normalizers.py
+- src/extraction/rule_extractor.py
+- src/scraping/__init__.py
+- src/scraping/campaign_discovery.py
+- src/scraping/http_client.py
+
+tests:
+- tests/test_detector.py
+- tests/test_discovery.py
+- tests/test_extractor.py

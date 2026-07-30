@@ -1,0 +1,201 @@
+[
+  {
+    "name": "Adil Katılım",
+    "legal_name": "ADİL KATILIM BANKASI A.Ş.",
+    "slug": "adil_katilim",
+    "base_url": "https://www.adilkatilim.com.tr",
+    "campaign_pages": [],
+    "detail_paths": [],
+    "exclude_paths": [
+      "/katilim-bankaciligi/urun-ve-hizmetler"
+    ],
+    "discovery_mode": "unavailable",
+    "source_status": "public_campaign_page_not_found",
+    "scanner_ready": false
+  },
+  {
+    "name": "Albaraka Türk",
+    "legal_name": "ALBARAKA TÜRK KATILIM BANKASI A.Ş.",
+    "slug": "albaraka_turk",
+    "base_url": "https://www.albaraka.com.tr",
+    "campaign_pages": [
+      "https://www.albaraka.com.tr/tr/kampanyalar"
+    ],
+    "detail_paths": [
+      "/tr/kampanyalar/detay/"
+    ],
+    "exclude_paths": [
+      "/tr/bireysel/finansmanlar/",
+      "/tr/hesaplama-araclari/"
+    ],
+    "discovery_mode": "detail_links",
+    "source_status": "verified",
+    "scanner_ready": false
+  },
+  {
+    "name": "Dünya Katılım",
+    "legal_name": "DÜNYA KATILIM BANKASI A.Ş.",
+    "slug": "dunya_katilim",
+    "base_url": "https://dunyakatilim.com.tr",
+    "campaign_pages": [
+      "https://dunyakatilim.com.tr/kampanyalar"
+    ],
+    "detail_paths": [
+      "/kampanyalar/"
+    ],
+    "exclude_paths": [
+      "/blog/",
+      "/kendim-icin/kartlar"
+    ],
+    "discovery_mode": "detail_links_dynamic",
+    "source_status": "verified",
+    "scanner_ready": false
+  },
+  {
+    "name": "Hayat Finans",
+    "legal_name": "HAYAT FİNANS KATILIM BANKASI A.Ş.",
+    "slug": "hayat_finans",
+    "base_url": "https://hayatfinans.com.tr",
+    "campaign_pages": [
+      "https://hayatfinans.com.tr/kampanyalar"
+    ],
+    "detail_paths": [
+      "/kampanyalar/"
+    ],
+    "exclude_paths": [
+      "/urunler/",
+      "/hesaplama-araclari/"
+    ],
+    "discovery_mode": "detail_links",
+    "source_status": "verified",
+    "scanner_ready": false
+  },
+  {
+    "name": "Kuveyt Türk",
+    "legal_name": "KUVEYT TÜRK KATILIM BANKASI A.Ş.",
+    "slug": "kuveyt_turk",
+    "base_url": "https://www.kuveytturk.com.tr",
+    "campaign_pages": [
+      "https://www.kuveytturk.com.tr/kampanyalar/kendim-icin",
+      "https://www.kuveytturk.com.tr/kampanyalar/isim-icin"
+    ],
+    "detail_paths": [
+      "/kampanyalar/kendim-icin/",
+      "/kampanyalar/isim-icin/"
+    ],
+    "exclude_paths": [
+      "/kampanyalar/kendim-icin/finansman-kampanyalari",
+      "/kampanyalar/kendim-icin/musteri-ol-kampanyalari",
+      "/kampanyalar/isim-icin/kart-kampanyalari",
+      "/hesaplama-araclari/"
+    ],
+    "discovery_mode": "nested_detail_links",
+    "source_status": "verified",
+    "scanner_ready": false
+  },
+  {
+    "name": "T.O.M. Katılım",
+    "legal_name": "T.O.M. KATILIM BANKASI A.Ş.",
+    "slug": "tom_katilim",
+    "base_url": "https://tombank.com.tr",
+    "campaign_pages": [
+      "https://tombank.com.tr/kampanyalar.html"
+    ],
+    "detail_paths": [],
+    "exclude_paths": [
+      "/urunlerimiz.html",
+      "/taksitle.html",
+      "/magazadan-alisveris-kredisi.html",
+      "/hesaplama-araclari.html"
+    ],
+    "discovery_mode": "single_listing_page",
+    "source_status": "verified",
+    "scanner_ready": false
+  },
+  {
+    "name": "Türkiye Emlak Katılım",
+    "legal_name": "TÜRKİYE EMLAK KATILIM BANKASI A.Ş.",
+    "slug": "turkiye_emlak_katilim",
+    "base_url": "https://www.emlakkatilim.com.tr",
+    "campaign_pages": [
+      "https://www.emlakkatilim.com.tr/tr/bireysel/kampanyalar",
+      "https://www.emlakkatilim.com.tr/tr/kurumsal/kampanyalar"
+    ],
+    "detail_paths": [
+      "/tr/bireysel/kampanyalar/kampanya/",
+      "/tr/kurumsal/kampanyalar/kampanya/"
+    ],
+    "exclude_paths": [
+      "/tr/bireysel/finansmanlar/",
+      "/tr/kurumsal/finansmanlar/"
+    ],
+    "discovery_mode": "detail_links",
+    "source_status": "verified",
+    "scanner_ready": false
+  },
+  {
+    "name": "Türkiye Finans",
+    "legal_name": "TÜRKİYE FİNANS KATILIM BANKASI A.Ş.",
+    "slug": "turkiye_finans",
+    "base_url": "https://www.turkiyefinans.com.tr",
+    "campaign_pages": [
+      "https://www.turkiyefinans.com.tr/tr-tr/kampanyalar/sayfalar/default.aspx",
+      "https://www.turkiyefinans.com.tr/tr-tr/kampanyalar/sayfalar/kart-kampanyalari.aspx"
+    ],
+    "detail_paths": [
+      "/tr-tr/kampanyalar/sayfalar/"
+    ],
+    "exclude_paths": [
+      "/tr-tr/kampanyalar/sayfalar/default.aspx",
+      "/tr-tr/kampanyalar/sayfalar/kart-kampanyalari.aspx",
+      "/tr-tr/kampanyalar/sayfalar/biten-kampanyalar.aspx",
+      "/tr-tr/bireysel/"
+    ],
+    "discovery_mode": "same_folder_with_exclusions",
+    "source_status": "verified",
+    "scanner_ready": false
+  },
+  {
+    "name": "Vakıf Katılım",
+    "legal_name": "VAKIF KATILIM BANKASI A.Ş.",
+    "slug": "vakif_katilim",
+    "base_url": "https://www.vakifkatilim.com.tr",
+    "campaign_pages": [
+      "https://www.vakifkatilim.com.tr/tr/kendim-icin/kampanyalar/mevcut-kampanyalar"
+    ],
+    "detail_paths": [
+      "/tr/kendim-icin/kampanyalar/detay/",
+      "/tr/isim-icin/kampanyalar/detay/"
+    ],
+    "exclude_paths": [
+      "/tr/kendim-icin/finansmanlar/",
+      "/tr/isim-icin/finansmanlar/"
+    ],
+    "discovery_mode": "detail_links",
+    "source_status": "verified",
+    "scanner_ready": false
+  },
+  {
+    "name": "Ziraat Katılım",
+    "legal_name": "ZİRAAT KATILIM BANKASI A.Ş.",
+    "slug": "ziraat_katilim",
+    "base_url": "https://www.ziraatkatilim.com.tr",
+    "campaign_pages": [
+      "https://www.ziraatkatilim.com.tr/bireysel/kampanyalar",
+      "https://www.ziraatkatilim.com.tr/kart-kampanyalari"
+    ],
+    "detail_paths": [
+      "/bireysel/kampanyalar/",
+      "/kart-kampanyalari/"
+    ],
+    "exclude_paths": [
+      "/bireysel/kampanyalar",
+      "/bireysel/kampanyalar/kart-kampanyalari",
+      "/kart-kampanyalari",
+      "/bireysel/finansman-urunleri/"
+    ],
+    "discovery_mode": "detail_links",
+    "source_status": "verified",
+    "scanner_ready": false
+  }
+]
