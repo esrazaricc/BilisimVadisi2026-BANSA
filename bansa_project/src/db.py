@@ -1,9 +1,13 @@
+from __future__ import annotations
+
 import shutil
 import sqlite3
 from contextlib import contextmanager
 from datetime import datetime
+from pathlib import Path
 
 from src.config import DB_PATH
+
 
 SCHEMA_VERSION = 2
 
@@ -33,7 +37,9 @@ CREATE TABLE IF NOT EXISTS source_pages (
     page_title TEXT,
     raw_text TEXT NOT NULL,
     content_hash TEXT,
-    page_type TEXT NOT NULL CHECK(page_type IN ('campaign', 'standard_product', 'other')),
+    page_type TEXT NOT NULL CHECK(
+        page_type IN ('campaign', 'standard_product', 'other')
+    ),
     is_campaign INTEGER NOT NULL CHECK(is_campaign IN (0, 1)),
     classification_reason TEXT,
     classification_confidence REAL,
@@ -55,7 +61,9 @@ CREATE TABLE IF NOT EXISTS campaigns (
     start_date TEXT,
     end_date TEXT,
     campaign_conditions TEXT,
-    status TEXT NOT NULL DEFAULT 'unknown' CHECK(status IN ('active', 'expired', 'unknown')),
+    status TEXT NOT NULL DEFAULT 'unknown' CHECK(
+        status IN ('active', 'expired', 'unknown')
+    ),
     source_evidence TEXT,
     extraction_confidence REAL,
     first_seen_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP,
@@ -123,58 +131,134 @@ CREATE TABLE IF NOT EXISTS crawl_logs (
     FOREIGN KEY(bank_id) REFERENCES banks(id) ON DELETE SET NULL
 );
 
-CREATE INDEX IF NOT EXISTS idx_source_pages_bank ON source_pages(bank_id);
-CREATE INDEX IF NOT EXISTS idx_source_pages_type ON source_pages(page_type);
-CREATE INDEX IF NOT EXISTS idx_campaigns_bank ON campaigns(bank_id);
-CREATE INDEX IF NOT EXISTS idx_campaigns_type ON campaigns(campaign_type);
-CREATE INDEX IF NOT EXISTS idx_campaigns_status ON campaigns(status);
-CREATE INDEX IF NOT EXISTS idx_campaigns_end_date ON campaigns(end_date);
-CREATE INDEX IF NOT EXISTS idx_benefits_campaign ON campaign_benefits(campaign_id);
-CREATE INDEX IF NOT EXISTS idx_audiences_campaign ON campaign_audiences(campaign_id);
-CREATE INDEX IF NOT EXISTS idx_crawl_logs_bank ON crawl_logs(bank_id);
+CREATE INDEX IF NOT EXISTS idx_source_pages_bank
+    ON source_pages(bank_id);
+CREATE INDEX IF NOT EXISTS idx_source_pages_type
+    ON source_pages(page_type);
+CREATE INDEX IF NOT EXISTS idx_campaigns_bank
+    ON campaigns(bank_id);
+CREATE INDEX IF NOT EXISTS idx_campaigns_type
+    ON campaigns(campaign_type);
+CREATE INDEX IF NOT EXISTS idx_campaigns_status
+    ON campaigns(status);
+CREATE INDEX IF NOT EXISTS idx_campaigns_end_date
+    ON campaigns(end_date);
+CREATE INDEX IF NOT EXISTS idx_benefits_campaign
+    ON campaign_benefits(campaign_id);
+CREATE INDEX IF NOT EXISTS idx_audiences_campaign
+    ON campaign_audiences(campaign_id);
+CREATE INDEX IF NOT EXISTS idx_crawl_logs_bank
+    ON crawl_logs(bank_id);
 """
 
 
-def _database_version(connection):
-    table = connection.execute(
-        "SELECT name FROM sqlite_master WHERE type = 'table' AND name = 'schema_info'"
+def _has_table(
+    connection: sqlite3.Connection,
+    table_name: str,
+) -> bool:
+    row = connection.execute(
+        """
+        SELECT 1
+        FROM sqlite_master
+        WHERE type = 'table' AND name = ?
+        LIMIT 1
+        """,
+        (table_name,),
     ).fetchone()
-    if not table:
+    return row is not None
+
+
+def _database_version(
+    connection: sqlite3.Connection,
+) -> int | None:
+    if not _has_table(connection, "schema_info"):
         return None
 
     row = connection.execute(
-        "SELECT version FROM schema_info ORDER BY rowid DESC LIMIT 1"
+        """
+        SELECT version
+        FROM schema_info
+        ORDER BY rowid DESC
+        LIMIT 1
+        """
     ).fetchone()
-    return row[0] if row else None
+    return int(row[0]) if row else None
 
 
-def _backup_old_database():
+def _backup_old_database() -> Path:
     timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
-    backup_path = DB_PATH.with_name(f"{DB_PATH.stem}_backup_{timestamp}{DB_PATH.suffix}")
+    backup_path = DB_PATH.with_name(
+        f"{DB_PATH.stem}_backup_{timestamp}{DB_PATH.suffix}"
+    )
     shutil.copy2(DB_PATH, backup_path)
     return backup_path
 
 
-def init_db(reset=False):
-    """Veritabanını hazırlar. Eski şema varsa önce yedek alır."""
+def _write_schema_version(
+    connection: sqlite3.Connection,
+) -> None:
+    connection.execute("DELETE FROM schema_info")
+    connection.execute(
+        "INSERT INTO schema_info (version) VALUES (?)",
+        (SCHEMA_VERSION,),
+    )
+
+
+def init_db(reset: bool = False) -> Path | None:
+    """
+    Veritabanını güvenli biçimde hazırlar.
+
+    Önemli:
+    - Normal uygulama açılışında mevcut veritabanı silinmez.
+    - ``live_campaigns`` tablosu bulunan yeni/canlı veritabanına
+      eski şema uygulanmaz.
+    - Silme işlemi yalnızca açıkça ``reset=True`` verilirse yapılır.
+    """
     DB_PATH.parent.mkdir(parents=True, exist_ok=True)
-    backup_path = None
+    backup_path: Path | None = None
+
+    if reset and DB_PATH.exists():
+        backup_path = _backup_old_database()
+        DB_PATH.unlink()
 
     if DB_PATH.exists():
-        with sqlite3.connect(DB_PATH) as connection:
+        with sqlite3.connect(DB_PATH, timeout=30) as connection:
+            # Projenin güncel canlı şeması zaten mevcutsa hiçbir
+            # tabloyu silme veya eski şemayı ekleme.
+            if _has_table(connection, "live_campaigns"):
+                return backup_path
+
             current_version = _database_version(connection)
 
-        if reset or current_version != SCHEMA_VERSION:
-            backup_path = _backup_old_database()
-            DB_PATH.unlink()
+            if current_version is not None:
+                # Şema sürümü farklı olsa bile otomatik silme yok.
+                # Mevcut tabloları IF NOT EXISTS ile koruyarak
+                # yalnızca eksikleri tamamla.
+                connection.executescript(SCHEMA)
+                _write_schema_version(connection)
+                connection.commit()
+                return backup_path
 
-    with sqlite3.connect(DB_PATH) as connection:
+            # İçinde veri tabloları bulunan ama sürüm bilgisi olmayan
+            # bir veritabanını da otomatik sıfırlama.
+            user_tables = {
+                row[0]
+                for row in connection.execute(
+                    """
+                    SELECT name
+                    FROM sqlite_master
+                    WHERE type = 'table'
+                      AND name NOT LIKE 'sqlite_%'
+                    """
+                )
+            }
+            if user_tables:
+                return backup_path
+
+    # Yeni veya açıkça sıfırlanmış veritabanını oluştur.
+    with sqlite3.connect(DB_PATH, timeout=30) as connection:
         connection.executescript(SCHEMA)
-        connection.execute("DELETE FROM schema_info")
-        connection.execute(
-            "INSERT INTO schema_info (version) VALUES (?)",
-            (SCHEMA_VERSION,),
-        )
+        _write_schema_version(connection)
         connection.commit()
 
     return backup_path
@@ -182,10 +266,22 @@ def init_db(reset=False):
 
 @contextmanager
 def get_connection():
-    init_db()
-    connection = sqlite3.connect(DB_PATH)
+    """
+    Veritabanı bağlantısı açar.
+
+    Mevcut dosya varsa her bağlantıda ``init_db`` çalıştırılmaz;
+    böylece açık veritabanını silme girişimi oluşmaz.
+    """
+    if not DB_PATH.exists():
+        init_db(reset=False)
+
+    connection = sqlite3.connect(
+        DB_PATH,
+        timeout=30,
+    )
     connection.row_factory = sqlite3.Row
     connection.execute("PRAGMA foreign_keys = ON")
+    connection.execute("PRAGMA busy_timeout = 30000")
 
     try:
         yield connection
@@ -195,3 +291,4 @@ def get_connection():
         raise
     finally:
         connection.close()
+
