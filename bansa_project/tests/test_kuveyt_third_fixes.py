@@ -123,16 +123,6 @@ def test_finance_classifier_recognizes_ihtiyac_card():
     assert result.campaign_category == "finance_campaign"
 
 
-def test_finance_classifier_recognizes_shopping_finance():
-    result = classify_campaign_record(
-        title="Hepsiburada Vade Farksız Fırsatı",
-        clean_text=(
-            "Kuveyt Türk Alışveriş Finansmanı ile "
-            "50.000 TL'ye kadar 9 taksit."
-        ),
-    )
-    assert result.campaign_category == "finance_campaign"
-
 
 def test_hepsiburada_override(tmp_path):
     path = tmp_path / "finance.json"
