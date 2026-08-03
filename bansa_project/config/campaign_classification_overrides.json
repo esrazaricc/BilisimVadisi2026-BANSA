@@ -1,0 +1,102 @@
+[
+  {
+    "bank_name": "Kuveyt Türk",
+    "source_url": "https://kuveytturk.com.tr/kampanyalar/isim-icin/musteri-ol-kampanyalari/esnaf-ciftci-ve-tuzel-sirketlere-ozel-16000-tl-degerinde-finansal-urun-paketi-hediye",
+    "record_kind": "campaign",
+    "campaign_category": "new_customer_campaign",
+    "classification_confidence": 1.0,
+    "reason": "Kampanya yeni müşteri olma koşuluna bağlı ve belirli tarih aralığında ücretsiz finansal ürün paketi sunuyor."
+  },
+  {
+    "bank_name": "Kuveyt Türk",
+    "source_url": "https://kuveytturk.com.tr/kampanyalar/isim-icin/musteri-ol-kampanyalari/esnaf-ciftci-ve-tuzel-sirketlerin-faturasi-bizden",
+    "record_kind": "campaign",
+    "campaign_category": "new_customer_campaign",
+    "classification_confidence": 1.0,
+    "reason": "Faydalanma koşulu mobil kanaldan yeni müşteri olmaktır."
+  },
+  {
+    "bank_name": "Kuveyt Türk",
+    "source_url": "https://kuveytturk.com.tr/kampanyalar/kendim-icin/musteri-ol-kampanyalari/fatura-talimatlariniza-toplam-500-tl-hediye",
+    "record_kind": "campaign",
+    "campaign_category": "new_customer_campaign",
+    "classification_confidence": 1.0,
+    "reason": "Kampanya mobil veya XTM üzerinden yeni müşteri olanlara fatura talimatı karşılığında hediye sunuyor."
+  },
+  {
+    "bank_name": "Kuveyt Türk",
+    "source_url": "https://kuveytturk.com.tr/kampanyalar/kendim-icin/finansman-kampanyalari/kuveyt-turk-ve-togg-is-birligi",
+    "title": "TOGG & Kuveyt Türk İş Birliği ile Avantajlı Finansman Kampanyası",
+    "record_kind": "campaign",
+    "campaign_category": "finance_campaign",
+    "classification_confidence": 1.0,
+    "reason": "Çekilen 'Kampanya Koşulları' başlığı sayfa içi bölüm başlığıdır. Metin, %0 kâr paylı TOGG finansman kampanyasını açıkça tanımlıyor."
+  },
+  {
+    "bank_name": "Kuveyt Türk",
+    "source_url": "https://kuveytturk.com.tr/kampanyalar/kendim-icin/musteri-ol-kampanyalari/akademisyenlere-ozel-avantaj-paketi",
+    "title": "Akademisyenlere Özel Avantaj Paketi",
+    "record_kind": "campaign",
+    "campaign_category": "new_customer_campaign",
+    "classification_confidence": 1.0,
+    "reason": "Çekilen 'Konut Finansmanı Avantajları' başlığı sayfa içi alt başlıktır. Kaynak URL ve metin akademisyenlere özel müşteri olma avantaj paketini gösteriyor."
+  },
+  {
+    "bank_name": "Kuveyt Türk",
+    "source_url": "https://kuveytturk.com.tr/kampanyalar/kendim-icin/musteri-ol-kampanyalari/kuveyt-turk-mobilden-musterimiz-olun-ozel-kur-firsatini-kacirmayin",
+    "record_kind": "campaign",
+    "campaign_category": "new_customer_campaign",
+    "classification_confidence": 1.0,
+    "reason": "Özel kur avantajı mobil kanaldan yeni müşteri olma koşuluna bağlıdır."
+  },
+  {
+    "bank_name": "Kuveyt Türk",
+    "source_url": "https://kuveytturk.com.tr/kampanyalar/isim-icin/pos-kampanyalari/kuveyt-turkten-sanal-pos-kampanyasi",
+    "record_kind": "campaign",
+    "campaign_category": "other_campaign",
+    "classification_confidence": 1.0,
+    "reason": "Belirli tarih aralığında ilk defa POS alacak ticari müşterilere sektör bazlı komisyon ve bloke avantajı sunulan gerçek POS kampanyasıdır."
+  },
+  {
+    "bank_name": "Kuveyt Türk",
+    "source_url": "https://kuveytturk.com.tr/kampanyalar/isim-icin/kobi-kampanyalari/tarimda-kuveyt-turk-ile-buyume-zamani",
+    "record_kind": "campaign",
+    "campaign_category": "finance_campaign",
+    "classification_confidence": 1.0,
+    "reason": "Tarım makinesi ve yatırım için leasing finansmanı, ödemesiz dönem ve esnek ödeme seçenekleri sunan finansman kampanyasıdır."
+  },
+  {
+    "bank_name": "Kuveyt Türk",
+    "source_url": "https://kuveytturk.com.tr/kampanyalar/kendim-icin/finansman-kampanyalari/tarimda-kuveyt-turk-ile-buyume-zamani",
+    "record_kind": "duplicate",
+    "campaign_category": "duplicate",
+    "classification_confidence": 1.0,
+    "is_current": 0,
+    "duplicate_of_source_url": "https://kuveytturk.com.tr/kampanyalar/isim-icin/kobi-kampanyalari/tarimda-kuveyt-turk-ile-buyume-zamani",
+    "reason": "Başlık, içerik özeti ve içerik karması ticari KOBİ kaydıyla aynıdır. Ticari KOBİ bağlantısı ana kayıt olarak korunmuştur."
+  },
+  {
+    "bank_name": "Kuveyt Türk",
+    "source_url": "https://kuveytturk.com.tr/kampanyalar/isim-icin/kobi-kampanyalari/arac-finansmani-onaylanan-kobilere-hgs-kampanyasi",
+    "record_kind": "campaign",
+    "campaign_category": "other_campaign",
+    "classification_confidence": 1.0,
+    "reason": "Kampanya finansman ürünü sunmuyor; araç finansmanı onaylanan KOBİ müşterilerine ücretsiz HGS etiketi hediye ediyor."
+  },
+  {
+    "bank_name": "Kuveyt Türk",
+    "source_url": "https://kuveytturk.com.tr/kampanyalar/kendim-icin/musteri-ol-kampanyalari/hepsiburadada-yeni-musteriye-ozel-vade-farksiz-50000-tl-firsati",
+    "record_kind": "campaign",
+    "campaign_category": "finance_campaign",
+    "classification_confidence": 1.0,
+    "reason": "Kampanya Kuveyt Türk Alışveriş Finansmanı ile 50.000 TL'ye kadar vade farksız 9 taksit sunuyor."
+  },
+  {
+    "bank_name": "Kuveyt Türk",
+    "source_url": "https://kuveytturk.com.tr/kampanyalar/kendim-icin/musteri-ol-kampanyalari/yeni-musterilere-ozel-ihtiyac-kartta-199-oran-firsati",
+    "record_kind": "campaign",
+    "campaign_category": "finance_campaign",
+    "classification_confidence": 1.0,
+    "reason": "İhtiyaç Kart kampanyası 100.000 TL'ye kadar, %1,99 oran, 12 ay taksit ve 2 ay erteleme içeriyor."
+  }
+]
