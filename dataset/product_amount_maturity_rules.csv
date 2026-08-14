@@ -1,0 +1,36 @@
+﻿id,product_id,min_amount,max_amount,min_inclusive,max_inclusive,max_maturity_months,source_text,updated_at
+336,556,800001.0,1200000.0,0,1,24,800.001 TL – 1.200.000 TL arasında bulunduğunda azami vade 24 ay,2026-08-12T11:10:22+00:00
+337,609,,125000.0,0,1,36,125.000 TL’ye kadar olması durumunda en fazla 36 ay,2026-08-12T11:10:22+00:00
+338,609,125000.0,250000.0,0,1,24,125.000- 250.000 TL arasında en fazla 24 ay,2026-08-12T11:10:22+00:00
+339,609,250000.0,,0,1,12,250.000 TL’den fazla olması durumunda en fazla 12 ay,2026-08-12T11:10:22+00:00
+397,617,,400000.0,0,1,48,400.000 TL'ye kadar araçlar için maksimum vade süresi 48 ay,2026-08-13T11:10:38+00:00
+398,617,400000.0,800000.0,0,1,36,400.000 - 800.000 TL arası araçlar için maksimum vade süresi 36 ay,2026-08-13T11:10:38+00:00
+399,617,800000.0,1200000.0,0,1,24,800.000 TL - 1.200.000 TL arası araçlar için maksimum vade süresi 24 ay,2026-08-13T11:10:38+00:00
+400,617,1200000.0,2000000.0,0,1,12,1.200.000 - 2.000.000 TL arasında araçlar için maksimum vade süresi 12 ay,2026-08-13T11:10:38+00:00
+401,619,,400000.0,0,1,48,400.000 TL'ye kadar araçlar için maksimum vade süresi 48 ay,2026-08-13T11:10:38+00:00
+402,619,400000.0,800000.0,0,1,36,400.000 - 800.000 TL arası araçlar için maksimum vade süresi 36 ay,2026-08-13T11:10:38+00:00
+403,619,800000.0,1200000.0,0,1,24,800.000 TL - 1.200.000 TL arası araçlar için maksimum vade süresi 24 ay,2026-08-13T11:10:38+00:00
+404,619,1200000.0,2000000.0,0,1,12,1.200.000 - 2.000.000 TL arasında araçlar için maksimum vade süresi 12 ay,2026-08-13T11:10:38+00:00
+405,625,,125000.0,0,1,36,125.000 TL’ ye kadar olması durumunda maksimum vade 36 ay,2026-08-13T11:10:38+00:00
+406,625,,250000.0,0,1,24,250.000 TL’ ye kadar olması durumunda maksimum vade 24 ay,2026-08-13T11:10:38+00:00
+407,625,0.0,,0,1,12,000 TL’den fazla olması durumunda maksimum vade 12 ay,2026-08-13T11:10:38+00:00
+408,625,125000.0,250000.0,0,1,24,125.000 - 250.000 TL’ ye kadar olması durumunda maksimum vade 24 ay,2026-08-13T11:10:38+00:00
+409,627,,125000.0,0,1,36,125.000 TL’ ye kadar olması durumunda maksimum vade 36 ay,2026-08-13T11:10:38+00:00
+410,627,,250000.0,0,1,24,250.000 TL’ ye kadar olması durumunda maksimum vade 24 ay,2026-08-13T11:10:38+00:00
+411,627,125000.0,250000.0,0,1,24,125.000 - 250.000 TL’ ye kadar olması durumunda maksimum vade 24 ay,2026-08-13T11:10:38+00:00
+412,627,250000.0,,0,1,12,250.000 TL’den fazla olması durumunda maksimum vade 12 ay,2026-08-13T11:10:38+00:00
+413,634,,125000.0,0,1,36,125.000TL’ye kadar olması durumunda maksimum vade 36 ay,2026-08-13T11:10:38+00:00
+483,672,,50000.0,0,1,36,"ansman kullanın, ihtiyaçlarınızı ertelemeden hemen kavuşma imkanına sahip olun! 1.000-50.000 TL arası finansmanlarda 36 Ay, 50.001-100.000 TL arası finansmanlarda 24 Ay, 100.001 TL ve üzeri arası finansmanlarda 12 Ay’a kadar vade imkanından faydalanabilirsiniz. Jet Finansman Nedir? Jet Finansman ile a",2026-08-13T11:49:11+00:00
+484,672,50000.0,100000.0,0,1,24,"hemen kavuşma imkanına sahip olun! 1.000-50.000 TL arası finansmanlarda 36 Ay, 50.001-100.000 TL arası finansmanlarda 24 Ay, 100.001 TL ve üzeri arası finansmanlarda 12 Ay’a kadar vade imkanından faydalanabilirsiniz. Jet Finansman Nedir? Jet Finansman ile alışveriş yapmak istediğiniz mağazadayken ya da",2026-08-13T11:49:11+00:00
+485,672,100000.0,,0,1,12,"00 TL arası finansmanlarda 36 Ay, 50.001-100.000 TL arası finansmanlarda 24 Ay, 100.001 TL ve üzeri arası finansmanlarda 12 Ay’a kadar vade imkanından faydalanabilirsiniz. Jet Finansman Nedir? Jet Finansman ile alışveriş yapmak istediğiniz mağazadayken ya da hizmet satın almak istediğiniz kurumdayken Alba",2026-08-13T11:49:11+00:00
+486,673,,125000.0,0,1,36,rsiniz. Finansman Tutarları ve Taksit Bilgileri Finansman Tutarı Taksit Miktarı 125.000 TL’ye kadar Maksimum 36 ay vade 125.000 - 250.000 TL Maksimum 24 ay vade 250.000 TL ve üzeri Maksimum 12 ay vade Motosiklet Finansmanı İçin Gerekli Belgeler Ücretli çalışanların maaş bordrosu veya net ma,2026-08-13T11:49:11+00:00
+487,673,125000.0,250000.0,0,1,24,"lgileri Finansman Tutarı Taksit Miktarı 125.000 TL’ye kadar Maksimum 36 ay vade 125.000 - 250.000 TL Maksimum 24 ay vade 250.000 TL ve üzeri Maksimum 12 ay vade Motosiklet Finansmanı İçin Gerekli Belgeler Ücretli çalışanların maaş bordrosu veya net maaş tutarını gösteren, işyeri tarafından o",2026-08-13T11:49:11+00:00
+488,673,250000.0,,0,1,12,"25.000 TL’ye kadar Maksimum 36 ay vade 125.000 - 250.000 TL Maksimum 24 ay vade 250.000 TL ve üzeri Maksimum 12 ay vade Motosiklet Finansmanı İçin Gerekli Belgeler Ücretli çalışanların maaş bordrosu veya net maaş tutarını gösteren, işyeri tarafından onaylanmış belge. Başvuru sırasında profo",2026-08-13T11:49:11+00:00
+489,674,,125000.0,0,1,36,"eçebilirsiniz. Kartın kullanım süresini bu seçiminize göre belirleyebilirsiniz. 125.000 TL’ye kadar 2 ay ödemesiz dönem seçeneği ile 36 aya kadar vade imkânı, 125.000 TL ile 150.000 TL arası 2 ay ödemesiz dönem seçeneği ile 24 aya kadar vade imkânı ile 150.000 TRY ' ye kadar finansman kullanabilirsiniz. Pratik Finansm",2026-08-13T11:49:11+00:00
+490,674,125000.0,150000.0,0,1,24,"125.000 TL’ye kadar 2 ay ödemesiz dönem seçeneği ile 36 aya kadar vade imkânı, 125.000 TL ile 150.000 TL arası 2 ay ödemesiz dönem seçeneği ile 24 aya kadar vade imkânı ile 150.000 TRY ' ye kadar finansman kullanabilirsiniz. Pratik Finansman Kart bir kredi kartı olmadığı için, kredi kartı limitlerine takılmadan, ihtiyaç finansma",2026-08-13T11:49:11+00:00
+491,676,,125000.0,0,1,36,"izsiz bankacılık prensiplerine uygun tüketici finansmanı desteği tam size göre. 125.000 TL' ye kadar olan finansmanlarda 36 aya kadar, 125.000 – 250.000 TL ye kadar olan finansmanlarda 24 aya kadar, 250.000 TL ve üzerindeki finansmanlar ise 12 aya kadar vade seçeneklerinden faydalanabilirsiniz. Temel i",2026-08-13T11:49:11+00:00
+492,676,125000.0,250000.0,0,1,24,"ı desteği tam size göre. 125.000 TL' ye kadar olan finansmanlarda 36 aya kadar, 125.000 – 250.000 TL ye kadar olan finansmanlarda 24 aya kadar, 250.000 TL ve üzerindeki finansmanlar ise 12 aya kadar vade seçeneklerinden faydalanabilirsiniz. Temel ihtiyaç finansmanı ile eşya alımlarından sağlık giderlerine, tati",2026-08-13T11:49:11+00:00
+493,676,250000.0,,0,1,12,"a 36 aya kadar, 125.000 – 250.000 TL ye kadar olan finansmanlarda 24 aya kadar, 250.000 TL ve üzerindeki finansmanlar ise 12 aya kadar vade seçeneklerinden faydalanabilirsiniz. Temel ihtiyaç finansmanı ile eşya alımlarından sağlık giderlerine, tatil planlarından teknolojik aletlere kadar birçok alanda u",2026-08-13T11:49:11+00:00
+494,679,,125000.0,0,1,36,"re bedelinin tamamı için uygun kâr payı oranlarıyla finansman kullanabilirsiniz 125.000 TL’ye kadar olan tüketici finansmanı başvuruları maksimum 36 ay, 125.001 TL ile 250.000 TL arasındaki finansman başvuruları maksimum 24 ay, 250.000 TL üzerindeki finansman başvurularınızda maksimum 12 ay vadelendirilmektedir. Hac/Umre Finan",2026-08-13T11:49:11+00:00
+495,679,125000.0,250000.0,0,1,24,,2026-08-13T11:49:11+00:00
+496,679,250000.0,,0,1,12,"ay, 125.001 TL ile 250.000 TL arasındaki finansman başvuruları maksimum 24 ay, 250.000 TL üzerindeki finansman başvurularınızda maksimum 12 ay vadelendirilmektedir. Hac/Umre Finansmanına Nasıl Başvurulur? Şubeye gitmeden dilediğiniz yerden hac/umre finansmanınızı kullanabilmek için Jet Finansman sayfamızı ziyaret edeb",2026-08-13T11:49:11+00:00

@@ -1,0 +1,38 @@
+{
+  "campaigns.csv": {
+    "rows": 527
+  },
+  "campaign_texts.csv": {
+    "rows": 677
+  },
+  "campaign_benefits.csv": {
+    "rows": 683
+  },
+  "campaign_audiences.csv": {
+    "rows": 598
+  },
+  "campaign_installment_terms.csv": {
+    "rows": 305
+  },
+  "standard_products.csv": {
+    "rows": 124
+  },
+  "product_amount_maturity_rules.csv": {
+    "rows": 35
+  },
+  "product_category_rules.csv": {
+    "rows": 52
+  },
+  "product_pricing_tiers.csv": {
+    "rows": 200
+  },
+  "product_fee_rules.csv": {
+    "rows": 41
+  },
+  "product_offer_rules.csv": {
+    "rows": 20
+  },
+  "product_features.csv": {
+    "rows": 410
+  }
+}
