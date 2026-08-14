@@ -1,0 +1,1632 @@
+[
+  {
+    "path": ".env.example",
+    "bytes": 311,
+    "sha256": "dd0e147b55f7d06ab70a41cfa85d5f15f0aa9789e3b29a00d136172708edd031"
+  },
+  {
+    "path": ".gitignore",
+    "bytes": 410,
+    "sha256": "1572e5138a15209198695ce0cb9cc3414b2e229d0005f22496232b1130c5d5a7"
+  },
+  {
+    "path": "Ana_Sayfa.py",
+    "bytes": 2535,
+    "sha256": "036d2f6a69f53fcb804bd3cf368a468c0d6f42738f108ff387bd89cc27525194"
+  },
+  {
+    "path": "GITHUB_UPLOAD_CHECKLIST.md",
+    "bytes": 871,
+    "sha256": "77ea807355a2a8d913029e292ac82be94f55a6ca40bf588861569dc499e3b202"
+  },
+  {
+    "path": "LICENSE",
+    "bytes": 11358,
+    "sha256": "cfc7749b96f63bd31c3c42b5c471bf756814053e847c10f3eb003417bc523d30"
+  },
+  {
+    "path": "README.md",
+    "bytes": 4204,
+    "sha256": "df00d372843dd5a62885b536a76cd0aba4e248d58d9619f0b5a7cb808001eea2"
+  },
+  {
+    "path": "REPO_CLEANUP_REPORT.md",
+    "bytes": 1025,
+    "sha256": "0fe0101404a3d603d377ebd3995a412317164cfc3a5b4514e925b6f116e87e75"
+  },
+  {
+    "path": "archive/README.md",
+    "bytes": 264,
+    "sha256": "9cf4fe641b23ec8717a8a09323cb857d849e730817c8f41acaeeaf77636dac73"
+  },
+  {
+    "path": "archive/config_history/standard_product_sources_before_albaraka_20260812_144541.json",
+    "bytes": 14794,
+    "sha256": "c702fcde74c2d6388a667d4eb556b1cbb63087ebbeb54611787329ae70412807"
+  },
+  {
+    "path": "archive/config_history/standard_product_sources_before_embedded_20260812_104225.json",
+    "bytes": 13865,
+    "sha256": "efe7ca87ac429b8cb16fb71f3e5694cc009ee2ad6ec5887faea7f48cc12f8834"
+  },
+  {
+    "path": "archive/config_history/standard_product_sources_before_exact_seed_20260812_094559.json",
+    "bytes": 13832,
+    "sha256": "45cfb909863da227a8d42ff84b520feebfbe6c5c1e0f293e98f963c1f0b02350"
+  },
+  {
+    "path": "archive/config_history/standard_product_sources_before_hac_umre_v10_20260813_144708.json",
+    "bytes": 22202,
+    "sha256": "631602749645823d0c9e3b2e71f90032e7387e6027468eff76c1a29329d83a01"
+  },
+  {
+    "path": "archive/config_history/standard_product_sources_before_hayat_20260811_145831.json",
+    "bytes": 6281,
+    "sha256": "7687895a7f8709e616a9b276df5542d8cc194c5508abd68805eef479f95eb609"
+  },
+  {
+    "path": "archive/config_history/standard_product_sources_before_tf_gayri_nakdi_20260812_110603.json",
+    "bytes": 14645,
+    "sha256": "7415c1dffa99765445a7f18b1ee23759ed5bba07d9a21059c1ebc93d4a5b7093"
+  },
+  {
+    "path": "archive/config_history/standard_product_sources_before_tf_gayri_nakdi_20260812_110611.json",
+    "bytes": 14794,
+    "sha256": "c702fcde74c2d6388a667d4eb556b1cbb63087ebbeb54611787329ae70412807"
+  },
+  {
+    "path": "archive/config_history/standard_product_sources_before_turkiye_finans_20260811_153042.json",
+    "bytes": 8233,
+    "sha256": "9c3c7ad0ea094c5427f1bed63ca95d1961d497004a333d4e9a366d2d9cf4c0ff"
+  },
+  {
+    "path": "archive/config_history/standard_product_sources_before_turkiye_finans_20260811_153450.json",
+    "bytes": 14038,
+    "sha256": "5cf115a1621f2dfefc80f9de348cf0df923a75b9ce588c302e7537253b1e7fa2"
+  },
+  {
+    "path": "archive/config_history/standard_product_sources_before_turkiye_finans_catalog_20260812_092931.json",
+    "bytes": 14038,
+    "sha256": "5cf115a1621f2dfefc80f9de348cf0df923a75b9ce588c302e7537253b1e7fa2"
+  },
+  {
+    "path": "archive/legacy_deployment/Dockerfile",
+    "bytes": 224,
+    "sha256": "fa5bb4c0b5e256e3a88277a9419bb00ec7fdd60718b1303b12d5de9cca162385"
+  },
+  {
+    "path": "archive/legacy_deployment/docker-compose.yml",
+    "bytes": 99,
+    "sha256": "f79f678d525411eebfbfe91d927cae70148b6ec545af4ee445937978e67dca05"
+  },
+  {
+    "path": "archive/legacy_deployment/start_dashboard.cmd",
+    "bytes": 85,
+    "sha256": "bee4fb17a8bf8cc636ea367bd99388bc086089dbd58870d96b27499ea6b2ef54"
+  },
+  {
+    "path": "archive/legacy_root_scripts/add_hayat_finans_to_standard_product_config.py",
+    "bytes": 3925,
+    "sha256": "c85a1b7bf41842520455f3292481b37c6e0e48613d6941d25ea2c71a669319ff"
+  },
+  {
+    "path": "archive/legacy_root_scripts/add_turkiye_finans_to_standard_product_config.py",
+    "bytes": 8069,
+    "sha256": "2bcf9fb9ad9b4ca4de8e7965b231e7e5981284e407457a70f181bb53bb465e51"
+  },
+  {
+    "path": "archive/legacy_root_scripts/app.py",
+    "bytes": 2535,
+    "sha256": "036d2f6a69f53fcb804bd3cf368a468c0d6f42738f108ff387bd89cc27525194"
+  },
+  {
+    "path": "archive/legacy_root_scripts/apply_ziraat_katilim_classification_overrides.py",
+    "bytes": 9829,
+    "sha256": "28e1159a65218bc97652906586417bcae3339f983295a0ef5d1ec461a767a1d8"
+  },
+  {
+    "path": "archive/legacy_root_scripts/audit_dunya_katilim_final_quality.py",
+    "bytes": 13972,
+    "sha256": "a80c7282d72e64159e76dde009646d271b52f86f475b5afb21a3935aadd200b8"
+  },
+  {
+    "path": "archive/legacy_root_scripts/audit_dunya_standard_product_text.py",
+    "bytes": 2002,
+    "sha256": "588909482535753cadc33e8f703742be09e903a84ec0a674a3b628605ecf5e36"
+  },
+  {
+    "path": "archive/legacy_root_scripts/audit_dunya_vehicle_fetch.py",
+    "bytes": 1672,
+    "sha256": "e5d8b813efaf41a7f2718f0752aaab143eb3935bbbe893b191812041786b7a63"
+  },
+  {
+    "path": "archive/legacy_root_scripts/audit_emlak_before_db.py",
+    "bytes": 8650,
+    "sha256": "5063b85fe8e48e339e80f148e97095ad0222d0a8d7eedec4471dcd135a9f335f"
+  },
+  {
+    "path": "archive/legacy_root_scripts/audit_global_quality_focus.py",
+    "bytes": 7255,
+    "sha256": "ad1ae5021f86be77c960d2ab27be10af4f45c48d682008201ac57571c591e3ec"
+  },
+  {
+    "path": "archive/legacy_root_scripts/audit_hayat_finans_rules.py",
+    "bytes": 4724,
+    "sha256": "9c565cee7996d49c0c9e351d25ed7c19f6014dcadf804296d67604fb36b7555f"
+  },
+  {
+    "path": "archive/legacy_root_scripts/audit_hayat_finans_semantic_sources.py",
+    "bytes": 4128,
+    "sha256": "2940af05beccea7cd43e2c8df0c5846339014b510279ca86cbc373030e1e98c8"
+  },
+  {
+    "path": "archive/legacy_root_scripts/audit_kuveyt_rule_details.py",
+    "bytes": 3732,
+    "sha256": "ab73112863429a36a8dc7b84159f867dc022ef7f50f6caf1f0803d0f16c7a1ae"
+  },
+  {
+    "path": "archive/legacy_root_scripts/audit_kuveyt_vehicle_rules.py",
+    "bytes": 640,
+    "sha256": "09c1c5e2885d872ade4f1a933415eb187a4f5f2e9fa075256856832c73f2d3ae"
+  },
+  {
+    "path": "archive/legacy_root_scripts/audit_lc_waikiki_offer_rule.py",
+    "bytes": 2523,
+    "sha256": "c54e1a61c9209e2bae1ba0d4f1a78b9175e86fbc1f963dfcccb7155ab50ed6a1"
+  },
+  {
+    "path": "archive/legacy_root_scripts/audit_multi_product_pages_v2.py",
+    "bytes": 8930,
+    "sha256": "4b8d0516161d070d362f280cdd9fbf914339558d65b763d423147ad226aea2a3"
+  },
+  {
+    "path": "archive/legacy_root_scripts/audit_standard_products_global_quality.py",
+    "bytes": 23837,
+    "sha256": "d1853f6a2facd025f37a636309ad6157ca35b969974a087fa144589a526352a5"
+  },
+  {
+    "path": "archive/legacy_root_scripts/audit_tom_before_live_enable.py",
+    "bytes": 13115,
+    "sha256": "5edf7a165fbeb78732081c294d846da78c77038fefb9db9db25ff544e314d088"
+  },
+  {
+    "path": "archive/legacy_root_scripts/audit_turkiye_finans_missing_names.py",
+    "bytes": 2938,
+    "sha256": "4f7cdcef74d19f2df09dafa2b082c0a70532a20824e494cdd7049bc43924d50e"
+  },
+  {
+    "path": "archive/legacy_root_scripts/audit_vehicle_finance_rules.py",
+    "bytes": 2134,
+    "sha256": "5822b0accd7a01f2e9ce5d29ff1a75a11b27e99d3f8a2c8e0204320881cc5576"
+  },
+  {
+    "path": "archive/legacy_root_scripts/audit_ziraat_katilim_final_quality.py",
+    "bytes": 11485,
+    "sha256": "79f4a70cf2829b24ce0a680f637d7a19d8cd7c041d6892edd7a8d1b9b010a32b"
+  },
+  {
+    "path": "archive/legacy_root_scripts/cleanup_emlak_broken_campaign_link.py",
+    "bytes": 4573,
+    "sha256": "cac14aa8da7fa43142efe349735b73a414eae05b102235e062a472193a14b8fa"
+  },
+  {
+    "path": "archive/legacy_root_scripts/configure_emlak_listing_status.py",
+    "bytes": 1538,
+    "sha256": "3c1200625ff9878c540c2f96afdddd89d6a41fb814c4abcd1e66111b3689f438"
+  },
+  {
+    "path": "archive/legacy_root_scripts/configure_tom_katilim_discovery.py",
+    "bytes": 3151,
+    "sha256": "7abafd25f78ec8f74d07988d66bd29437600f97652ea13526315f74ce527eeab"
+  },
+  {
+    "path": "archive/legacy_root_scripts/debug_emlak_unstable_content.py",
+    "bytes": 6561,
+    "sha256": "8c92d1c10c208c258ae80d3249b3a1d1ecd8613cdd8acdbb56af22fcb1bfadee"
+  },
+  {
+    "path": "archive/legacy_root_scripts/enable_emlak_live_updates.py",
+    "bytes": 2151,
+    "sha256": "c1d6c9d95cbd4b9bbdb50953ffc1243c67d5f7a1ef1774f4fc949eee6f2e4867"
+  },
+  {
+    "path": "archive/legacy_root_scripts/enable_emlak_live_updates_campaigns_only.py",
+    "bytes": 3698,
+    "sha256": "59d980cebb0a4d3b8f6148c3b51be81d366a9ff233f9d321284f48429d5a0894"
+  },
+  {
+    "path": "archive/legacy_root_scripts/finalize_dunya_katilim_extraction_guardrails.py",
+    "bytes": 28544,
+    "sha256": "b970a9350b33b4f9d7ab5699e803ac791fdca026e5c67c6863413981f5d883f0"
+  },
+  {
+    "path": "archive/legacy_root_scripts/finalize_ziraat_katilim_extraction_guardrails.py",
+    "bytes": 23852,
+    "sha256": "c3148c127ee617c1615755378446c8bbd14772347b95a64a37ba30fa12a3ef67"
+  },
+  {
+    "path": "archive/legacy_root_scripts/patch_kuveyt_hepsiburada_check_and_text.py",
+    "bytes": 2838,
+    "sha256": "ac51f13a4e0b5dd0fc2ca7660777cc875857178288f212cd066cf3408e692030"
+  },
+  {
+    "path": "archive/legacy_root_scripts/patch_kuveyt_null_summary_in_place.py",
+    "bytes": 2088,
+    "sha256": "fcc38b6c0a1863ec885a47d16cbc3db06e5d496bdc5ef4bc4a47e623e5222dd9"
+  },
+  {
+    "path": "archive/legacy_root_scripts/patch_preserve_expense_after_finance_override.py",
+    "bytes": 3225,
+    "sha256": "0f697dc574c317ca47645a95967103615b10b17e712e1fd43f25491abebc5442"
+  },
+  {
+    "path": "archive/legacy_root_scripts/print_turkiye_finans_standard_config.py",
+    "bytes": 1900,
+    "sha256": "645ef955687671a662ba2aa4d9fe2a56186a87d45b82b9315fb357d93f48a999"
+  },
+  {
+    "path": "archive/legacy_root_scripts/run_emlak_initial_integration.py",
+    "bytes": 15468,
+    "sha256": "4aaf02fcbc3c837ae8657daad7e4114fa94173ed76553ecd7e01c28af6f764fa"
+  },
+  {
+    "path": "archive/legacy_root_scripts/streamlit_app.py",
+    "bytes": 27864,
+    "sha256": "415dbc7516da23d607c10b513bbf446ccc1b8f6f5bddb1816986612d6079ee42"
+  },
+  {
+    "path": "archive/legacy_root_scripts/update_turkiye_finans_active_catalog_v1.py",
+    "bytes": 8499,
+    "sha256": "fbba17e8c20520923e50705e4feb73306b11281c5a08461aa6775d668ab59489"
+  },
+  {
+    "path": "config/banks.json",
+    "bytes": 30323,
+    "sha256": "163118d66c7bff07df6bf63ecd952c5145cc6ad32d21e25b6888867af6022d0e"
+  },
+  {
+    "path": "config/campaign_classification_overrides.json",
+    "bytes": 14991,
+    "sha256": "f1a1c68863fb64c55310bbb907db4f3dea1b7532cd323475bf29ad2c58cece3c"
+  },
+  {
+    "path": "config/campaign_content_overrides.json",
+    "bytes": 1473,
+    "sha256": "09f1cae6537b464158eda930f17cfba71e440cab03c967c2f71df38cd312d1f2"
+  },
+  {
+    "path": "config/campaign_url_aliases.json",
+    "bytes": 864,
+    "sha256": "e26c548f382b6f28f598be0a91cef34fb4b7e0ed9cd8cd65c9ae7fe4fe5ac22b"
+  },
+  {
+    "path": "config/finance_extraction_overrides.json",
+    "bytes": 10686,
+    "sha256": "515a82d97d4d9984c9207edf72aff4eb27e88743726bde8bc8a2ce2a30245556"
+  },
+  {
+    "path": "config/standard_product_sources.json",
+    "bytes": 22275,
+    "sha256": "3a9db2f0ee820771ec3cbda09a45eb0b737cf3dec1b57430591a3f8f1d11c914"
+  },
+  {
+    "path": "data/.gitkeep",
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "path": "data/README.md",
+    "bytes": 253,
+    "sha256": "e8e24220c96b29e6f0f3708ceee7e3a451c5ae6e7a4472760a55cc26c27ce3d9"
+  },
+  {
+    "path": "data/campaigns.db",
+    "bytes": 6823936,
+    "sha256": "65a9e0111e153e1b40629c8cfd89fef310475169012064d8ee30ec24be11da01"
+  },
+  {
+    "path": "data/standard_products/.gitkeep",
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "path": "dataset/README.md",
+    "bytes": 1795,
+    "sha256": "b7014cbed7b7229e8a90858e5234a1d892dc9ae2e97659918fcd4b2e63f5b39d"
+  },
+  {
+    "path": "dataset/campaign_audiences.csv",
+    "bytes": 41877,
+    "sha256": "32e79b1c32320f657246e9a9c300933a3fbe70abd0c15de27ce63fe3f6c20d8b"
+  },
+  {
+    "path": "dataset/campaign_benefits.csv",
+    "bytes": 163875,
+    "sha256": "66f6d3eb7966afee02ef1a841967f430a92d0fbbdfda7c6d20f1ba68fa256fd0"
+  },
+  {
+    "path": "dataset/campaign_installment_terms.csv",
+    "bytes": 70143,
+    "sha256": "0c84d4165e5ff103c03807724f6eed26db61ca29be42979fbc6e155c0de6e5f4"
+  },
+  {
+    "path": "dataset/campaign_texts.csv",
+    "bytes": 2108052,
+    "sha256": "d9f9897c9e98b46780cf590457d3e8b0d619bc0721186319c403ed993c33790f"
+  },
+  {
+    "path": "dataset/campaigns.csv",
+    "bytes": 230650,
+    "sha256": "3a665cf51a7bb3fc36f2a30c95e1defd6fbe63cf80267b59710376fc8a6db29f"
+  },
+  {
+    "path": "dataset/manifest.json",
+    "bytes": 619,
+    "sha256": "c119c4cfc7710d480a8658c1ff4a6e0c57742dcb27255e047bcea2117695a167"
+  },
+  {
+    "path": "dataset/product_amount_maturity_rules.csv",
+    "bytes": 7670,
+    "sha256": "aea5812ec8871ed8db359f64848485bc323d4a866668003701aa0db8d3f73d2f"
+  },
+  {
+    "path": "dataset/product_category_rules.csv",
+    "bytes": 10868,
+    "sha256": "e83d42cbe35a0f6d473f838357ba1a1e6650263c84abbe76cba2aa800aee9944"
+  },
+  {
+    "path": "dataset/product_features.csv",
+    "bytes": 117233,
+    "sha256": "c88305f294e8f7b5fcca2832d6694f60ff0a1e5defab963a85b92795af7ad703"
+  },
+  {
+    "path": "dataset/product_fee_rules.csv",
+    "bytes": 6227,
+    "sha256": "feb77a04920d63ee35e35f321e71f4aa2d19f345a54cc2be046b58331a684a3f"
+  },
+  {
+    "path": "dataset/product_offer_rules.csv",
+    "bytes": 4442,
+    "sha256": "9cca6878c3329e6e23c96324f0dab98ea79f95f6dc8079675dabe0c1ffa34f50"
+  },
+  {
+    "path": "dataset/product_pricing_tiers.csv",
+    "bytes": 25039,
+    "sha256": "b5c88ee145fcb05eeeb6add4f6a4ddb68f8a0d867d3194ab2ff006f9bc9824d3"
+  },
+  {
+    "path": "dataset/raw_standard_products/albaraka_turk.json",
+    "bytes": 218397,
+    "sha256": "2002820fe00024425742faee93c510579c0dcda29312b858e94fa3d4c375515e"
+  },
+  {
+    "path": "dataset/raw_standard_products/dunya_katilim.json",
+    "bytes": 138245,
+    "sha256": "4d6efb6b72aec04e07075fe8b0516000452ca548722213ba9387ed6e8c09bd04"
+  },
+  {
+    "path": "dataset/raw_standard_products/hayat_finans.json",
+    "bytes": 39479,
+    "sha256": "a162ea2ece095381d0beb1fa882daa88339cec1fd9ef3d7df57236406a8f1eb7"
+  },
+  {
+    "path": "dataset/raw_standard_products/kuveyt_turk.json",
+    "bytes": 285203,
+    "sha256": "ba0944647ea0de1097b644333312618feaec5c75b09a0e90e7d88c005d628bc1"
+  },
+  {
+    "path": "dataset/raw_standard_products/turkiye_finans.json",
+    "bytes": 391614,
+    "sha256": "997565da99e49559b5a3f915520f764f19935ea95a2704ba24aba8b0c00a31e4"
+  },
+  {
+    "path": "dataset/standard_products.csv",
+    "bytes": 169241,
+    "sha256": "afcdd5864b341eff25cdd93cc32338e5077da2dbf3951b809694da3f5c538470"
+  },
+  {
+    "path": "demo/README.md",
+    "bytes": 255,
+    "sha256": "62eba395ed723de93de11aa5f81ca86b2512900c1befe3edf9990a29c0465c20"
+  },
+  {
+    "path": "docs/ARCHITECTURE.md",
+    "bytes": 1954,
+    "sha256": "8b9105b48cb033de8c320d08ce9cf68b0ddec8e8f84d0a8ab852711dd2241178"
+  },
+  {
+    "path": "docs/COMPETITION_COMPLIANCE.md",
+    "bytes": 1427,
+    "sha256": "f1eebf702c532e5ade90e1fef36034797ce97b6deb0606b8d42c98ce5e2e9d3d"
+  },
+  {
+    "path": "docs/DATASET.md",
+    "bytes": 1247,
+    "sha256": "467072019692609a760af067a285474a78e64dfb09fa0384d1ca0dd96b2ee84c"
+  },
+  {
+    "path": "docs/EVALUATION.md",
+    "bytes": 896,
+    "sha256": "f92ec45895c48daf9c599d00faae172e746b17c68e43cadbb6f82151ee4d7715"
+  },
+  {
+    "path": "docs/GITHUB_PUBLISH.md",
+    "bytes": 1122,
+    "sha256": "f3deda971d271cf4187d5429cadc42c25db3b17bd33a4dd323379c372176f5c9"
+  },
+  {
+    "path": "docs/INSTALLATION.md",
+    "bytes": 1203,
+    "sha256": "cea19b9c295eaff7e2bbf2404560fafa54bf792f43fda4c00203a4f1b39df401"
+  },
+  {
+    "path": "docs/KNOWN_ISSUES.md",
+    "bytes": 937,
+    "sha256": "797760cf879348a0e7cdf935529bbd16cb4f849532070721edd1114ba6cb6f46"
+  },
+  {
+    "path": "docs/NLP_APPROACH.md",
+    "bytes": 1618,
+    "sha256": "d0daa49ab5c11a8283309e12c51e134949f7381be07dba549b08b03d58cfaacb"
+  },
+  {
+    "path": "docs/PROJECT_STATUS.md",
+    "bytes": 896,
+    "sha256": "3b381513fdc13c9c0a859f445a9debbcce9bac5ed088693e1f940d7625e313f8"
+  },
+  {
+    "path": "pages/1_Metin_Analizi.py",
+    "bytes": 3651,
+    "sha256": "5ed489bc9d485c62d77716dbfa7f1c2f7a31bd4062c5d6623d614d0fbd200910"
+  },
+  {
+    "path": "pages/2_Kampanyalar.py",
+    "bytes": 3585,
+    "sha256": "bd3303f2cca8c66ad4515dbbdb2176613b35e14ed5bb6ae25480ab7ba781a2d5"
+  },
+  {
+    "path": "pages/3_Karşılaştırma.py",
+    "bytes": 10490,
+    "sha256": "62ebf6ee63d6db108c3ed87f5ba7d2eaeeb61309768f5c72a924b40a28300889"
+  },
+  {
+    "path": "pages/4_Chatbot.py",
+    "bytes": 560,
+    "sha256": "4638ffa4357ef0534445391ccb9263dba1e77b1bd1538aa4cecc305532cf869d"
+  },
+  {
+    "path": "pages/4_Finansman_Karşılaştırması.py",
+    "bytes": 85395,
+    "sha256": "fc1648e4a2d8ed26a6ee4c46c5cde5656d725d0a735e411040e49193bed60b8d"
+  },
+  {
+    "path": "pages/5_Ham_Sayfalar.py",
+    "bytes": 681,
+    "sha256": "bc543e8a938781a4856e0b47584c7b4b2263eb690ee1fbe558e08ee9fdba5a44"
+  },
+  {
+    "path": "pages/6_Banka_Taramasi.py",
+    "bytes": 3829,
+    "sha256": "3be3dbcfb3796fb5d1e7982b3563e64f2ad1700dbbb5ac7b4132850fb7c7958f"
+  },
+  {
+    "path": "postgresql/BANSA_ER_DIAGRAM.png",
+    "bytes": 119849,
+    "sha256": "a3f0526233bf4a7eb8505f875a1635e03e2a03e337c033f406067f0f1168ddca"
+  },
+  {
+    "path": "postgresql/ER_DIAGRAM.md",
+    "bytes": 4125,
+    "sha256": "6ed196a6d86e0c06c4c8196e2dbea73be74db4fda3a7a02de9fe1249b89032f7"
+  },
+  {
+    "path": "postgresql/er_diagram.dot",
+    "bytes": 2606,
+    "sha256": "1ca97c2d09c3da8c811757ebfc2abc75e91a0a6bc772a98a08015554ca8e8038"
+  },
+  {
+    "path": "postgresql/schema.sql",
+    "bytes": 14426,
+    "sha256": "e73e2ff8d071cc553331609f58a4af6f38e2dd55bdc118ba8e2a764199414d37"
+  },
+  {
+    "path": "presentation/README.md",
+    "bytes": 185,
+    "sha256": "ebf6f3bc7b70384a7684e8295f770a1f1f9dd2d936ebcb5a8b30c14503b082eb"
+  },
+  {
+    "path": "requirements.txt",
+    "bytes": 175,
+    "sha256": "d6ffa67081261b43f04045bc463d8ef045a022bbf3f9a14bf0a5296848d8e519"
+  },
+  {
+    "path": "scripts/README.md",
+    "bytes": 870,
+    "sha256": "4a886098d64e42b0c0b0cbc3089e629775ea9a5507420a2c83fbbdbda2272dfe"
+  },
+  {
+    "path": "scripts/add_albaraka_hac_umre_exact_path_v10.py",
+    "bytes": 2759,
+    "sha256": "d18e9f8834c5eb3ee229149ff3e2a2a5e9a3f6563bf64fe9d49d8902e5d0aede"
+  },
+  {
+    "path": "scripts/add_albaraka_standard_product_config.py",
+    "bytes": 13069,
+    "sha256": "38b3643f2d40a648afbbf463938e3b32fbbca2bd663408545eea54e938d3b721"
+  },
+  {
+    "path": "scripts/apply_albaraka_finance_type_overrides.py",
+    "bytes": 3932,
+    "sha256": "c37edfb8a2f7cdb8f32ffea050034508089a15122feb1b3972c8d5a78103d712"
+  },
+  {
+    "path": "scripts/apply_campaign_classification_overrides(1).py",
+    "bytes": 9046,
+    "sha256": "c19253c3d046d80815f6ef63c911124c04864febef031b78f5f28681f3775938"
+  },
+  {
+    "path": "scripts/apply_campaign_classification_overrides.py",
+    "bytes": 9385,
+    "sha256": "83a09dc2c3a7da366dde8a044733fb46c3e93125fa187504789233fb8b06f44e"
+  },
+  {
+    "path": "scripts/apply_campaign_classification_overrides_before_null_fix_20260810_145311.py",
+    "bytes": 9124,
+    "sha256": "61a2af56aced969dc603e930d59c6c2fe6d00d830663a0b68c4ba54dc093eb1a"
+  },
+  {
+    "path": "scripts/apply_hayat_finans_classification_overrides.py",
+    "bytes": 8516,
+    "sha256": "ac61ffdd44d01ca736570ed3be432fc12f8f0745a7888ec7e6d4a0d5a04d2a52"
+  },
+  {
+    "path": "scripts/apply_kuveyt_hepsiburada_rate_guardrail.py",
+    "bytes": 6732,
+    "sha256": "f529f93dd4b926979e37d1705ba7b276fc93aad6e2bfb54dd3f9691c86c5f48a"
+  },
+  {
+    "path": "scripts/apply_title_based_category_fixes.py",
+    "bytes": 3717,
+    "sha256": "3a7caf0df06e6efccd8969995b529dd5ec546b42c2db412d1b0c4024c30b339d"
+  },
+  {
+    "path": "scripts/audit_albaraka_dashboard_completeness.py",
+    "bytes": 7755,
+    "sha256": "78147ea521bd37965b021b19918fe9d12a2e76abbcfa2b74ab7b31f49bbebde4"
+  },
+  {
+    "path": "scripts/audit_albaraka_ihtiyac_final_v9.py",
+    "bytes": 8147,
+    "sha256": "c4a481e6c6650fc31e3d1e26fa1c6c749343292abdffe45e8aa547c6560fb2a2"
+  },
+  {
+    "path": "scripts/audit_dashboard_semantics.py",
+    "bytes": 2498,
+    "sha256": "b2f2fcc1a99b94c1fc814bdff03e10ceb93c433a72114ec8e8e3b999544f8056"
+  },
+  {
+    "path": "scripts/audit_finance_rule_engine.py",
+    "bytes": 2140,
+    "sha256": "2645b2365cf71e2ea253b7bd20edd170391faf96461a559dbe2b68632039d337"
+  },
+  {
+    "path": "scripts/audit_hayat_finans_rules.py",
+    "bytes": 4724,
+    "sha256": "9c565cee7996d49c0c9e351d25ed7c19f6014dcadf804296d67604fb36b7555f"
+  },
+  {
+    "path": "scripts/audit_ihtiyac_finansmani.py",
+    "bytes": 7599,
+    "sha256": "07b39c21beb166a5385a956602780d59318b3bd142e0a8ba4f538af23ea1d2a2"
+  },
+  {
+    "path": "scripts/audit_ihtiyac_limit_bands_v6.py",
+    "bytes": 6157,
+    "sha256": "ef4b473328022ee43550a863bef2809143a91ce74455a8591de641b8039826dd"
+  },
+  {
+    "path": "scripts/audit_ihtiyac_semantics_v7.py",
+    "bytes": 5994,
+    "sha256": "0466e216b1210bd44c27e3eca6ca8390909cd2ade53a15cfa8d5c826f4f18fd0"
+  },
+  {
+    "path": "scripts/audit_jury_readiness.py",
+    "bytes": 11194,
+    "sha256": "d0793abd259a0a462bf451920a892eec0569dbe58b1ad36ee25c67da832bbbca"
+  },
+  {
+    "path": "scripts/audit_jury_readiness_v2.py",
+    "bytes": 10603,
+    "sha256": "f477277c2204a820ba1d9bec42a3e30b442ace6b0dd00d5e08273aeb2191f07d"
+  },
+  {
+    "path": "scripts/audit_jury_readiness_v3.py",
+    "bytes": 12653,
+    "sha256": "ae53037c4534b9ff50081075bf70e517df3b2d9606176cc061421ae1b17193bc"
+  },
+  {
+    "path": "scripts/audit_jury_readiness_v4.py",
+    "bytes": 13323,
+    "sha256": "36ed304e6599c52acaf94113cd61c2dc62f7cbbde02a7e457ebcc72b4df7f9db"
+  },
+  {
+    "path": "scripts/audit_kuveyt_classification.py",
+    "bytes": 12688,
+    "sha256": "43a260a1684f02008df7a704e93746d2298f212f16323e0a5d37d0236b02b9ba"
+  },
+  {
+    "path": "scripts/audit_kuveyt_fee_waivers.py",
+    "bytes": 720,
+    "sha256": "3c7a508be58dec48895520c9c973daa765964f7ee17fe05fea9e90820f116641"
+  },
+  {
+    "path": "scripts/audit_kuveyt_finance_extraction.py",
+    "bytes": 10678,
+    "sha256": "aaa219bc0d17087a53811cb85a835c3570e78b2bb55f2913160584aa679d52d6"
+  },
+  {
+    "path": "scripts/audit_kuveyt_nonfinance_extraction.py",
+    "bytes": 24220,
+    "sha256": "3e5990fe746976dfe86ca0e00c924d8e9ce0665d012ddb4c567658ba715cbb5a"
+  },
+  {
+    "path": "scripts/audit_kuveyt_offer_rules.py",
+    "bytes": 1592,
+    "sha256": "65ccffe44212177b0f66ecd8af72baa6795660390fd4c1a188a6531e5acc725a"
+  },
+  {
+    "path": "scripts/audit_kuveyt_standard_products.py",
+    "bytes": 2740,
+    "sha256": "aac31bb9f94ea93591ae22d6dad370be3faed289a96b07afe780d60b80daece8"
+  },
+  {
+    "path": "scripts/audit_kuveyt_vehicle_rules.py",
+    "bytes": 640,
+    "sha256": "09c1c5e2885d872ade4f1a933415eb187a4f5f2e9fa075256856832c73f2d3ae"
+  },
+  {
+    "path": "scripts/audit_multi_product_pages.py",
+    "bytes": 5028,
+    "sha256": "86c94431cb7dad539bd9fe6c99b184abdf2dc992a8a5fa0390fbd3525cb6ed9b"
+  },
+  {
+    "path": "scripts/audit_postgresql_migration.py",
+    "bytes": 3556,
+    "sha256": "e6d1bce8a8661905c32aadb01907c0f932d236aa663b2513bb4566e87ab4fa90"
+  },
+  {
+    "path": "scripts/audit_postgresql_streamlit_read.py",
+    "bytes": 2329,
+    "sha256": "4b92e233fbf905b756b486162b707b4a9906bc85a63151e1b32e9eef949af297"
+  },
+  {
+    "path": "scripts/audit_rule_engine_version.py",
+    "bytes": 447,
+    "sha256": "d98f6024ce001b311c805b5bb7b81dad8c18b9e59383491cab08801bccafe2ce"
+  },
+  {
+    "path": "scripts/audit_standard_product_changes.py",
+    "bytes": 1748,
+    "sha256": "f52ed405e65c221a24ea73f268b3f81bead5701de1c660871e1573db3981bb45"
+  },
+  {
+    "path": "scripts/audit_standard_products.py",
+    "bytes": 2435,
+    "sha256": "f1679e14d8dff587c77f6baebad333c66fbcd37f5adde12f1b78a1297970ea71"
+  },
+  {
+    "path": "scripts/audit_ticari_nakdi_features.py",
+    "bytes": 5888,
+    "sha256": "150ba5e4a1bfe02b57cf0328a31afc6656b7a661e51da94dd673a3dc37cb6125"
+  },
+  {
+    "path": "scripts/audit_ticari_nakdi_numeric.py",
+    "bytes": 6040,
+    "sha256": "ecdf024c0bf37e06f19c36bb71cbd6609e07047da556dfb521fdd4c3413686d0"
+  },
+  {
+    "path": "scripts/audit_turkiye_finans_rules.py",
+    "bytes": 4577,
+    "sha256": "26233e25b74d003e1770e72be1b9b46ccdc29b9dccd1533abd7336f88d7ed34f"
+  },
+  {
+    "path": "scripts/audit_turkiye_finans_semantic_v2.py",
+    "bytes": 3607,
+    "sha256": "0c9d61aebb99ddad98ff7399aa2e84f7cdfa3eb08b5fc00c67cfee7566246dc0"
+  },
+  {
+    "path": "scripts/automation/install_all_banks_hourly_task.ps1",
+    "bytes": 1015,
+    "sha256": "8bf70a24dd2f7f6466914317e4bc55d2ed0e4201e18237587d952ec636cc2e86"
+  },
+  {
+    "path": "scripts/check_finance_evidence.py",
+    "bytes": 3070,
+    "sha256": "c18f1c3a86f7837e3720c1a55d1aaec7cdd3970898b4a931d0afdd781aefc52d"
+  },
+  {
+    "path": "scripts/check_konfor_url_alias.py",
+    "bytes": 1967,
+    "sha256": "9ac0079abcfbd81e876e57231e2ac0ed9be1365b13edc3122a51bc998951aac6"
+  },
+  {
+    "path": "scripts/check_kuveyt_classification_after_overrides.py",
+    "bytes": 3764,
+    "sha256": "dda77243160b7cede71c18b7f7660dc5a0d958f2d81e971bafd1ae9fe286fc45"
+  },
+  {
+    "path": "scripts/check_kuveyt_discovery.py",
+    "bytes": 3487,
+    "sha256": "6667b6245cdf7dda27a64ba8ba1f5616d41d3d05f4c7060e6be71173f13c82ae"
+  },
+  {
+    "path": "scripts/check_kuveyt_fetched_titles.py",
+    "bytes": 1788,
+    "sha256": "9a8e9b607e00c08e1817cb1fd829621c23d202c4e4ba28581de4629cfce729e4"
+  },
+  {
+    "path": "scripts/check_kuveyt_final_three.py",
+    "bytes": 3322,
+    "sha256": "2c6b30e0524cf85e0bb3436a0f3e8cfbd9ac03b4ae150675a00fac4e69c52681"
+  },
+  {
+    "path": "scripts/check_kuveyt_finance_after_fixes.py",
+    "bytes": 5286,
+    "sha256": "b4b1919a05aeb7e84eca25c63d43f319e2062f11fc6867b1c70e3e95f63b44d2"
+  },
+  {
+    "path": "scripts/check_kuveyt_request_urls.py",
+    "bytes": 2162,
+    "sha256": "e1f4af7cb9c343485c063e0dcf48e8b4d90137cc4623cfdc5a59fd5e171fe4bb"
+  },
+  {
+    "path": "scripts/check_kuveyt_third_fixes.py",
+    "bytes": 4035,
+    "sha256": "a6a433a9555fc053c67822c23cf435f15f074114246a50e23ff57bac22321b23"
+  },
+  {
+    "path": "scripts/check_kuveyt_third_fixes_before_hepsiburada_live_fix_20260810_152759.py",
+    "bytes": 3893,
+    "sha256": "1bff41ec6841e4343f1f30a16d2174cdfdd433563febe2295b60a089599c3cc6"
+  },
+  {
+    "path": "scripts/check_kuveyt_title_suffixes.py",
+    "bytes": 1216,
+    "sha256": "0c6ecbb95e7af741abee7a581265c636666c58f2893c87671a4d868c7e646938"
+  },
+  {
+    "path": "scripts/check_unavailable.py",
+    "bytes": 1880,
+    "sha256": "ecc4e56e997d8f28b9e510c9d359e876602493f0a67013ba68c0b8eea081f344"
+  },
+  {
+    "path": "scripts/check_unknown_campaigns.py",
+    "bytes": 649,
+    "sha256": "ff7612a9219acaf70b4126ea900be121878b46678c6df788322d2e1677e33ef0"
+  },
+  {
+    "path": "scripts/classify_campaign_records.py",
+    "bytes": 6141,
+    "sha256": "3662d8ade70268b4b54210bfe373ef2d60a70761e0d3fa92558ad52a730b1b36"
+  },
+  {
+    "path": "scripts/configure_turkiye_finans_embedded_products.py",
+    "bytes": 2564,
+    "sha256": "19f8bbfa4dd34c529028eebe66fb67733711515653c1a52dd05eada6dd4aba5b"
+  },
+  {
+    "path": "scripts/debug_happy_page.py",
+    "bytes": 11012,
+    "sha256": "8ef1aa15e320c4745201994a902c081789aab354e2bb69b6a0c9bba48e2e0092"
+  },
+  {
+    "path": "scripts/diagnose_kuveyt_redirects.py",
+    "bytes": 6037,
+    "sha256": "7f7c5f72648a9f86549ca87574a700ee9947e5487046b927ad3393a724b9dea3"
+  },
+  {
+    "path": "scripts/discover_campaign_links.py",
+    "bytes": 3309,
+    "sha256": "c807ebab22927af3fc76071065f1fc757457505204e2b5ca33e7e3de24b3348d"
+  },
+  {
+    "path": "scripts/discover_vakif_katilim_api.py",
+    "bytes": 7640,
+    "sha256": "63fed030125458f9bc9012ab9ed14869fa67d3d8bbf30f5099ccd6707535e5ca"
+  },
+  {
+    "path": "scripts/enable_tom_live_updates.py",
+    "bytes": 1217,
+    "sha256": "ac29d4a8a9972b70598eef32827b74e904b154657ecb55c50bac0f4ff2e1f546"
+  },
+  {
+    "path": "scripts/enable_turkiye_finans_exact_seed.py",
+    "bytes": 1546,
+    "sha256": "dca61271cc9b3c80a3ae0239c4caf28c7d6f0f305aea95f675284c1659723359"
+  },
+  {
+    "path": "scripts/export_public_dataset.py",
+    "bytes": 3284,
+    "sha256": "78e28cc6e4fa00a511ba5ccb5919917a3686eed02bf2ec5d1ff84944bc7baca2"
+  },
+  {
+    "path": "scripts/extract_comparison_fields.py",
+    "bytes": 26968,
+    "sha256": "f2b1632d148b78f2c393f9cfbc3a63eed63527c1a0a80387331809705ced1ec6"
+  },
+  {
+    "path": "scripts/extract_comparison_fields_albaraka_guardrail.py",
+    "bytes": 23075,
+    "sha256": "a857f2640ce27b0939b3bef6e748a3fb08e517e1a460c2eda0d11d45d4d0da98"
+  },
+  {
+    "path": "scripts/extract_comparison_fields_before_expense_preserve_20260810_163059.py",
+    "bytes": 23435,
+    "sha256": "38cc116ba3ea677a8103ae640200ae45aff069fb873ad0d21e9ed341fdaa8a1a"
+  },
+  {
+    "path": "scripts/extract_comparison_fields_before_hepsiburada_live_fix_20260810_152759.py",
+    "bytes": 23431,
+    "sha256": "fbd8d3b811c26d5a26aae8dbbc995b6c49fb0d00b743863b90151e36a83d636b"
+  },
+  {
+    "path": "scripts/fetch_campaign_pages.py",
+    "bytes": 2571,
+    "sha256": "6412097f347e5562898b939f9e61ac6c6104c24ceca4576c8526292e34ff8ee7"
+  },
+  {
+    "path": "scripts/finalize_hayat_finans_extraction_guardrails.py",
+    "bytes": 11053,
+    "sha256": "b6244e4a0172e4f7390f263f0c6ef738197738fd283885fad45740b3f80fe3bb"
+  },
+  {
+    "path": "scripts/finalize_vakif_katilim_records.py",
+    "bytes": 10369,
+    "sha256": "5d8de4df621183cbe5adc656df702452b439e40e4975d0bc1161967dfed47b91"
+  },
+  {
+    "path": "scripts/fix_vakif_katilim_fetch_titles.py",
+    "bytes": 6812,
+    "sha256": "1a115d596870affc402c64a439b7135e96be752f175e81ee9ede52af1e85aced"
+  },
+  {
+    "path": "scripts/init_db.py",
+    "bytes": 287,
+    "sha256": "09868e8f58b1b25f474f535009ed94da99b9c25a3bb8ffab31fa1a360ca2966d"
+  },
+  {
+    "path": "scripts/load_demo.py",
+    "bytes": 1650,
+    "sha256": "bd10585fa42887cfc1d44a793ebefe3b460cec70d37561731736863fd8bfc80b"
+  },
+  {
+    "path": "scripts/migrate_sqlite_to_postgresql.py",
+    "bytes": 28512,
+    "sha256": "82b5bf8d6ba47fa3ea214b8cf2bc6085b2b62139b440af305cb49ddc328ca13d"
+  },
+  {
+    "path": "scripts/migrate_tf_gayri_nakdi_sources.py",
+    "bytes": 10744,
+    "sha256": "56dcbf03311252d87cd0f18a04c1e6bf6566353d2c7968659c8f73eded10d6cb"
+  },
+  {
+    "path": "scripts/normalize_vakif_katilim_snapshots.py",
+    "bytes": 8739,
+    "sha256": "17df35913ea8d45b80eaed173d046717aef501f0a24a45258f71c4c6c0aee4eb"
+  },
+  {
+    "path": "scripts/recalculate_campaign_statuses.py",
+    "bytes": 2649,
+    "sha256": "a6b0afea5e4ac8508442cdde4da6eea2c4a2d1c0bfdb7028ce5917a432f7d893"
+  },
+  {
+    "path": "scripts/refresh_albaraka_taksitlio.py",
+    "bytes": 12101,
+    "sha256": "ceeff5a193a04d1e7ecfb634351552d8c353ea902434081755a8c62d4f0ab0e2"
+  },
+  {
+    "path": "scripts/refresh_and_sync_campaigns.py",
+    "bytes": 4244,
+    "sha256": "20cae8b52767acd12bda0a5f65d6681cfbb5459fd6e94bcc56d51519ad84773a"
+  },
+  {
+    "path": "scripts/refresh_live_campaigns.py",
+    "bytes": 9439,
+    "sha256": "76901a58eeee16e5b13132676b5a1754d6bf33e92ceb780da8d72ec22ec9ba9a"
+  },
+  {
+    "path": "scripts/repair_albaraka_ihtiyac_v9.py",
+    "bytes": 698,
+    "sha256": "ea4fce6493b6980a7eb33d0406e035bd844e3c5355b36a8f7416856f320e6af4"
+  },
+  {
+    "path": "scripts/repair_albaraka_standard_products.py",
+    "bytes": 2531,
+    "sha256": "e992f1388002beb6c19f24e61328bd4da65f1fcd83814e68d71cb6fa018deaad"
+  },
+  {
+    "path": "scripts/repair_albaraka_standard_products_v6.py",
+    "bytes": 2646,
+    "sha256": "38466a2496c4ffe6cb355d5c98dc3d601940d32cd3f221867ca91315bbf80430"
+  },
+  {
+    "path": "scripts/repair_albaraka_standard_products_v7.py",
+    "bytes": 2646,
+    "sha256": "38466a2496c4ffe6cb355d5c98dc3d601940d32cd3f221867ca91315bbf80430"
+  },
+  {
+    "path": "scripts/repair_extra_limit_v6.py",
+    "bytes": 4570,
+    "sha256": "71ed4ec745e7ab3bad98e55ccd119dbe091cea2476268b3d18dbd842ed7fb5c3"
+  },
+  {
+    "path": "scripts/repair_extra_limit_v7.py",
+    "bytes": 5609,
+    "sha256": "362c928a4944094a53de9dd0b4eb36aec16ff843304999702a2e740eb297a2f0"
+  },
+  {
+    "path": "scripts/repair_pratik_repayment_v8.py",
+    "bytes": 1935,
+    "sha256": "174344fa48764b0470393aeb3f2d25bfbacdd9a6fb4b4d3c1975ee4484a77f08"
+  },
+  {
+    "path": "scripts/restore_kuveyt_classification_from_backup.py",
+    "bytes": 7408,
+    "sha256": "2b9ad13c0b4f6f02db9fa67efb2e1ae2b736a7c51e7de043f11f6bab60431c45"
+  },
+  {
+    "path": "scripts/retry_failed_campaign_pages.py",
+    "bytes": 9173,
+    "sha256": "8c62035d6d79c88ed44679d42898856961cc34cb0c657a051e450405d4140d5f"
+  },
+  {
+    "path": "scripts/run_all_banks_live_update.py",
+    "bytes": 19571,
+    "sha256": "f507e95f9320aba8d225f657fd5a040206616e27196a62f8f3dcf04e7700b5d1"
+  },
+  {
+    "path": "scripts/run_dunya_katilim_post_sync_pipeline.py",
+    "bytes": 19616,
+    "sha256": "76493d0af298af69535345fe4e44a7a30212eaec5dcc765cde36088944ddd444"
+  },
+  {
+    "path": "scripts/run_hayat_finans_live_refresh.py",
+    "bytes": 12147,
+    "sha256": "d0988edee1c201e10b409bd8115506240d196e27be06d611b2fce84f3489278f"
+  },
+  {
+    "path": "scripts/run_hayat_finans_post_sync_pipeline.py",
+    "bytes": 10106,
+    "sha256": "ceec43389b596843b0dc165bc879237ed73c39962bb0d76e1c0a4bad11612577"
+  },
+  {
+    "path": "scripts/run_kuveyt_post_sync_pipeline.py",
+    "bytes": 7466,
+    "sha256": "f85074ae94e8e670af03344b9b6c973752debe97460c77b14780b82e115120e2"
+  },
+  {
+    "path": "scripts/run_standard_products_live_update.py",
+    "bytes": 3204,
+    "sha256": "a8a7a398270f913c8948328b487357af92f3eb283ccdac7f81746fac91c2c9ec"
+  },
+  {
+    "path": "scripts/run_streamlit_postgresql.ps1",
+    "bytes": 997,
+    "sha256": "3a95577b6130162f7531986ac78ba3de7649d8af3fb3c8e81f03a7ee6aad6637"
+  },
+  {
+    "path": "scripts/run_tom_initial_integration.py",
+    "bytes": 14724,
+    "sha256": "6e310b593f07af3ca6adc731927ec10e490a0a2a208db9c1f529953c6ef031f7"
+  },
+  {
+    "path": "scripts/run_turkiye_finans_full_refresh_pipeline.py",
+    "bytes": 20833,
+    "sha256": "f26d72bf0871e84001f100483b9a17023cdb7dc7f5a598694e7c8e1b7f885b3f"
+  },
+  {
+    "path": "scripts/run_turkiye_finans_post_sync_pipeline.py",
+    "bytes": 31191,
+    "sha256": "b2ad1d333b017f0dc4a068140e3499016aa64e513e9b4cb344a1e5f0b00bcce5"
+  },
+  {
+    "path": "scripts/run_vakif_katilim_auto_sync.py",
+    "bytes": 4000,
+    "sha256": "ce5a352c22aaa5a36ee6783c31b13eb93bf5faa02c81aadae6b918fe2d788032"
+  },
+  {
+    "path": "scripts/run_ziraat_katilim_post_sync_pipeline.py",
+    "bytes": 18509,
+    "sha256": "9d2e8048163caedacfb78a0b410872857cc6857ca19c0be7ae734c623896cf84"
+  },
+  {
+    "path": "scripts/safe_campaign_removals.py",
+    "bytes": 11027,
+    "sha256": "451b52bcbf221db03d3913f0bca6b669e4900a5c25d00eb9b223506a3ea974c4"
+  },
+  {
+    "path": "scripts/scan_standard_products.py",
+    "bytes": 24615,
+    "sha256": "1f2da651c0227c276265520b65bd46f2cc58e0e2238aa97f1a9abd98ee816d29"
+  },
+  {
+    "path": "scripts/show_finance_comparison_preview.py",
+    "bytes": 3687,
+    "sha256": "aaef144ffde5765db0e3fa261c6e2a37f12aefedc76ea73ccadda4e8b08b2537"
+  },
+  {
+    "path": "scripts/sync_campaigns_to_db.py",
+    "bytes": 2137,
+    "sha256": "bf7f7d8f19574596c6c0898e7c8690ee721c3ed6df6b79c69f9fbafb1dead60c"
+  },
+  {
+    "path": "scripts/sync_finance_rule_engine.py",
+    "bytes": 19607,
+    "sha256": "39d0c92340c8b395bc60d2537c3f93d91cdefe45eef228903dfa243c32ec5879"
+  },
+  {
+    "path": "scripts/sync_standard_products_to_db.py",
+    "bytes": 37139,
+    "sha256": "2134e30c29dcfd78c5cff38c1d1ed81fbbfb669e7ec417798b2cd1f609cd1647"
+  },
+  {
+    "path": "scripts/test_postgresql_connection.py",
+    "bytes": 607,
+    "sha256": "a238336fad25b405b9e2f1aa4d1837b8dc49e0dfc911c16326e651e7fc3860ea"
+  },
+  {
+    "path": "scripts/verify_happy_pipeline.py",
+    "bytes": 3647,
+    "sha256": "28a189e5c9b68bd60096bb9ae8cf930be85b1daa9700a54abeabb20eb1502434"
+  },
+  {
+    "path": "scripts/verify_vakif_katilim_dashboard.py",
+    "bytes": 1315,
+    "sha256": "18435bcf791117a95d6bb21e05929a04784172868ff54e6ccf63f81b98f835e4"
+  },
+  {
+    "path": "src/__init__.py",
+    "bytes": 51,
+    "sha256": "b02567b42b728ea4d38c555044263fdf750e2d6e7373672bbabe01f9f826f046"
+  },
+  {
+    "path": "src/albaraka_standard_product_overrides.py",
+    "bytes": 39150,
+    "sha256": "a8aca8becb3d8be171f9f468d8d5f60b4d4add5c215e6faa080df4ec8c37daec"
+  },
+  {
+    "path": "src/banks.py",
+    "bytes": 474,
+    "sha256": "39ecaa2624b206f78e407d8640b70c1fec09df8906be7f2619476c51ef6b0ae3"
+  },
+  {
+    "path": "src/chatbot.py",
+    "bytes": 2790,
+    "sha256": "22a301a7148d4755421117491ad6260c905c7a5842e777596d83db994ba1db22"
+  },
+  {
+    "path": "src/classification/__init__.py",
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "path": "src/classification/campaign_detector.py",
+    "bytes": 3972,
+    "sha256": "af76bf186b1d3763437a3bf94108ed176862d5907413649031e6d7652d97bca8"
+  },
+  {
+    "path": "src/config.py",
+    "bytes": 344,
+    "sha256": "462bed61c596da4c98c3623bb188a1d2bb9bbd33ceaeff7366e830f838ac2dd3"
+  },
+  {
+    "path": "src/database/__init__.py",
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "path": "src/database/live_campaign_sync.py",
+    "bytes": 22911,
+    "sha256": "31d20e15481a84f8db38cc5e54a86d7afd940d377e6d9a19545eeb483f6dfcb9"
+  },
+  {
+    "path": "src/db.py",
+    "bytes": 8932,
+    "sha256": "af5baca81c84a8a22d75f200936c062e596ae0c51d0fb1b4eacbe8b81d5c742f"
+  },
+  {
+    "path": "src/extraction/__init__.py",
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "path": "src/extraction/comparison_field_extractor.py",
+    "bytes": 62070,
+    "sha256": "046d5fa82b6ac3857a743d334565cc33dc112b69df45d6cd0034b91b44188b5f"
+  },
+  {
+    "path": "src/extraction/finance_extraction_override.py",
+    "bytes": 1666,
+    "sha256": "be8489d79b1d3ed8ce104a28736043e6d4f3f89f07cc6cbe50498371377893b3"
+  },
+  {
+    "path": "src/extraction/installment_terms_extractor.py",
+    "bytes": 5378,
+    "sha256": "17b08c210744dffc9d81dc0a6b618b4ba17d6df5bb4f4aa832d3daf6f54a708d"
+  },
+  {
+    "path": "src/extraction/normalizers.py",
+    "bytes": 1467,
+    "sha256": "614b04e921cafb354bdbf1a004338a7f912a271bfd2eebc307bb48e8339a5981"
+  },
+  {
+    "path": "src/extraction/rule_extractor.py",
+    "bytes": 8084,
+    "sha256": "f333a8cfd5e23d543dbb4ea7fe2dfd328d691c0f01fec0973be9ad70bf81e43d"
+  },
+  {
+    "path": "src/extraction/standard_product_extractor.py",
+    "bytes": 52612,
+    "sha256": "3d7313c124a077418d6edbe442cb6ebf222a087502e184161df79ed60b9e1fa1"
+  },
+  {
+    "path": "src/finance_rule_engine.py",
+    "bytes": 40185,
+    "sha256": "077a929317fc2a3b2a9827f062bc26ae9dbf4656a6c5aa17f7648d33ebe4c369"
+  },
+  {
+    "path": "src/pipeline.py",
+    "bytes": 1174,
+    "sha256": "4222603657952c7fbf3108a321a7bd34f9b0bfb9223886247478e08d9e6a08a6"
+  },
+  {
+    "path": "src/postgres_repository.py",
+    "bytes": 7662,
+    "sha256": "3e20d95150e3d72d982928564b76dd89d5ac9d88ffcf9cb237630ff02639a325"
+  },
+  {
+    "path": "src/processing/__init__.py",
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "path": "src/processing/campaign_classifier.py",
+    "bytes": 13498,
+    "sha256": "55322c051d1d7aa29d90ec3d4700dc01949a18d7d2d1ecc97f9ea260a2de5436"
+  },
+  {
+    "path": "src/qualitative_feature_extractor.py",
+    "bytes": 27606,
+    "sha256": "41ff86eb5aca0b09e435849a4c2d38d160c2dc6876a56e97874aa1baca5b2155"
+  },
+  {
+    "path": "src/repository.py",
+    "bytes": 25704,
+    "sha256": "85fba6d42e0048744f448c6813cf898118f765b89ac0078375c672e21f217259"
+  },
+  {
+    "path": "src/scraping/__init__.py",
+    "bytes": 58,
+    "sha256": "9d43266c1f65dbd9d4e7e42d7091b6c1a994cddc3a604d3900600a73fb34685c"
+  },
+  {
+    "path": "src/scraping/browser_renderer.py",
+    "bytes": 16196,
+    "sha256": "2f6e265aba94ad65e504976077ce3c67c4086d92af602be6e661daede175ca53"
+  },
+  {
+    "path": "src/scraping/campaign_classifier.py",
+    "bytes": 13824,
+    "sha256": "99134d31cccfecaa1a5c2468ee48dcbe86c470cf13896919c84cfedd797f4ce2"
+  },
+  {
+    "path": "src/scraping/campaign_content_override.py",
+    "bytes": 3623,
+    "sha256": "39f3a47b99213bf813b031c5aa2dfcc178e2613696b9a17d33d8c369da31113b"
+  },
+  {
+    "path": "src/scraping/campaign_discovery.py",
+    "bytes": 38094,
+    "sha256": "2526be94e98b8b81dffdae9d325665cefe4b142b093fe0a03e9afb78acaa7a37"
+  },
+  {
+    "path": "src/scraping/campaign_page_fetcher.py",
+    "bytes": 54302,
+    "sha256": "c109ead77394cc658b86ecffa437ff6d0d93fabade288fd637e90ccc21a95431"
+  },
+  {
+    "path": "src/scraping/campaign_status.py",
+    "bytes": 16628,
+    "sha256": "b46aac72d0a312e706ae1071b59675a34b9f8379279852abdb15bd6203c4a2da"
+  },
+  {
+    "path": "src/scraping/failed_fetch_retry.py",
+    "bytes": 4666,
+    "sha256": "7467b79dde002d87f434a2e8bbd8398e6f04439ef55a44d18688b6b3e45026a9"
+  },
+  {
+    "path": "src/scraping/http_client.py",
+    "bytes": 2412,
+    "sha256": "9700aa9ddefd14b7470ed9c5b05763db97c8fcd544094d698b85cb76542c45c4"
+  },
+  {
+    "path": "src/scraping/standard_product_discovery.py",
+    "bytes": 9507,
+    "sha256": "110e564161cf346aaccbb2110279d287ecbdeed12c0f36ee7a0ccfee4b12b098"
+  },
+  {
+    "path": "src/ui_display.py",
+    "bytes": 8730,
+    "sha256": "88a866c39d1a60cf3ca1880982ea95e0922d4e997a5a4f399a2e332786f889df"
+  },
+  {
+    "path": "tests/audit_vehicle_dashboard_logic.py",
+    "bytes": 2153,
+    "sha256": "bf8e7d6d00056e4a640d306ab54727d77b3b4727386a2b622de9da6aa11043c6"
+  },
+  {
+    "path": "tests/test_ala_www_canonical.py",
+    "bytes": 2059,
+    "sha256": "31a19c49e0e18606d05fcbd0cca1e5638e4b0902413a5d6dd4b18be47fd474b8"
+  },
+  {
+    "path": "tests/test_albaraka_taksitlio_rate.py",
+    "bytes": 795,
+    "sha256": "23dd321201a9a6d89833909a687b6928d7a26d261d5ece0900dd805a8f7049d6"
+  },
+  {
+    "path": "tests/test_albaraka_world_discovery.py",
+    "bytes": 4483,
+    "sha256": "98dd8a79edaf2a3e11ebdf0713eb1a07f40456db3a902d2006268b2295dbf9f0"
+  },
+  {
+    "path": "tests/test_apply_campaign_classification_overrides.py",
+    "bytes": 3817,
+    "sha256": "403d0b9053859f0aa201afe56f286de1cea91369e6b915a67af3ef84aa37916c"
+  },
+  {
+    "path": "tests/test_audit_kuveyt_classification.py",
+    "bytes": 3072,
+    "sha256": "38fd90e21b393f6fd60bf8e8643799f98dbc035f7f0e70ac9c71c853494775f2"
+  },
+  {
+    "path": "tests/test_audit_kuveyt_finance_extraction.py",
+    "bytes": 2503,
+    "sha256": "ea08b05a1aaa11017938b7ba65305ea996830c7e65ad464c08f2efb6df24ad2a"
+  },
+  {
+    "path": "tests/test_audit_kuveyt_nonfinance_extraction.py",
+    "bytes": 3113,
+    "sha256": "c1ccaaa0d8e9777c6360f3cbf0701ecdf984510b203edc92a6f4c03c950c06c0"
+  },
+  {
+    "path": "tests/test_bank_config.py",
+    "bytes": 1100,
+    "sha256": "eefd07718d424e2930bc4309b24ff607136fcd837ed7a976ff7224c1d790da20"
+  },
+  {
+    "path": "tests/test_bank_request_url.py",
+    "bytes": 3252,
+    "sha256": "c0308454889aa858893c2f442fe6731413b797c5010772a34b586e5a2c68b09c"
+  },
+  {
+    "path": "tests/test_browser_renderer_empty_terms.py",
+    "bytes": 1889,
+    "sha256": "47bf60b11242adc3a78dc95030b39ea1ee7627136f516c0b0e538c8964324391"
+  },
+  {
+    "path": "tests/test_browser_renderer_navigation.py",
+    "bytes": 2340,
+    "sha256": "cdf268f1643dd42accdda71ee724cfef5df29a107a23c74c01e550239e8c89fb"
+  },
+  {
+    "path": "tests/test_campaign_body_fallback.py",
+    "bytes": 3033,
+    "sha256": "681f7988cd4349dc9b2328dfbcd3211d704c011493d2601aa7cc4f19c70c3983"
+  },
+  {
+    "path": "tests/test_campaign_classifier.py",
+    "bytes": 2166,
+    "sha256": "6733f0070e14d78d5ed53c4931acd556af4c214f90d670c79e9517b293f88695"
+  },
+  {
+    "path": "tests/test_campaign_content_override.py",
+    "bytes": 3045,
+    "sha256": "6ad613025b023c01e5ee4dfeb1f31b5a4ad0d7fb0b1df7ff9565f6d9082e77cd"
+  },
+  {
+    "path": "tests/test_campaign_discovery.py",
+    "bytes": 2362,
+    "sha256": "a4667918931971fff5a1aa0615d232c3c4d7a3015894ba78fcc38e98b00aac9c"
+  },
+  {
+    "path": "tests/test_campaign_page_fetcher.py",
+    "bytes": 2741,
+    "sha256": "a1deaadca58b99adde43652a3ad34b3ae54302c26461133b1a6b817fbcb78ef5"
+  },
+  {
+    "path": "tests/test_campaign_status.py",
+    "bytes": 1922,
+    "sha256": "7b4f503a24442518ff714e1dbb0105e8acf592798ad9e6790874e9fdc7ac47db"
+  },
+  {
+    "path": "tests/test_campaign_url_alias.py",
+    "bytes": 4090,
+    "sha256": "1c39c5a7ce6a21304223f99b2d75777d030d04fdce8e6355157f5acc1e7779d4"
+  },
+  {
+    "path": "tests/test_classification_and_extraction_v2.py",
+    "bytes": 3637,
+    "sha256": "d9636ae764e0fccfc8fdbb36b58f4c6424d2bcf88ae21e9a870cd686d399580b"
+  },
+  {
+    "path": "tests/test_comparison_field_extractor.py",
+    "bytes": 2863,
+    "sha256": "ee629dcc1cb7db5a3d5099b58a9b8a5de7a9cbe326c3b7b52542a87c6c7581ca"
+  },
+  {
+    "path": "tests/test_database_schema.py",
+    "bytes": 781,
+    "sha256": "3fe89374afd2d61620a30b31581be0062812f5472e1894d4279ea600a60b8c86"
+  },
+  {
+    "path": "tests/test_detector.py",
+    "bytes": 684,
+    "sha256": "617277d0fd68a45792051deadcc192a411a7824b1c6ce0a205c1b7d75cb282e5"
+  },
+  {
+    "path": "tests/test_dynamic_discovery.py",
+    "bytes": 2769,
+    "sha256": "cfef9341ada1a3ba9f9d10dfa8c05c3321ac3ed2ac9988919ce06892d6e233ca"
+  },
+  {
+    "path": "tests/test_extractor.py",
+    "bytes": 914,
+    "sha256": "23f00dc34990d2d8c37f70715ad2959e40387e1f1931573ed63bd77926d9068a"
+  },
+  {
+    "path": "tests/test_failed_fetch_merge.py",
+    "bytes": 2097,
+    "sha256": "127c0b40f5afed6c10df4d4527da6e79d21c4173bcd4e6568c885e9cc437ee8c"
+  },
+  {
+    "path": "tests/test_fetch_error_cleanup.py",
+    "bytes": 2144,
+    "sha256": "25c9cfe7dfddadc75663811db74a986f43c33e9509981c7c634486e888b09267"
+  },
+  {
+    "path": "tests/test_fetch_request_error_fallback.py",
+    "bytes": 3037,
+    "sha256": "6ffe1d54fa2046e169f6a4b9aa800ff09b7e696a5f9bb5c2a094d283cdca6e85"
+  },
+  {
+    "path": "tests/test_fetch_source_domain_preservation.py",
+    "bytes": 1923,
+    "sha256": "6ca76e9361152b50ed73a6f138dca95edb298b50c2aa2915785233aa090c0626"
+  },
+  {
+    "path": "tests/test_final_extraction_quality.py",
+    "bytes": 2114,
+    "sha256": "d32f42863c3932ec862137b8b46a14dc74bd241bef0945627fa92303d09b3bbc"
+  },
+  {
+    "path": "tests/test_happy_content_extraction.py",
+    "bytes": 3386,
+    "sha256": "a6325a1c8948924ea46151ab831bbdd6f6ebda287588fdb40f52a09ccd2b967f"
+  },
+  {
+    "path": "tests/test_happy_dom_stability.py",
+    "bytes": 3734,
+    "sha256": "d8e13087227b7d0c7f495f44d2f5b7e2488d5ee4005e9a82349e1e2c1bb8b698"
+  },
+  {
+    "path": "tests/test_happy_sharepoint_form.py",
+    "bytes": 3541,
+    "sha256": "8fe82eb6f4b2fe220822dc6875532d4fc8a4ac63d395f2d9781b4c2a5eb26dd9"
+  },
+  {
+    "path": "tests/test_happy_www_canonical.py",
+    "bytes": 1920,
+    "sha256": "c1023d440679f04999ff059d67f518606ef5669808f99cebe6348e9393295612"
+  },
+  {
+    "path": "tests/test_happy_www_request_url.py",
+    "bytes": 2527,
+    "sha256": "cb8d4b136072656e1055ed834664af11b3a28791ad9711f7d6f1aa92a74c6411"
+  },
+  {
+    "path": "tests/test_hayat_semantic_hotfix.py",
+    "bytes": 2316,
+    "sha256": "940b8273a46a35478f843f550f8d3e3387f83947c507e391e8215d93648f0ebc"
+  },
+  {
+    "path": "tests/test_kuveyt_blog_title_fix.py",
+    "bytes": 2280,
+    "sha256": "1bd382f354d975a659a883bdd6914af3e252e4b98bc98c744f153e9f99e5dcc3"
+  },
+  {
+    "path": "tests/test_kuveyt_final_three.py",
+    "bytes": 1931,
+    "sha256": "9c85e7d006a1d18704fe504d8d29103c01e63980b962bdaeecc5ce30c397f51b"
+  },
+  {
+    "path": "tests/test_kuveyt_finance_extraction_fixes.py",
+    "bytes": 3689,
+    "sha256": "eb3e9ceb32179ea2f8000bed7157a8c48c606cde50ea85dc7a349c0f6f44e840"
+  },
+  {
+    "path": "tests/test_kuveyt_third_fixes.py",
+    "bytes": 4402,
+    "sha256": "25c09c5bb8fc52e1cb17fd8da3250fe98b6840287308a0ef0f649a7b674052c6"
+  },
+  {
+    "path": "tests/test_kuveyt_title_extraction.py",
+    "bytes": 2754,
+    "sha256": "ec1ea16b0e431ae6793e4846759e4d0bc826d51392b4ee17c6fdb5101f5f5af5"
+  },
+  {
+    "path": "tests/test_listing_status_discovery.py",
+    "bytes": 1259,
+    "sha256": "45991bd60e79043c6d613ffc59408bfed342c5ba64b3ca47f9f764d64d6c6e8a"
+  },
+  {
+    "path": "tests/test_live_campaign_sync.py",
+    "bytes": 7000,
+    "sha256": "61160ebc9655d679c54647e0c0c6d0e7c9dc79833efdbf800085b76b633102bb"
+  },
+  {
+    "path": "tests/test_maturity_and_evidence_quality.py",
+    "bytes": 2567,
+    "sha256": "2ffb7902ad651c629c7ddc043aac8f43a98c1f3287c85c233fa1c8a27508f21a"
+  },
+  {
+    "path": "tests/test_multibank_safe_storage.py",
+    "bytes": 6239,
+    "sha256": "da51d1570b441e0f1b13af65c63bcf808c3b90dd3946a74e72d1fb9092b83b29"
+  },
+  {
+    "path": "tests/test_none_get_cleanup.py",
+    "bytes": 1663,
+    "sha256": "1c661e2b08d741ad6a9d32effc5ccda61e64bb9834d6b787399eb4c11b501421"
+  },
+  {
+    "path": "tests/test_nonfinance_extraction_guardrails.py",
+    "bytes": 2795,
+    "sha256": "3d37de5e390f00465f151bfd9abd94b7de7b5e1115cb15efcb090ab9a9c7f2f5"
+  },
+  {
+    "path": "tests/test_nonfinance_extraction_guardrails_v3.py",
+    "bytes": 3843,
+    "sha256": "2607ba97e2504178c570135d4221acfc897a05f2f41d8252f420d5248dac2af9"
+  },
+  {
+    "path": "tests/test_nonfinance_extraction_guardrails_v5.py",
+    "bytes": 3110,
+    "sha256": "b51f8472af30cb9c9da98b6c5bb9741e1a62ded40a3f1f04db695b4c6b773bc7"
+  },
+  {
+    "path": "tests/test_nonfinance_general_fixes.py",
+    "bytes": 2928,
+    "sha256": "1707e818e5ce8d67c3c4952aea4dd66d8417cd2c83fa06d531a4d9652ee4d588"
+  },
+  {
+    "path": "tests/test_nonfinance_second_fixes.py",
+    "bytes": 5805,
+    "sha256": "0b36d8e9b4d037fea93e2f440deae69668f7a3c706367d1631d03028a12c9835"
+  },
+  {
+    "path": "tests/test_override_null_summary.py",
+    "bytes": 1318,
+    "sha256": "cbda16210d1dec74fab387ee8107ce16680973ceb932f07738b1b55042a32f02"
+  },
+  {
+    "path": "tests/test_redirect_url_matching.py",
+    "bytes": 1729,
+    "sha256": "84cad0af2f65dd22127296a92dee2346d4ff37257e47acbd09cd1a97b31d35b0"
+  },
+  {
+    "path": "tests/test_run_kuveyt_post_sync_pipeline_v2.py",
+    "bytes": 2134,
+    "sha256": "4d6ee87edd7198ffe2f16479c53c0c41d704b2b8ee1271620630105bd66152fc"
+  },
+  {
+    "path": "tests/test_run_turkiye_finans_full_refresh_pipeline_v2.py",
+    "bytes": 3993,
+    "sha256": "d8aa83e58bd84ef07267b8bd1de012b262af1cd94ba9b0f6ccd07e6d4b5cb391"
+  },
+  {
+    "path": "tests/test_run_turkiye_finans_post_sync_pipeline.py",
+    "bytes": 7887,
+    "sha256": "7743cd38443db9085077481aa91c02025141f92fb16fe6f61632055efb89fd76"
+  },
+  {
+    "path": "tests/test_run_turkiye_finans_post_sync_pipeline_v2.py",
+    "bytes": 6137,
+    "sha256": "6b7ad26a3ac61d45303ffbf1e94f82d5789770c37bc5c2c749efa57948d2cfaa"
+  },
+  {
+    "path": "tests/test_run_ziraat_katilim_post_sync_pipeline.py",
+    "bytes": 2876,
+    "sha256": "907554599e2203112177b58514f68bf445795c7b537cc21ec5af041fc92caeb7"
+  },
+  {
+    "path": "tests/test_safe_campaign_classifier.py",
+    "bytes": 1929,
+    "sha256": "404d8a589e8e7b0015cf5337357e24fd2ce8dac93707e8e0e3981846aa57d539"
+  },
+  {
+    "path": "tests/test_safe_campaign_removals.py",
+    "bytes": 5423,
+    "sha256": "ae34fc1a44975f9f54d95079b001e190b99163089fe37192b8e03f0e80b86796"
+  },
+  {
+    "path": "tests/test_semantic_campaign_fallback.py",
+    "bytes": 2952,
+    "sha256": "5b04da53a496ebb2812eb7af35f5914cfe3b5963fd1a925f862657465e5a2963"
+  },
+  {
+    "path": "tests/test_source_group_classification.py",
+    "bytes": 1365,
+    "sha256": "748b9b9a2fc0096af3f30dc91fa321429ed27098efb37e2ae1ddf379faf650c1"
+  },
+  {
+    "path": "tests/test_title_site_suffix_cleanup.py",
+    "bytes": 2305,
+    "sha256": "7315b08e2de6bad34b4e81da956409b310bc4fc0d4e0edc113375fe30a1a0254"
+  },
+  {
+    "path": "tests/test_tom_date_rollover.py",
+    "bytes": 1392,
+    "sha256": "d42379e0fec0ce5a75b12396819e1c24aea668516c3cc1995a4e1d2aa6aa15e2"
+  },
+  {
+    "path": "tests/test_tom_final_audit_rules.py",
+    "bytes": 3573,
+    "sha256": "dbd004739d8f6b7defc59d59d2fb96e5c687f9a396b8148f4b1306e070b5362c"
+  },
+  {
+    "path": "tests/test_tom_final_live_gate.py",
+    "bytes": 2651,
+    "sha256": "a1b94981d650a8bda053282b275fbbdbcc5c3e2209319ac0035c5683597907ec"
+  },
+  {
+    "path": "tests/test_tom_live_ready_rules.py",
+    "bytes": 3167,
+    "sha256": "70c70ff992002dcc290950fd86b11e7c521e5d5abc09a53300de23f9fb13d622"
+  },
+  {
+    "path": "tests/test_tom_main_content.py",
+    "bytes": 3999,
+    "sha256": "6cfbc12765a370e24d5421d9b9353a08943ee872479c7b10443cbfc0c210e97b"
+  },
+  {
+    "path": "tests/test_tom_quality_rules.py",
+    "bytes": 3593,
+    "sha256": "3353e9fcde74914253e30e01c911fefc9d9d65638e8b3b2ef3cde7ccc5fb17d5"
+  },
+  {
+    "path": "tests/test_turkiye_finans_card_sources.py",
+    "bytes": 3863,
+    "sha256": "5a71a03f0d2d7a550699c5cb731c9116c7b84b52fdeb31b34e7f60553e0f5227"
+  },
+  {
+    "path": "tests/test_turkiye_finans_classifier_guardrails.py",
+    "bytes": 2482,
+    "sha256": "ab8a2b0ea72bb755fe515b5502e061694cc2b16baed18667212ba762f0668e31"
+  },
+  {
+    "path": "tests/test_turkiye_finans_discovery.py",
+    "bytes": 3702,
+    "sha256": "cb94b1da63c2bd98233170c013ec461ae8cc4756cbe7c2c9aca6dd3a7ceb2232"
+  },
+  {
+    "path": "tests/test_turkiye_finans_network_sources.py",
+    "bytes": 2200,
+    "sha256": "3ef9fc2477d5614d3a6a9886564e20e19e0eb91ecacd593e9bc49f9782f2afee"
+  },
+  {
+    "path": "tests/test_turkiye_finans_savings_sources.py",
+    "bytes": 2423,
+    "sha256": "ca68c96d9cf2214b9fccb7fa6d90ba1e4a35f7fcdeb7b6d959e331f9c6f689a8"
+  }
+]
