@@ -1,0 +1,286 @@
+[
+  {
+    "bank_name": "Kuveyt Türk",
+    "source_url": "https://kuveytturk.com.tr/kampanyalar/isim-icin/musteri-ol-kampanyalari/esnaf-ciftci-ve-tuzel-sirketlere-ozel-16000-tl-degerinde-finansal-urun-paketi-hediye",
+    "record_kind": "campaign",
+    "campaign_category": "new_customer_campaign",
+    "classification_confidence": 1.0,
+    "reason": "Kampanya yeni müşteri olma koşuluna bağlı ve belirli tarih aralığında ücretsiz finansal ürün paketi sunuyor."
+  },
+  {
+    "bank_name": "Kuveyt Türk",
+    "source_url": "https://kuveytturk.com.tr/kampanyalar/isim-icin/musteri-ol-kampanyalari/esnaf-ciftci-ve-tuzel-sirketlerin-faturasi-bizden",
+    "record_kind": "campaign",
+    "campaign_category": "new_customer_campaign",
+    "classification_confidence": 1.0,
+    "reason": "Faydalanma koşulu mobil kanaldan yeni müşteri olmaktır."
+  },
+  {
+    "bank_name": "Kuveyt Türk",
+    "source_url": "https://kuveytturk.com.tr/kampanyalar/kendim-icin/musteri-ol-kampanyalari/fatura-talimatlariniza-toplam-500-tl-hediye",
+    "record_kind": "campaign",
+    "campaign_category": "new_customer_campaign",
+    "classification_confidence": 1.0,
+    "reason": "Kampanya mobil veya XTM üzerinden yeni müşteri olanlara fatura talimatı karşılığında hediye sunuyor."
+  },
+  {
+    "bank_name": "Kuveyt Türk",
+    "source_url": "https://kuveytturk.com.tr/kampanyalar/kendim-icin/finansman-kampanyalari/kuveyt-turk-ve-togg-is-birligi",
+    "title": "TOGG & Kuveyt Türk İş Birliği ile Avantajlı Finansman Kampanyası",
+    "record_kind": "campaign",
+    "campaign_category": "finance_campaign",
+    "classification_confidence": 1.0,
+    "reason": "Çekilen 'Kampanya Koşulları' başlığı sayfa içi bölüm başlığıdır. Metin, %0 kâr paylı TOGG finansman kampanyasını açıkça tanımlıyor."
+  },
+  {
+    "bank_name": "Kuveyt Türk",
+    "source_url": "https://kuveytturk.com.tr/kampanyalar/kendim-icin/musteri-ol-kampanyalari/akademisyenlere-ozel-avantaj-paketi",
+    "title": "Akademisyenlere Özel Avantaj Paketi",
+    "record_kind": "campaign",
+    "campaign_category": "new_customer_campaign",
+    "classification_confidence": 1.0,
+    "reason": "Çekilen 'Konut Finansmanı Avantajları' başlığı sayfa içi alt başlıktır. Kaynak URL ve metin akademisyenlere özel müşteri olma avantaj paketini gösteriyor."
+  },
+  {
+    "bank_name": "Kuveyt Türk",
+    "source_url": "https://kuveytturk.com.tr/kampanyalar/kendim-icin/musteri-ol-kampanyalari/kuveyt-turk-mobilden-musterimiz-olun-ozel-kur-firsatini-kacirmayin",
+    "record_kind": "campaign",
+    "campaign_category": "new_customer_campaign",
+    "classification_confidence": 1.0,
+    "reason": "Özel kur avantajı mobil kanaldan yeni müşteri olma koşuluna bağlıdır."
+  },
+  {
+    "bank_name": "Kuveyt Türk",
+    "source_url": "https://kuveytturk.com.tr/kampanyalar/isim-icin/pos-kampanyalari/kuveyt-turkten-sanal-pos-kampanyasi",
+    "record_kind": "campaign",
+    "campaign_category": "other_campaign",
+    "classification_confidence": 1.0,
+    "reason": "Belirli tarih aralığında ilk defa POS alacak ticari müşterilere sektör bazlı komisyon ve bloke avantajı sunulan gerçek POS kampanyasıdır."
+  },
+  {
+    "bank_name": "Kuveyt Türk",
+    "source_url": "https://kuveytturk.com.tr/kampanyalar/isim-icin/kobi-kampanyalari/tarimda-kuveyt-turk-ile-buyume-zamani",
+    "record_kind": "campaign",
+    "campaign_category": "finance_campaign",
+    "classification_confidence": 1.0,
+    "reason": "Tarım makinesi ve yatırım için leasing finansmanı, ödemesiz dönem ve esnek ödeme seçenekleri sunan finansman kampanyasıdır."
+  },
+  {
+    "bank_name": "Kuveyt Türk",
+    "source_url": "https://kuveytturk.com.tr/kampanyalar/kendim-icin/finansman-kampanyalari/tarimda-kuveyt-turk-ile-buyume-zamani",
+    "record_kind": "duplicate",
+    "campaign_category": "duplicate",
+    "classification_confidence": 1.0,
+    "is_current": 0,
+    "duplicate_of_source_url": "https://kuveytturk.com.tr/kampanyalar/isim-icin/kobi-kampanyalari/tarimda-kuveyt-turk-ile-buyume-zamani",
+    "reason": "Başlık, içerik özeti ve içerik karması ticari KOBİ kaydıyla aynıdır. Ticari KOBİ bağlantısı ana kayıt olarak korunmuştur."
+  },
+  {
+    "bank_name": "Kuveyt Türk",
+    "source_url": "https://kuveytturk.com.tr/kampanyalar/isim-icin/kobi-kampanyalari/arac-finansmani-onaylanan-kobilere-hgs-kampanyasi",
+    "record_kind": "campaign",
+    "campaign_category": "other_campaign",
+    "classification_confidence": 1.0,
+    "reason": "Kampanya finansman ürünü sunmuyor; araç finansmanı onaylanan KOBİ müşterilerine ücretsiz HGS etiketi hediye ediyor."
+  },
+  {
+    "bank_name": "Kuveyt Türk",
+    "source_url": "https://kuveytturk.com.tr/kampanyalar/kendim-icin/musteri-ol-kampanyalari/hepsiburadada-yeni-musteriye-ozel-vade-farksiz-50000-tl-firsati",
+    "record_kind": "campaign",
+    "campaign_category": "finance_campaign",
+    "classification_confidence": 1.0,
+    "reason": "Kampanya Kuveyt Türk Alışveriş Finansmanı ile 50.000 TL'ye kadar vade farksız 9 taksit sunuyor."
+  },
+  {
+    "bank_name": "Kuveyt Türk",
+    "source_url": "https://kuveytturk.com.tr/kampanyalar/kendim-icin/musteri-ol-kampanyalari/yeni-musterilere-ozel-ihtiyac-kartta-199-oran-firsati",
+    "record_kind": "campaign",
+    "campaign_category": "finance_campaign",
+    "classification_confidence": 1.0,
+    "reason": "İhtiyaç Kart kampanyası 100.000 TL'ye kadar, %1,99 oran, 12 ay taksit ve 2 ay erteleme içeriyor."
+  },
+  {
+    "bank_name": "Türkiye Finans",
+    "source_url": "https://turkiyefinansala.com/tr-tr/kampanyalar/Sayfalar/ala-saglik-meslek-paketi-2026.aspx",
+    "title": "Sağlık Meslek Paketi Avantajlarından Âlâ Bankacılık Ayrıcalığı İle Yararlanın!",
+    "record_kind": "campaign",
+    "campaign_category": "other_campaign",
+    "comparison_eligible": 1,
+    "classification_confidence": 1.0,
+    "reason": "Paket yalnızca yeni müşterilere özel değildir; mevcut ve yeni sağlık meslek grubu müşterileri yararlanabilir. Meslek grubuna özel çoklu avantaj paketi olarak sınıflandırıldı."
+  },
+  {
+    "bank_name": "Türkiye Finans",
+    "source_url": "https://turkiyefinans.com.tr/tr-tr/kampanyalar/Sayfalar/gunluk-hesap-vade-kampanyasi.aspx",
+    "title": "Günlük Hesap’la İhtiyaç Anında Vadeni Bozma!",
+    "record_kind": "campaign",
+    "campaign_category": "other_campaign",
+    "comparison_eligible": 1,
+    "classification_confidence": 1.0,
+    "reason": "Kampanyanın ana konusu birikimlerin Günlük Hesap ürününde avantajlı getiriyle değerlendirilmesidir. Mevcut taksonomide yatırım/birikim kategorisi bulunmadığı için other_campaign altında tutulur; kaynak grubu Birikim / Fon olarak korunur."
+  },
+  {
+    "bank_name": "Türkiye Finans",
+    "source_url": "https://turkiyefinansala.com/tr-tr/kampanyalar/Sayfalar/ala-bes-2026.aspx",
+    "title": "Âlâ Müşterilere Özel Âlâ BES ile Geleceğe Yatırım Yapın!",
+    "record_kind": "campaign",
+    "campaign_category": "insurance_campaign",
+    "comparison_eligible": 1,
+    "classification_confidence": 1.0,
+    "reason": "Kampanyanın ana ürünü BES olduğundan sigorta ve bireysel emeklilik kampanyasıdır."
+  },
+  {
+    "bank_name": "Türkiye Finans",
+    "source_url": "https://happycard.com.tr/kampanyalar/Sayfalar/yenikart.aspx",
+    "title": "Happy Kredi Kartı ile 2.500 TL Bonus kazanın!",
+    "record_kind": "campaign",
+    "campaign_category": "card_campaign",
+    "comparison_eligible": 1,
+    "classification_confidence": 1.0,
+    "reason": "Kredi kartı kullanımına bağlı somut Bonus ödülü sunan kart kampanyasıdır."
+  },
+  {
+    "bank_name": "Türkiye Finans",
+    "source_url": "https://happycard.com.tr/kampanyalar/Sayfalar/ofot.aspx",
+    "title": "Otomatik Ödeme Talimatınıza 500 TL'ye Varan Bonus!",
+    "record_kind": "campaign",
+    "campaign_category": "card_campaign",
+    "comparison_eligible": 1,
+    "classification_confidence": 1.0,
+    "reason": "Otomatik ödeme talimatına bağlı Bonus ödülü sunan kart ve ödeme kampanyasıdır."
+  },
+  {
+    "bank_name": "Türkiye Finans",
+    "source_url": "https://turkiyefinansala.com/tr-tr/kampanyalar/Sayfalar/mil-ayricaligi.aspx",
+    "title": "Âlâ Kart ile Bonuslarınız Mil Puanına Dönüşüyor!",
+    "record_kind": "campaign",
+    "campaign_category": "points_campaign",
+    "comparison_eligible": 1,
+    "classification_confidence": 1.0,
+    "reason": "Kampanya Bonusların mil puanına dönüşümünü sağladığı için puan kampanyasıdır."
+  },
+  {
+    "bank_name": "Türkiye Finans",
+    "source_url": "https://turkiyefinansala.com/tr-tr/kampanyalar/Sayfalar/ala-ofot-nisan-2026.aspx",
+    "title": "Âlâ Kredi Kartınızdan Otomatik Fatura Ödeme Talimatına 500 TL’ye Varan Bonus Fırsatları Yakalayın!",
+    "record_kind": "campaign",
+    "campaign_category": "card_campaign",
+    "comparison_eligible": 1,
+    "classification_confidence": 1.0,
+    "reason": "Âlâ kredi kartından verilen otomatik fatura talimatına bağlı Bonus ödülü sunmaktadır."
+  },
+  {
+    "bank_name": "Türkiye Finans",
+    "source_url": "https://turkiyefinansala.com/tr-tr/kampanyalar/Sayfalar/ala-hgs-2026.aspx",
+    "title": "Âlâ ile HGS alarak vereceğiniz HGS talimatına 700 TL Bonus!",
+    "record_kind": "campaign",
+    "campaign_category": "card_campaign",
+    "comparison_eligible": 1,
+    "classification_confidence": 1.0,
+    "reason": "HGS talimatına bağlı Bonus ödülü sunan kart ve ödeme kampanyasıdır."
+  },
+  {
+    "bank_name": "Ziraat Katılım",
+    "source_url": "https://ziraatkatilim.com.tr/kart-kampanyalari/aile-karta-ozel-2000-tlye-varan-bankkart-lira-1",
+    "title": "Aile Kart'a Özel 2.000 TL'ye varan Bankkart Lira!",
+    "record_kind": "campaign",
+    "campaign_category": "points_campaign",
+    "classification_confidence": 1.0,
+    "reason": "Kampanya Bankkart Aile kredi kartı harcamaları karşılığında Bankkart Lira kazandırır."
+  },
+  {
+    "bank_name": "Ziraat Katılım",
+    "source_url": "https://ziraatkatilim.com.tr/kart-kampanyalari/akaryakit-harcamalariniza-400-tl-bankkart-lira-2",
+    "title": "Akaryakıt Harcamalarınıza 400 TL Bankkart Lira!",
+    "record_kind": "campaign",
+    "campaign_category": "points_campaign",
+    "classification_confidence": 1.0,
+    "reason": "Kampanya belirli akaryakıt harcamaları karşılığında 400 TL Bankkart Lira kazandırır."
+  },
+  {
+    "bank_name": "Ziraat Katılım",
+    "source_url": "https://ziraatkatilim.com.tr/kart-kampanyalari/bagimsiz-karta-ozel-5000-tlye-varan-bankkart-lira-1",
+    "title": "Bağımsız Kart'a Özel 5.000 TL'ye varan Bankkart Lira!",
+    "record_kind": "campaign",
+    "campaign_category": "points_campaign",
+    "classification_confidence": 1.0,
+    "reason": "Kampanya Bankkart Bağımsız kredi kartı harcamaları karşılığında Bankkart Lira kazandırır."
+  },
+  {
+    "bank_name": "Ziraat Katılım",
+    "source_url": "https://ziraatkatilim.com.tr/kart-kampanyalari/elektrikli-arac-sarj-istasyonlarinda-750-tl-bankkart-lira-0",
+    "title": "Elektrikli Araç Şarj İstasyonlarında 750 TL Bankkart Lira!",
+    "record_kind": "campaign",
+    "campaign_category": "points_campaign",
+    "classification_confidence": 1.0,
+    "reason": "Kampanya elektrikli araç şarj istasyonu harcamaları karşılığında Bankkart Lira kazandırır."
+  },
+  {
+    "bank_name": "Ziraat Katılım",
+    "source_url": "https://ziraatkatilim.com.tr/kart-kampanyalari/ziraat-katilim-avantajli-bankkart-kampanyalari",
+    "title": "Ziraat Katılım Avantajlı Bankkart Kampanyaları",
+    "record_kind": "campaign",
+    "campaign_category": "card_campaign",
+    "classification_confidence": 1.0,
+    "reason": "Kampanya Bankkart kullanıcılarına farklı harcama alanlarında kart avantajları sunan bir kart kampanyasıdır."
+  },
+  {
+    "bank_name": "Ziraat Katılım",
+    "source_url": "https://ziraatkatilim.com.tr/kart-kampanyalari/ilk-bankkart-kredi-kartiniza-5000-tl-bankkart-lira-1",
+    "title": "İlk Bankkart Kredi Kartınıza 5.000 TL Bankkart Lira!",
+    "record_kind": "campaign",
+    "campaign_category": "new_customer_campaign",
+    "classification_confidence": 1.0,
+    "reason": "Kampanya ilk Bankkart kredi kartını alan müşterilere Bankkart Lira kazandırdığı için yeni kart/müşteri edinimine bağlıdır."
+  },
+  {
+    "bank_name": "Ziraat Katılım",
+    "source_url": "https://ziraatkatilim.com.tr/kart-kampanyalari/hava-yolu-bilet-aliminiza-1500-tl-bankkart-lira-2",
+    "title": "Hava Yolu Bilet Alımınıza 1.500 TL Bankkart Lira!",
+    "record_kind": "campaign",
+    "campaign_category": "points_campaign",
+    "classification_confidence": 1.0,
+    "reason": "Kampanyanın ana faydası belirli harcama tutarları karşılığında 1.500 TL'ye varan Bankkart Lira kazancıdır."
+  },
+  {
+    "bank_name": "Ziraat Katılım",
+    "source_url": "https://ziraatkatilim.com.tr/kart-kampanyalari/turk-hava-yollarinda-6-taksit",
+    "title": "Türk Hava Yolları'nda 6 Taksit",
+    "record_kind": "campaign",
+    "campaign_category": "card_campaign",
+    "classification_confidence": 1.0,
+    "reason": "Kampanyanın ana faydası Bankkart kredi kartıyla Türk Hava Yolları harcamalarında 6 taksittir."
+  },
+  {
+    "bank_name": "Dünya Katılım",
+    "source_url": "https://dunyakatilim.com.tr/kampanyalar/pazarama-paraf",
+    "record_kind": "campaign",
+    "campaign_category": "card_campaign",
+    "classification_confidence": 1.0,
+    "reason": "Kampanya indirim değil; Paraf kartla peşin fiyatına 6 aya varan taksit avantajı sunuyor."
+  },
+  {
+    "bank_name": "Dünya Katılım",
+    "source_url": "https://dunyakatilim.com.tr/kampanyalar/altin-kesemTicari",
+    "record_kind": "campaign",
+    "campaign_category": "points_campaign",
+    "classification_confidence": 1.0,
+    "reason": "Kart harcamaları karşılığında gram altın ödülü kazandırıyor."
+  },
+  {
+    "bank_name": "Dünya Katılım",
+    "source_url": "https://dunyakatilim.com.tr/kampanyalar/avantajli-kurlar",
+    "record_kind": "service_information",
+    "campaign_category": "service_information",
+    "classification_confidence": 1.0,
+    "reason": "Metin süreli veya koşullu bir kampanya değil; döviz ve kıymetli maden alım satım hizmetini tanıtıyor."
+  },
+  {
+    "bank_name": "Dünya Katılım",
+    "source_url": "https://dunyakatilim.com.tr/kampanyalar/tahsile-cek",
+    "record_kind": "service_information",
+    "campaign_category": "service_information",
+    "classification_confidence": 1.0,
+    "reason": "Metin kampanya avantajı sunmuyor; çek tahsilat hizmetinin işleyişini açıklıyor."
+  }
+]
