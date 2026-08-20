@@ -1,0 +1,48 @@
+{
+  "version": "2026-08-15",
+  "source_name": "BDDK Katılım Bankaları",
+  "source_url": "https://www.bddk.org.tr/Kurulus/Liste/77",
+  "banks": [
+    {
+      "name": "Adil Katılım",
+      "official_url": "https://www.adilkatilim.com.tr/"
+    },
+    {
+      "name": "Albaraka Türk",
+      "official_url": "https://www.albarakaturk.com.tr/"
+    },
+    {
+      "name": "Dünya Katılım",
+      "official_url": "https://www.dunyakatilim.com.tr/"
+    },
+    {
+      "name": "Hayat Finans",
+      "official_url": "https://www.hayatfinans.com.tr/"
+    },
+    {
+      "name": "Kuveyt Türk",
+      "official_url": "https://www.kuveytturk.com.tr/"
+    },
+    {
+      "name": "T.O.M. Katılım",
+      "official_url": "https://www.tombank.com.tr/",
+      "brand_alias": "TOM Bank"
+    },
+    {
+      "name": "Türkiye Emlak Katılım",
+      "official_url": "https://www.emlakbank.com.tr/"
+    },
+    {
+      "name": "Türkiye Finans",
+      "official_url": "https://www.turkiyefinans.com.tr/"
+    },
+    {
+      "name": "Vakıf Katılım",
+      "official_url": "https://www.vakifkatilim.com.tr/"
+    },
+    {
+      "name": "Ziraat Katılım",
+      "official_url": "https://www.ziraatkatilim.com.tr/"
+    }
+  ]
+}

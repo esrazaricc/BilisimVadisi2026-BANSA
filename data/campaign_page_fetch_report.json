@@ -1,0 +1,24 @@
+{
+  "snapshot_count": 431,
+  "error_count": 0,
+  "fetch_status_counts": {
+    "ok": 431
+  },
+  "campaign_status_counts": {
+    "active": 324,
+    "expired": 60,
+    "unknown": 45,
+    "upcoming": 2
+  },
+  "bank_counts": {
+    "Albaraka Türk": 85,
+    "Dünya Katılım": 44,
+    "Hayat Finans": 11,
+    "Kuveyt Türk": 103,
+    "T.O.M. Katılım": 75,
+    "Türkiye Emlak Katılım": 64,
+    "Türkiye Finans": 49
+  },
+  "minimum_acceptable_text_length": 120,
+  "generated_at": "2026-08-10T12:17:32+00:00"
+}
