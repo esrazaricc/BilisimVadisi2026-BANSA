@@ -1,0 +1,3521 @@
+====================================================================================================
+FILE: src\albaraka_standard_product_overrides.py
+====================================================================================================
+350:     if name == "2B Arazi Finansmanı" and re.search(r"İpotek tesis ücreti ve ekspertiz ücreti ödemeyerek", text, flags=re.IGNORECASE):
+351:         evidence = _evidence(text, r"İpotek tesis ücreti ve ekspertiz ücreti ödemeyerek[^.!?]*")
+352:         out["fee_waiver_text"] = evidence
+353:         rules["fee_rules"] = [
+354:             {
+355:                 "fee_type": "mortgage_establishment",
+356:                 "fee_label": "İpotek Tesis Ücreti",
+357:                 "waived": True,
+358:                 "amount": None,
+359:                 "rate": None,
+360:                 "note": evidence,
+361:             },
+362:             {
+363:                 "fee_type": "appraisal",
+364:                 "fee_label": "Ekspertiz Ücreti",
+365:                 "waived": True,
+366:                 "amount": None,
+367:                 "rate": None,
+368:                 "note": evidence,
+369:             },
+370:         ]
+371: 
+372:     # Tutar-vade bantları.
+373:     if name == "Jet Finansman":
+553:                 {
+554:                     "pricing_variant": model,
+555:                     "financing_amount": amount,
+556:                     "maturity_months": months,
+557:                     "profit_share_rate": rate,
+558:                     "allocation_fee_rate": None,
+559:                     "monthly_total_cost_rate": None,
+560:                     "annual_total_cost_rate": None,
+561:                     "source_text": source,
+562:                 }
+563:             )
+564:         rules["pricing_tiers"] = tiers
+565: 
+566:     out["finance_rules_json"] = json.dumps(rules, ensure_ascii=False, sort_keys=True)
+567:     return out
+
+====================================================================================================
+FILE: src\db.py
+====================================================================================================
+80:     financing_amount_min REAL,
+81:     financing_amount_max REAL,
+82:     maturity_min_months INTEGER,
+83:     maturity_max_months INTEGER,
+84:     installment_count INTEGER,
+85:     allocation_fee_amount REAL,
+86:     allocation_fee_rate REAL,
+87:     expense_status TEXT,
+88:     expense_details TEXT,
+89:     currency TEXT NOT NULL DEFAULT 'TRY',
+90:     FOREIGN KEY(campaign_id) REFERENCES campaigns(id) ON DELETE CASCADE
+91: );
+92: 
+93: CREATE TABLE IF NOT EXISTS campaign_benefits (
+94:     id INTEGER PRIMARY KEY AUTOINCREMENT,
+95:     campaign_id INTEGER NOT NULL,
+
+====================================================================================================
+FILE: src\finance_column_profiles.py
+====================================================================================================
+26:         category_label="Konut Finansmanı",
+27:         preferred_columns=(
+28:             "Kâr Payı / Fiyatlama",
+29:             "Azami Vade",
+30:             "Finansman Oranı",
+31:             "Tahsis Ücreti",
+32:             "Ekspertiz Ücreti",
+33:             "İpotek Tesis Ücreti",
+34:         ),
+35:         always_show_columns=(
+36:             "Kâr Payı / Fiyatlama",
+37:             "Azami Vade",
+38:             "Finansman Oranı",
+39:             "Tahsis Ücreti",
+40:             "Ekspertiz Ücreti",
+41:             "İpotek Tesis Ücreti",
+42:         ),
+43:         description="Konut karşılaştırmasında fiyatlama, vade, finansman oranı ve temel gayrimenkul masrafları esastır.",
+44:     ),
+45:     ("bireysel", "Taşıt Finansmanı"): FinanceColumnProfile(
+46:         scope="bireysel",
+47:         category_label="Taşıt Finansmanı",
+48:         preferred_columns=(
+49:             "Araç / Yaş Kapsamı",
+50:             "Tutar / Değer Bazlı Koşullar",
+51:             "Kâr Payı / Fiyatlama",
+52:             "Vade / Ödeme",
+53:             "Finansman Oranı",
+54:             "Tahsis Ücreti",
+55:             "Masraf / Ücretler",
+56:         ),
+57:         description="Taşıtta araç kapsamı ile araç değerine göre oran-vade kuralları önceliklidir.",
+58:     ),
+59:     ("bireysel", "İhtiyaç Finansmanı"): FinanceColumnProfile(
+60:         scope="bireysel",
+61:         category_label="İhtiyaç Finansmanı",
+62:         preferred_columns=(
+63:             "Limit / Finansman Tutarı",
+64:             "Vade / Ödeme",
+65:             "Kâr Payı / Fiyatlama",
+66:             "Tahsis Ücreti",
+67:             "Teminat / Güvence",
+68:             "Ödeme / Kullanım",
+69:         ),
+70:         description="İhtiyaç finansmanında limit, tutara göre vade, fiyatlama ve tahsis ücreti temel karşılaştırma alanlarıdır.",
+71:     ),
+72:     ("bireysel", "Gayrimenkul Finansmanı"): FinanceColumnProfile(
+73:         scope="bireysel",
+74:         category_label="Gayrimenkul Finansmanı",
+75:         preferred_columns=(
+76:             "Kullanım Amacı",
+77:             "Limit / Finansman Tutarı",
+78:             "Vade / Ödeme",
+79:             "Finansman Oranı",
+80:             "Kâr Payı / Fiyatlama",
+81:             "Tahsis Ücreti",
+82:             "Ekspertiz Ücreti",
+83:             "İpotek Tesis Ücreti",
+84:             "Masraf / Ücretler",
+85:         ),
+86:         description="Arsa, iş yeri ve benzeri ürünlerde varlık türü, vade, finansman oranı ile ekspertiz/ipotek masrafları öne çıkar.",
+87:     ),
+88:     ("bireysel", "Alışveriş Finansmanı"): FinanceColumnProfile(
+89:         scope="bireysel",
+90:         category_label="Alışveriş Finansmanı",
+91:         preferred_columns=(
+92:             "Kullanım / Kanal",
+93:             "Limit / Finansman Tutarı",
+94:             "Vade / Ödeme",
+95:             "Kâr Payı / Fiyatlama",
+96:             "Tahsis Ücreti",
+97:             "Ürün Koşulları",
+98:             "Maliyet / Avantaj",
+99:         ),
+100:         description="Alışveriş finansmanında kullanım kanalı, limit, taksit/vade ve fiyatlama esastır.",
+101:     ),
+102:     ("bireysel", "Diğer Bireysel Finansman"): FinanceColumnProfile(
+103:         scope="bireysel",
+104:         category_label="Diğer Bireysel Finansman",
+105:         preferred_columns=(
+107:             "Kullanım Amacı",
+108:             "Finansman Yapısı",
+109:             "Limit / Finansman Tutarı",
+110:             "Vade / Ödeme",
+111:             "Kâr Payı / Fiyatlama",
+112:             "Tahsis Ücreti",
+113:             "Teminat / Güvence",
+114:             "Kullanım / Kanal",
+115:         ),
+116:         description="Ana bireysel kategorilere girmeyen ürünlerde yalnız resmî kaynakta doğrulanan karar alanları gösterilir.",
+117:     ),
+118:     # ---------------- İŞ / TİCARİ ----------------
+119:     ("ticari", "Ticari Finansman"): FinanceColumnProfile(
+120:         scope="ticari",
+121:         category_label="Ticari Finansman",
+
+====================================================================================================
+FILE: src\finance_column_profiles_before_tarim_support_fix.py
+====================================================================================================
+26:         category_label="Konut Finansmanı",
+27:         preferred_columns=(
+28:             "Kâr Payı / Fiyatlama",
+29:             "Azami Vade",
+30:             "Finansman Oranı",
+31:             "Tahsis Ücreti",
+32:             "Ekspertiz Ücreti",
+33:             "İpotek Tesis Ücreti",
+34:         ),
+35:         always_show_columns=(
+36:             "Kâr Payı / Fiyatlama",
+37:             "Azami Vade",
+38:             "Finansman Oranı",
+39:             "Tahsis Ücreti",
+40:             "Ekspertiz Ücreti",
+41:             "İpotek Tesis Ücreti",
+42:         ),
+43:         description="Konut karşılaştırmasında fiyatlama, vade, finansman oranı ve temel gayrimenkul masrafları esastır.",
+44:     ),
+45:     ("bireysel", "Taşıt Finansmanı"): FinanceColumnProfile(
+46:         scope="bireysel",
+47:         category_label="Taşıt Finansmanı",
+48:         preferred_columns=(
+49:             "Araç / Yaş Kapsamı",
+50:             "Tutar / Değer Bazlı Koşullar",
+51:             "Kâr Payı / Fiyatlama",
+52:             "Vade / Ödeme",
+53:             "Finansman Oranı",
+54:             "Tahsis Ücreti",
+55:             "Masraf / Ücretler",
+56:         ),
+57:         description="Taşıtta araç kapsamı ile araç değerine göre oran-vade kuralları önceliklidir.",
+58:     ),
+59:     ("bireysel", "İhtiyaç Finansmanı"): FinanceColumnProfile(
+60:         scope="bireysel",
+61:         category_label="İhtiyaç Finansmanı",
+62:         preferred_columns=(
+63:             "Limit / Finansman Tutarı",
+64:             "Vade / Ödeme",
+65:             "Kâr Payı / Fiyatlama",
+66:             "Tahsis Ücreti",
+67:             "Teminat / Güvence",
+68:             "Ödeme / Kullanım",
+69:         ),
+70:         description="İhtiyaç finansmanında limit, tutara göre vade, fiyatlama ve tahsis ücreti temel karşılaştırma alanlarıdır.",
+71:     ),
+72:     ("bireysel", "Gayrimenkul Finansmanı"): FinanceColumnProfile(
+73:         scope="bireysel",
+74:         category_label="Gayrimenkul Finansmanı",
+75:         preferred_columns=(
+76:             "Kullanım Amacı",
+77:             "Limit / Finansman Tutarı",
+78:             "Vade / Ödeme",
+79:             "Finansman Oranı",
+80:             "Kâr Payı / Fiyatlama",
+81:             "Tahsis Ücreti",
+82:             "Ekspertiz Ücreti",
+83:             "İpotek Tesis Ücreti",
+84:             "Masraf / Ücretler",
+85:         ),
+86:         description="Arsa, iş yeri ve benzeri ürünlerde varlık türü, vade, finansman oranı ile ekspertiz/ipotek masrafları öne çıkar.",
+87:     ),
+88:     ("bireysel", "Alışveriş Finansmanı"): FinanceColumnProfile(
+89:         scope="bireysel",
+90:         category_label="Alışveriş Finansmanı",
+91:         preferred_columns=(
+92:             "Kullanım / Kanal",
+93:             "Limit / Finansman Tutarı",
+94:             "Vade / Ödeme",
+95:             "Kâr Payı / Fiyatlama",
+96:             "Tahsis Ücreti",
+97:             "Ürün Koşulları",
+98:             "Maliyet / Avantaj",
+99:         ),
+100:         description="Alışveriş finansmanında kullanım kanalı, limit, taksit/vade ve fiyatlama esastır.",
+101:     ),
+102:     ("bireysel", "Diğer Bireysel Finansman"): FinanceColumnProfile(
+103:         scope="bireysel",
+104:         category_label="Diğer Bireysel Finansman",
+105:         preferred_columns=(
+107:             "Kullanım Amacı",
+108:             "Finansman Yapısı",
+109:             "Limit / Finansman Tutarı",
+110:             "Vade / Ödeme",
+111:             "Kâr Payı / Fiyatlama",
+112:             "Tahsis Ücreti",
+113:             "Teminat / Güvence",
+114:             "Kullanım / Kanal",
+115:         ),
+116:         description="Ana bireysel kategorilere girmeyen ürünlerde yalnız resmî kaynakta doğrulanan karar alanları gösterilir.",
+117:     ),
+118:     # ---------------- İŞ / TİCARİ ----------------
+119:     ("ticari", "Ticari Finansman"): FinanceColumnProfile(
+120:         scope="ticari",
+121:         category_label="Ticari Finansman",
+
+====================================================================================================
+FILE: src\finance_column_profiles_before_tarim_ui_fix.py
+====================================================================================================
+26:         category_label="Konut Finansmanı",
+27:         preferred_columns=(
+28:             "Kâr Payı / Fiyatlama",
+29:             "Azami Vade",
+30:             "Finansman Oranı",
+31:             "Tahsis Ücreti",
+32:             "Ekspertiz Ücreti",
+33:             "İpotek Tesis Ücreti",
+34:         ),
+35:         always_show_columns=(
+36:             "Kâr Payı / Fiyatlama",
+37:             "Azami Vade",
+38:             "Finansman Oranı",
+39:             "Tahsis Ücreti",
+40:             "Ekspertiz Ücreti",
+41:             "İpotek Tesis Ücreti",
+42:         ),
+43:         description="Konut karşılaştırmasında fiyatlama, vade, finansman oranı ve temel gayrimenkul masrafları esastır.",
+44:     ),
+45:     ("bireysel", "Taşıt Finansmanı"): FinanceColumnProfile(
+46:         scope="bireysel",
+47:         category_label="Taşıt Finansmanı",
+48:         preferred_columns=(
+49:             "Araç / Yaş Kapsamı",
+50:             "Tutar / Değer Bazlı Koşullar",
+51:             "Kâr Payı / Fiyatlama",
+52:             "Vade / Ödeme",
+53:             "Finansman Oranı",
+54:             "Tahsis Ücreti",
+55:             "Masraf / Ücretler",
+56:         ),
+57:         description="Taşıtta araç kapsamı ile araç değerine göre oran-vade kuralları önceliklidir.",
+58:     ),
+59:     ("bireysel", "İhtiyaç Finansmanı"): FinanceColumnProfile(
+60:         scope="bireysel",
+61:         category_label="İhtiyaç Finansmanı",
+62:         preferred_columns=(
+63:             "Limit / Finansman Tutarı",
+64:             "Vade / Ödeme",
+65:             "Kâr Payı / Fiyatlama",
+66:             "Tahsis Ücreti",
+67:             "Teminat / Güvence",
+68:             "Ödeme / Kullanım",
+69:         ),
+70:         description="İhtiyaç finansmanında limit, tutara göre vade, fiyatlama ve tahsis ücreti temel karşılaştırma alanlarıdır.",
+71:     ),
+72:     ("bireysel", "Gayrimenkul Finansmanı"): FinanceColumnProfile(
+73:         scope="bireysel",
+74:         category_label="Gayrimenkul Finansmanı",
+75:         preferred_columns=(
+76:             "Kullanım Amacı",
+77:             "Limit / Finansman Tutarı",
+78:             "Vade / Ödeme",
+79:             "Finansman Oranı",
+80:             "Kâr Payı / Fiyatlama",
+81:             "Tahsis Ücreti",
+82:             "Ekspertiz Ücreti",
+83:             "İpotek Tesis Ücreti",
+84:             "Masraf / Ücretler",
+85:         ),
+86:         description="Arsa, iş yeri ve benzeri ürünlerde varlık türü, vade, finansman oranı ile ekspertiz/ipotek masrafları öne çıkar.",
+87:     ),
+88:     ("bireysel", "Alışveriş Finansmanı"): FinanceColumnProfile(
+89:         scope="bireysel",
+90:         category_label="Alışveriş Finansmanı",
+91:         preferred_columns=(
+92:             "Kullanım / Kanal",
+93:             "Limit / Finansman Tutarı",
+94:             "Vade / Ödeme",
+95:             "Kâr Payı / Fiyatlama",
+96:             "Tahsis Ücreti",
+97:             "Ürün Koşulları",
+98:             "Maliyet / Avantaj",
+99:         ),
+100:         description="Alışveriş finansmanında kullanım kanalı, limit, taksit/vade ve fiyatlama esastır.",
+101:     ),
+102:     ("bireysel", "Diğer Bireysel Finansman"): FinanceColumnProfile(
+103:         scope="bireysel",
+104:         category_label="Diğer Bireysel Finansman",
+105:         preferred_columns=(
+107:             "Kullanım Amacı",
+108:             "Finansman Yapısı",
+109:             "Limit / Finansman Tutarı",
+110:             "Vade / Ödeme",
+111:             "Kâr Payı / Fiyatlama",
+112:             "Tahsis Ücreti",
+113:             "Teminat / Güvence",
+114:             "Kullanım / Kanal",
+115:         ),
+116:         description="Ana bireysel kategorilere girmeyen ürünlerde yalnız resmî kaynakta doğrulanan karar alanları gösterilir.",
+117:     ),
+118:     # ---------------- İŞ / TİCARİ ----------------
+119:     ("ticari", "Ticari Finansman"): FinanceColumnProfile(
+120:         scope="ticari",
+121:         category_label="Ticari Finansman",
+
+====================================================================================================
+FILE: src\finance_rule_engine.py
+====================================================================================================
+711:     HTML tablosu yapısal olarak kaçırılmışsa, kaynak sayfanın
+712:     düz metnindeki açık "Maliyet Tablosu" bölümlerini okur.
+713: 
+714:     Yalnız 5 kolonun da yüzde biçiminde bulunduğu satırlar kabul
+715:     edilir:
+716:       Vade | Kâr Payı | Tahsis | Aylık Toplam | Yıllık Toplam
+717:     """
+718:     text = normalize_text(clean_text)
+719:     if not text:
+720:         return []
+721: 
+722:     heading_pattern = re.compile(
+723:         r"(?P<title>"
+724:         r"(?:Sigortalı|Sigortasız)"
+725:         r"[^.!?]{0,220}?"
+736:         r"(?<![\d.,])"
+737:         r"(?P<maturity>\d{1,3})"
+738:         r"\s+(?:ay\s+)?"
+739:         r"(?P<profit>\d{1,3}(?:[.,]\d+)?)\s*%"
+740:         r"\s+"
+741:         r"(?P<allocation>\d{1,3}(?:[.,]\d+)?)\s*%"
+742:         r"\s+"
+743:         r"(?P<monthly>\d{1,3}(?:[.,]\d+)?)\s*%"
+744:         r"\s+"
+745:         r"(?P<annual>\d{1,3}(?:[.,]\d+)?)\s*%",
+746:         flags=re.IGNORECASE,
+747:     )
+748: 
+749:     result: list[dict[str, Any]] = []
+750: 
+770:                 "pricing_variant": variant,
+771:                 "maturity_months": maturity,
+772:                 "profit_share_rate": parse_number(
+773:                     match.group("profit")
+774:                 ),
+775:                 "allocation_fee_rate": parse_number(
+776:                     match.group("allocation")
+777:                 ),
+778:                 "monthly_total_cost_rate": parse_number(
+779:                     match.group("monthly")
+780:                 ),
+781:                 "annual_total_cost_rate": parse_number(
+782:                     match.group("annual")
+783:                 ),
+784:                 "source_text": (
+785:                     f"{maturity} | "
+786:                     f"%{match.group('profit')} | "
+787:                     f"%{match.group('allocation')} | "
+788:                     f"%{match.group('monthly')} | "
+789:                     f"%{match.group('annual')}"
+790:                 ),
+791:             }
+792: 
+793:             result.append(record)
+794: 
+795:     return result
+796: 
+799:     row: dict[str, Any],
+800: ) -> tuple:
+801:     return (
+802:         row.get("maturity_months"),
+803:         row.get("profit_share_rate"),
+804:         row.get("allocation_fee_rate"),
+805:         row.get("monthly_total_cost_rate"),
+806:         row.get("annual_total_cost_rate"),
+807:     )
+808: 
+809: 
+810: def extract_pricing_tiers(
+811:     html: str,
+812:     clean_text: str = "",
+813: ) -> list[dict[str, Any]]:
+814:     """
+815:     Vade / kâr oranı / tahsis / aylık-yıllık maliyet
+816:     tablolarını çıkarır.
+817: 
+818:     Aynı üründe birden fazla tablo varsa (örn. Sigortalı /
+819:     Sigortasız, 0 km / 2. El) hepsini pricing_variant ile
+820:     birlikte korur.
+821:     """
+822:     soup = BeautifulSoup(html, "html.parser")
+823:     tiers: list[dict[str, Any]] = []
+824:     seen: set[tuple] = set()
+849:         profit_i = (
+850:             idx("kar", "oran")
+851:             if idx("kar", "oran") is not None
+852:             else idx("kar", "payi")
+853:         )
+854:         allocation_i = idx("tahsis", "ucreti")
+855:         monthly_i = (
+856:             idx("aylik", "maliyet")
+857:             if idx("aylik", "maliyet") is not None
+858:             else idx("aylik", "toplam")
+859:         )
+860:         annual_i = (
+861:             idx("yillik", "maliyet")
+862:             if idx("yillik", "maliyet") is not None
+863:             else idx("yillik", "toplam")
+886:                 annual_i = annual_candidates[0]
+887: 
+888:         if (
+889:             monthly_i is None
+890:             and annual_i is not None
+891:             and allocation_i is not None
+892:             and annual_i - allocation_i == 2
+893:         ):
+894:             candidate = annual_i - 1
+895:             if candidate not in {
+896:                 maturity_i,
+897:                 profit_i,
+898:                 allocation_i,
+899:             }:
+900:                 monthly_i = candidate
+901: 
+902:         if profit_i is None:
+903:             generic_rate_i = None
+904:             for i, key in enumerate(header_keys):
+905:                 if key.strip() == "oran":
+906:                     generic_rate_i = i
+907:                     break
+908: 
+909:             has_cost_context = any(
+910:                 value is not None
+911:                 for value in (
+912:                     allocation_i,
+913:                     monthly_i,
+914:                     annual_i,
+915:                 )
+916:             )
+917:             if has_cost_context:
+918:                 profit_i = generic_rate_i
+919: 
+920:         if maturity_i is None or profit_i is None:
+921:             continue
+949: 
+950:             record = {
+951:                 "pricing_variant": variant,
+952:                 "maturity_months": int(maturity),
+953:                 "profit_share_rate": profit,
+954:                 "allocation_fee_rate": val(allocation_i),
+955:                 "monthly_total_cost_rate": val(monthly_i),
+956:                 "annual_total_cost_rate": val(annual_i),
+957:                 "source_text": " | ".join(cells),
+958:             }
+959: 
+960:             key = (
+961:                 record["pricing_variant"],
+962:                 record["maturity_months"],
+963:                 record["profit_share_rate"],
+964:                 record["allocation_fee_rate"],
+965:                 record["monthly_total_cost_rate"],
+966:                 record["annual_total_cost_rate"],
+967:             )
+968:             if key in seen:
+969:                 continue
+970: 
+971:             seen.add(key)
+972:             tiers.append(record)
+973: 
+1252: def build_finance_rules(
+1253:     *,
+1254:     html: str,
+1255:     clean_text: str,
+1256:     insurance_fee_waived: bool = False,
+1257:     allocation_fee_waived: bool = False,
+1258:     commission_fee_waived: bool = False,
+1259: ) -> dict[str, list[dict[str, Any]]]:
+1260:     fee_rules: list[dict[str, Any]] = []
+1261: 
+1262:     # Fiyatlama satırlarını burada silmeyiz. Örnek/temsili tablolar da kanıt
+1263:     # olarak saklanır; ana karşılaştırmada kullanılıp kullanılamayacağı
+1264:     # ``value_type`` metadata'sı ve pricing guardrail katmanında belirlenir.
+1265:     pricing_tiers = extract_pricing_tiers(
+1266:         html,
+1287:     )
+1288: 
+1289:     if insurance_fee_waived:
+1290:         fee_rules.append(
+1291:             {
+1292:                 "fee_type": "insurance",
+1293:                 "fee_label": "Sigorta Ücreti",
+1294:                 "waived": True,
+1295:                 "amount": None,
+1296:                 "rate": None,
+1297:                 "note": "Kaynakta alınmayacağı açıkça belirtiliyor.",
+1298:             }
+1299:         )
+1300: 
+1301:     if allocation_fee_waived:
+1302:         fee_rules.append(
+1303:             {
+1304:                 "fee_type": "allocation",
+1305:                 "fee_label": "Tahsis Ücreti",
+1306:                 "waived": True,
+1307:                 "amount": None,
+1308:                 "rate": None,
+1309:                 "note": "Kaynakta alınmayacağı açıkça belirtiliyor.",
+1310:             }
+1311:         )
+1312: 
+1313:     # Tahsis ücreti için önce gerçek maliyet tablosunu
+1314:     # kullan. Böylece flattened metindeki %4,20 kâr oranı,
+1315:     # yanlışlıkla tahsis ücreti olarak alınmaz.
+1316:     if not allocation_fee_waived:
+1317:         allocation_rate = None
+1318:         allocation_is_maximum = False
+1319: 
+1320:         tier_rates = sorted(
+1321:             {
+1322:                 float(row["allocation_fee_rate"])
+1323:                 for row in pricing_tiers
+1324:                 if row.get("allocation_fee_rate")
+1325:                 is not None
+1326:             }
+1327:         )
+1328: 
+1329:         if len(tier_rates) == 1:
+1330:             allocation_rate = tier_rates[0]
+1331:         else:
+1332:             normalized_fee_text = normalize_text(
+1333:                 clean_text
+1334:             )
+1335: 
+1336:             explicit_patterns = (
+1337:                 r"(?:finansman\s+)?tahsis\s+ücreti"
+1338:                 r"[^.!?]{0,160}?"
+1339:                 r"finansman\s+tutar[ıi]n[ıi]n"
+1340:                 r"[^.!?]{0,60}?"
+1341:                 r"%\s*(\d{1,3}(?:[.,]\d{1,4})?)",
+1342: 
+1343:                 r"(?:finansman\s+)?tahsis\s+ücreti"
+1344:                 r"[^.!?]{0,160}?"
+1345:                 r"finansman\s+tutar[ıi]n[ıi]n"
+1346:                 r"[^.!?]{0,60}?"
+1347:                 r"(\d{1,3}(?:[.,]\d{1,4})?)\s*%",
+1348: 
+1349:                 # Kuveyt Türk ticari gayrimenkul/2B/arsa örneği:
+1350:                 # "finansman tutarı üzerinden maksimum %1.10"
+1351:                 r"(?:finansman\s+)?tahsis\s+ücreti"
+1352:                 r"[^.!?]{0,180}?"
+1353:                 r"finansman\s+tutar[ıi]\s+üzerinden"
+1354:                 r"[^.!?]{0,80}?"
+1355:                 r"%\s*(\d{1,3}(?:[.,]\d{1,4})?)",
+1356: 
+1357:                 r"(?:finansman\s+)?tahsis\s+ücreti"
+1358:                 r"[^.!?]{0,180}?"
+1359:                 r"finansman\s+tutar[ıi]\s+üzerinden"
+1360:                 r"[^.!?]{0,80}?"
+1361:                 r"(\d{1,3}(?:[.,]\d{1,4})?)\s*%",
+1362:             )
+1363: 
+1364:             for pattern in explicit_patterns:
+1365:                 match = re.search(
+1366:                     pattern,
+1375:                 )
+1376:                 if (
+1377:                     value is not None
+1378:                     and 0 <= value <= 100
+1379:                 ):
+1380:                     allocation_rate = value
+1381:                     allocation_is_maximum = bool(
+1382:                         re.search(
+1383:                             r"\b(?:maksimum|azami)\b",
+1384:                             match.group(0),
+1385:                             flags=re.IGNORECASE,
+1386:                         )
+1387:                     )
+1388:                     break
+1389: 
+1390:             if allocation_rate is None:
+1391:                 binde_match = re.search(
+1392:                     r"(?:finansman\s+)?tahsis\s+ücreti"
+1393:                     r"[^.!?]{0,180}?"
+1394:                     r"binde\s*(\d{1,3}(?:[.,]\d+)?)",
+1395:                     normalized_fee_text,
+1396:                     flags=re.IGNORECASE,
+1397:                 )
+1398: 
+1399:                 if binde_match:
+1400:                     value = parse_number(
+1401:                         binde_match.group(1)
+1402:                     )
+1403:                     if value is not None:
+1404:                         allocation_rate = (
+1405:                             float(value) / 10.0
+1406:                         )
+1407: 
+1408:         if allocation_rate is not None:
+1409:             fee_rules.append(
+1410:                 {
+1411:                     "fee_type": "allocation",
+1412:                     "fee_label": (
+1413:                         "Azami Tahsis Ücreti"
+1414:                         if allocation_is_maximum
+1415:                         else "Tahsis Ücreti"
+1416:                     ),
+1417:                     "waived": False,
+1418:                     "amount": None,
+1419:                     "rate": allocation_rate,
+1420:                     "note": (
+1421:                         "Kaynakta azami/maksimum oran olarak yayımlanıyor."
+1422:                         if allocation_is_maximum
+1423:                         else (
+1424:                             "Kaynak maliyet tablosu veya açık "
+1425:                             "tahsis ücreti ifadesinden çıkarıldı."
+1426:                         )
+1427:                     ),
+1428:                 }
+1429:             )
+1430: 
+1431:     if commission_fee_waived:
+1432:         fee_rules.append(
+1433:             {
+1434:                 "fee_type": "commission",
+1435:                 "fee_label": "Komisyon",
+1436:                 "waived": True,
+1437:                 "amount": None,
+1438:                 "rate": None,
+1439:                 "note": "Kaynakta alınmayacağı açıkça belirtiliyor.",
+1440:             }
+1441:         )
+1442: 
+1443:     if general_expense_waived:
+1444:         fee_rules.append(
+1445:             {
+1446:                 "fee_type": "general_expense",
+1447:                 "fee_label": "Masraf",
+1448:                 "waived": True,
+1449:                 "amount": None,
+1450:                 "rate": None,
+1451:                 "note": "Kaynakta masraf alınmadığı açıkça belirtiliyor.",
+1452:             }
+1453:         )
+1454: 
+1455:     return {
+1456:         "category_rules": extract_category_rules(clean_text),
+
+====================================================================================================
+FILE: src\housing_verified_source_overrides.py
+====================================================================================================
+90:     "sigorta primleri yıllık maliyet hesaplamasına dahil edilmez."
+91: )
+92: 
+93: 
+94: def _fee(
+95:     fee_type: str,
+96:     fee_label: str,
+97:     *,
+98:     rate: float | None = None,
+99:     amount: float | None = None,
+100:     waived: bool = False,
+101:     note: str,
+102: ) -> dict[str, Any]:
+103:     return {
+104:         "fee_type": fee_type,
+105:         "fee_label": fee_label,
+106:         "waived": waived,
+107:         "amount": amount,
+108:         "rate": rate,
+109:         "note": note,
+110:     }
+111: 
+112: 
+113: def _offer(
+114:     rule_type: str,
+146: 
+147: 
+148: VERIFIED_FEES: dict[tuple[str, str], list[dict[str, Any]]] = {
+149:     ("Albaraka Türk", "Konut Finansmanı"): [
+150:         _fee(
+151:             "allocation",
+152:             "Tahsis Ücreti",
+153:             rate=0.50,
+154:             note=(
+155:                 "Albaraka Ürün ve Hizmet Ücretleri sayfasında Konut Finansmanı "
+156:                 "tahsis ücreti %0,50 olarak yayımlanır. BSMV muaftır. "
+157:                 f"Kaynak: {ALBARAKA_FEE_URL}"
+158:             ),
+159:         ),
+160:         _fee(
+161:             "appraisal",
+162:             "Ekspertiz Ücreti",
+163:             note=(
+164:                 "3. kişilere ödenen gerçek maliyet tutarı kadar tahsil edilir; "
+165:                 f"BSMV muaftır. Kaynak: {ALBARAKA_FEE_URL}"
+175:             ),
+176:         ),
+177:     ],
+178:     ("Dünya Katılım", "Konut Finansmanı"): [
+179:         _fee(
+180:             "allocation",
+181:             "Tahsis Ücreti",
+182:             rate=0.50,
+183:             note=(
+184:                 "Dünya Katılım Finansal Tüketiciler Ürün ve Hizmet Ücret "
+185:                 f"Tablosunda Konut Finansmanı tahsis ücreti %0,50. Kaynak: {DUNYA_FEE_PDF}"
+186:             ),
+187:         ),
+188:         _fee(
+189:             "appraisal",
+190:             "Ekspertiz Ücreti",
+191:             amount=20_778.0,
+192:             note=(
+193:                 "Ürün sayfasında bu sayısal ücret yayımlanmıyor. Ayrı resmî ücret "
+194:                 "tablosunda ekspertiz için asgari 20.778 TL yayımlanıyor. Hizmet üçüncü "
+220:             ),
+221:         ),
+222:     ],
+223:     ("Kuveyt Türk", "Konut Finansmanı"): [
+224:         _fee(
+225:             "allocation",
+226:             "Tahsis Ücreti",
+227:             rate=0.50,
+228:             note=(
+229:                 "Resmî ürün sayfasında tahsis ücreti finansman tutarının %0,5'i "
+230:                 "olarak belirtilir. 2026 genel ücret tarifesi de Konut Finansmanı "
+231:                 f"için %0,50 oranını doğrular. Kaynaklar: {KUVEYT_REGULAR_URL} | {KUVEYT_FEE_PDF}"
+232:             ),
+233:         ),
+234:         _fee(
+235:             "appraisal",
+236:             "Ekspertiz Ücreti",
+237:             amount=23_645.0,
+238:             note=(
+260:             ),
+261:         ),
+262:     ],
+263:     ("Kuveyt Türk", "İlk Evim Konut Finansmanı"): [
+264:         _fee(
+265:             "allocation",
+266:             "Tahsis Ücreti",
+267:             rate=0.50,
+268:             note=(
+269:                 "Resmî ürün sayfasında tahsis ücreti finansman tutarının %0,5'i "
+270:                 "olarak belirtilir. 2026 genel ücret tarifesi de Konut Finansmanı "
+271:                 f"için %0,50 oranını doğrular. Kaynaklar: {KUVEYT_FIRST_URL} | {KUVEYT_FEE_PDF}"
+272:             ),
+273:         ),
+274:         _fee(
+275:             "appraisal",
+276:             "Ekspertiz Ücreti",
+277:             amount=23_645.0,
+278:             note=(
+300:             ),
+301:         ),
+302:     ],
+303:     ("Kuveyt Türk", "Yeşil Konut Finansmanı"): [
+304:         _fee(
+305:             "allocation",
+306:             "Tahsis Ücreti",
+307:             rate=0.50,
+308:             note=(
+309:                 "Yeşil Konut ürün sayfası tahsis ücretinin peşin tahsil edildiğini "
+310:                 "belirtir; sayfada yüzdesi ayrıca yazılmadığı için oran Kuveyt Türk'ün "
+311:                 "2026 genel Konut Finansmanı ücret tarifesindeki %0,50 kaydından alınır. "
+312:                 f"Kaynaklar: {KUVEYT_GREEN_URL} | {KUVEYT_FEE_PDF}"
+313:             ),
+314:         ),
+315:         _fee(
+316:             "appraisal",
+317:             "Ekspertiz Ücreti",
+318:             amount=23_645.0,
+341:             ),
+342:         ),
+343:     ],
+344:     ("Kuveyt Türk", "Gurbetten Sılaya Gayrimenkul Finansmanı"): [
+345:         _fee(
+346:             "allocation",
+347:             "Tahsis Ücreti",
+348:             rate=0.50,
+349:             note=(
+350:                 "Resmî ürün sayfasında tahsis ücreti finansman tutarının %0,5'i "
+351:                 "olarak belirtilir. 2026 genel ücret tarifesi de Konut Finansmanı "
+352:                 f"için %0,50 oranını doğrular. Kaynaklar: {KUVEYT_GURBET_URL} | {KUVEYT_FEE_PDF}"
+353:             ),
+354:         ),
+355:         _fee(
+356:             "appraisal",
+357:             "Ekspertiz Ücreti",
+358:             amount=23_645.0,
+359:             note=(
+381:             ),
+382:         ),
+383:     ],
+384:     ("Türkiye Finans", "Konut Finansmanı (Konut Kredisi)"): [
+385:         _fee(
+386:             "allocation",
+387:             "Tahsis Ücreti",
+388:             rate=0.50,
+389:             amount=500.0,
+390:             note=(
+391:                 "Tahsis ücreti vergiler hariç finansman tutarının binde 5'i (%0,50). "
+392:                 "100.000 TL örnek ödeme tablosunda 500 TL'dir. "
+393:                 f"Kaynak: {TURKIYE_FINANS_URL}"
+394:             ),
+395:         ),
+396:         _fee(
+397:             "appraisal",
+398:             "Ekspertiz (Değerleme) Ücreti",
+399:             amount=16_500.0,
+400:             note=(
+
+====================================================================================================
+FILE: src\postgres_repository.py
+====================================================================================================
+110:             p.shopping_phone_rule_text,
+111:             p.shopping_tablet_max_maturity_months,
+112:             p.shopping_computer_max_maturity_months,
+113:             p.fee_waiver_text,
+114:             p.insurance_fee_waived,
+115:             p.allocation_fee_waived,
+116:             p.commission_fee_waived,
+117:             p.housing_first_home_rules_text,
+118:             p.housing_additional_home_rules_text,
+119:             p.housing_finance_rules::text AS housing_finance_rules_json,
+120:             p.finance_rules::text AS finance_rules_json,
+121:             s.url AS source_url,
+122:             s.page_title AS source_page,
+123:             s.clean_text,
+124:             p.last_checked_at
+270:             product_ids,
+271:         )
+272:     except Exception:
+273:         evidence = pd.DataFrame()
+274:     fee = _rule_query(
+275:         "product_fee_rules",
+276:         "b.name, p.product_name, r.fee_label",
+277:         product_ids,
+278:     )
+279:     offer = _rule_query(
+280:         "product_offer_rules",
+281:         "b.name, p.product_name, r.max_amount NULLS LAST, r.max_installments NULLS LAST",
+282:         product_ids,
+283:     )
+284:     feature = _rule_query(
+285:         "product_features",
+
+====================================================================================================
+FILE: src\repository.py
+====================================================================================================
+518:         "shopping_phone_rule_text",
+519:         "shopping_tablet_max_maturity_months",
+520:         "shopping_computer_max_maturity_months",
+521:         "fee_waiver_text",
+522:         "insurance_fee_waived",
+523:         "allocation_fee_waived",
+524:         "commission_fee_waived",
+525:         "housing_first_home_rules_text",
+526:         "housing_additional_home_rules_text",
+527:         "housing_finance_rules_json",
+528:         "source_url",
+529:         "source_page",
+530:         "clean_text",
+531:         "last_checked_at",
+532:     ]
+567:                 d.shopping_phone_rule_text,
+568:                 d.shopping_tablet_max_maturity_months,
+569:                 d.shopping_computer_max_maturity_months,
+570:                 d.fee_waiver_text,
+571:                 d.insurance_fee_waived,
+572:                 d.allocation_fee_waived,
+573:                 d.commission_fee_waived,
+574:                 d.finance_rules_json,
+575:                 d.housing_first_home_rules_text,
+576:                 d.housing_additional_home_rules_text,
+577:                 d.housing_finance_rules_json,
+578:                 c.source_url,
+579:                 d.source_page,
+580:                 c.clean_text,
+581:                 c.last_checked_at
+701:     with get_connection() as connection:
+702:         needed = [
+703:             "live_product_category_rules",
+704:             "live_product_amount_maturity_rules",
+705:             "live_product_pricing_tiers",
+706:             "live_product_fee_rules",
+707:             "live_product_offer_rules",
+708:         ]
+709:         if not all(
+710:             _table_exists(connection, table)
+711:             for table in needed
+712:         ):
+713:             return empty
+714: 
+715:         where = ""
+821:                 r.*,
+822:                 c.bank_name,
+823:                 d.product_name,
+824:                 d.product_family,
+825:                 c.source_url
+826:             FROM live_product_fee_rules AS r
+827:             JOIN live_campaigns AS c
+828:                 ON c.id=r.product_id
+829:             JOIN live_standard_product_details AS d
+830:                 ON d.product_id=r.product_id
+831:             {where}
+832:             ORDER BY
+833:                 c.bank_name,
+834:                 d.product_name,
+835:                 r.fee_label
+836:             """,
+837:             connection,
+838:             params=params,
+839:         )
+840: 
+841:         offer = pd.read_sql_query(
+842:             f"""
+843:             SELECT
+844:                 r.*,
+
+====================================================================================================
+FILE: src\classification\campaign_detector.py
+====================================================================================================
+14:     (r"(?:müşterilerimize|kart sahiplerine|size)\s+özel", "Belirli müşteri grubuna özel teklif var", 2),
+15:     (r"%\s*\d+(?:[,.]\d+)?\s*(?:indirim|iade)", "İndirim veya iade oranı belirtilmiş", 3),
+16:     (r"\b\d[\d.]*\s*(?:tl|₺)\s*(?:ödül|iade|çek|hediye)", "Ödül, iade veya hediye tutarı var", 3),
+17:     (r"\b\d[\d.]*\s*(?:tl|₺)'?ye\s+varan\s+(?:world)?puan", "Puan üst sınırı belirtilmiş", 3),
+18:     (r"\b\d[\d.]*\s*(?:tl|₺)\s+değerinde\s+(?:alışveriş\s+)?(?:çeki|hediye|puan)", "Çek veya hediye değeri belirtilmiş", 3),
+19:     (r"(?:ücretsiz|masrafsız|vade\s+farksız)\s+(?:ekspertiz|tahsis|dosya|finansman|\d+\s+taksit)", "Masraf veya vade avantajı var", 3),
+20:     (r"(?:ek|ilave|vade\s+farksız)\s+\d*\s*taksit", "Taksit avantajı var", 2),
+21:     (r"özel\s+k[aâ]r\s+payı\s+oranı", "Özel kâr payı oranı belirtilmiş", 2),
+22: ]
+23: 
+24: PRODUCT_SIGNALS = [
+25:     (r"gerekli\s+belgeler", "Gerekli belgeler bölümü var", 1),
+26:     (r"nasıl\s+başvur", "Standart başvuru bilgisi var", 1),
+27:     (r"finansman\s+hesaplama", "Finansman hesaplama aracı var", 2),
+28:     (r"azami\s+vade", "Genel vade bilgisi var", 1),
+
+====================================================================================================
+FILE: src\extraction\comparison_field_extractor.py
+====================================================================================================
+18:     maturity_min_months: int | None
+19:     maturity_max_months: int | None
+20:     maturity_text: str | None
+21:     grace_period_months: int | None
+22:     installment_count: int | None
+23:     allocation_fee_amount: float | None
+24:     allocation_fee_rate: float | None
+25:     allocation_fee_status: str | None
+26:     expense_status: str | None
+27:     expense_details: str | None
+28:     campaign_advantage: str | None
+29:     evidence_text: str | None
+30:     extraction_confidence: float
+31: 
+32: 
+33: @dataclass(frozen=True)
+34: class BenefitExtraction:
+834: 
+835:     return max(values) if values else None
+836: 
+837: 
+838: 
+839: def extract_allocation_fee(
+840:     text: str,
+841: ) -> tuple[float | None, float | None, str | None]:
+842:     no_fee_patterns = (
+843:         (
+844:             r"tahsis\s+ücreti\s+"
+845:             r"(?:alınmayacaktır|alınmaz|yoktur|yok|ücretsiz)"
+846:         ),
+847:         r"(?:ücretsiz|masrafsız)\s+tahsis",
+848:     )
+849: 
+850:     if any(
+851:         re.search(pattern, text, flags=re.IGNORECASE)
+852:         for pattern in no_fee_patterns
+853:     ):
+854:         return None, None, "Tahsis ücreti yok"
+855: 
+856:     rate_patterns = (
+857:         (
+858:             r"tahsis\s+ücreti(?:\s+oranı)?\s*[:\-]?\s*"
+859:             r"%\s*(\d{1,3}(?:[.,]\d{1,4})?)"
+860:         ),
+861:         (
+862:             r"tahsis\s+ücreti[^.]{0,140}?"
+863:             r"%\s*(\d{1,3}(?:[.,]\d{1,4})?)"
+864:             r"(?:['’]?[ıiuü])?\s+oranında"
+865:         ),
+866:         (
+867:             r"%\s*(\d{1,3}(?:[.,]\d{1,4})?)\s*"
+868:             r"tahsis\s+ücreti"
+869:         ),
+870:     )
+871: 
+872:     for pattern in rate_patterns:
+873:         match = re.search(pattern, text, flags=re.IGNORECASE)
+874:         if match:
+875:             return (
+876:                 None,
+877:                 parse_tr_number(match.group(1)),
+878:                 "Tahsis ücreti oranı belirtilmiş",
+879:             )
+880: 
+881:     amount_match = re.search(
+882:         (
+883:             r"tahsis\s+ücreti\s*[:\-]?\s*"
+884:             r"(\d{1,3}(?:\.\d{3})+|\d+)(?:,\d{1,2})?"
+885:             r"\s*(?:TL|₺)"
+886:         ),
+887:         text,
+888:         flags=re.IGNORECASE,
+889:     )
+890:     if amount_match:
+891:         return (
+892:             parse_tr_number(amount_match.group(1)),
+893:             None,
+894:             "Tahsis ücreti tutarı belirtilmiş",
+895:         )
+896: 
+897:     return None, None, None
+898: 
+899: 
+900: def extract_expense(
+901:     text: str,
+902: ) -> tuple[str | None, str | None]:
+903:     no_expense_patterns = (
+909:         (
+910:             r"ekspertiz\s+ücreti\s+"
+911:             r"(?:karşılanacaktır|karşılanır|ücretsiz)"
+912:         ),
+913:         (
+914:             r"tahsis\s+ücreti\s+"
+915:             r"(?:alınmayacaktır|alınmaz|yoktur|yok|ücretsiz)"
+916:         ),
+917:     )
+918: 
+919:     detail = evidence_sentence(
+920:         text,
+921:         (
+922:             "masraf",
+923:             "komisyon",
+924:             "tahsis ücreti",
+925:             "ekspertiz ücreti",
+926:             "sigorta ücreti",
+927:             "dosya ücreti",
+928:         ),
+929:     )
+930: 
+931:     if any(
+932:         re.search(pattern, text, flags=re.IGNORECASE)
+933:         for pattern in no_expense_patterns
+957:         "avantaj",
+958:         "finansman",
+959:         "kâr payı",
+960:         "kar payı",
+961:         "vade",
+962:         "tahsis",
+963:         "masraf",
+964:         "ücretsiz",
+965:         "indirim",
+966:         "worldpuan",
+967:         "ödül",
+968:         "taksit",
+969:     )
+970: 
+971:     candidates: list[tuple[int, str]] = []
+1010:             if search_key(term) in folded
+1011:         )
+1012: 
+1013:         lowered_sentence = sentence.casefold()
+1014: 
+1015:         if "tahsis ücreti" in lowered_sentence:
+1016:             score -= 2
+1017: 
+1018:         if any(
+1019:             phrase in folded
+1020:             for phrase in (
+1021:                 "kampanya kosullari",
+1022:                 "kampanyaya basvurabilecektir",
+1023:                 "tarihleri arasinda",
+1024:                 "hazir kampanya firsatlarimiz",
+1101:     maturity_min, maturity_max, maturity_text = (
+1102:         extract_maturities(full_text)
+1103:     )
+1104:     grace_period_months = extract_grace_period_months(full_text)
+1105:     installment_count = extract_installment_count(full_text)
+1106:     allocation_amount, allocation_rate, allocation_status = (
+1107:         extract_allocation_fee(full_text)
+1108:     )
+1109:     expense_status, expense_details = extract_expense(full_text)
+1110:     advantage, evidence = extract_campaign_advantage(title, cleaned)
+1111:     finance_type = detect_finance_type(title, cleaned)
+1112: 
+1113:     confidence = extraction_confidence(
+1114:         (
+1115:             finance_type,
+1116:             rate_text,
+1117:             amount_text,
+1118:             maturity_text,
+1119:             grace_period_months,
+1120:             installment_count,
+1121:             allocation_status,
+1122:             expense_status,
+1123:             advantage,
+1124:         )
+1125:     )
+1126: 
+1127:     return FinanceExtraction(
+1128:         finance_type=finance_type,
+1129:         profit_share_rate_min=rate_min,
+1130:         profit_share_rate_max=rate_max,
+1135:         maturity_min_months=maturity_min,
+1136:         maturity_max_months=maturity_max,
+1137:         maturity_text=maturity_text,
+1138:         grace_period_months=grace_period_months,
+1139:         installment_count=installment_count,
+1140:         allocation_fee_amount=allocation_amount,
+1141:         allocation_fee_rate=allocation_rate,
+1142:         allocation_fee_status=allocation_status,
+1143:         expense_status=expense_status,
+1144:         expense_details=expense_details,
+1145:         campaign_advantage=advantage,
+1146:         evidence_text=evidence,
+1147:         extraction_confidence=confidence,
+1148:     )
+1149: 
+1150: 
+1151: def extract_minimum_spending(text: str) -> float | None:
+
+====================================================================================================
+FILE: src\extraction\standard_product_extractor.py
+====================================================================================================
+38:     shopping_phone_rule_text: str | None
+39:     shopping_tablet_max_maturity_months: int | None
+40:     shopping_computer_max_maturity_months: int | None
+41:     fee_waiver_text: str | None
+42:     insurance_fee_waived: bool
+43:     allocation_fee_waived: bool
+44:     commission_fee_waived: bool
+45:     finance_rules_json: str | None
+46: 
+47: 
+48: def normalize_text(value: Any) -> str:
+49:     if value is None:
+50:         return ""
+51: 
+52:     text = unicodedata.normalize(
+1429:         r"tahsil edilmeyecektir|tahsil edilmez|"
+1430:         r"ucretsizdir|ucretsiz|ucret yoktur|ucret yok)"
+1431:     )
+1432: 
+1433:     insurance = False
+1434:     allocation = False
+1435:     commission = False
+1436: 
+1437:     if re.search(
+1438:         rf"sigorta[^.!?]{{0,50}}tahsis\s+ucreti"
+1439:         rf"[^.!?]{{0,80}}{negative}",
+1440:         key,
+1441:         flags=re.IGNORECASE,
+1442:     ):
+1443:         insurance = True
+1444:         allocation = True
+1445: 
+1446:     if re.search(
+1447:         rf"sigorta(?:\s+ucreti)?[^.!?]{{0,80}}{negative}",
+1448:         key,
+1449:         flags=re.IGNORECASE,
+1450:     ) or re.search(
+1451:         rf"{negative}[^.!?]{{0,80}}sigorta(?:\s+ucreti)?",
+1452:         key,
+1453:         flags=re.IGNORECASE,
+1454:     ):
+1455:         insurance = True
+1456: 
+1457:     if re.search(
+1458:         rf"tahsis(?:\s+ucreti)?[^.!?]{{0,80}}{negative}",
+1459:         key,
+1460:         flags=re.IGNORECASE,
+1461:     ) or re.search(
+1462:         rf"{negative}[^.!?]{{0,80}}tahsis(?:\s+ucreti)?",
+1463:         key,
+1464:         flags=re.IGNORECASE,
+1465:     ):
+1466:         allocation = True
+1467: 
+1468:     if re.search(
+1469:         rf"komisyon(?:\s+ucreti)?[^.!?]{{0,80}}{negative}",
+1470:         key,
+1471:         flags=re.IGNORECASE,
+1472:     ) or re.search(
+1473:         rf"{negative}[^.!?]{{0,80}}komisyon(?:\s+ucreti)?",
+1474:         key,
+1475:         flags=re.IGNORECASE,
+1477:         commission = True
+1478: 
+1479:     parts: list[str] = []
+1480:     if insurance:
+1481:         parts.append("Sigorta ücreti yok")
+1482:     if allocation:
+1483:         parts.append("Tahsis ücreti yok")
+1484:     if commission:
+1485:         parts.append("Komisyon yok")
+1486: 
+1487:     return (
+1488:         " · ".join(parts) if parts else None,
+1489:         insurance,
+1490:         allocation,
+1491:         commission,
+1492:     )
+1493: 
+1494: 
+1495: def has_tf_finansman_destegi_subsection_maturity(
+1496:     product_name: str,
+1497:     text: str,
+1498: ) -> bool:
+1499:     """
+1772:     ) = extract_shopping_finance_rules(clean_text)
+1773: 
+1774:     (
+1775:         fee_waiver_text,
+1776:         insurance_fee_waived,
+1777:         allocation_fee_waived,
+1778:         commission_fee_waived,
+1779:     ) = extract_fee_waivers(clean_text)
+1780: 
+1781:     finance_rules_json = dumps_finance_rules(
+1782:         html=html,
+1783:         clean_text=clean_text,
+1784:         insurance_fee_waived=insurance_fee_waived,
+1785:         allocation_fee_waived=allocation_fee_waived,
+1786:         commission_fee_waived=commission_fee_waived,
+1787:     )
+1788: 
+1789:     # Türkiye Finans / eXtra Limit kaynak koruması.
+1790:     #
+1791:     # Kaynakta “maksimum finansman limiti 120 bin TL” açıkça
+1792:     # yayımlanıyor. “Minimum taksitlendirme tutarı 100 TL” ise
+1793:     # minimum finansman tutarı DEĞİLDİR; bu nedenle min_amount
+1794:     # alanına yazılmaz, ürün koşulu olarak saklanır.
+1948:         shopping_computer_max_maturity_months=(
+1949:             shopping_computer_max_maturity_months
+1950:         ),
+1951:         fee_waiver_text=fee_waiver_text,
+1952:         insurance_fee_waived=insurance_fee_waived,
+1953:         allocation_fee_waived=allocation_fee_waived,
+1954:         commission_fee_waived=commission_fee_waived,
+1955:         finance_rules_json=finance_rules_json,
+1956:     )
+
+====================================================================================================
+FILE: scripts\audit_albaraka_dashboard_completeness.py
+====================================================================================================
+117:         errors.append(f'Cross-product contamination: {[tuple(x) for x in contamination]}')
+118: 
+119:     counts = {
+120:         'amount_maturity': con.execute("""SELECT COUNT(*) FROM live_product_amount_maturity_rules r JOIN live_campaigns c ON c.id=r.product_id WHERE c.bank_name='Albaraka Türk'""").fetchone()[0],
+121:         'pricing': con.execute("""SELECT COUNT(*) FROM live_product_pricing_tiers r JOIN live_campaigns c ON c.id=r.product_id WHERE c.bank_name='Albaraka Türk'""").fetchone()[0],
+122:         'fee': con.execute("""SELECT COUNT(*) FROM live_product_fee_rules r JOIN live_campaigns c ON c.id=r.product_id WHERE c.bank_name='Albaraka Türk'""").fetchone()[0],
+123:         'offer': con.execute("""SELECT COUNT(*) FROM live_product_offer_rules r JOIN live_campaigns c ON c.id=r.product_id WHERE c.bank_name='Albaraka Türk'""").fetchone()[0],
+124:         'features': con.execute("""SELECT COUNT(*) FROM live_product_features r JOIN live_campaigns c ON c.id=r.product_id WHERE c.bank_name='Albaraka Türk'""").fetchone()[0],
+125:     }
+126: 
+127:     togg = con.execute("""
+128:         SELECT pricing_variant, financing_amount, maturity_months, profit_share_rate
+129:         FROM live_product_pricing_tiers r
+130:         JOIN live_campaigns c ON c.id=r.product_id
+131:         WHERE c.bank_name='Albaraka Türk'
+
+====================================================================================================
+FILE: scripts\audit_dashboard_semantics.py
+====================================================================================================
+76:     print()
+77:     print("MASRAF")
+78:     for row in con.execute(
+79:         """
+80:         SELECT
+81:             fee_type,
+82:             fee_label,
+83:             waived,
+84:             rate,
+85:             amount
+86:         FROM live_product_fee_rules
+87:         WHERE product_id=?
+88:         ORDER BY fee_type
+89:         """,
+90:         (pid,),
+91:     ):
+92:         print(dict(row))
+93: 
+94:     print()
+95:     print("FİYATLAMA TAHSİS ORANLARI")
+96:     values = con.execute(
+97:         """
+98:         SELECT DISTINCT allocation_fee_rate
+99:         FROM live_product_pricing_tiers
+100:         WHERE product_id=?
+101:           AND allocation_fee_rate IS NOT NULL
+102:         ORDER BY allocation_fee_rate
+103:         """,
+104:         (pid,),
+105:     ).fetchall()
+106: 
+107:     print(
+108:         [
+109:             row["allocation_fee_rate"]
+110:             for row in values
+111:         ]
+112:     )
+113: 
+114:     con.close()
+115:     return 0
+116: 
+117: 
+118: if __name__ == "__main__":
+
+====================================================================================================
+FILE: scripts\audit_finance_data_accuracy_v2.py
+====================================================================================================
+65:         check("Albaraka TOGG 6 model/tutar/vade fiyatlama satırını koruyor",len(rr)==6 and all(x['financing_amount'] is not None and x['value_type']=='conditional_pricing' and x['conditions'] for x in rr),f"rows={len(rr)}")
+66: 
+67:     # 2B
+68:     r=_one(con,"""select c.id,d.maximum_maturity_months,d.profit_share_rate,d.profit_share_rate_text from live_campaigns c join live_standard_product_details d on d.product_id=c.id where c.bank_name='Albaraka Türk' and d.product_name='2B Arazi Finansmanı' and c.is_current=1""")
+69:     if r:
+70:         fees=con.execute("select fee_type,waived from live_product_fee_rules where product_id=?",(r['id'],)).fetchall()
+71:         waived={x['fee_type']:x['waived'] for x in fees}
+72:         check("Albaraka 2B 60 ay ve sayısal olmayan güncel fiyatlama metni",r['maximum_maturity_months']==60 and r['profit_share_rate'] is None and 'Resmî fiyatlama' in str(r['profit_share_rate_text']),str(dict(r)))
+73:         check("Albaraka 2B ekspertiz/ipotek ücretleri alınmıyor",waived.get('appraisal')==1 and waived.get('mortgage_establishment')==1,str(waived))
+74: 
+75:     # GES subtype
+76:     r=_one(con,"""select c.id from live_campaigns c join live_standard_product_details d on d.product_id=c.id where c.bank_name='Kuveyt Türk' and d.product_name='Çatı GES Finansmanı' and d.scope='bireysel' and c.is_current=1""")
+77:     if r:
+78:         f=_one(con,"select feature_value from live_product_features where product_id=? and feature_key='comparison_subtype'",(r['id'],))
+79:         check("Çatı GES alt türü Sürdürülebilir / Enerji",bool(f) and f['feature_value']=='Sürdürülebilir / Enerji',str(dict(f) if f else None))
+80: 
+170:         cur.execute("""select s.id,s.maximum_maturity_months,s.profit_share_rate,s.profit_share_rate_text from standard_products s join banks b on b.id=s.bank_id where b.name='Albaraka Türk' and s.product_name='2B Arazi Finansmanı' and s.is_current=true limit 1""")
+171:         row=cur.fetchone()
+172:         if row:
+173:             pid,months,rate,rate_text=row
+174:             check('Albaraka 2B 60 ay ve sayısal olmayan güncel fiyatlama',int(months)==60 and rate is None and 'Resmî fiyatlama' in str(rate_text or ''),str(row))
+175:             cur.execute("select fee_type,waived from product_fee_rules where product_id=%s",(pid,))
+176:             fees={k:bool(v) for k,v in cur.fetchall()}
+177:             check('Albaraka 2B ekspertiz/ipotek ücretleri alınmıyor',fees.get('appraisal') is True and fees.get('mortgage_establishment') is True,str(fees))
+178:         else:
+179:             check('Albaraka 2B bulundu',False)
+180: 
+181:         cur.execute("""select s.id from standard_products s join banks b on b.id=s.bank_id where b.name='Kuveyt Türk' and s.product_name='Çatı GES Finansmanı' and s.scope='bireysel' and s.is_current=true limit 1""")
+182:         row=cur.fetchone()
+183:         if row:
+184:             cur.execute("select feature_value from product_features where product_id=%s and feature_key='comparison_subtype'",(row[0],))
+
+====================================================================================================
+FILE: scripts\audit_finance_rule_engine.py
+====================================================================================================
+25: 
+26:     for table in (
+27:         "live_product_category_rules",
+28:         "live_product_amount_maturity_rules",
+29:         "live_product_pricing_tiers",
+30:         "live_product_fee_rules",
+31:         "live_product_offer_rules",
+32:     ):
+33:         print(
+34:             f"{table}:",
+35:             count(con, table),
+36:         )
+37: 
+38:     print()
+39:     print("BANKA BAZLI KURAL SAYILARI")
+53:             ON cr.product_id=c.id
+54:         LEFT JOIN live_product_amount_maturity_rules AS am
+55:             ON am.product_id=c.id
+56:         LEFT JOIN live_product_pricing_tiers AS pt
+57:             ON pt.product_id=c.id
+58:         LEFT JOIN live_product_fee_rules AS fr
+59:             ON fr.product_id=c.id
+60:         LEFT JOIN live_product_offer_rules AS ofr
+61:             ON ofr.product_id=c.id
+62:         WHERE c.record_kind='standard_product'
+63:           AND c.is_current=1
+64:         GROUP BY c.bank_name
+65:         ORDER BY c.bank_name
+66:     """
+67: 
+
+====================================================================================================
+FILE: scripts\audit_hayat_finans_rules.py
+====================================================================================================
+42: 
+43:     tables = {
+44:         "Kategori": "live_product_category_rules",
+45:         "Tutar-vade": "live_product_amount_maturity_rules",
+46:         "Fiyatlama": "live_product_pricing_tiers",
+47:         "Masraf": "live_product_fee_rules",
+48:         "Özel koşul": "live_product_offer_rules",
+49:     }
+50: 
+51:     print()
+52:     print("KURAL SAYILARI")
+53:     for label, table in tables.items():
+54:         try:
+55:             count = con.execute(
+56:                 f"""
+141:         pricing = con.execute(
+142:             """
+143:             SELECT
+144:                 maturity_months,
+145:                 profit_share_rate,
+146:                 allocation_fee_rate,
+147:                 monthly_total_cost_rate,
+148:                 annual_total_cost_rate
+149:             FROM live_product_pricing_tiers
+150:             WHERE product_id=?
+151:             ORDER BY maturity_months
+152:             """,
+153:             (pid,),
+154:         ).fetchall()
+155: 
+158:             print(
+159:                 " ",
+160:                 item["maturity_months"],
+161:                 "ay | oran=",
+162:                 item["profit_share_rate"],
+163:                 "| tahsis=",
+164:                 item["allocation_fee_rate"],
+165:                 "| aylık=",
+166:                 item["monthly_total_cost_rate"],
+167:                 "| yıllık=",
+168:                 item["annual_total_cost_rate"],
+169:             )
+170: 
+171:     con.close()
+172:     return 0
+173: 
+
+====================================================================================================
+FILE: scripts\audit_housing_finance_comparison_v2.py
+====================================================================================================
+78:                 )
+79: 
+80:         tf = by_key[("Türkiye Finans", "Konut Finansmanı (Konut Kredisi)")]
+81:         tf_id = int(tf["product_id"])
+82:         tf_fees = con.execute(
+83:             """SELECT fee_type,fee_label,waived,amount,rate,note
+84:                FROM live_product_fee_rules WHERE product_id=?""",
+85:             (tf_id,),
+86:         ).fetchall()
+87:         fee_types = {r["fee_type"] for r in tf_fees}
+88:         check(
+89:             {"allocation", "appraisal", "mortgage_establishment"}.issubset(fee_types),
+90:             "Türkiye Finans tahsis + ekspertiz + ipotek ücretleri mevcut",
+91:         )
+92:         check(
+93:             not any(r["fee_type"] == "general_expense" and int(r["waived"] or 0) == 1 for r in tf_fees),
+94:             "Türkiye Finans stale 'Masraf: Alınmıyor' kaydı yok",
+95:         )
+96:         allocation = next(r for r in tf_fees if r["fee_type"] == "allocation")
+97:         appraisal = next(r for r in tf_fees if r["fee_type"] == "appraisal")
+98:         mortgage = next(r for r in tf_fees if r["fee_type"] == "mortgage_establishment")
+99:         check(abs(float(allocation["rate"]) - 0.5) < 1e-9, "Türkiye Finans tahsis ücreti %0,50")
+100:         check(abs(float(appraisal["amount"]) - 16500.0) < 1e-9, "Türkiye Finans örnek ekspertiz 16.500 TL")
+101:         check("100.000 tl örnek" in str(appraisal["note"]).casefold(), "Türkiye Finans ekspertiz tutarı örnek senaryoya açıkça bağlı")
+102:         check("değiş" in str(appraisal["note"]).casefold(), "Türkiye Finans ekspertiz değişkenlik notu korunuyor")
+103:         check(abs(float(mortgage["amount"]) - 3000.0) < 1e-9, "Türkiye Finans örnek ipotek 3.000 TL")
+104:         check("100.000 tl örnek" in str(mortgage["note"]).casefold(), "Türkiye Finans ipotek tutarı örnek senaryoya açıkça bağlı")
+105:         check("faturalandır" in str(mortgage["note"]).casefold(), "Türkiye Finans gerçek ipotek maliyeti açıklaması korunuyor")
+106:         check(
+107:             con.execute("SELECT COUNT(*) FROM live_product_pricing_tiers WHERE product_id=?", (tf_id,)).fetchone()[0] == 40,
+108:             "Türkiye Finans 40 fiyatlama satırı korunuyor",
+129:         )
+130: 
+131:         dunya = by_key[("Dünya Katılım", "Konut Finansmanı")]
+132:         dunya_id = int(dunya["product_id"])
+133:         dunya_fees = {
+134:             r["fee_type"]: r for r in con.execute(
+135:                 "SELECT fee_type,amount,rate,note FROM live_product_fee_rules WHERE product_id=?",
+136:                 (dunya_id,),
+137:             )
+138:         }
+139:         check(abs(float(dunya_fees["allocation"]["rate"]) - 0.5) < 1e-9, "Dünya tahsis %0,50")
+140:         check(abs(float(dunya_fees["appraisal"]["amount"]) - 20778.0) < 1e-9, "Dünya ekspertiz asgari 20.778 TL")
+141:         check("asgari" in str(dunya_fees["appraisal"]["note"]).casefold(), "Dünya ekspertiz tutarı asgari olarak işaretli")
+142:         check("ürün sayfasında bu sayısal ücret yayımlanmıyor" in str(dunya_fees["appraisal"]["note"]).casefold(), "Dünya ekspertiz ürün sayfasına yanlış bağlanmıyor")
+143:         check(abs(float(dunya_fees["mortgage_establishment"]["amount"]) - 3000.0) < 1e-9, "Dünya ipotek tesis asgari 3.000 TL")
+144:         check("asgari" in str(dunya_fees["mortgage_establishment"]["note"]).casefold(), "Dünya ipotek tutarı asgari olarak işaretli")
+145:         check("ürün sayfasında bu sayısal ücret yayımlanmıyor" in str(dunya_fees["mortgage_establishment"]["note"]).casefold(), "Dünya ipotek ürün sayfasına yanlış bağlanmıyor")
+146:         check(dunya["maximum_maturity_months"] is None, "Dünya için doğrulanmayan azami vade uydurulmuyor")
+147: 
+148:         for product_name in (
+151:             "Yeşil Konut Finansmanı",
+152:             "Gurbetten Sılaya Gayrimenkul Finansmanı",
+153:         ):
+154:             row = by_key[("Kuveyt Türk", product_name)]
+155:             fees = con.execute(
+156:                 "SELECT fee_type,waived,amount,rate,note FROM live_product_fee_rules WHERE product_id=?",
+157:                 (int(row["product_id"]),),
+158:             ).fetchall()
+159:             check(
+160:                 not any(r["fee_type"] == "general_expense" and int(r["waived"] or 0) == 1 for r in fees),
+161:                 f"Kuveyt {product_name}: generic 'Masraf alınmıyor' yok",
+162:             )
+163:             fee_map = {r["fee_type"]: r for r in fees}
+164:             check("allocation" in fee_map, f"Kuveyt {product_name}: tahsis kaydı mevcut")
+165:             check(
+166:                 abs(float(fee_map["allocation"]["rate"]) - 0.5) < 1e-9,
+167:                 f"Kuveyt {product_name}: tahsis %0,50",
+168:             )
+169:             appraisal_row = fee_map["appraisal"]
+170:             mortgage_row = fee_map["mortgage_establishment"]
+171:             appraisal_note = str(appraisal_row["note"] or "").casefold()
+172:             mortgage_note = str(mortgage_row["note"] or "").casefold()
+173:             check(
+174:                 abs(float(appraisal_row["amount"]) - 23645.0) < 1e-9,
+175:                 f"Kuveyt {product_name}: ücret tarifesi ekspertiz asgari 23.645 TL",
+176:             )
+236:     text = PAGE.read_text(encoding="utf-8")
+237:     for required in (
+238:         '"Kâr Payı / Fiyatlama"',
+239:         '"Azami Vade"',
+240:         '"Finansman Oranı"',
+241:         '"Tahsis Ücreti"',
+242:         '"Ekspertiz Ücreti"',
+243:         '"İpotek Tesis Ücreti"',
+244:         'st.markdown("#### Masraf ve Maliyet Detayı")',
+245:         'st.markdown("#### Fiyatlama ve Önemli Koşullar")',
+246:         'detail_property_value_raw = st.text_input(',
+247:     ):
+248:         check(required in text, f"UI içeriyor: {required[:55]}")
+249: 
+250:     check(
+
+====================================================================================================
+FILE: scripts\audit_housing_finance_postgresql_v3.py
+====================================================================================================
+32: 
+33: 
+34: def _fee_map(cur: Any, product_id: int) -> dict[str, dict[str, Any]]:
+35:     cur.execute(
+36:         """
+37:         SELECT fee_type, fee_label, waived, amount, rate, note
+38:         FROM product_fee_rules
+39:         WHERE product_id=%s
+40:         """,
+41:         (product_id,),
+42:     )
+43:     return {str(row["fee_type"]): row for row in cur.fetchall()}
+44: 
+45: 
+46: def main() -> int:
+47:     dsn = os.getenv("POSTGRES_DSN", "").strip()
+48:     if not dsn:
+49:         print("FAIL | POSTGRES_DSN tanımlı değil")
+50:         return 2
+51: 
+52:     try:
+135:                 row = by_key.get(("Kuveyt Türk", product_name))
+136:                 check(row is not None, f"Kuveyt {product_name}: ürün mevcut")
+137:                 if not row:
+138:                     continue
+139:                 fees = _fee_map(cur, int(row["id"]))
+140:                 allocation = fees.get("allocation", {})
+141:                 appraisal = fees.get("appraisal", {})
+142:                 mortgage = fees.get("mortgage_establishment", {})
+143:                 appraisal_note = str(appraisal.get("note") or "").casefold()
+144:                 mortgage_note = str(mortgage.get("note") or "").casefold()
+145:                 check(
+146:                     float(allocation.get("rate") or 0) == 0.5,
+147:                     f"Kuveyt {product_name}: tahsis %0,50",
+148:                 )
+149:                 check(
+150:                     float(appraisal.get("amount") or 0) == 23_645.0
+151:                     and "asgari" in appraisal_note
+152:                     and "29.07.2026" in appraisal_note
+153:                     and "23.203" in appraisal_note
+154:                     and "örnek" not in appraisal_note
+155:                     and "hesaplama aracı" not in appraisal_note,
+156:                     f"Kuveyt {product_name}: ekspertiz 23.645 asgari, kaynak farkı açık, örnek etiketi yok",
+
+====================================================================================================
+FILE: scripts\audit_housing_finance_v1.py
+====================================================================================================
+101:                     f"{key[1]} için doğrulanmamış konut oran matrisi saklanmıyor",
+102:                 )
+103: 
+104:             fee = cfg.get("fee")
+105:             fee_rows = con.execute(
+106:                 """SELECT fee_label,rate,note FROM live_product_fee_rules
+107:                    WHERE product_id=? AND (fee_type='allocation' OR lower(fee_label) LIKE '%tahsis%')""",
+108:                 (pid,),
+109:             ).fetchall()
+110:             if fee is None:
+111:                 check(not fee_rows, f"{key[1]} tahsis oranı doğrulanmadıysa boş")
+112:             else:
+113:                 check(len(fee_rows) == 1, f"{key[1]} tek tahsis ücreti kuralı")
+114:                 if fee_rows:
+115:                     check(almost(fee_rows[0]["rate"], float(fee["rate"])), f"{key[1]} tahsis oranı %{fee['rate']:g}")
+116:                     if "Azami" in fee["fee_label"]:
+117:                         check("Azami" in fee_rows[0]["fee_label"], f"{key[1]} tahsis ücreti azami olarak etiketli")
+118: 
+119:             purpose = con.execute(
+120:                 """SELECT feature_value FROM live_product_features
+121:                    WHERE product_id=? AND feature_key='usage_purpose'""",
+122:                 (pid,),
+123:             ).fetchone()
+124:             check(
+125:                 purpose is not None and purpose["feature_value"] == cfg["purpose"],
+126:                 f"{key[1]} amaç alanı ürün kimliğiyle uyumlu",
+127:             )
+128: 
+129:         # Ürüne özel kritik kontroller
+130:         alb = found[("Albaraka Türk", "Konut Finansmanı")]
+131:         sample = con.execute(
+132:             """SELECT maturity_months,financing_amount,profit_share_rate,allocation_fee_rate
+133:                FROM live_product_pricing_tiers
+134:                WHERE product_id=? AND pricing_variant='Resmî maliyet örneği · 100.000 TL'""",
+135:             (int(alb["product_id"]),),
+136:         ).fetchall()
+137:         check(len(sample) == 0, "Albaraka örnek maliyet oranı müşteri fiyatlama tablosuna alınmıyor")
+138: 
+139:         tf = found[("Türkiye Finans", "Konut Finansmanı (Konut Kredisi)")]
+140:         tf_count = con.execute(
+141:             "SELECT COUNT(*) FROM live_product_pricing_tiers WHERE product_id=?",
+
+====================================================================================================
+FILE: scripts\audit_ihtiyac_semantics_v7.py
+====================================================================================================
+76:             warnings.append("eXtra maksimum limit 120.000 TL değil")
+77:         if extra["minimum_financing_amount"] is not None:
+78:             warnings.append("eXtra 100 TL yanlışlıkla minimum finansman tutarı olmuş")
+79: 
+80:         pricing = con.execute(
+81:             "SELECT maturity_months,profit_share_rate,allocation_fee_rate FROM live_product_pricing_tiers WHERE product_id=? ORDER BY maturity_months",
+82:             (extra["product_id"],),
+83:         ).fetchall()
+84:         actual_pricing = {(r[0], r[1], r[2]) for r in pricing}
+85:         expected_pricing = {
+86:             (3, 4.29, 0.5),
+87:             (12, 4.19, 0.5),
+88:             (24, 4.14, 0.5),
+89:             (36, 4.09, 0.5),
+90:         }
+
+====================================================================================================
+FILE: scripts\audit_jury_readiness.py
+====================================================================================================
+122:             "financing_amount_text",
+123:             "Finansman tutarı",
+124:         ),
+125:         "maturity": ("maturity_text", "Vade"),
+126:         "installment": ("installment_count", "Taksit"),
+127:         "allocation_fee": (
+128:             "allocation_fee_status",
+129:             "Tahsis ücreti",
+130:         ),
+131:         "expense": ("expense_status", "Masraf"),
+132:     }
+133: 
+134:     finance_coverage = {}
+135:     for key, (column, label) in finance_fields.items():
+136:         found = sum(
+137:             1
+138:             for campaign in finance_rows
+
+====================================================================================================
+FILE: scripts\audit_jury_readiness_v2.py
+====================================================================================================
+94:         "installment": re.compile(
+95:             r"\\b\\d{1,3}\\s*(?:eşit\\s+)?taksit"
+96:             r"|\\b\\d{1,3}(?:\\s*[-–—]\\s*\\d{1,3})+\\s*taksit",
+97:             re.I,
+98:         ),
+99:         "allocation_fee": re.compile(r"tahsis\\s+ücreti", re.I),
+100:         "expense": re.compile(
+101:             r"\\b(?:masraf|komisyon|dosya\\s+ücreti|"
+102:             r"ekspertiz\\s+ücreti|sigorta\\s+ücreti)\\b",
+103:             re.I,
+104:         ),
+105:         "points": re.compile(
+106:             r"\\d[\\d.\\s]*(?:,\\d+)?\\s*(?:TL|₺)?\\s*"
+107:             r"(?:Worldpuan|WorldPuan|Altın\\s+Puan|"
+108:             r"ParafPara|Paraf\\s+Para|Bankkart\\s+Lira|puan)\\b",
+209:             int(r["id"]) in finance
+210:             and present(finance[int(r["id"])]["installment_count"])
+211:         ),
+212:     )
+213:     evaluate(
+214:         "allocation_fee",
+215:         finance_rows,
+216:         lambda r: (
+217:             int(r["id"]) in finance
+218:             and (
+219:                 present(finance[int(r["id"])]["allocation_fee_status"])
+220:                 or present(finance[int(r["id"])]["allocation_fee_amount"])
+221:                 or present(finance[int(r["id"])]["allocation_fee_rate"])
+222:             )
+223:         ),
+224:     )
+225:     evaluate(
+226:         "expense",
+227:         finance_rows,
+228:         lambda r: (
+229:             int(r["id"]) in finance
+230:             and (
+314:     labels = {
+315:         "profit_share": "Kâr payı / vade farkı oranı",
+316:         "financing_amount": "Finansman tutarı",
+317:         "maturity": "Vade",
+318:         "installment": "Taksit",
+319:         "allocation_fee": "Tahsis ücreti",
+320:         "expense": "Masraf / komisyon",
+321:         "points": "Sayısal puan",
+322:         "cashback_rate": "Nakit iade oranı",
+323:         "cashback_amount": "Nakit iade tutarı",
+324:         "discount_rate": "İndirim oranı",
+325:         "reward_amount": "Ödül / hediye tutarı",
+326:     }
+327: 
+328:     print("=" * 80)
+
+====================================================================================================
+FILE: scripts\audit_jury_readiness_v3.py
+====================================================================================================
+160:             r"\b\d{1,3}(?:\s*[-–—]\s*\d{1,3})+"
+161:             r"\s*taksit"
+162:             r")",
+163:             re.IGNORECASE,
+164:         ),
+165:         "allocation_fee": re.compile(
+166:             r"tahsis\s+ücreti",
+167:             re.IGNORECASE,
+168:         ),
+169:         "expense": re.compile(
+170:             r"\b(?:"
+171:             r"masraf|komisyon|dosya\s+ücreti|"
+172:             r"ekspertiz\s+ücreti|sigorta\s+ücreti"
+173:             r")\b",
+174:             re.IGNORECASE,
+175:         ),
+307:             )
+308:         ),
+309:     )
+310: 
+311:     evaluate(
+312:         "allocation_fee",
+313:         finance_rows,
+314:         lambda row: (
+315:             int(row["id"]) in finance
+316:             and (
+317:                 present(
+318:                     finance[int(row["id"])]["allocation_fee_status"]
+319:                 )
+320:                 or present(
+321:                     finance[int(row["id"])]["allocation_fee_amount"]
+322:                 )
+323:                 or present(
+324:                     finance[int(row["id"])]["allocation_fee_rate"]
+325:                 )
+326:             )
+327:         ),
+328:     )
+329: 
+330:     evaluate(
+331:         "expense",
+332:         finance_rows,
+333:         lambda row: (
+437:     labels = {
+438:         "profit_share": "Kâr payı / vade farkı oranı",
+439:         "financing_amount": "Finansman tutarı",
+440:         "maturity": "Vade",
+441:         "installment": "Taksit",
+442:         "allocation_fee": "Tahsis ücreti",
+443:         "expense": "Masraf / komisyon",
+444:         "points": "Sayısal puan",
+445:         "cashback_rate": "Nakit iade oranı",
+446:         "cashback_amount": "Nakit iade tutarı",
+447:         "discount_rate": "İndirim oranı",
+448:         "reward_amount": "Ödül / hediye tutarı",
+449:     }
+450: 
+451:     print("=" * 80)
+
+====================================================================================================
+FILE: scripts\audit_jury_readiness_v4.py
+====================================================================================================
+179:             r"\b\d{1,3}(?:\s*[-–—]\s*\d{1,3})+"
+180:             r"\s*taksit"
+181:             r")",
+182:             re.IGNORECASE,
+183:         ),
+184:         "allocation_fee": re.compile(
+185:             r"tahsis\s+ücreti",
+186:             re.IGNORECASE,
+187:         ),
+188:         "expense": re.compile(
+189:             r"\b(?:"
+190:             r"masraf|komisyon|dosya\s+ücreti|"
+191:             r"ekspertiz\s+ücreti|sigorta\s+ücreti"
+192:             r")\b",
+193:             re.IGNORECASE,
+194:         ),
+335:             )
+336:         ),
+337:     )
+338: 
+339:     evaluate(
+340:         "allocation_fee",
+341:         finance_rows,
+342:         lambda row: (
+343:             int(row["id"]) in finance
+344:             and (
+345:                 present(
+346:                     finance[int(row["id"])]["allocation_fee_status"]
+347:                 )
+348:                 or present(
+349:                     finance[int(row["id"])]["allocation_fee_amount"]
+350:                 )
+351:                 or present(
+352:                     finance[int(row["id"])]["allocation_fee_rate"]
+353:                 )
+354:             )
+355:         ),
+356:     )
+357: 
+358:     evaluate(
+359:         "expense",
+360:         finance_rows,
+361:         lambda row: (
+466:     labels = {
+467:         "profit_share": "Kâr payı / vade farkı oranı",
+468:         "financing_amount": "Finansman tutarı",
+469:         "maturity": "Vade",
+470:         "installment": "Taksit",
+471:         "allocation_fee": "Tahsis ücreti",
+472:         "expense": "Masraf / komisyon",
+473:         "points": "Sayısal puan",
+474:         "cashback_rate": "Nakit iade oranı",
+475:         "cashback_amount": "Nakit iade tutarı",
+476:         "discount_rate": "İndirim oranı",
+477:         "reward_amount": "Ödül / hediye tutarı",
+478:     }
+479: 
+480:     print("=" * 80)
+
+====================================================================================================
+FILE: scripts\audit_kuveyt_finance_extraction.py
+====================================================================================================
+60:     "tl",
+61:     "vade",
+62:     "taksit",
+63:     "ödemesiz",
+64:     "erteleme",
+65:     "tahsis",
+66:     "masraf",
+67:     "komisyon",
+68:     "ücret",
+69: )
+70: 
+71: 
+72: DISCLAIMER_TERMS = (
+73:     "değişiklik yapma hakkına sahiptir",
+74:     "değiştirme hakkına sahiptir",
+236:             or None,
+237:             "grace_period_months": (
+238:                 row["grace_period_months"]
+239:             ),
+240:             "installment_count": row["installment_count"],
+241:             "allocation_fee_status": normalize_text(
+242:                 row["allocation_fee_status"]
+243:             )
+244:             or None,
+245:             "expense_status": normalize_text(
+246:                 row["expense_status"]
+247:             )
+248:             or None,
+249:             "campaign_advantage": normalize_text(
+250:                 row["campaign_advantage"]
+251:             )
+313:                 finance.profit_share_rate_text,
+314:                 finance.financing_amount_text,
+315:                 finance.maturity_text,
+316:                 finance.grace_period_months,
+317:                 finance.installment_count,
+318:                 finance.allocation_fee_status,
+319:                 finance.expense_status,
+320:                 finance.campaign_advantage,
+321:                 finance.extraction_confidence
+322:             FROM live_campaigns AS campaign
+323:             LEFT JOIN live_campaign_finance_details AS finance
+324:                 ON finance.campaign_id = campaign.id
+325:             WHERE campaign.bank_name = ?
+326:               AND campaign.record_kind = 'campaign'
+327:               AND campaign.campaign_category = 'finance_campaign'
+
+====================================================================================================
+FILE: scripts\audit_turkiye_finans_rules.py
+====================================================================================================
+53: 
+54:     for label, table in {
+55:         "Kategori": "live_product_category_rules",
+56:         "Tutar-vade": "live_product_amount_maturity_rules",
+57:         "Fiyatlama": "live_product_pricing_tiers",
+58:         "Masraf": "live_product_fee_rules",
+59:         "Özel koşul": "live_product_offer_rules",
+60:     }.items():
+61:         count = con.execute(
+62:             f"""
+63:             SELECT COUNT(*)
+64:             FROM {table} AS r
+65:             JOIN live_campaigns AS c
+66:                 ON c.id=r.product_id
+67:             WHERE c.bank_name='Türkiye Finans'
+80:         """
+81:         SELECT
+82:             r.pricing_variant,
+83:             r.maturity_months,
+84:             r.profit_share_rate,
+85:             r.allocation_fee_rate,
+86:             r.monthly_total_cost_rate,
+87:             r.annual_total_cost_rate
+88:         FROM live_product_pricing_tiers AS r
+89:         JOIN live_campaigns AS c
+90:             ON c.id=r.product_id
+91:         JOIN live_standard_product_details AS d
+92:             ON d.product_id=r.product_id
+93:         WHERE c.bank_name='Türkiye Finans'
+94:           AND d.product_name LIKE '%İhtiyaç Finansmanı%'
+102:     for row in rows:
+103:         print(
+104:             row["pricing_variant"],
+105:             "|", row["maturity_months"], "ay",
+106:             "| kâr=", row["profit_share_rate"],
+107:             "| tahsis=", row["allocation_fee_rate"],
+108:             "| aylık=", row["monthly_total_cost_rate"],
+109:             "| yıllık=", row["annual_total_cost_rate"],
+110:         )
+111: 
+112:     print()
+113:     print("=" * 100)
+114:     print("ARAÇ FİNANSMANI — KRİTİK KURALLAR")
+115:     print("=" * 100)
+116: 
+
+====================================================================================================
+FILE: scripts\audit_turkiye_finans_semantic_v2.py
+====================================================================================================
+37:             """
+38:             SELECT
+39:                 pricing_variant,
+40:                 maturity_months,
+41:                 profit_share_rate,
+42:                 allocation_fee_rate,
+43:                 monthly_total_cost_rate,
+44:                 annual_total_cost_rate
+45:             FROM live_product_pricing_tiers
+46:             WHERE product_id=?
+47:             ORDER BY pricing_variant, maturity_months
+48:             """,
+49:             (need["id"],),
+50:         ).fetchall()
+51: 
+63:                 print(
+64:                     "   ",
+65:                     row["maturity_months"],
+66:                     "ay | kâr=",
+67:                     row["profit_share_rate"],
+68:                     "| tahsis=",
+69:                     row["allocation_fee_rate"],
+70:                     "| aylık=",
+71:                     row["monthly_total_cost_rate"],
+72:                     "| yıllık=",
+73:                     row["annual_total_cost_rate"],
+74:                 )
+75: 
+76:     print()
+77:     print("ARAÇ AİLESİ")
+78: 
+
+====================================================================================================
+FILE: scripts\check_finance_evidence.py
+====================================================================================================
+19:     "peşinat",
+20:     "pesinat",
+21:     "kâr",
+22:     "kar ",
+23:     "finansman",
+24:     "tahsis",
+25:     "oran",
+26:     "kampanya fırsat",
+27: )
+28: 
+29: 
+30: def normalize(value: str | None) -> str:
+31:     if value is None:
+32:         return ""
+33:     return re.sub(r"\s+", " ", value).strip()
+
+====================================================================================================
+FILE: scripts\extract_comparison_fields.py
+====================================================================================================
+94:             maturity_min_months INTEGER,
+95:             maturity_max_months INTEGER,
+96:             maturity_text TEXT,
+97:             grace_period_months INTEGER,
+98:             installment_count INTEGER,
+99:             allocation_fee_amount REAL,
+100:             allocation_fee_rate REAL,
+101:             allocation_fee_status TEXT,
+102:             expense_status TEXT,
+103:             expense_details TEXT,
+104:             campaign_advantage TEXT,
+105:             evidence_text TEXT,
+106:             extraction_confidence REAL NOT NULL DEFAULT 0,
+107:             extracted_at TEXT NOT NULL,
+108:             FOREIGN KEY(campaign_id)
+109:                 REFERENCES live_campaigns(id)
+110:                 ON DELETE CASCADE
+200:             finance.maturity_min_months,
+201:             finance.maturity_max_months,
+202:             finance.maturity_text,
+203:             finance.grace_period_months,
+204:             finance.installment_count AS finance_installment_count,
+205:             finance.allocation_fee_amount,
+206:             finance.allocation_fee_rate,
+207:             finance.allocation_fee_status,
+208:             finance.expense_status,
+209:             finance.expense_details,
+210:             finance.campaign_advantage,
+211:             finance.extraction_confidence,
+212:             installment.minimum_transaction_amount,
+213:             installment.maximum_transaction_amount,
+214:             installment.installment_count
+215:                 AS card_installment_count,
+216:             installment.installment_cost_rate,
+282:             maturity_min_months,
+283:             maturity_max_months,
+284:             maturity_text,
+285:             grace_period_months,
+286:             installment_count,
+287:             allocation_fee_amount,
+288:             allocation_fee_rate,
+289:             allocation_fee_status,
+290:             expense_status,
+291:             expense_details,
+292:             campaign_advantage,
+293:             evidence_text,
+294:             extraction_confidence,
+295:             extracted_at
+296:         )
+297:         VALUES (
+298:             ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?
+308:             maturity_min_months = excluded.maturity_min_months,
+309:             maturity_max_months = excluded.maturity_max_months,
+310:             maturity_text = excluded.maturity_text,
+311:             grace_period_months = excluded.grace_period_months,
+312:             installment_count = excluded.installment_count,
+313:             allocation_fee_amount = excluded.allocation_fee_amount,
+314:             allocation_fee_rate = excluded.allocation_fee_rate,
+315:             allocation_fee_status = excluded.allocation_fee_status,
+316:             expense_status = excluded.expense_status,
+317:             expense_details = excluded.expense_details,
+318:             campaign_advantage = excluded.campaign_advantage,
+319:             evidence_text = excluded.evidence_text,
+320:             extraction_confidence = excluded.extraction_confidence,
+321:             extracted_at = excluded.extracted_at
+322:         """,
+323:         (
+324:             campaign_id,
+332:             extraction.maturity_min_months,
+333:             extraction.maturity_max_months,
+334:             extraction.maturity_text,
+335:             extraction.grace_period_months,
+336:             extraction.installment_count,
+337:             extraction.allocation_fee_amount,
+338:             extraction.allocation_fee_rate,
+339:             extraction.allocation_fee_status,
+340:             extraction.expense_status,
+341:             extraction.expense_details,
+342:             extraction.campaign_advantage,
+343:             extraction.evidence_text,
+344:             extraction.extraction_confidence,
+345:             timestamp,
+346:         ),
+347:     )
+348: 
+701:                 finance_type,
+702:                 profit_share_rate_text,
+703:                 financing_amount_text,
+704:                 maturity_text,
+705:                 grace_period_months,
+706:                 allocation_fee_amount,
+707:                 allocation_fee_rate,
+708:                 allocation_fee_status,
+709:                 expense_status,
+710:                 campaign_advantage,
+711:                 current_status
+712:             FROM live_campaign_comparison
+713:             WHERE campaign_category = 'finance_campaign'
+714:               AND (? IS NULL OR bank_name = ?)
+715:             ORDER BY bank_name, campaign_name
+716:             """,
+717:             (args.bank, args.bank),
+743:                     if item["grace_period_months"]
+744:                     else "Belirtilmemiş"
+745:                 ),
+746:             )
+747: 
+748:             allocation_display = "Belirtilmemiş"
+749:             if item["allocation_fee_rate"] is not None:
+750:                 allocation_display = (
+751:                     "%"
+752:                     + str(item["allocation_fee_rate"]).replace(
+753:                         ".",
+754:                         ",",
+755:                     )
+756:                 )
+757:             elif item["allocation_fee_amount"] is not None:
+758:                 allocation_display = (
+759:                     f"{item['allocation_fee_amount']:,.0f} TL"
+760:                     .replace(",", ".")
+761:                 )
+762:             elif item["allocation_fee_status"]:
+763:                 allocation_display = item["allocation_fee_status"]
+764: 
+765:             print("Tahsis ücreti:", allocation_display)
+766:             print(
+767:                 "Masraf:",
+768:                 item["expense_status"]
+769:                 or "Belirtilmemiş",
+770:             )
+771:             print(
+772:                 "Avantaj:",
+773:                 item["campaign_advantage"]
+774:                 or "Belirtilmemiş",
+
+====================================================================================================
+FILE: scripts\extract_comparison_fields_albaraka_guardrail.py
+====================================================================================================
+92:             maturity_min_months INTEGER,
+93:             maturity_max_months INTEGER,
+94:             maturity_text TEXT,
+95:             grace_period_months INTEGER,
+96:             installment_count INTEGER,
+97:             allocation_fee_amount REAL,
+98:             allocation_fee_rate REAL,
+99:             allocation_fee_status TEXT,
+100:             expense_status TEXT,
+101:             expense_details TEXT,
+102:             campaign_advantage TEXT,
+103:             evidence_text TEXT,
+104:             extraction_confidence REAL NOT NULL DEFAULT 0,
+105:             extracted_at TEXT NOT NULL,
+106:             FOREIGN KEY(campaign_id)
+107:                 REFERENCES live_campaigns(id)
+108:                 ON DELETE CASCADE
+184:             finance.maturity_min_months,
+185:             finance.maturity_max_months,
+186:             finance.maturity_text,
+187:             finance.grace_period_months,
+188:             finance.installment_count AS finance_installment_count,
+189:             finance.allocation_fee_amount,
+190:             finance.allocation_fee_rate,
+191:             finance.allocation_fee_status,
+192:             finance.expense_status,
+193:             finance.expense_details,
+194:             finance.campaign_advantage,
+195:             finance.extraction_confidence,
+196:             MAX(
+197:                 CASE
+198:                     WHEN benefit.benefit_type = 'reward'
+199:                     THEN benefit.amount
+200:                 END
+258:             maturity_min_months,
+259:             maturity_max_months,
+260:             maturity_text,
+261:             grace_period_months,
+262:             installment_count,
+263:             allocation_fee_amount,
+264:             allocation_fee_rate,
+265:             allocation_fee_status,
+266:             expense_status,
+267:             expense_details,
+268:             campaign_advantage,
+269:             evidence_text,
+270:             extraction_confidence,
+271:             extracted_at
+272:         )
+273:         VALUES (
+274:             ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?
+284:             maturity_min_months = excluded.maturity_min_months,
+285:             maturity_max_months = excluded.maturity_max_months,
+286:             maturity_text = excluded.maturity_text,
+287:             grace_period_months = excluded.grace_period_months,
+288:             installment_count = excluded.installment_count,
+289:             allocation_fee_amount = excluded.allocation_fee_amount,
+290:             allocation_fee_rate = excluded.allocation_fee_rate,
+291:             allocation_fee_status = excluded.allocation_fee_status,
+292:             expense_status = excluded.expense_status,
+293:             expense_details = excluded.expense_details,
+294:             campaign_advantage = excluded.campaign_advantage,
+295:             evidence_text = excluded.evidence_text,
+296:             extraction_confidence = excluded.extraction_confidence,
+297:             extracted_at = excluded.extracted_at
+298:         """,
+299:         (
+300:             campaign_id,
+308:             extraction.maturity_min_months,
+309:             extraction.maturity_max_months,
+310:             extraction.maturity_text,
+311:             extraction.grace_period_months,
+312:             extraction.installment_count,
+313:             extraction.allocation_fee_amount,
+314:             extraction.allocation_fee_rate,
+315:             extraction.allocation_fee_status,
+316:             extraction.expense_status,
+317:             extraction.expense_details,
+318:             extraction.campaign_advantage,
+319:             extraction.evidence_text,
+320:             extraction.extraction_confidence,
+321:             timestamp,
+322:         ),
+323:     )
+324: 
+591:                 finance_type,
+592:                 profit_share_rate_text,
+593:                 financing_amount_text,
+594:                 maturity_text,
+595:                 grace_period_months,
+596:                 allocation_fee_amount,
+597:                 allocation_fee_rate,
+598:                 allocation_fee_status,
+599:                 expense_status,
+600:                 campaign_advantage,
+601:                 current_status
+602:             FROM live_campaign_comparison
+603:             WHERE campaign_category = 'finance_campaign'
+604:               AND (? IS NULL OR bank_name = ?)
+605:             ORDER BY bank_name, campaign_name
+606:             """,
+607:             (args.bank, args.bank),
+633:                     if item["grace_period_months"]
+634:                     else "Belirtilmemiş"
+635:                 ),
+636:             )
+637: 
+638:             allocation_display = "Belirtilmemiş"
+639:             if item["allocation_fee_rate"] is not None:
+640:                 allocation_display = (
+641:                     "%"
+642:                     + str(item["allocation_fee_rate"]).replace(
+643:                         ".",
+644:                         ",",
+645:                     )
+646:                 )
+647:             elif item["allocation_fee_amount"] is not None:
+648:                 allocation_display = (
+649:                     f"{item['allocation_fee_amount']:,.0f} TL"
+650:                     .replace(",", ".")
+651:                 )
+652:             elif item["allocation_fee_status"]:
+653:                 allocation_display = item["allocation_fee_status"]
+654: 
+655:             print("Tahsis ücreti:", allocation_display)
+656:             print(
+657:                 "Masraf:",
+658:                 item["expense_status"]
+659:                 or "Belirtilmemiş",
+660:             )
+661:             print(
+662:                 "Avantaj:",
+663:                 item["campaign_advantage"]
+664:                 or "Belirtilmemiş",
+
+====================================================================================================
+FILE: scripts\extract_comparison_fields_before_expense_preserve_20260810_163059.py
+====================================================================================================
+91:             maturity_min_months INTEGER,
+92:             maturity_max_months INTEGER,
+93:             maturity_text TEXT,
+94:             grace_period_months INTEGER,
+95:             installment_count INTEGER,
+96:             allocation_fee_amount REAL,
+97:             allocation_fee_rate REAL,
+98:             allocation_fee_status TEXT,
+99:             expense_status TEXT,
+100:             expense_details TEXT,
+101:             campaign_advantage TEXT,
+102:             evidence_text TEXT,
+103:             extraction_confidence REAL NOT NULL DEFAULT 0,
+104:             extracted_at TEXT NOT NULL,
+105:             FOREIGN KEY(campaign_id)
+106:                 REFERENCES live_campaigns(id)
+107:                 ON DELETE CASCADE
+183:             finance.maturity_min_months,
+184:             finance.maturity_max_months,
+185:             finance.maturity_text,
+186:             finance.grace_period_months,
+187:             finance.installment_count AS finance_installment_count,
+188:             finance.allocation_fee_amount,
+189:             finance.allocation_fee_rate,
+190:             finance.allocation_fee_status,
+191:             finance.expense_status,
+192:             finance.expense_details,
+193:             finance.campaign_advantage,
+194:             finance.extraction_confidence,
+195:             MAX(
+196:                 CASE
+197:                     WHEN benefit.benefit_type = 'reward'
+198:                     THEN benefit.amount
+199:                 END
+257:             maturity_min_months,
+258:             maturity_max_months,
+259:             maturity_text,
+260:             grace_period_months,
+261:             installment_count,
+262:             allocation_fee_amount,
+263:             allocation_fee_rate,
+264:             allocation_fee_status,
+265:             expense_status,
+266:             expense_details,
+267:             campaign_advantage,
+268:             evidence_text,
+269:             extraction_confidence,
+270:             extracted_at
+271:         )
+272:         VALUES (
+273:             ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?
+283:             maturity_min_months = excluded.maturity_min_months,
+284:             maturity_max_months = excluded.maturity_max_months,
+285:             maturity_text = excluded.maturity_text,
+286:             grace_period_months = excluded.grace_period_months,
+287:             installment_count = excluded.installment_count,
+288:             allocation_fee_amount = excluded.allocation_fee_amount,
+289:             allocation_fee_rate = excluded.allocation_fee_rate,
+290:             allocation_fee_status = excluded.allocation_fee_status,
+291:             expense_status = excluded.expense_status,
+292:             expense_details = excluded.expense_details,
+293:             campaign_advantage = excluded.campaign_advantage,
+294:             evidence_text = excluded.evidence_text,
+295:             extraction_confidence = excluded.extraction_confidence,
+296:             extracted_at = excluded.extracted_at
+297:         """,
+298:         (
+299:             campaign_id,
+307:             extraction.maturity_min_months,
+308:             extraction.maturity_max_months,
+309:             extraction.maturity_text,
+310:             extraction.grace_period_months,
+311:             extraction.installment_count,
+312:             extraction.allocation_fee_amount,
+313:             extraction.allocation_fee_rate,
+314:             extraction.allocation_fee_status,
+315:             extraction.expense_status,
+316:             extraction.expense_details,
+317:             extraction.campaign_advantage,
+318:             extraction.evidence_text,
+319:             extraction.extraction_confidence,
+320:             timestamp,
+321:         ),
+322:     )
+323: 
+578:                 finance_type,
+579:                 profit_share_rate_text,
+580:                 financing_amount_text,
+581:                 maturity_text,
+582:                 grace_period_months,
+583:                 allocation_fee_amount,
+584:                 allocation_fee_rate,
+585:                 allocation_fee_status,
+586:                 expense_status,
+587:                 campaign_advantage,
+588:                 current_status
+589:             FROM live_campaign_comparison
+590:             WHERE campaign_category = 'finance_campaign'
+591:               AND (? IS NULL OR bank_name = ?)
+592:             ORDER BY bank_name, campaign_name
+593:             """,
+594:             (args.bank, args.bank),
+620:                     if item["grace_period_months"]
+621:                     else "Belirtilmemiş"
+622:                 ),
+623:             )
+624: 
+625:             allocation_display = "Belirtilmemiş"
+626:             if item["allocation_fee_rate"] is not None:
+627:                 allocation_display = (
+628:                     "%"
+629:                     + str(item["allocation_fee_rate"]).replace(
+630:                         ".",
+631:                         ",",
+632:                     )
+633:                 )
+634:             elif item["allocation_fee_amount"] is not None:
+635:                 allocation_display = (
+636:                     f"{item['allocation_fee_amount']:,.0f} TL"
+637:                     .replace(",", ".")
+638:                 )
+639:             elif item["allocation_fee_status"]:
+640:                 allocation_display = item["allocation_fee_status"]
+641: 
+642:             print("Tahsis ücreti:", allocation_display)
+643:             print(
+644:                 "Masraf:",
+645:                 item["expense_status"]
+646:                 or "Belirtilmemiş",
+647:             )
+648:             print(
+649:                 "Avantaj:",
+650:                 item["campaign_advantage"]
+651:                 or "Belirtilmemiş",
+
+====================================================================================================
+FILE: scripts\extract_comparison_fields_before_hepsiburada_live_fix_20260810_152759.py
+====================================================================================================
+91:             maturity_min_months INTEGER,
+92:             maturity_max_months INTEGER,
+93:             maturity_text TEXT,
+94:             grace_period_months INTEGER,
+95:             installment_count INTEGER,
+96:             allocation_fee_amount REAL,
+97:             allocation_fee_rate REAL,
+98:             allocation_fee_status TEXT,
+99:             expense_status TEXT,
+100:             expense_details TEXT,
+101:             campaign_advantage TEXT,
+102:             evidence_text TEXT,
+103:             extraction_confidence REAL NOT NULL DEFAULT 0,
+104:             extracted_at TEXT NOT NULL,
+105:             FOREIGN KEY(campaign_id)
+106:                 REFERENCES live_campaigns(id)
+107:                 ON DELETE CASCADE
+183:             finance.maturity_min_months,
+184:             finance.maturity_max_months,
+185:             finance.maturity_text,
+186:             finance.grace_period_months,
+187:             finance.installment_count AS finance_installment_count,
+188:             finance.allocation_fee_amount,
+189:             finance.allocation_fee_rate,
+190:             finance.allocation_fee_status,
+191:             finance.expense_status,
+192:             finance.expense_details,
+193:             finance.campaign_advantage,
+194:             finance.extraction_confidence,
+195:             MAX(
+196:                 CASE
+197:                     WHEN benefit.benefit_type = 'reward'
+198:                     THEN benefit.amount
+199:                 END
+257:             maturity_min_months,
+258:             maturity_max_months,
+259:             maturity_text,
+260:             grace_period_months,
+261:             installment_count,
+262:             allocation_fee_amount,
+263:             allocation_fee_rate,
+264:             allocation_fee_status,
+265:             expense_status,
+266:             expense_details,
+267:             campaign_advantage,
+268:             evidence_text,
+269:             extraction_confidence,
+270:             extracted_at
+271:         )
+272:         VALUES (
+273:             ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?
+283:             maturity_min_months = excluded.maturity_min_months,
+284:             maturity_max_months = excluded.maturity_max_months,
+285:             maturity_text = excluded.maturity_text,
+286:             grace_period_months = excluded.grace_period_months,
+287:             installment_count = excluded.installment_count,
+288:             allocation_fee_amount = excluded.allocation_fee_amount,
+289:             allocation_fee_rate = excluded.allocation_fee_rate,
+290:             allocation_fee_status = excluded.allocation_fee_status,
+291:             expense_status = excluded.expense_status,
+292:             expense_details = excluded.expense_details,
+293:             campaign_advantage = excluded.campaign_advantage,
+294:             evidence_text = excluded.evidence_text,
+295:             extraction_confidence = excluded.extraction_confidence,
+296:             extracted_at = excluded.extracted_at
+297:         """,
+298:         (
+299:             campaign_id,
+307:             extraction.maturity_min_months,
+308:             extraction.maturity_max_months,
+309:             extraction.maturity_text,
+310:             extraction.grace_period_months,
+311:             extraction.installment_count,
+312:             extraction.allocation_fee_amount,
+313:             extraction.allocation_fee_rate,
+314:             extraction.allocation_fee_status,
+315:             extraction.expense_status,
+316:             extraction.expense_details,
+317:             extraction.campaign_advantage,
+318:             extraction.evidence_text,
+319:             extraction.extraction_confidence,
+320:             timestamp,
+321:         ),
+322:     )
+323: 
+578:                 finance_type,
+579:                 profit_share_rate_text,
+580:                 financing_amount_text,
+581:                 maturity_text,
+582:                 grace_period_months,
+583:                 allocation_fee_amount,
+584:                 allocation_fee_rate,
+585:                 allocation_fee_status,
+586:                 expense_status,
+587:                 campaign_advantage,
+588:                 current_status
+589:             FROM live_campaign_comparison
+590:             WHERE campaign_category = 'finance_campaign'
+591:               AND (? IS NULL OR bank_name = ?)
+592:             ORDER BY bank_name, campaign_name
+593:             """,
+594:             (args.bank, args.bank),
+620:                     if item["grace_period_months"]
+621:                     else "Belirtilmemiş"
+622:                 ),
+623:             )
+624: 
+625:             allocation_display = "Belirtilmemiş"
+626:             if item["allocation_fee_rate"] is not None:
+627:                 allocation_display = (
+628:                     "%"
+629:                     + str(item["allocation_fee_rate"]).replace(
+630:                         ".",
+631:                         ",",
+632:                     )
+633:                 )
+634:             elif item["allocation_fee_amount"] is not None:
+635:                 allocation_display = (
+636:                     f"{item['allocation_fee_amount']:,.0f} TL"
+637:                     .replace(",", ".")
+638:                 )
+639:             elif item["allocation_fee_status"]:
+640:                 allocation_display = item["allocation_fee_status"]
+641: 
+642:             print("Tahsis ücreti:", allocation_display)
+643:             print(
+644:                 "Masraf:",
+645:                 item["expense_status"]
+646:                 or "Belirtilmemiş",
+647:             )
+648:             print(
+649:                 "Avantaj:",
+650:                 item["campaign_advantage"]
+651:                 or "Belirtilmemiş",
+
+====================================================================================================
+FILE: scripts\finalize_hayat_finans_extraction_guardrails.py
+====================================================================================================
+124:                         financing_amount_min, financing_amount_max,
+125:                         financing_amount_text,
+126:                         maturity_min_months, maturity_max_months,
+127:                         maturity_text, grace_period_months,
+128:                         installment_count,
+129:                         allocation_fee_amount, allocation_fee_rate,
+130:                         allocation_fee_status, expense_status,
+131:                         expense_details, campaign_advantage,
+132:                         evidence_text, extraction_confidence, extracted_at
+133:                     ) VALUES (
+134:                         ?, ?, NULL, NULL, NULL,
+135:                         NULL, ?, ?, NULL, ?, ?, NULL, ?,
+136:                         NULL, NULL, NULL, NULL, NULL, ?, ?, 0.99, ?
+137:                     )
+138:                     ON CONFLICT(campaign_id) DO UPDATE SET
+139:                         finance_type = excluded.finance_type,
+146:                         maturity_min_months = NULL,
+147:                         maturity_max_months = excluded.maturity_max_months,
+148:                         maturity_text = excluded.maturity_text,
+149:                         grace_period_months = NULL,
+150:                         installment_count = excluded.installment_count,
+151:                         allocation_fee_amount = NULL,
+152:                         allocation_fee_rate = NULL,
+153:                         allocation_fee_status = NULL,
+154:                         expense_status = NULL,
+155:                         expense_details = NULL,
+156:                         campaign_advantage = excluded.campaign_advantage,
+157:                         evidence_text = excluded.evidence_text,
+158:                         extraction_confidence = 0.99,
+159:                         extracted_at = excluded.extracted_at
+160:                     """,
+161:                     (
+162:                         campaign_id,
+
+====================================================================================================
+FILE: scripts\migrate_sqlite_to_postgresql.py
+====================================================================================================
+283:                     """
+284:                     INSERT INTO campaign_finance_details(
+285:                         campaign_id,finance_type,profit_share_rate_min,profit_share_rate_max,
+286:                         profit_share_rate_text,financing_amount_min,financing_amount_max,
+287:                         financing_amount_text,maturity_min_months,maturity_max_months,maturity_text,
+288:                         installment_count,allocation_fee_amount,allocation_fee_rate,allocation_fee_status,
+289:                         expense_status,expense_details,campaign_advantage,evidence_text,extraction_confidence,
+290:                         grace_period_months,extracted_at
+291:                     ) VALUES (%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)
+292:                     ON CONFLICT(campaign_id) DO UPDATE SET
+293:                         finance_type=EXCLUDED.finance_type,
+294:                         profit_share_rate_min=EXCLUDED.profit_share_rate_min,
+295:                         profit_share_rate_max=EXCLUDED.profit_share_rate_max,
+296:                         financing_amount_min=EXCLUDED.financing_amount_min,
+297:                         financing_amount_max=EXCLUDED.financing_amount_max,
+298:                         maturity_max_months=EXCLUDED.maturity_max_months,
+299:                         extracted_at=EXCLUDED.extracted_at
+300:                     """,
+301:                     (cid,r["finance_type"],r["profit_share_rate_min"],r["profit_share_rate_max"],r["profit_share_rate_text"],
+302:                      r["financing_amount_min"],r["financing_amount_max"],r["financing_amount_text"],r["maturity_min_months"],
+303:                      r["maturity_max_months"],r["maturity_text"],r["installment_count"],r["allocation_fee_amount"],
+304:                      r["allocation_fee_rate"],r["allocation_fee_status"],r["expense_status"],r["expense_details"],
+305:                      r["campaign_advantage"],r["evidence_text"],r["extraction_confidence"],r["grace_period_months"],dt(r["extracted_at"])),
+306:                 )
+307: 
+308:             for r in rows(sq, "live_campaign_benefits"):
+309:                 cid = campaign_ids.get(int(r["campaign_id"]))
+310:                 if not cid: continue
+311:                 cur.execute(
+312:                     """
+313:                     INSERT INTO campaign_benefits(legacy_id,campaign_id,benefit_type,amount,rate,points,minimum_spending,maximum_benefit,description,evidence,extracted_at)
+387:                         maximum_maturity_months,profit_share_rate,profit_share_rate_text,interest_free,
+388:                         interest_free_text,maturity_rules_text,maturity_reference_upper_amount,
+389:                         financing_ratio_rules_text,maximum_financing_ratio,housing_first_home_rules_text,
+390:                         housing_additional_home_rules_text,housing_finance_rules,vehicle_finance_rules_text,
+391:                         vehicle_age_rules_text,shopping_general_limit_amount,shopping_general_max_maturity_months,
+392:                         shopping_finance_rules_text,fee_waiver_text,insurance_fee_waived,allocation_fee_waived,
+393:                         commission_fee_waived,shopping_phone_rule_text,shopping_tablet_max_maturity_months,
+394:                         shopping_computer_max_maturity_months,finance_rules,current_status,fetch_status,is_current,
+395:                         content_hash,first_seen_at,last_seen_at,last_checked_at,checked_at,extracted_at,created_at,updated_at
+396:                     ) VALUES (
+397:                         %s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s::jsonb,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s::jsonb,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s
+398:                     )
+399:                     ON CONFLICT(legacy_live_id) DO UPDATE SET
+400:                         product_name=EXCLUDED.product_name,
+401:                         minimum_financing_amount=EXCLUDED.minimum_financing_amount,
+411:                         r["product_name"],r["scope"],r["minimum_financing_amount"],r["maximum_financing_amount"],r["minimum_maturity_months"],
+412:                         r["maximum_maturity_months"],r["profit_share_rate"],r["profit_share_rate_text"],boolv(r["interest_free"]),r["interest_free_text"],
+413:                         r["maturity_rules_text"],r["maturity_reference_upper_amount"],r["financing_ratio_rules_text"],r["maximum_financing_ratio"],
+414:                         r["housing_first_home_rules_text"],r["housing_additional_home_rules_text"],pg_json(json_obj(r["housing_finance_rules_json"])),
+415:                         r["vehicle_finance_rules_text"],r["vehicle_age_rules_text"],r["shopping_general_limit_amount"],r["shopping_general_max_maturity_months"],
+416:                         r["shopping_finance_rules_text"],r["fee_waiver_text"],boolv(r["insurance_fee_waived"]),boolv(r["allocation_fee_waived"]),
+417:                         boolv(r["commission_fee_waived"]),r["shopping_phone_rule_text"],r["shopping_tablet_max_maturity_months"],r["shopping_computer_max_maturity_months"],
+418:                         pg_json(json_obj(r["finance_rules_json"])),base["current_status"],base["fetch_status"],boolv(base["is_current"]),base["content_hash"],
+419:                         dt(base["first_seen_at"]),dt(base["last_seen_at"]),dt(base["last_checked_at"]),dt(r["checked_at"]),dt(r["extracted_at"]),dt(base["created_at"]),dt(base["updated_at"]),
+420:                     ),
+421:                 )
+422:                 product_ids[legacy_id] = cur.fetchone()[0]
+423:         pg.commit()
+424: 
+425:         # Product child tables
+427:             ("live_product_amount_maturity_rules", "product_amount_maturity_rules",
+428:              ["id","product_id","min_amount","max_amount","min_inclusive","max_inclusive","max_maturity_months","source_text","updated_at"]),
+429:             ("live_product_category_rules", "product_category_rules",
+430:              ["id","product_id","category_key","category_label","min_amount","max_amount","min_inclusive","max_inclusive","max_installments","max_maturity_months","condition_text","source_text","updated_at"]),
+431:             ("live_product_pricing_tiers", "product_pricing_tiers",
+432:              ["id","product_id","financing_amount","maturity_months","profit_share_rate","allocation_fee_rate","monthly_total_cost_rate","annual_total_cost_rate","source_text","updated_at","pricing_variant","value_type","source_type","conditions","source_url"]),
+433:             ("live_finance_fact_evidence", "finance_fact_evidence",
+434:              ["id","product_id","fact_key","value_text","value_numeric","value_type","source_type","conditions","source_url","source_text","verification_status","updated_at"]),
+435:             ("live_product_fee_rules", "product_fee_rules",
+436:              ["id","product_id","fee_type","fee_label","waived","amount","rate","note","updated_at"]),
+437:             ("live_product_offer_rules", "product_offer_rules",
+438:              ["id","product_id","rule_type","rule_label","min_amount","max_amount","min_inclusive","max_inclusive","max_installments","max_maturity_months","interest_free","condition_text","source_text","updated_at"]),
+439:             ("live_product_features", "product_features",
+440:              ["id","product_id","feature_key","feature_label","feature_value","source_text","extraction_method","updated_at"]),
+441:         ]
+442: 
+443:         with pg.cursor() as cur:
+444:             for src_table, dst_table, cols in product_table_specs:
+445:                 for r in rows(sq, src_table):
+
+====================================================================================================
+FILE: scripts\repair_housing_finance_audit_v1.py
+====================================================================================================
+41: KEEP = object()
+42: 
+43: 
+44: def _fee(rate: float, *, maximum: bool = False, source: str) -> dict[str, Any]:
+45:     return {
+46:         "fee_type": "allocation",
+47:         "fee_label": "Azami Tahsis Ücreti" if maximum else "Tahsis Ücreti",
+48:         "waived": False,
+49:         "amount": None,
+50:         "rate": rate,
+51:         "note": (
+52:             f"Resmî kaynakta finansman tutarı üzerinden maksimum %{rate:.2f} olarak yayımlanıyor. Kaynak: {source}"
+53:             if maximum
+54:             else f"Resmî kaynakta finansman tutarının %{rate:.2f}'si olarak yayımlanıyor. Kaynak: {source}"
+55:         ),
+56:     }
+130:     ("Kuveyt Türk", "Yeşil Konut Finansmanı"): {
+131:         "max_maturity": 120,
+132:         "ratio": None,
+133:         "housing": None,
+134:         "housing_clear": True,
+135:         "fee": None,  # sayısal tahsis oranı güncel sayfada doğrulanmadan uydurulmaz
+136:         "pricing": KEEP,
+137:         "ratio_text": (
+138:             "Finansman tutarı ekspertiz değeri, konutun sıfır/2. el durumu, enerji sınıfı "
+139:             "ve mevcut konut sahipliğine göre değişir; mevcut konut varsa kullanılabilir "
+140:             "finansman tutarı %75 azalır."
+141:         ),
+142:         "offers": [
+143:             _ownership_offer(KT_GREEN_URL),
+144:             _offer(
+231: 
+232: 
+233: def patched_rules(current: object, cfg: dict[str, Any]) -> dict[str, Any]:
+234:     rules = load_rules(current)
+235: 
+236:     # Tahsis ücreti: sadece allocation/tahsis satırını yeniden kur; diğer masraflar korunur.
+237:     rules["fee_rules"] = [
+238:         row for row in rules["fee_rules"]
+239:         if str(row.get("fee_type") or "").casefold() != "allocation"
+240:         and "tahsis" not in str(row.get("fee_label") or "").casefold()
+241:     ]
+242:     if cfg.get("fee") is not None:
+243:         rules["fee_rules"].append(deepcopy(cfg["fee"]))
+244: 
+245:     pricing_cfg = cfg.get("pricing", KEEP)
+246:     if pricing_cfg == "block_example_only":
+247:         # Eski V1 scripti çalıştırılsa bile örnek/temsili maliyet satırları
+248:         # güncel ürün fiyatlaması olarak yeniden üretilemez.
+249:         rules["pricing_tiers"] = authoritative_pricing_rows(
+288:     # Alt kuralların tamamını finance_rules_json ile aynı kaynaktan yeniden kuruyoruz.
+289:     for table in (
+290:         "live_product_category_rules",
+291:         "live_product_amount_maturity_rules",
+292:         "live_product_pricing_tiers",
+293:         "live_product_fee_rules",
+294:         "live_product_offer_rules",
+295:     ):
+296:         con.execute(f"DELETE FROM {table} WHERE product_id=?", (product_id,))
+297: 
+298:     for row in rules.get("category_rules", []):
+299:         con.execute(
+300:             """INSERT INTO live_product_category_rules
+301:             (product_id,category_key,category_label,min_amount,max_amount,min_inclusive,max_inclusive,max_installments,max_maturity_months,condition_text,source_text,updated_at)
+302:             VALUES (?,?,?,?,?,?,?,?,?,?,?,?)""",
+310:             (product_id,row.get("min_amount"),row.get("max_amount"),int(bool(row.get("min_inclusive"))),int(bool(row.get("max_inclusive",True))),row.get("max_maturity_months"),row.get("source_text"),NOW),
+311:         )
+312:     for row in rules.get("pricing_tiers", []):
+313:         con.execute(
+314:             """INSERT INTO live_product_pricing_tiers
+315:             (product_id,pricing_variant,financing_amount,maturity_months,profit_share_rate,allocation_fee_rate,monthly_total_cost_rate,annual_total_cost_rate,source_text,updated_at)
+316:             VALUES (?,?,?,?,?,?,?,?,?,?)""",
+317:             (product_id,row.get("pricing_variant","Standart"),row.get("financing_amount"),row.get("maturity_months"),row.get("profit_share_rate"),row.get("allocation_fee_rate"),row.get("monthly_total_cost_rate"),row.get("annual_total_cost_rate"),row.get("source_text"),NOW),
+318:         )
+319:     for row in rules.get("fee_rules", []):
+320:         con.execute(
+321:             """INSERT INTO live_product_fee_rules
+322:             (product_id,fee_type,fee_label,waived,amount,rate,note,updated_at)
+323:             VALUES (?,?,?,?,?,?,?,?)""",
+324:             (product_id,row.get("fee_type"),row.get("fee_label"),int(bool(row.get("waived"))),row.get("amount"),row.get("rate"),row.get("note"),NOW),
+325:         )
+326:     for row in rules.get("offer_rules", []):
+327:         con.execute(
+328:             """INSERT INTO live_product_offer_rules
+329:             (product_id,rule_type,rule_label,min_amount,max_amount,min_inclusive,max_inclusive,max_installments,max_maturity_months,interest_free,condition_text,source_text,updated_at)
+330:             VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?)""",
+331:             (product_id,row.get("rule_type","product_offer"),row.get("rule_label","Ürüne Özel Finansman Koşulu"),row.get("min_amount"),row.get("max_amount"),int(bool(row.get("min_inclusive"))),int(bool(row.get("max_inclusive",True))),row.get("max_installments"),row.get("max_maturity_months"),int(bool(row.get("interest_free"))),row.get("condition_text"),row.get("source_text"),NOW),
+332:         )
+333: 
+416: def pg_sync_rules(cur, product_id: int, rules: dict[str, Any]) -> None:
+417:     for table in (
+418:         "product_category_rules",
+419:         "product_amount_maturity_rules",
+420:         "product_pricing_tiers",
+421:         "product_fee_rules",
+422:         "product_offer_rules",
+423:     ):
+424:         cur.execute(f"DELETE FROM {table} WHERE product_id=%s", (product_id,))
+425: 
+426:     for row in rules.get("category_rules", []):
+427:         cur.execute(
+428:             """INSERT INTO product_category_rules
+429:             (product_id,category_key,category_label,min_amount,max_amount,min_inclusive,max_inclusive,max_installments,max_maturity_months,condition_text,source_text,updated_at)
+430:             VALUES (%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,NOW())""",
+438:             (product_id,row.get("min_amount"),row.get("max_amount"),bool(row.get("min_inclusive")),bool(row.get("max_inclusive",True)),row.get("max_maturity_months"),row.get("source_text")),
+439:         )
+440:     for row in rules.get("pricing_tiers", []):
+441:         cur.execute(
+442:             """INSERT INTO product_pricing_tiers
+443:             (product_id,pricing_variant,financing_amount,maturity_months,profit_share_rate,allocation_fee_rate,monthly_total_cost_rate,annual_total_cost_rate,source_text,updated_at)
+444:             VALUES (%s,%s,%s,%s,%s,%s,%s,%s,%s,NOW())""",
+445:             (product_id,row.get("pricing_variant","Standart"),row.get("financing_amount"),row.get("maturity_months"),row.get("profit_share_rate"),row.get("allocation_fee_rate"),row.get("monthly_total_cost_rate"),row.get("annual_total_cost_rate"),row.get("source_text")),
+446:         )
+447:     for row in rules.get("fee_rules", []):
+448:         cur.execute(
+449:             """INSERT INTO product_fee_rules
+450:             (product_id,fee_type,fee_label,waived,amount,rate,note,updated_at)
+451:             VALUES (%s,%s,%s,%s,%s,%s,%s,NOW())""",
+452:             (product_id,row.get("fee_type"),row.get("fee_label"),bool(row.get("waived")),row.get("amount"),row.get("rate"),row.get("note")),
+453:         )
+454:     for row in rules.get("offer_rules", []):
+455:         cur.execute(
+456:             """INSERT INTO product_offer_rules
+457:             (product_id,rule_type,rule_label,min_amount,max_amount,min_inclusive,max_inclusive,max_installments,max_maturity_months,interest_free,condition_text,source_text,updated_at)
+458:             VALUES (%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,NOW())""",
+459:             (product_id,row.get("rule_type","product_offer"),row.get("rule_label","Ürüne Özel Finansman Koşulu"),row.get("min_amount"),row.get("max_amount"),bool(row.get("min_inclusive")),bool(row.get("max_inclusive",True)),row.get("max_installments"),row.get("max_maturity_months"),bool(row.get("interest_free")),row.get("condition_text"),row.get("source_text")),
+460:         )
+461: 
+
+====================================================================================================
+FILE: scripts\repair_housing_finance_comparison_v2.py
+====================================================================================================
+43:         "maximum_maturity_months": 60,
+44:         "maximum_financing_ratio": 100.0,
+45:         "financing_ratio_rules_text": (
+46:             "Arazi değerinin %100'üne kadar finansman kullanılabilir."
+47:         ),
+48:         "allocation_fee_rate": 1.10,
+49:         "allocation_fee_label": "Azami Tahsis Ücreti",
+50:         "source": KUVEYT_2B_URL,
+51:     },
+52:     ("Kuveyt Türk", "Arsa Finansmanı"): {
+53:         "family_key": "arsa_finansmani",
+54:         "family_name": "Arsa Finansmanı",
+55:         "maximum_maturity_months": 60,
+56:         "maximum_financing_ratio": None,
+57:         "financing_ratio_rules_text": None,
+58:         "allocation_fee_rate": 1.10,
+59:         "allocation_fee_label": "Azami Tahsis Ücreti",
+60:         "source": KUVEYT_ARSA_URL,
+61:     },
+62:     ("Kuveyt Türk", "İş Yeri Finansmanı"): {
+63:         "family_key": "isyeri_finansmani",
+64:         "family_name": "İş Yeri Finansmanı",
+65:         "maximum_maturity_months": 60,
+66:         "maximum_financing_ratio": None,
+67:         "financing_ratio_rules_text": None,
+68:         "allocation_fee_rate": 1.10,
+69:         "allocation_fee_label": "Azami Tahsis Ücreti",
+70:         "source": KUVEYT_WORK_URL,
+71:     },
+72: }
+73: 
+74: STALE_GENERIC_OFFER = "Ürüne Özel Finansman Koşulu"
+75: 
+76: 
+77: def _load_rules(raw: object) -> dict[str, list[dict[str, Any]]]:
+78:     if isinstance(raw, dict):
+189: ) -> None:
+190:     for table in (
+191:         "live_product_category_rules",
+192:         "live_product_amount_maturity_rules",
+193:         "live_product_pricing_tiers",
+194:         "live_product_fee_rules",
+195:         "live_product_offer_rules",
+196:     ):
+197:         con.execute(f"DELETE FROM {table} WHERE product_id=?", (product_id,))
+198: 
+199:     for row in rules.get("category_rules", []):
+200:         con.execute(
+201:             """INSERT INTO live_product_category_rules
+202:                (product_id,category_key,category_label,min_amount,max_amount,
+203:                 min_inclusive,max_inclusive,max_installments,max_maturity_months,
+243:         if row.get("maturity_months") is None:
+244:             continue
+245:         con.execute(
+246:             """INSERT INTO live_product_pricing_tiers
+247:                (product_id,pricing_variant,financing_amount,maturity_months,
+248:                 profit_share_rate,allocation_fee_rate,monthly_total_cost_rate,
+249:                 annual_total_cost_rate,source_text,updated_at)
+250:                VALUES (?,?,?,?,?,?,?,?,?,?)""",
+251:             (
+252:                 product_id,
+253:                 row.get("pricing_variant") or "Standart",
+254:                 row.get("financing_amount"),
+255:                 row.get("maturity_months"),
+256:                 row.get("profit_share_rate"),
+257:                 row.get("allocation_fee_rate"),
+258:                 row.get("monthly_total_cost_rate"),
+259:                 row.get("annual_total_cost_rate"),
+260:                 row.get("source_text"),
+261:                 NOW,
+262:             ),
+263:         )
+264: 
+265:     for row in rules.get("fee_rules", []):
+266:         con.execute(
+267:             """INSERT INTO live_product_fee_rules
+268:                (product_id,fee_type,fee_label,waived,amount,rate,note,updated_at)
+269:                VALUES (?,?,?,?,?,?,?,?)""",
+270:             (
+271:                 product_id,
+272:                 row.get("fee_type"),
+273:                 row.get("fee_label"),
+274:                 int(bool(row.get("waived"))),
+275:                 row.get("amount"),
+276:                 row.get("rate"),
+277:                 row.get("note"),
+278:                 NOW,
+279:             ),
+280:         )
+281: 
+282:     for row in rules.get("offer_rules", []):
+306: 
+307: def _reclassified_rules(current: object, cfg: dict[str, Any]) -> dict[str, Any]:
+308:     rules = _load_rules(current)
+309:     rules["fee_rules"] = [
+310:         row for row in rules["fee_rules"]
+311:         if str(row.get("fee_type") or "").casefold() != "allocation"
+312:         and "tahsis" not in str(row.get("fee_label") or "").casefold()
+313:         and str(row.get("fee_type") or "").casefold() != "general_expense"
+314:     ]
+315:     rules["fee_rules"].append(
+316:         {
+317:             "fee_type": "allocation",
+318:             "fee_label": cfg["allocation_fee_label"],
+319:             "waived": False,
+320:             "amount": None,
+321:             "rate": cfg["allocation_fee_rate"],
+322:             "note": (
+323:                 "Resmî kaynakta ticari/gayrimenkul finansmanı için tahsis ücreti "
+324:                 f"azami %{cfg['allocation_fee_rate']:.2f} olarak yayımlanır. "
+325:                 f"Kaynak: {cfg['source']}"
+326:             ),
+327:         }
+328:     )
+329:     return rules
+330: 
+331: 
+332: def repair_sqlite() -> tuple[int, int, Path | None]:
+333:     db = PROJECT_ROOT / "data" / "campaigns.db"
+441: def _pg_sync_rules(cur, product_id: int, rules: dict[str, Any]) -> None:
+442:     for table in (
+443:         "product_category_rules",
+444:         "product_amount_maturity_rules",
+445:         "product_pricing_tiers",
+446:         "product_fee_rules",
+447:         "product_offer_rules",
+448:     ):
+449:         cur.execute(f"DELETE FROM {table} WHERE product_id=%s", (product_id,))
+450: 
+451:     for row in rules.get("category_rules", []):
+452:         cur.execute(
+453:             """INSERT INTO product_category_rules
+454:                (product_id,category_key,category_label,min_amount,max_amount,
+455:                 min_inclusive,max_inclusive,max_installments,max_maturity_months,
+482:         if row.get("maturity_months") is None:
+483:             continue
+484:         cur.execute(
+485:             """INSERT INTO product_pricing_tiers
+486:                (product_id,pricing_variant,financing_amount,maturity_months,
+487:                 profit_share_rate,allocation_fee_rate,monthly_total_cost_rate,
+488:                 annual_total_cost_rate,source_text,updated_at)
+489:                VALUES (%s,%s,%s,%s,%s,%s,%s,%s,%s,NOW())""",
+490:             (
+491:                 product_id,row.get("pricing_variant") or "Standart",row.get("financing_amount"),
+492:                 row.get("maturity_months"),row.get("profit_share_rate"),
+493:                 row.get("allocation_fee_rate"),row.get("monthly_total_cost_rate"),
+494:                 row.get("annual_total_cost_rate"),row.get("source_text"),
+495:             ),
+496:         )
+497: 
+498:     for row in rules.get("fee_rules", []):
+499:         cur.execute(
+500:             """INSERT INTO product_fee_rules
+501:                (product_id,fee_type,fee_label,waived,amount,rate,note,updated_at)
+502:                VALUES (%s,%s,%s,%s,%s,%s,%s,NOW())""",
+503:             (
+504:                 product_id,row.get("fee_type"),row.get("fee_label"),bool(row.get("waived")),
+505:                 row.get("amount"),row.get("rate"),row.get("note"),
+506:             ),
+507:         )
+508: 
+509:     for row in rules.get("offer_rules", []):
+510:         cur.execute(
+511:             """INSERT INTO product_offer_rules
+512:                (product_id,rule_type,rule_label,min_amount,max_amount,min_inclusive,
+513:                 max_inclusive,max_installments,max_maturity_months,interest_free,
+
+====================================================================================================
+FILE: scripts\run_turkiye_finans_post_sync_pipeline.py
+====================================================================================================
+419:             "amount_max": 1000000.0,
+420:             "maturity_min": 3,
+421:             "maturity_max": 36,
+422:             "profit_min": 3.96,
+423:             "profit_max": 5.06,
+424:             "allocation_rate": 0.50,
+425:         },
+426:         {
+427:             "path": "kamu-calisanlarina-ozel-ihtiyac-finansmani",
+428:             "amount_min": 50000.0,
+429:             "amount_max": 400000.0,
+430:             "maturity_min": 3,
+431:             "maturity_max": 36,
+432:             "profit_min": 4.01,
+433:             "profit_max": 5.26,
+434:             "allocation_rate": 0.50,
+435:         },
+436:         {
+437:             "path": "ihtiyac-finansmani-kampanyasi",
+438:             "amount_min": 50000.0,
+439:             "amount_max": 50000.0,
+440:             "maturity_min": 3,
+441:             "maturity_max": 3,
+442:             "profit_min": 0.0,
+443:             "profit_max": 0.0,
+444:             "allocation_rate": None,
+445:         },
+446:     )
+447: 
+448:     for check in checks:
+449:         row = connection.execute(
+450:             f"""
+451:             SELECT
+452:                 f.financing_amount_min,
+453:                 f.financing_amount_max,
+454:                 f.maturity_min_months,
+455:                 f.maturity_max_months,
+456:                 f.profit_share_rate_min,
+457:                 f.profit_share_rate_max,
+458:                 f.allocation_fee_rate,
+459:                 f.extraction_confidence
+460:             FROM live_campaigns AS c
+461:             JOIN live_campaign_finance_details AS f
+462:               ON f.{campaign_column} = c.id
+463:             WHERE c.bank_name = ?
+464:               AND c.source_url LIKE ?
+465:             """,
+466:             (
+467:                 bank,
+493:                 errors.append(
+494:                     f"{check['path']} | {db_field}: "
+495:                     f"beklenen {expected}, bulunan {actual}"
+496:                 )
+497: 
+498:         actual_allocation = row["allocation_fee_rate"]
+499:         expected_allocation = check["allocation_rate"]
+500: 
+501:         if expected_allocation is None:
+502:             if actual_allocation is not None:
+503:                 errors.append(
+504:                     f"{check['path']} | allocation_fee_rate "
+505:                     f"None olmalı, bulunan {actual_allocation}"
+506:                 )
+507:         elif (
+508:             actual_allocation is None
+509:             or abs(
+510:                 float(actual_allocation)
+511:                 - float(expected_allocation)
+512:             )
+513:             > 0.001
+514:         ):
+515:             errors.append(
+516:                 f"{check['path']} | allocation_fee_rate: "
+517:                 f"beklenen {expected_allocation}, "
+518:                 f"bulunan {actual_allocation}"
+519:             )
+520: 
+521:         confidence = row["extraction_confidence"]
+522: 
+523:         if confidence is None or float(confidence) < 1.0:
+524:             errors.append(
+525:                 f"{check['path']} | extraction_confidence "
+526:                 f"1.0 olmalı, bulunan {confidence}"
+527:             )
+
+====================================================================================================
+FILE: scripts\show_finance_comparison_preview.py
+====================================================================================================
+34:                 profit_share_rate_text,
+35:                 financing_amount_text,
+36:                 maturity_text,
+37:                 grace_period_months,
+38:                 campaign_advantage,
+39:                 allocation_fee_amount,
+40:                 allocation_fee_rate,
+41:                 allocation_fee_status,
+42:                 expense_status,
+43:                 start_date,
+44:                 end_date,
+45:                 current_status
+46:             FROM live_campaign_comparison
+47:             WHERE campaign_category = 'finance_campaign'
+48:               AND (? IS NULL OR bank_name = ?)
+49:             ORDER BY
+50:                 finance_type,
+84:             print(
+85:                 "Kampanya avantajı:",
+86:                 display(row["campaign_advantage"]),
+87:             )
+88: 
+89:             allocation_display = "Belirtilmemiş"
+90:             if row["allocation_fee_rate"] is not None:
+91:                 allocation_display = (
+92:                     "%"
+93:                     + str(row["allocation_fee_rate"]).replace(
+94:                         ".",
+95:                         ",",
+96:                     )
+97:                 )
+98:             elif row["allocation_fee_amount"] is not None:
+99:                 allocation_display = (
+100:                     f"{row['allocation_fee_amount']:,.0f} TL"
+101:                     .replace(",", ".")
+102:                 )
+103:             elif row["allocation_fee_status"]:
+104:                 allocation_display = row["allocation_fee_status"]
+105: 
+106:             print("Tahsis ücreti:", allocation_display)
+107:             print(
+108:                 "Masraf durumu:",
+109:                 display(row["expense_status"]),
+110:             )
+111:             print(
+112:                 "Kampanya süresi:",
+113:                 (
+114:                     f"{display(row['start_date'])} - "
+115:                     f"{display(row['end_date'])}"
+
+====================================================================================================
+FILE: scripts\sync_albaraka_vehicle_to_postgresql.py
+====================================================================================================
+180:                             legacy_id,
+181:                             product_id,
+182:                             financing_amount,
+183:                             maturity_months,
+184:                             profit_share_rate,
+185:                             allocation_fee_rate,
+186:                             monthly_total_cost_rate,
+187:                             annual_total_cost_rate,
+188:                             pricing_variant,
+189:                             source_text,
+190:                             updated_at
+191:                         ) VALUES (%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)
+192:                         """,
+193:                         (
+194:                             int(tier["id"]),
+195:                             pg_product_id,
+196:                             tier["financing_amount"],
+197:                             tier["maturity_months"],
+198:                             tier["profit_share_rate"],
+199:                             tier["allocation_fee_rate"],
+200:                             tier["monthly_total_cost_rate"],
+201:                             tier["annual_total_cost_rate"],
+202:                             tier["pricing_variant"],
+203:                             tier["source_text"],
+204:                             tier["updated_at"],
+205:                         ),
+206:                     )
+207: 
+208:         pg.commit()
+
+====================================================================================================
+FILE: scripts\sync_finance_data_accuracy_v2_to_postgresql.py
+====================================================================================================
+257:         ("live_product_amount_maturity_rules", "product_amount_maturity_rules",
+258:          ["min_amount","max_amount","min_inclusive","max_inclusive","max_maturity_months","source_text","updated_at"]),
+259:         ("live_product_category_rules", "product_category_rules",
+260:          ["category_key","category_label","min_amount","max_amount","min_inclusive","max_inclusive","max_installments","max_maturity_months","condition_text","source_text","updated_at"]),
+261:         ("live_product_pricing_tiers", "product_pricing_tiers",
+262:          ["financing_amount","maturity_months","profit_share_rate","allocation_fee_rate","monthly_total_cost_rate","annual_total_cost_rate","pricing_variant","value_type","source_type","conditions","source_url","source_text","updated_at"]),
+263:         ("live_product_fee_rules", "product_fee_rules",
+264:          ["fee_type","fee_label","waived","amount","rate","note","updated_at"]),
+265:         ("live_product_offer_rules", "product_offer_rules",
+266:          ["rule_type","rule_label","min_amount","max_amount","min_inclusive","max_inclusive","max_installments","max_maturity_months","interest_free","condition_text","source_text","updated_at"]),
+267:         ("live_product_features", "product_features",
+268:          ["feature_key","feature_label","feature_value","source_text","extraction_method","updated_at"]),
+269:         ("live_finance_fact_evidence", "finance_fact_evidence",
+270:          ["fact_key","value_text","value_numeric","value_type","source_type","conditions","source_url","source_text","verification_status","updated_at"]),
+271:     ]
+272: 
+273:     with pg.cursor() as cur:
+
+====================================================================================================
+FILE: scripts\sync_finance_data_accuracy_v2_to_postgresql_before_legacy_fix.py
+====================================================================================================
+209:         ("live_product_amount_maturity_rules", "product_amount_maturity_rules",
+210:          ["min_amount","max_amount","min_inclusive","max_inclusive","max_maturity_months","source_text","updated_at"]),
+211:         ("live_product_category_rules", "product_category_rules",
+212:          ["category_key","category_label","min_amount","max_amount","min_inclusive","max_inclusive","max_installments","max_maturity_months","condition_text","source_text","updated_at"]),
+213:         ("live_product_pricing_tiers", "product_pricing_tiers",
+214:          ["financing_amount","maturity_months","profit_share_rate","allocation_fee_rate","monthly_total_cost_rate","annual_total_cost_rate","pricing_variant","value_type","source_type","conditions","source_url","source_text","updated_at"]),
+215:         ("live_product_fee_rules", "product_fee_rules",
+216:          ["fee_type","fee_label","waived","amount","rate","note","updated_at"]),
+217:         ("live_product_offer_rules", "product_offer_rules",
+218:          ["rule_type","rule_label","min_amount","max_amount","min_inclusive","max_inclusive","max_installments","max_maturity_months","interest_free","condition_text","source_text","updated_at"]),
+219:         ("live_product_features", "product_features",
+220:          ["feature_key","feature_label","feature_value","source_text","extraction_method","updated_at"]),
+221:         ("live_finance_fact_evidence", "finance_fact_evidence",
+222:          ["fact_key","value_text","value_numeric","value_type","source_type","conditions","source_url","source_text","verification_status","updated_at"]),
+223:     ]
+224: 
+225:     with pg.cursor() as cur:
+
+====================================================================================================
+FILE: scripts\sync_finance_rule_engine.py
+====================================================================================================
+80:             product_id INTEGER NOT NULL,
+81:             pricing_variant TEXT,
+82:             financing_amount REAL,
+83:             maturity_months INTEGER NOT NULL,
+84:             profit_share_rate REAL,
+85:             allocation_fee_rate REAL,
+86:             monthly_total_cost_rate REAL,
+87:             annual_total_cost_rate REAL,
+88:             source_text TEXT,
+89:             updated_at TEXT NOT NULL,
+90:             FOREIGN KEY(product_id)
+91:                 REFERENCES live_campaigns(id)
+92:                 ON DELETE CASCADE
+93:         );
+94: 
+95:         CREATE TABLE IF NOT EXISTS
+96:         live_product_fee_rules (
+97:             id INTEGER PRIMARY KEY AUTOINCREMENT,
+98:             product_id INTEGER NOT NULL,
+99:             fee_type TEXT NOT NULL,
+100:             fee_label TEXT NOT NULL,
+101:             waived INTEGER NOT NULL DEFAULT 0,
+102:             amount REAL,
+103:             rate REAL,
+104:             note TEXT,
+105:             updated_at TEXT NOT NULL,
+106:             FOREIGN KEY(product_id)
+107:                 REFERENCES live_campaigns(id)
+108:                 ON DELETE CASCADE
+109:         );
+191:         CREATE INDEX IF NOT EXISTS
+192:         idx_product_pricing_tiers_product
+193:         ON live_product_pricing_tiers(product_id);
+194: 
+195:         CREATE INDEX IF NOT EXISTS
+196:         idx_product_fee_rules_product
+197:         ON live_product_fee_rules(product_id);
+198: 
+199: 
+200:         CREATE INDEX IF NOT EXISTS
+201:         idx_product_offer_rules_product
+202:         ON live_product_offer_rules(product_id);
+203:         """
+204:     )
+205: 
+206:     pricing_columns = {
+263:         "DELETE FROM live_product_pricing_tiers "
+264:         "WHERE product_id=?",
+265:         (product_id,),
+266:     )
+267:     con.execute(
+268:         "DELETE FROM live_product_fee_rules "
+269:         "WHERE product_id=?",
+270:         (product_id,),
+271:     )
+272:     con.execute(
+273:         "DELETE FROM live_product_offer_rules "
+274:         "WHERE product_id=?",
+275:         (product_id,),
+276:     )
+277: 
+346:                 product_id,
+347:                 pricing_variant,
+348:                 financing_amount,
+349:                 maturity_months,
+350:                 profit_share_rate,
+351:                 allocation_fee_rate,
+352:                 monthly_total_cost_rate,
+353:                 annual_total_cost_rate,
+354:                 source_text,
+355:                 value_type,
+356:                 source_type,
+357:                 conditions,
+358:                 source_url,
+359:                 updated_at
+360:             )
+364:                 product_id,
+365:                 row.get("pricing_variant", "Standart"),
+366:                 row.get("financing_amount"),
+367:                 row.get("maturity_months"),
+368:                 row.get("profit_share_rate"),
+369:                 row.get("allocation_fee_rate"),
+370:                 row.get("monthly_total_cost_rate"),
+371:                 row.get("annual_total_cost_rate"),
+372:                 row.get("source_text"),
+373:                 row.get("value_type", "exact"),
+374:                 row.get("source_type", "official_pricing_table"),
+375:                 row.get("conditions"),
+376:                 row.get("source_url"),
+377:                 timestamp,
+378:             ),
+380:         counts["pricing"] += 1
+381: 
+382:     for row in rules.get("fee_rules", []):
+383:         con.execute(
+384:             """
+385:             INSERT INTO live_product_fee_rules (
+386:                 product_id,
+387:                 fee_type,
+388:                 fee_label,
+389:                 waived,
+390:                 amount,
+391:                 rate,
+392:                 note,
+393:                 updated_at
+394:             )
+395:             VALUES (?, ?, ?, ?, ?, ?, ?, ?)
+396:             """,
+397:             (
+398:                 product_id,
+399:                 row.get("fee_type"),
+400:                 row.get("fee_label"),
+401:                 1 if row.get("waived") else 0,
+402:                 row.get("amount"),
+403:                 row.get("rate"),
+404:                 row.get("note"),
+405:                 timestamp,
+406:             ),
+407:         )
+408:         counts["fee"] += 1
+409: 
+580:         )
+581: 
+582:     for idx, row in enumerate(rules.get("fee_rules", []), start=1):
+583:         note = str(row.get("note") or "")
+584:         note_key = note.casefold()
+585:         fee_key = str(row.get("fee_type") or idx)
+586:         source_type = (
+587:             "official_fee_tariff"
+588:             if any(token in note_key for token in ("ücret tablos", "ücret tarif", "ürün ve hizmet ücret"))
+589:             else "product_page"
+590:         )
+591:         verification_status = "source_conflict" if "farklı değer" in note_key or "birbiriyle farklı" in note_key else "verified"
+592: 
+593:         if row.get("waived"):
+594:             add(
+611:             else:
+612:                 amount_value_type = "exact"
+613:                 amount_source_type = source_type
+614:             add(
+615:                 fact_key=f"fee_rule:{fee_key}:amount",
+616:                 value_text=row.get("fee_label"), value_numeric=row.get("amount"),
+617:                 value_type=amount_value_type, source_type=amount_source_type,
+618:                 conditions=note or None, source_url=source_url, source_text=note or None,
+619:                 verification_status=verification_status,
+620:             )
+621: 
+622:         if row.get("rate") is not None:
+623:             rate_value_type = "maximum" if "azami" in note_key or "maksimum" in note_key else "exact"
+624:             add(
+625:                 fact_key=f"fee_rule:{fee_key}:rate",
+626:                 value_text=row.get("fee_label"), value_numeric=row.get("rate"),
+627:                 value_type=rate_value_type, source_type=source_type,
+628:                 conditions=note or None, source_url=source_url, source_text=note or None,
+629:                 verification_status=verification_status,
+630:             )
+631: 
+632:     for record in records:
+633:         con.execute(
+634:             """
+635:             INSERT INTO live_finance_fact_evidence (
+
+====================================================================================================
+FILE: scripts\sync_standard_products_to_db.py
+====================================================================================================
+66:     "shopping_phone_rule_text",
+67:     "shopping_tablet_max_maturity_months",
+68:     "shopping_computer_max_maturity_months",
+69:     "fee_waiver_text",
+70:     "insurance_fee_waived",
+71:     "allocation_fee_waived",
+72:     "commission_fee_waived",
+73:     "finance_rules_json",
+74: )
+75: 
+76: 
+77: def now_iso() -> str:
+78:     return (
+79:         datetime.now(timezone.utc)
+80:         .replace(microsecond=0)
+137:             shopping_phone_rule_text TEXT,
+138:             shopping_tablet_max_maturity_months INTEGER,
+139:             shopping_computer_max_maturity_months INTEGER,
+140:             fee_waiver_text TEXT,
+141:             insurance_fee_waived INTEGER,
+142:             allocation_fee_waived INTEGER,
+143:             commission_fee_waived INTEGER,
+144:             finance_rules_json TEXT,
+145:             checked_at TEXT,
+146:             extracted_at TEXT NOT NULL,
+147:             FOREIGN KEY(product_id)
+148:                 REFERENCES live_campaigns(id)
+149:                 ON DELETE CASCADE
+150:         );
+151: 
+287:     if "insurance_fee_waived" not in detail_columns:
+288:         connection.execute(
+289:             "ALTER TABLE live_standard_product_details "
+290:             "ADD COLUMN insurance_fee_waived INTEGER"
+291:         )
+292:     if "allocation_fee_waived" not in detail_columns:
+293:         connection.execute(
+294:             "ALTER TABLE live_standard_product_details "
+295:             "ADD COLUMN allocation_fee_waived INTEGER"
+296:         )
+297:     if "commission_fee_waived" not in detail_columns:
+298:         connection.execute(
+299:             "ALTER TABLE live_standard_product_details "
+300:             "ADD COLUMN commission_fee_waived INTEGER"
+301:         )
+302:     if "finance_rules_json" not in detail_columns:
+303:         connection.execute(
+304:             "ALTER TABLE live_standard_product_details "
+469:             product.get("shopping_computer_max_maturity_months"),
+470:         "fee_waiver_text":
+471:             product.get("fee_waiver_text"),
+472:         "insurance_fee_waived":
+473:             1 if product.get("insurance_fee_waived") is True else 0,
+474:         "allocation_fee_waived":
+475:             1 if product.get("allocation_fee_waived") is True else 0,
+476:         "commission_fee_waived":
+477:             1 if product.get("commission_fee_waived") is True else 0,
+478:         "finance_rules_json":
+479:             product.get("finance_rules_json"),
+480:     }
+481: 
+482: 
+483: def changed_fields(
+484:     before: dict[str, Any] | None,
+754:             shopping_phone_rule_text,
+755:             shopping_tablet_max_maturity_months,
+756:             shopping_computer_max_maturity_months,
+757:             fee_waiver_text,
+758:             insurance_fee_waived,
+759:             allocation_fee_waived,
+760:             commission_fee_waived,
+761:             finance_rules_json,
+762:             checked_at,
+763:             extracted_at
+764:         )
+765:         VALUES (
+766:             ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?
+767:         )
+768:         ON CONFLICT(product_id) DO UPDATE SET
+824:                 excluded.shopping_computer_max_maturity_months,
+825:             fee_waiver_text =
+826:                 excluded.fee_waiver_text,
+827:             insurance_fee_waived =
+828:                 excluded.insurance_fee_waived,
+829:             allocation_fee_waived =
+830:                 excluded.allocation_fee_waived,
+831:             commission_fee_waived =
+832:                 excluded.commission_fee_waived,
+833:             finance_rules_json =
+834:                 excluded.finance_rules_json,
+835:             checked_at =
+836:                 excluded.checked_at,
+837:             extracted_at =
+838:                 excluded.extracted_at
+839:         """,
+868:             after["shopping_phone_rule_text"],
+869:             after["shopping_tablet_max_maturity_months"],
+870:             after["shopping_computer_max_maturity_months"],
+871:             after["fee_waiver_text"],
+872:             after["insurance_fee_waived"],
+873:             after["allocation_fee_waived"],
+874:             after["commission_fee_waived"],
+875:             after["finance_rules_json"],
+876:             product.get("checked_at"),
+877:             timestamp,
+878:         ),
+879:     )
+880: 
+881:     connection.execute(
+882:         """

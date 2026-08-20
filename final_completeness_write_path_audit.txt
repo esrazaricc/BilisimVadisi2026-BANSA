@@ -1,0 +1,1092 @@
+
+========================================================================================================================
+FILE: scripts\apply_finance_data_accuracy_v2.py
+========================================================================================================================
+shopping_general_max_maturity_months => 0 hit
+shopping_phone_rule_text => 0 hit
+shopping_tablet_max_maturity_months => 0 hit
+shopping_computer_max_maturity_months => 0 hit
+shopping_finance_rules_text => 0 hit
+finance_rules_json => 4 hit
+
+--- finance_rules_json | LINES 26-38 ---
+26:     "maturity_rules_text",
+27:     "financing_ratio_rules_text",
+28:     "maximum_financing_ratio",
+29:     "housing_first_home_rules_text",
+30:     "housing_additional_home_rules_text",
+31:     "housing_finance_rules_json",
+32:     "vehicle_finance_rules_text",
+33:     "vehicle_age_rules_text",
+34:     "finance_rules_json",
+35: )
+36: 
+37: 
+38: def main() -> int:
+
+--- finance_rules_json | LINES 29-41 ---
+29:     "housing_first_home_rules_text",
+30:     "housing_additional_home_rules_text",
+31:     "housing_finance_rules_json",
+32:     "vehicle_finance_rules_text",
+33:     "vehicle_age_rules_text",
+34:     "finance_rules_json",
+35: )
+36: 
+37: 
+38: def main() -> int:
+39:     parser = argparse.ArgumentParser()
+40:     parser.add_argument("--db", type=Path, default=DEFAULT_DB)
+41:     args = parser.parse_args()
+
+--- finance_rules_json | LINES 70-82 ---
+70:                     SET minimum_financing_amount=?, maximum_financing_amount=?,
+71:                         maximum_maturity_months=?, profit_share_rate=?,
+72:                         profit_share_rate_text=?, interest_free=?, interest_free_text=?, maturity_rules_text=?,
+73:                         financing_ratio_rules_text=?, maximum_financing_ratio=?,
+74:                         housing_first_home_rules_text=?, housing_additional_home_rules_text=?,
+75:                         housing_finance_rules_json=?, vehicle_finance_rules_text=?, vehicle_age_rules_text=?,
+76:                         finance_rules_json=?
+77:                     WHERE product_id=?
+78:                     """,
+79:                     tuple(updates[field] for field in UPDATE_FIELDS) + (int(before["product_id"]),),
+80:                 )
+81:                 changed += 1
+82: 
+
+--- finance_rules_json | LINES 71-83 ---
+71:                         maximum_maturity_months=?, profit_share_rate=?,
+72:                         profit_share_rate_text=?, interest_free=?, interest_free_text=?, maturity_rules_text=?,
+73:                         financing_ratio_rules_text=?, maximum_financing_ratio=?,
+74:                         housing_first_home_rules_text=?, housing_additional_home_rules_text=?,
+75:                         housing_finance_rules_json=?, vehicle_finance_rules_text=?, vehicle_age_rules_text=?,
+76:                         finance_rules_json=?
+77:                     WHERE product_id=?
+78:                     """,
+79:                     tuple(updates[field] for field in UPDATE_FIELDS) + (int(before["product_id"]),),
+80:                 )
+81:                 changed += 1
+82: 
+83:     con.close()
+category_rules => 0 hit
+live_product_category_rules => 0 hit
+apply_finance_data_quality_overrides => 2 hit
+
+--- apply_finance_data_quality_overrides | LINES 7-19 ---
+7: 
+8: PROJECT_ROOT = Path(__file__).resolve().parents[1]
+9: if str(PROJECT_ROOT) not in sys.path:
+10:     sys.path.insert(0, str(PROJECT_ROOT))
+11: 
+12: from src.finance_data_quality import apply_finance_data_quality_overrides
+13: from src.albaraka_standard_product_overrides import apply_albaraka_standard_product_overrides
+14: from src.housing_verified_source_overrides import apply_verified_housing_product_overrides
+15: 
+16: DEFAULT_DB = PROJECT_ROOT / "data" / "campaigns.db"
+17: 
+18: UPDATE_FIELDS = (
+19:     "minimum_financing_amount",
+
+--- apply_finance_data_quality_overrides | LINES 59-71 ---
+59:             payload = dict(before)
+60:             payload["url"] = before.get("source_url")
+61:             payload["source_page"] = before.get("source_page") or before.get("source_url")
+62:             after = apply_albaraka_standard_product_overrides(payload)
+63:             after = apply_verified_housing_product_overrides(after)
+64:             after = apply_finance_data_quality_overrides(after)
+65:             updates = {field: after.get(field) for field in UPDATE_FIELDS}
+66:             if any(before.get(field) != value for field, value in updates.items()):
+67:                 con.execute(
+68:                     """
+69:                     UPDATE live_standard_product_details
+70:                     SET minimum_financing_amount=?, maximum_financing_amount=?,
+71:                         maximum_maturity_months=?, profit_share_rate=?,
+sync_finance_rule => 0 hit
+
+========================================================================================================================
+FILE: src\finance_data_quality.py
+========================================================================================================================
+shopping_general_max_maturity_months => 2 hit
+
+--- shopping_general_max_maturity_months | LINES 188-200 ---
+188:         for key in (
+189:             "minimum_financing_amount", "maximum_financing_amount",
+190:             "minimum_maturity_months", "maximum_maturity_months",
+191:             "profit_share_rate", "maximum_financing_ratio",
+192:             "maturity_reference_upper_amount", "shopping_general_limit_amount",
+193:             "shopping_general_max_maturity_months", "shopping_tablet_max_maturity_months",
+194:             "shopping_computer_max_maturity_months",
+195:         ):
+196:             out[key] = None
+197:         out["profit_share_rate_text"] = "Resmî genel tanıtım sayfasında sayısal güncel oran yayımlanmamış"
+198:         out["maturity_rules_text"] = None
+199:         out["financing_ratio_rules_text"] = None
+200:         out["housing_first_home_rules_text"] = None
+
+--- shopping_general_max_maturity_months | LINES 633-645 ---
+633:     ):
+634:         out["maximum_maturity_months"] = 34
+635:         out["maturity_rules_text"] = (
+636:             "Toplam harcama i\u00e7in 6\u201334 ay geri \u00f6deme"
+637:         )
+638:         out["shopping_general_max_maturity_months"] = 34
+639: 
+640:         out["shopping_phone_rule_text"] = (
+641:             "\u226420.000 TL: en fazla 10 taksit"
+642:         )
+643: 
+644:         _cr = [
+645:             r
+shopping_phone_rule_text => 2 hit
+
+--- shopping_phone_rule_text | LINES 635-647 ---
+635:         out["maturity_rules_text"] = (
+636:             "Toplam harcama i\u00e7in 6\u201334 ay geri \u00f6deme"
+637:         )
+638:         out["shopping_general_max_maturity_months"] = 34
+639: 
+640:         out["shopping_phone_rule_text"] = (
+641:             "\u226420.000 TL: en fazla 10 taksit"
+642:         )
+643: 
+644:         _cr = [
+645:             r
+646:             for r in rules.get("category_rules", [])
+647:             if str(r.get("category_key") or "") != "cep_telefonu"
+
+--- shopping_phone_rule_text | LINES 1004-1016 ---
+1004:     # ------------------------------------------------------------
+1005:     if (
+1006:         _same(bank, "Vak\u0131f Kat\u0131l\u0131m")
+1007:         and _same(product, "\u0130htiya\u00e7 Finansman\u0131")
+1008:     ):
+1009:         out["shopping_phone_rule_text"] = (
+1010:             "\u226420.000 TL: en fazla 10 taksit"
+1011:         )
+1012: 
+1013:         _cr = [
+1014:             r
+1015:             for r in rules.get("category_rules", [])
+1016:             if str(r.get("category_key") or "") != "cep_telefonu"
+shopping_tablet_max_maturity_months => 4 hit
+
+--- shopping_tablet_max_maturity_months | LINES 188-200 ---
+188:         for key in (
+189:             "minimum_financing_amount", "maximum_financing_amount",
+190:             "minimum_maturity_months", "maximum_maturity_months",
+191:             "profit_share_rate", "maximum_financing_ratio",
+192:             "maturity_reference_upper_amount", "shopping_general_limit_amount",
+193:             "shopping_general_max_maturity_months", "shopping_tablet_max_maturity_months",
+194:             "shopping_computer_max_maturity_months",
+195:         ):
+196:             out[key] = None
+197:         out["profit_share_rate_text"] = "Resmî genel tanıtım sayfasında sayısal güncel oran yayımlanmamış"
+198:         out["maturity_rules_text"] = None
+199:         out["financing_ratio_rules_text"] = None
+200:         out["housing_first_home_rules_text"] = None
+
+--- shopping_tablet_max_maturity_months | LINES 670-682 ---
+670:         _parts = [
+671:             "Genel geri \u00f6deme: 6\u201334 ay",
+672:             "Cep telefonu: \u226420 bin TL: 10 taksit",
+673:         ]
+674: 
+675:         if out.get("shopping_tablet_max_maturity_months"):
+676:             _parts.append(
+677:                 "Tablet: "
+678:                 f"{int(out['shopping_tablet_max_maturity_months'])} ay"
+679:             )
+680: 
+681:         if out.get("shopping_computer_max_maturity_months"):
+682:             _parts.append(
+
+--- shopping_tablet_max_maturity_months | LINES 673-685 ---
+673:         ]
+674: 
+675:         if out.get("shopping_tablet_max_maturity_months"):
+676:             _parts.append(
+677:                 "Tablet: "
+678:                 f"{int(out['shopping_tablet_max_maturity_months'])} ay"
+679:             )
+680: 
+681:         if out.get("shopping_computer_max_maturity_months"):
+682:             _parts.append(
+683:                 "Bilgisayar: "
+684:                 f"{int(out['shopping_computer_max_maturity_months'])} ay"
+685:             )
+
+--- shopping_tablet_max_maturity_months | LINES 738-750 ---
+738:     # ------------------------------------------------------------
+739:     if (
+740:         _same(bank, "Kuveyt T\u00fcrk")
+741:         and _same(product, "Teknosa Al\u0131\u015fveri\u015f Finansman\u0131")
+742:     ):
+743:         out["shopping_tablet_max_maturity_months"] = 6
+744:         out["shopping_finance_rules_text"] = (
+745:             "Genel: \u2264200 bin TL / 36 ay \u00b7 "
+746:             "Cep telefonu: \u226420 bin TL: 12 taksit \u00b7 "
+747:             ">20 bin TL: 3 taksit \u00b7 "
+748:             "Tablet: 6 ay \u00b7 Bilgisayar: 12 ay"
+749:         )
+750: 
+shopping_computer_max_maturity_months => 3 hit
+
+--- shopping_computer_max_maturity_months | LINES 189-201 ---
+189:             "minimum_financing_amount", "maximum_financing_amount",
+190:             "minimum_maturity_months", "maximum_maturity_months",
+191:             "profit_share_rate", "maximum_financing_ratio",
+192:             "maturity_reference_upper_amount", "shopping_general_limit_amount",
+193:             "shopping_general_max_maturity_months", "shopping_tablet_max_maturity_months",
+194:             "shopping_computer_max_maturity_months",
+195:         ):
+196:             out[key] = None
+197:         out["profit_share_rate_text"] = "Resmî genel tanıtım sayfasında sayısal güncel oran yayımlanmamış"
+198:         out["maturity_rules_text"] = None
+199:         out["financing_ratio_rules_text"] = None
+200:         out["housing_first_home_rules_text"] = None
+201:         out["housing_additional_home_rules_text"] = None
+
+--- shopping_computer_max_maturity_months | LINES 676-688 ---
+676:             _parts.append(
+677:                 "Tablet: "
+678:                 f"{int(out['shopping_tablet_max_maturity_months'])} ay"
+679:             )
+680: 
+681:         if out.get("shopping_computer_max_maturity_months"):
+682:             _parts.append(
+683:                 "Bilgisayar: "
+684:                 f"{int(out['shopping_computer_max_maturity_months'])} ay"
+685:             )
+686: 
+687:         out["shopping_finance_rules_text"] = " \u00b7 ".join(_parts)
+688: 
+
+--- shopping_computer_max_maturity_months | LINES 679-691 ---
+679:             )
+680: 
+681:         if out.get("shopping_computer_max_maturity_months"):
+682:             _parts.append(
+683:                 "Bilgisayar: "
+684:                 f"{int(out['shopping_computer_max_maturity_months'])} ay"
+685:             )
+686: 
+687:         out["shopping_finance_rules_text"] = " \u00b7 ".join(_parts)
+688: 
+689:         display_metadata["product_specific_maturity_text"] = (
+690:             "6\u201334 ay"
+691:         )
+shopping_finance_rules_text => 3 hit
+
+--- shopping_finance_rules_text | LINES 200-212 ---
+200:         out["housing_first_home_rules_text"] = None
+201:         out["housing_additional_home_rules_text"] = None
+202:         out["housing_finance_rules_json"] = None
+203:         out["vehicle_finance_rules_text"] = None
+204:         out["vehicle_age_rules_text"] = None
+205:         out["shopping_finance_rules_text"] = None
+206:         rules["amount_maturity_rules"] = []
+207:         rules["pricing_tiers"] = []
+208:         rules["fee_rules"] = []
+209:         rules["offer_rules"] = []
+210:         rules["category_rules"] = []
+211:         display_metadata["source_precision_note"] = "Yalnız resmî genel ürün tanımı gösterilir; sayısal koşul yayımlanmadığı için tahmin yapılmaz."
+212: 
+
+--- shopping_finance_rules_text | LINES 682-694 ---
+682:             _parts.append(
+683:                 "Bilgisayar: "
+684:                 f"{int(out['shopping_computer_max_maturity_months'])} ay"
+685:             )
+686: 
+687:         out["shopping_finance_rules_text"] = " \u00b7 ".join(_parts)
+688: 
+689:         display_metadata["product_specific_maturity_text"] = (
+690:             "6\u201334 ay"
+691:         )
+692: 
+693: 
+694:     # ------------------------------------------------------------
+
+--- shopping_finance_rules_text | LINES 739-751 ---
+739:     if (
+740:         _same(bank, "Kuveyt T\u00fcrk")
+741:         and _same(product, "Teknosa Al\u0131\u015fveri\u015f Finansman\u0131")
+742:     ):
+743:         out["shopping_tablet_max_maturity_months"] = 6
+744:         out["shopping_finance_rules_text"] = (
+745:             "Genel: \u2264200 bin TL / 36 ay \u00b7 "
+746:             "Cep telefonu: \u226420 bin TL: 12 taksit \u00b7 "
+747:             ">20 bin TL: 3 taksit \u00b7 "
+748:             "Tablet: 6 ay \u00b7 Bilgisayar: 12 ay"
+749:         )
+750: 
+751: 
+finance_rules_json => 12 hit
+
+--- finance_rules_json | LINES 158-170 ---
+158:     # Doğrudan ürün URL'si varsa katalog/source_page yerine onu esas al.
+159:     # Bazı keşif kayıtlarında source_page ana katalog sayfasını gösterirken
+160:     # url alanı gerçek ürün sayfasını taşır. Ürün-özel guardrail'ler bu
+161:     # nedenle önce final ürün URL'sine bakmalıdır.
+162:     source_url = str(out.get("url") or out.get("source_page") or "")
+163:     rules = _load_rules(out.get("finance_rules_json"))
+164: 
+165:     # Fiyatlama metadata'sı proje genelinde zorunlu hale gelir.
+166:     rules["pricing_tiers"] = annotate_pricing_rows(
+167:         rules.get("pricing_tiers", []),
+168:         bank_name=bank,
+169:         product_name=product,
+170:         source_url=source_url,
+
+--- finance_rules_json | LINES 197-209 ---
+197:         out["profit_share_rate_text"] = "Resmî genel tanıtım sayfasında sayısal güncel oran yayımlanmamış"
+198:         out["maturity_rules_text"] = None
+199:         out["financing_ratio_rules_text"] = None
+200:         out["housing_first_home_rules_text"] = None
+201:         out["housing_additional_home_rules_text"] = None
+202:         out["housing_finance_rules_json"] = None
+203:         out["vehicle_finance_rules_text"] = None
+204:         out["vehicle_age_rules_text"] = None
+205:         out["shopping_finance_rules_text"] = None
+206:         rules["amount_maturity_rules"] = []
+207:         rules["pricing_tiers"] = []
+208:         rules["fee_rules"] = []
+209:         rules["offer_rules"] = []
+
+--- finance_rules_json | LINES 297-309 ---
+297:         out["maximum_maturity_months"] = 120
+298:         out["maximum_financing_ratio"] = 90.0
+299:         out["financing_ratio_rules_text"] = "Ekspertiz değeri, enerji sınıfı ve konut sahipliği koşullarına göre; azami %90"
+300:         out["housing_first_home_rules_text"] = None
+301:         out["housing_additional_home_rules_text"] = None
+302:         out["housing_finance_rules_json"] = None
+303:         display_metadata["source_anomaly_warning"] = "Resmî 2. ev tablosunda %100 üzeri (%150) görünen hücre karşılaştırmada kullanılmaz; amaçlanan değer tahmin edilmez."
+304: 
+305:     if _same(bank, "Türkiye Emlak Katılım") and _same(product, "Konut Finansmanı"):
+306:         # Ana açıklama ekspertiz değerinin %80'ine kadar finansmanı açıkça
+307:         # yayımlar. Sayfanın aşağısındaki kredi-değer tablosunda 0% ve tekrar
+308:         # eden tutar bandı gibi tutarsız hücreler bulunduğundan o tabloyu
+309:         # otomatik karar verisi olarak kullanmıyoruz.
+
+--- finance_rules_json | LINES 309-321 ---
+309:         # otomatik karar verisi olarak kullanmıyoruz.
+310:         out["maximum_financing_ratio"] = 80.0
+311:         out["financing_ratio_rules_text"] = "Ekspertiz değerinin %80'ine kadar (ana ürün açıklaması)"
+312:         out["housing_first_home_rules_text"] = None
+313:         out["housing_additional_home_rules_text"] = None
+314:         out["housing_finance_rules_json"] = None
+315:         display_metadata["source_anomaly_warning"] = "Resmî sayfadaki ayrıntılı kredi-değer tablosunda tutarsız hücreler bulunduğu için BANSA yalnız ana ürün açıklamasındaki doğrulanmış %80 üst sınırı kullanır."
+316: 
+317:     if _same(bank, "Türkiye Emlak Katılım") and _contains(source_url, "/tr/bireysel/finansmanlar/ihtiyac-finansmani"):
+318:         # Alt ihtiyaç ürünleri ortak sayfanın sonunda yer alan 30.000 TL /
+319:         # 12 ay / %1,69 'Örnek İhtiyaç Finansmanı Tablosu'ndan fiyatlama
+320:         # devralamaz. Alt bölüm kendisi sayısal güncel fiyat yayımlamıyorsa
+321:         # oran boş kalır.
+
+--- finance_rules_json | LINES 608-620 ---
+608:     # Bireysel Çatı GES: top-level kategori oluşturmadan alt türü açıkça sakla.
+609:     if _same(bank, "Kuveyt Türk") and _same(product, "Çatı GES Finansmanı") and _fold(out.get("scope")) == "bireysel":
+610:         display_metadata["comparison_subtype"] = "Sürdürülebilir / Enerji"
+611: 
+612:     rules["display_metadata"] = display_metadata
+613:     out["finance_rules_json"] = json.dumps(rules, ensure_ascii=False, sort_keys=True)
+614:     
+615: 
+616:     # ============================================================
+617:     # FINAL_COMPLETENESS_CANONICAL_V2
+618:     #
+619:     # Evidence-backed final completeness overrides.
+620:     # Generic amount / maturity / ratio fields are populated only
+
+--- finance_rules_json | LINES 1059-1071 ---
+1059: 
+1060:         # 250.000 TL maximum_amount olarak YAZILMAZ.
+1061:         # Bu deger ekipmanin satis bedeli uygunluk kosuludur.
+1062:         try:
+1063:             _ke_rules = json.loads(
+1064:                 out.get("finance_rules_json") or "{}"
+1065:             )
+1066:         except Exception:
+1067:             _ke_rules = {}
+1068: 
+1069:         if not isinstance(_ke_rules, dict):
+1070:             _ke_rules = {}
+1071: 
+
+--- finance_rules_json | LINES 1084-1096 ---
+1084: 
+1085:         _ke_display["financing_ratio_note"] = (
+1086:             "Sat\u0131\u015f bedelinin %100'\u00fcne kadar"
+1087:         )
+1088: 
+1089:         out["finance_rules_json"] = json.dumps(
+1090:             _ke_rules,
+1091:             ensure_ascii=False,
+1092:         )
+1093: 
+1094:     # TARIM_STATE_SUPPORT_FINAL_GUARD
+1095:     try:
+1096:         _final_rules = json.loads(out.get("finance_rules_json") or "{}")
+
+--- finance_rules_json | LINES 1091-1103 ---
+1091:             ensure_ascii=False,
+1092:         )
+1093: 
+1094:     # TARIM_STATE_SUPPORT_FINAL_GUARD
+1095:     try:
+1096:         _final_rules = json.loads(out.get("finance_rules_json") or "{}")
+1097:     except Exception:
+1098:         _final_rules = {}
+1099:     _final_display = (
+1100:         _final_rules.get("display_metadata", {})
+1101:         if isinstance(_final_rules, dict)
+1102:         else {}
+1103:     )
+
+--- finance_rules_json | LINES 1123-1135 ---
+1123:         out["profit_share_rate"] = None
+1124:         out["profit_share_rate_text"] = None
+1125: 
+1126:         try:
+1127:             _ek_rules = json.loads(
+1128:                 out.get("finance_rules_json") or "{}"
+1129:             )
+1130:         except Exception:
+1131:             _ek_rules = {}
+1132: 
+1133:         if not isinstance(_ek_rules, dict):
+1134:             _ek_rules = {}
+1135: 
+
+--- finance_rules_json | LINES 1205-1217 ---
+1205:             "\u0130lk Konut Yap\u0131m finansman\u0131nda 840 baz puan; "
+1206:             "sonraki kentsel d\u00f6n\u00fc\u015f\u00fcm konutlar\u0131nda "
+1207:             "belirtilen ko\u015fullarda 720 baz puan destek."
+1208:         )
+1209: 
+1210:         out["finance_rules_json"] = json.dumps(
+1211:             _ek_rules,
+1212:             ensure_ascii=False,
+1213:         )
+1214: 
+1215: 
+1216: 
+1217:     # VAKIF_TASIT_ALLOCATION_FEE_FINAL_GUARD
+
+--- finance_rules_json | LINES 1226-1238 ---
+1226:         _vt_bank == "vak\u0131f kat\u0131l\u0131m"
+1227:         and _vt_name == "ta\u015f\u0131t finansman\u0131"
+1228:     ):
+1229:         try:
+1230:             _vt_rules = json.loads(
+1231:                 out.get("finance_rules_json") or "{}"
+1232:             )
+1233:         except Exception:
+1234:             _vt_rules = {}
+1235: 
+1236:         if not isinstance(_vt_rules, dict):
+1237:             _vt_rules = {}
+1238: 
+
+--- finance_rules_json | LINES 1314-1325 ---
+1314:             )
+1315:             _vt_display["verified_vehicle_age"] = (
+1316:                 "\u0130kinci elde 10 ya\u015fa kadar"
+1317:             )
+1318: 
+1319:         out["finance_rules_json"] = json.dumps(
+1320:             _vt_rules,
+1321:             ensure_ascii=False,
+1322:         )
+1323: 
+1324: 
+1325:     return out
+category_rules => 7 hit
+
+--- category_rules | LINES 205-217 ---
+205:         out["shopping_finance_rules_text"] = None
+206:         rules["amount_maturity_rules"] = []
+207:         rules["pricing_tiers"] = []
+208:         rules["fee_rules"] = []
+209:         rules["offer_rules"] = []
+210:         rules["category_rules"] = []
+211:         display_metadata["source_precision_note"] = "Yalnız resmî genel ürün tanımı gösterilir; sayısal koşul yayımlanmadığı için tahmin yapılmaz."
+212: 
+213:     # TOM Bank sayfa <title> değerleri zaman zaman encoding/suffix nedeniyle
+214:     # "AlÄ±Å... | TOM Bank" biçiminde gelebiliyor. Ürün kimliğini görünür
+215:     # başlıktan tahmin etmek yerine resmî final ürün URL'siyle sabitle.
+216:     # Böylece hem kullanıcıya bozuk ürün adı gitmez hem de ürün-özel
+217:     # doğruluk kuralları katalog source_page yüzünden atlanmaz.
+
+--- category_rules | LINES 641-653 ---
+641:             "\u226420.000 TL: en fazla 10 taksit"
+642:         )
+643: 
+644:         _cr = [
+645:             r
+646:             for r in rules.get("category_rules", [])
+647:             if str(r.get("category_key") or "") != "cep_telefonu"
+648:         ]
+649: 
+650:         _cr.append(
+651:             {
+652:                 "category_key": "cep_telefonu",
+653:                 "category_label": "Cep Telefonu",
+
+--- category_rules | LINES 663-675 ---
+663:                     "20.000 TL'ye kadar en fazla 10 taksit"
+664:                 ),
+665:             }
+666:         )
+667: 
+668:         rules["category_rules"] = _cr
+669: 
+670:         _parts = [
+671:             "Genel geri \u00f6deme: 6\u201334 ay",
+672:             "Cep telefonu: \u226420 bin TL: 10 taksit",
+673:         ]
+674: 
+675:         if out.get("shopping_tablet_max_maturity_months"):
+
+--- category_rules | LINES 766-778 ---
+766:             ">25.000 TL \u2192 3 ay"
+767:         )
+768: 
+769:         _cr = [
+770:             r
+771:             for r in rules.get("category_rules", [])
+772:             if str(r.get("category_key") or "")
+773:             != "yenilenmis_cep_telefonu"
+774:         ]
+775: 
+776:         _cr.extend(
+777:             [
+778:                 {
+
+--- category_rules | LINES 808-820 ---
+808:                     ),
+809:                 },
+810:             ]
+811:         )
+812: 
+813:         rules["category_rules"] = _cr
+814:         display_metadata["product_specific_maturity_text"] = (
+815:             "\u226425.000 TL: 12 ay \u00b7 >25.000 TL: 3 ay"
+816:         )
+817: 
+818: 
+819:     # ------------------------------------------------------------
+820:     # TURKIYE EMLAK KATILIM - LEASING
+
+--- category_rules | LINES 1010-1022 ---
+1010:             "\u226420.000 TL: en fazla 10 taksit"
+1011:         )
+1012: 
+1013:         _cr = [
+1014:             r
+1015:             for r in rules.get("category_rules", [])
+1016:             if str(r.get("category_key") or "") != "cep_telefonu"
+1017:         ]
+1018: 
+1019:         _cr.append(
+1020:             {
+1021:                 "category_key": "cep_telefonu",
+1022:                 "category_label": "Cep Telefonu",
+
+--- category_rules | LINES 1032-1044 ---
+1032:                     "20.000 TL'ye kadar en fazla 10 taksit"
+1033:                 ),
+1034:             }
+1035:         )
+1036: 
+1037:         rules["category_rules"] = _cr
+1038: 
+1039:         display_metadata["phone_installment_rule"] = (
+1040:             "\u226420.000 TL: en fazla 10 taksit"
+1041:         )
+1042: 
+1043: 
+1044:     # ZIRAAT_KUCUK_EKIPMAN_VERIFIED_RULE
+live_product_category_rules => 0 hit
+apply_finance_data_quality_overrides => 1 hit
+
+--- apply_finance_data_quality_overrides | LINES 141-153 ---
+141:             return out
+142: 
+143:     return out
+144: 
+145: 
+146: def apply_finance_data_quality_overrides(row: Mapping[str, Any]) -> dict[str, Any]:
+147:     """Kaynakta doğrulanmış ürün-özel veri kalitesi düzeltmeleri.
+148: 
+149:     Bu katman yeni finansal değer tahmin etmez. Yalnız daha önce resmî ürün
+150:     sayfalarından doğrulanmış ürün-özel kuralları canonical forma getirir ve
+151:     her fiyatlama satırını evidence metadata'sıyla etiketler.
+152:     """
+153: 
+sync_finance_rule => 0 hit
+
+========================================================================================================================
+FILE: src\finance_rule_engine.py
+========================================================================================================================
+shopping_general_max_maturity_months => 0 hit
+shopping_phone_rule_text => 0 hit
+shopping_tablet_max_maturity_months => 0 hit
+shopping_computer_max_maturity_months => 0 hit
+shopping_finance_rules_text => 0 hit
+finance_rules_json => 0 hit
+category_rules => 2 hit
+
+--- category_rules | LINES 108-120 ---
+108: 
+109: def _money_pattern() -> str:
+110:     return r"(\d{1,3}(?:\.\d{3})+|\d+)(?:,\d{1,2})?"
+111: 
+112: 
+113: def extract_category_rules(
+114:     text: str,
+115: ) -> list[dict[str, Any]]:
+116:     """
+117:     Kategori bazlı taksit / ay kısıtlarını çıkarır.
+118: 
+119:     Önemli:
+120:     - Kaynak "taksit" diyorsa max_installments.
+
+--- category_rules | LINES 1469-1481 ---
+1469:                 "note": "Kaynakta masraf alınmadığı açıkça belirtiliyor.",
+1470:             }
+1471:         )
+1472: 
+1473:     return {
+1474:         "category_rules": extract_category_rules(clean_text),
+1475:         "amount_maturity_rules": extract_amount_maturity_rules(
+1476:             clean_text
+1477:         ),
+1478:         "pricing_tiers": pricing_tiers,
+1479:         "fee_rules": fee_rules,
+1480:         "offer_rules": extract_offer_rules(clean_text),
+1481:     }
+live_product_category_rules => 0 hit
+apply_finance_data_quality_overrides => 0 hit
+sync_finance_rule => 0 hit
+
+========================================================================================================================
+APPLY SCRIPT - SQL WRITE BLOCKS
+========================================================================================================================
+
+--- WRITE BLOCK | LINES 59-89 ---
+59:             payload = dict(before)
+60:             payload["url"] = before.get("source_url")
+61:             payload["source_page"] = before.get("source_page") or before.get("source_url")
+62:             after = apply_albaraka_standard_product_overrides(payload)
+63:             after = apply_verified_housing_product_overrides(after)
+64:             after = apply_finance_data_quality_overrides(after)
+65:             updates = {field: after.get(field) for field in UPDATE_FIELDS}
+66:             if any(before.get(field) != value for field, value in updates.items()):
+67:                 con.execute(
+68:                     """
+69:                     UPDATE live_standard_product_details
+70:                     SET minimum_financing_amount=?, maximum_financing_amount=?,
+71:                         maximum_maturity_months=?, profit_share_rate=?,
+72:                         profit_share_rate_text=?, interest_free=?, interest_free_text=?, maturity_rules_text=?,
+73:                         financing_ratio_rules_text=?, maximum_financing_ratio=?,
+74:                         housing_first_home_rules_text=?, housing_additional_home_rules_text=?,
+75:                         housing_finance_rules_json=?, vehicle_finance_rules_text=?, vehicle_age_rules_text=?,
+76:                         finance_rules_json=?
+77:                     WHERE product_id=?
+78:                     """,
+79:                     tuple(updates[field] for field in UPDATE_FIELDS) + (int(before["product_id"]),),
+80:                 )
+81:                 changed += 1
+82: 
+83:     con.close()
+84:     print(f"Finansman Veri Doğruluk V2: {changed} ürün canonical/evidence kurallarıyla güncellendi.")
+85:     return 0
+86: 
+87: 
+88: if __name__ == "__main__":
+89:     raise SystemExit(main())
+
+========================================================================================================================
+FINAL_COMPLETENESS MARKER POSITION
+========================================================================================================================
+597:     # ------------------------------------------------------------
+598:     if _same(bank, "Albaraka Türk") and _same(product, "2B Arazi Finansmanı"):
+599:         out["profit_share_rate"] = None
+600:         out["profit_share_rate_text"] = "Resmî fiyatlama sayfasından güncel olarak belirlenir"
+601:         display_metadata["pricing_source_label"] = "Finansman Kâr Oranları ve Ücretleri"
+602: 
+603:     # Albaraka TOGG model/tutar/vade ilişkisi pricing tier metadata'sında
+604:     # korunur; tek min-max oranına indirgenmemelidir.
+605:     if _same(bank, "Albaraka Türk") and _same(product, "Togg Finansmanı"):
+606:         display_metadata["pricing_display_mode"] = "model_amount_maturity_tiers"
+607: 
+608:     # Bireysel Çatı GES: top-level kategori oluşturmadan alt türü açıkça sakla.
+609:     if _same(bank, "Kuveyt Türk") and _same(product, "Çatı GES Finansmanı") and _fold(out.get("scope")) == "bireysel":
+610:         display_metadata["comparison_subtype"] = "Sürdürülebilir / Enerji"
+611: 
+612:     rules["display_metadata"] = display_metadata
+613:     out["finance_rules_json"] = json.dumps(rules, ensure_ascii=False, sort_keys=True)
+614:     
+615: 
+616:     # ============================================================
+617:     # FINAL_COMPLETENESS_CANONICAL_V2
+618:     #
+619:     # Evidence-backed final completeness overrides.
+620:     # Generic amount / maturity / ratio fields are populated only
+621:     # where the official product evidence is product-specific.
+622:     # Conditional/category values stay in their rule structures.
+623:     # ============================================================
+624: 
+625:     # ------------------------------------------------------------
+626:     # KUVEYT TURK - IHTIYAC KART
+627:     # General repayment plan: 6-34 months.
+628:     # Phone <=20k TL: max 10 installments.
+629:     # ------------------------------------------------------------
+630:     if (
+631:         _same(bank, "Kuveyt T\u00fcrk")
+632:         and _same(product, "\u0130htiya\u00e7 Kart")
+633:     ):
+634:         out["maximum_maturity_months"] = 34
+635:         out["maturity_rules_text"] = (
+636:             "Toplam harcama i\u00e7in 6\u201334 ay geri \u00f6deme"
+637:         )
+638:         out["shopping_general_max_maturity_months"] = 34
+639: 
+640:         out["shopping_phone_rule_text"] = (
+641:             "\u226420.000 TL: en fazla 10 taksit"
+642:         )
+643: 
+644:         _cr = [
+645:             r
+646:             for r in rules.get("category_rules", [])
+647:             if str(r.get("category_key") or "") != "cep_telefonu"
+648:         ]
+649: 
+650:         _cr.append(
+651:             {
+652:                 "category_key": "cep_telefonu",
+653:                 "category_label": "Cep Telefonu",
+654:                 "condition_text": "\u2264 20.000 TL",
+655:                 "min_amount": None,
+656:                 "max_amount": 20000.0,
+657:                 "min_inclusive": False,
+658:                 "max_inclusive": True,
+659:                 "max_installments": 10,
+660:                 "max_maturity_months": None,
+661:                 "source_text": (
+662:                     "Cep Telefonu al\u0131\u015fveri\u015fleriniz "
+663:                     "20.000 TL'ye kadar en fazla 10 taksit"
+664:                 ),
+665:             }
+666:         )
+667: 
+668:         rules["category_rules"] = _cr
+669: 
+670:         _parts = [
+671:             "Genel geri \u00f6deme: 6\u201334 ay",
+672:             "Cep telefonu: \u226420 bin TL: 10 taksit",
+673:         ]
+674: 
+675:         if out.get("shopping_tablet_max_maturity_months"):
+676:             _parts.append(
+677:                 "Tablet: "
+678:                 f"{int(out['shopping_tablet_max_maturity_months'])} ay"
+679:             )
+680: 
+681:         if out.get("shopping_computer_max_maturity_months"):
+682:             _parts.append(
+683:                 "Bilgisayar: "
+684:                 f"{int(out['shopping_computer_max_maturity_months'])} ay"
+685:             )
+686: 
+687:         out["shopping_finance_rules_text"] = " \u00b7 ".join(_parts)
+688: 
+689:         display_metadata["product_specific_maturity_text"] = (
+690:             "6\u201334 ay"
+691:         )
+692: 
+693: 
+694:     # ------------------------------------------------------------
+695:     # KUVEYT TURK - HAC / UMRE
+696:     # Entire Hac/Umre cost can be financed.
+697:     # ------------------------------------------------------------
+698:     if (
+699:         _same(bank, "Kuveyt T\u00fcrk")
+700:         and _same(product, "Hac-Umre Finansman\u0131")
+701:     ):
+702:         out["maximum_financing_ratio"] = 100.0
+703:         out["financing_ratio_rules_text"] = (
+704:             "Hac/Umre bedelinin tamam\u0131na kadar"
+705:         )
+706:         display_metadata["financing_ratio_note"] = (
+707:             "Hac veya umre bedelinin tamam\u0131 i\u00e7in "
+708:             "finansman deste\u011fi."
+709:         )
+710: 
+711: 
+712:     # ------------------------------------------------------------
+713:     # KUVEYT TURK - SSB SUPPORT PACKAGE
+714:     # Leasing max 60 months; business finance max 12 months.
+715:     # ------------------------------------------------------------
+716:     if (
+717:         _same(bank, "Kuveyt T\u00fcrk")
+718:         and _same(
+719:             product,
+720:             "Savunma Sanayii Ba\u015fkanl\u0131\u011f\u0131 "
+721:             "Finansman Destek Paketi",
+722:         )
+723:     ):
+724:         out["maximum_maturity_months"] = 60
+725:         out["maturity_rules_text"] = (
+726:             "Leasing: azami 60 ay \u00b7 "
+727:             "\u0130\u015fletme Finansman\u0131: azami 12 ay"
+728:         )
+729:         display_metadata["product_specific_maturity_text"] = (
+730:             "Leasing 60 ay \u00b7 \u0130\u015fletme 12 ay"
+731:         )
+732: 
+733: 
+734:     # ------------------------------------------------------------
+735:     # KUVEYT TURK - TEKNOSA
+736:     # The verified tablet category rule is 6 months.
+737:     # Fix stale top-level 36-month tablet value.
+738:     # ------------------------------------------------------------
+739:     if (
+740:         _same(bank, "Kuveyt T\u00fcrk")
+741:         and _same(product, "Teknosa Al\u0131\u015fveri\u015f Finansman\u0131")
+742:     ):
+743:         out["shopping_tablet_max_maturity_months"] = 6
+744:         out["shopping_finance_rules_text"] = (
+745:             "Genel: \u2264200 bin TL / 36 ay \u00b7 "
+746:             "Cep telefonu: \u226420 bin TL: 12 taksit \u00b7 "
+747:             ">20 bin TL: 3 taksit \u00b7 "
+748:             "Tablet: 6 ay \u00b7 Bilgisayar: 12 ay"
+749:         )
+750: 
+751: 
+752:     # ------------------------------------------------------------
+753:     # TURKIYE EMLAK KATILIM - PHONE FINANCE
+754:     # Refurbished phone:
+755:     # <=25k TL -> 12 months
+756:     # >25k TL  -> 3 months
+757:     # ------------------------------------------------------------
+758:     if (
+759:         _same(bank, "T\u00fcrkiye Emlak Kat\u0131l\u0131m")
+760:         and _same(product, "Cep Telefonu Finansman\u0131")
+761:     ):
+762:         out["maximum_maturity_months"] = 12
+763:         out["maturity_rules_text"] = (
+764:             "Yenilenmi\u015f cep telefonu: "
+765:             "\u226425.000 TL \u2192 12 ay | "
+766:             ">25.000 TL \u2192 3 ay"
+767:         )
+768: 
+769:         _cr = [
+770:             r
+771:             for r in rules.get("category_rules", [])
+772:             if str(r.get("category_key") or "")
+773:             != "yenilenmis_cep_telefonu"
+774:         ]
+775: 
+776:         _cr.extend(
+777:             [
+778:                 {
+779:                     "category_key": "yenilenmis_cep_telefonu",
+780:                     "category_label": "Yenilenmi\u015f Cep Telefonu",
+781:                     "condition_text": "\u2264 25.000 TL",
+782:                     "min_amount": None,
+783:                     "max_amount": 25000.0,
+784:                     "min_inclusive": False,
+785:                     "max_inclusive": True,
+786:                     "max_installments": None,
+787:                     "max_maturity_months": 12,
+788:                     "source_text": (
+789:                         "Fiyat\u0131 25.000 TL ve alt\u0131nda olan "
+790:                         "yenilenmi\u015f cep telefonlar\u0131 i\u00e7in "
+791:                         "12 ay vade"
+792:                     ),
+793:                 },
+794:                 {
+795:                     "category_key": "yenilenmis_cep_telefonu",
+796:                     "category_label": "Yenilenmi\u015f Cep Telefonu",
+797:                     "condition_text": "> 25.000 TL",
+798:                     "min_amount": 25000.0,
+799:                     "max_amount": None,
+800:                     "min_inclusive": False,
+801:                     "max_inclusive": True,
+802:                     "max_installments": None,
+803:                     "max_maturity_months": 3,
+804:                     "source_text": (
+805:                         "Fiyat\u0131 25.000 TL \u00fczerinde olan "
+806:                         "yenilenmi\u015f cep telefonlar\u0131 i\u00e7in "
+807:                         "3 ay vade"
+808:                     ),
+809:                 },
+810:             ]
+811:         )
+812: 
+813:         rules["category_rules"] = _cr
+814:         display_metadata["product_specific_maturity_text"] = (
+815:             "\u226425.000 TL: 12 ay \u00b7 >25.000 TL: 3 ay"
+816:         )
+817: 
+818: 
+819:     # ------------------------------------------------------------
+820:     # TURKIYE EMLAK KATILIM - LEASING
+821:     # Official product statement: up to 100% financing.
+822:     # ------------------------------------------------------------
+823:     if (
+824:         _same(bank, "T\u00fcrkiye Emlak Kat\u0131l\u0131m")
+825:         and _same(product, "Leasing")
+826:     ):
+827:         out["maximum_financing_ratio"] = 100.0
+828:         out["financing_ratio_rules_text"] = (
+829:             "Sat\u0131n alma masraflar\u0131 dahil "
+830:             "%100'e kadar finansman"
+831:         )
+832:         display_metadata["financing_ratio_note"] = (
+833:             "\u0130\u015flemin sat\u0131n alma a\u015famas\u0131ndaki "
+834:             "masraflar dahil %100 finansman imk\u00e2n\u0131."
+835:         )
+836: 
+837: 
+838:     # ------------------------------------------------------------
+839:     # TURKIYE EMLAK KATILIM - WASTE MANAGEMENT
+840:     # Product-specific: max 10m TL and max 24 months.
+841:     # ------------------------------------------------------------
+842:     if (
+843:         _same(bank, "T\u00fcrkiye Emlak Kat\u0131l\u0131m")
+844:         and _same(product, "At\u0131k Y\u00f6netimi Finansman\u0131")
+845:     ):
+846:         out["maximum_financing_amount"] = 10_000_000.0
+847:         out["maximum_maturity_months"] = 24
+848:         out["maturity_rules_text"] = (
+849:             "24 aya kadar \u00b7 "
+850:             "3 ayda bir veya e\u015fit taksitli \u00f6deme"
+851:         )
+852:         display_metadata["product_specific_limit_text"] = (
+853:             "10.000.000 TL'ye kadar"
+854:         )
+855:         display_metadata["product_specific_maturity_text"] = (
+856:             "24 aya kadar"
+857:         )
+858: 
+859: 
+860:     # ------------------------------------------------------------
+861:     # TURKIYE EMLAK KATILIM - KOSGEB EMPLOYMENT SUPPORT
+862:     # Official table maturity: 36 months.
+863:     # ------------------------------------------------------------
+864:     if (
+865:         _same(bank, "T\u00fcrkiye Emlak Kat\u0131l\u0131m")
+866:         and _same(
+867:             product,
+868:             "KOSGEB \u0130stihdam\u0131 Koruma Destek Finansman\u0131",
+869:         )
+870:     ):
+871:         out["maximum_maturity_months"] = 36
+872:         out["maturity_rules_text"] = (
+873:             "36 ay \u00b7 5 ay anapara \u00f6demesiz d\u00f6nem"
+874:         )
+875:         display_metadata["product_specific_maturity_text"] = "36 ay"
+876:         display_metadata["grace_period_note"] = (
+877:             "5 ay anapara \u00f6demesiz d\u00f6nem"
+878:         )
+879: 
+880: 
+881:     # ------------------------------------------------------------
+882:     # TURKIYE FINANS - HOUSING
+883:     # Headline max is the maximum verified ratio in the
+884:     # first-home matrix. Conditional matrices remain authoritative.
+885:     # ------------------------------------------------------------
+886:     if (
+887:         _same(bank, "T\u00fcrkiye Finans")
+888:         and _contains(
+889:             product,
+890:             "Konut Finansman\u0131 (Konut Kredisi)",
+891:         )
+892:     ):
+893:         out["maximum_financing_ratio"] = 90.0
+894:         out["financing_ratio_rules_text"] = (
+895:             "\u0130lk konut finansman matrisinde azami %90; "
+896:             "oran ekspertiz de\u011feri, enerji s\u0131n\u0131f\u0131 "
+897:             "ve konut sahipli\u011fine g\u00f6re de\u011fi\u015fir"
+898:         )
+899:         display_metadata["financing_ratio_note"] = (
+900:             "Ana %90 de\u011feri genel sabit oran de\u011fil; "
+901:             "do\u011frulanm\u0131\u015f ko\u015fullu konut matrisinin "
+902:             "en y\u00fcksek oran\u0131d\u0131r."
+903:         )
+904: 
+905: 
+906:     # ------------------------------------------------------------
+907:     # TURKIYE FINANS - ELUS
+908:     # 24 months in the page is storage duration, NOT financing
+909:     # maturity. Real finance ratio: up to 90% of ELUS amount.
+910:     # ------------------------------------------------------------
+911:     if (
+912:         _same(bank, "T\u00fcrkiye Finans")
+913:         and _contains(product, "Elektronik \u00dcr\u00fcn Senedi")
+914:     ):
+915:         out["maximum_maturity_months"] = None
+916:         out["maturity_rules_text"] = None
+917:         out["maximum_financing_ratio"] = 90.0
+918:         out["financing_ratio_rules_text"] = (
+919:             "EL\u00dcS tutar\u0131n\u0131n %90'\u0131na kadar"
+920:         )
+921:         display_metadata["storage_duration_note"] = (
+922:             "24 aya kadar ifadesi finansman vadesi de\u011fil, "
+923:             "lisansl\u0131 depoda saklama s\u00fcresidir."
+924:         )
+925:         display_metadata["financing_ratio_note"] = (
+926:             "EL\u00dcS tutar\u0131n\u0131n %90'\u0131na kadar "
+927:             "finansman."
+928:         )
+929: 
+930: 
+931:     # ------------------------------------------------------------
+932:     # VAKIF KATILIM - LAND
+933:     # ------------------------------------------------------------
+934:     if (
+935:         _same(bank, "Vak\u0131f Kat\u0131l\u0131m")
+936:         and _same(product, "Arsa Finansman\u0131")
+937:     ):
+938:         out["maximum_financing_ratio"] = 100.0
+939:         out["financing_ratio_rules_text"] = (
+940:             "Arsan\u0131n niteli\u011fine g\u00f6re ekspertiz "
+941:             "bedelinin %100'\u00fcne kadar"
+942:         )
+943:         display_metadata["financing_ratio_note"] = (
+944:             "Ekspertiz bedelinin %100'\u00fcne kadar finansman."
+945:         )
+946: 
+947: 
+948:     # ------------------------------------------------------------
+949:     # VAKIF KATILIM - URBAN TRANSFORMATION
+950:     # Overall max = 120 months; workplace variants max 84 months.
+951:     # ------------------------------------------------------------
+952:     if (
+953:         _same(bank, "Vak\u0131f Kat\u0131l\u0131m")
+954:         and _same(product, "Kentsel D\u00f6n\u00fc\u015f\u00fcm Finansman\u0131")
+955:     ):
+956:         out["maximum_maturity_months"] = 120
+957:         out["maturity_rules_text"] = (
+958:             "G\u00fc\u00e7lendirme / Konut: 120 aya kadar \u00b7 "
+959:             "\u0130\u015fyeri: 84 aya kadar"
+960:         )
+961:         display_metadata["product_specific_maturity_text"] = (
+962:             "Azami 120 ay"
+963:         )
+964: 
+965: 
+966:     # ------------------------------------------------------------
+967:     # VAKIF KATILIM - FINANCIAL LEASING
+968:     # ------------------------------------------------------------
+969:     if (
+970:         _same(bank, "Vak\u0131f Kat\u0131l\u0131m")
+971:         and _same(product, "Finansal Kiralama")
+972:     ):
+973:         out["maximum_financing_ratio"] = 100.0
+974:         out["financing_ratio_rules_text"] = (
+975:             "Yat\u0131r\u0131m\u0131n %100'\u00fcne kadar"
+976:         )
