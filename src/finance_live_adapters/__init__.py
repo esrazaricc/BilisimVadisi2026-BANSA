@@ -1,1 +1,0 @@
-# BANSA finance live adapters
