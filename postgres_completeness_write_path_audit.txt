@@ -1,0 +1,1659 @@
+
+========================================================================================================================
+FILE: scripts\sync_finance_data_accuracy_v2_to_postgresql.py
+========================================================================================================================
+shopping_general_limit_amount => 0 hit
+shopping_general_max_maturity_months => 0 hit
+shopping_phone_rule_text => 0 hit
+shopping_tablet_max_maturity_months => 0 hit
+shopping_computer_max_maturity_months => 0 hit
+shopping_finance_rules_text => 0 hit
+finance_rules_json => 2 hit
+
+--- finance_rules_json | LINES 279-296 ---
+279:                 r["minimum_financing_amount"], r["maximum_financing_amount"],
+280:                 r["maximum_maturity_months"], r["profit_share_rate"],
+281:                 r["profit_share_rate_text"], bool(r["interest_free"]) if r["interest_free"] is not None else None,
+282:                 r["interest_free_text"], r["maturity_rules_text"],
+283:                 r["financing_ratio_rules_text"], r["maximum_financing_ratio"],
+284:                 r["housing_first_home_rules_text"], r["housing_additional_home_rules_text"],
+285:                 r["housing_finance_rules_json"],
+286:                 r["vehicle_finance_rules_text"], r["vehicle_age_rules_text"],
+287:                 r["finance_rules_json"], int(r["legacy_live_id"]),
+288:             ))
+289:     pg.commit()
+290: 
+291:     product_map = {}
+292:     with pg.cursor() as cur:
+293:         cur.execute("SELECT id,legacy_live_id FROM standard_products WHERE legacy_live_id IS NOT NULL")
+294:         product_map = {int(legacy): int(pid) for pid, legacy in cur.fetchall()}
+295: 
+296:     specs = [
+
+--- finance_rules_json | LINES 281-298 ---
+281:                 r["profit_share_rate_text"], bool(r["interest_free"]) if r["interest_free"] is not None else None,
+282:                 r["interest_free_text"], r["maturity_rules_text"],
+283:                 r["financing_ratio_rules_text"], r["maximum_financing_ratio"],
+284:                 r["housing_first_home_rules_text"], r["housing_additional_home_rules_text"],
+285:                 r["housing_finance_rules_json"],
+286:                 r["vehicle_finance_rules_text"], r["vehicle_age_rules_text"],
+287:                 r["finance_rules_json"], int(r["legacy_live_id"]),
+288:             ))
+289:     pg.commit()
+290: 
+291:     product_map = {}
+292:     with pg.cursor() as cur:
+293:         cur.execute("SELECT id,legacy_live_id FROM standard_products WHERE legacy_live_id IS NOT NULL")
+294:         product_map = {int(legacy): int(pid) for pid, legacy in cur.fetchall()}
+295: 
+296:     specs = [
+297:         ("live_product_amount_maturity_rules", "product_amount_maturity_rules",
+298:          ["min_amount","max_amount","min_inclusive","max_inclusive","max_maturity_months","source_text","updated_at"]),
+product_category_rules => 1 hit
+
+--- product_category_rules | LINES 293-310 ---
+293:         cur.execute("SELECT id,legacy_live_id FROM standard_products WHERE legacy_live_id IS NOT NULL")
+294:         product_map = {int(legacy): int(pid) for pid, legacy in cur.fetchall()}
+295: 
+296:     specs = [
+297:         ("live_product_amount_maturity_rules", "product_amount_maturity_rules",
+298:          ["min_amount","max_amount","min_inclusive","max_inclusive","max_maturity_months","source_text","updated_at"]),
+299:         ("live_product_category_rules", "product_category_rules",
+300:          ["category_key","category_label","min_amount","max_amount","min_inclusive","max_inclusive","max_installments","max_maturity_months","condition_text","source_text","updated_at"]),
+301:         ("live_product_pricing_tiers", "product_pricing_tiers",
+302:          ["financing_amount","maturity_months","profit_share_rate","allocation_fee_rate","monthly_total_cost_rate","annual_total_cost_rate","pricing_variant","value_type","source_type","conditions","source_url","source_text","updated_at"]),
+303:         ("live_product_fee_rules", "product_fee_rules",
+304:          ["fee_type","fee_label","waived","amount","rate","note","updated_at"]),
+305:         ("live_product_offer_rules", "product_offer_rules",
+306:          ["rule_type","rule_label","min_amount","max_amount","min_inclusive","max_inclusive","max_installments","max_maturity_months","interest_free","condition_text","source_text","updated_at"]),
+307:         ("live_product_features", "product_features",
+308:          ["feature_key","feature_label","feature_value","source_text","extraction_method","updated_at"]),
+309:         ("live_finance_fact_evidence", "finance_fact_evidence",
+310:          ["fact_key","value_text","value_numeric","value_type","source_type","conditions","source_url","source_text","verification_status","updated_at"]),
+live_product_category_rules => 1 hit
+
+--- live_product_category_rules | LINES 293-310 ---
+293:         cur.execute("SELECT id,legacy_live_id FROM standard_products WHERE legacy_live_id IS NOT NULL")
+294:         product_map = {int(legacy): int(pid) for pid, legacy in cur.fetchall()}
+295: 
+296:     specs = [
+297:         ("live_product_amount_maturity_rules", "product_amount_maturity_rules",
+298:          ["min_amount","max_amount","min_inclusive","max_inclusive","max_maturity_months","source_text","updated_at"]),
+299:         ("live_product_category_rules", "product_category_rules",
+300:          ["category_key","category_label","min_amount","max_amount","min_inclusive","max_inclusive","max_installments","max_maturity_months","condition_text","source_text","updated_at"]),
+301:         ("live_product_pricing_tiers", "product_pricing_tiers",
+302:          ["financing_amount","maturity_months","profit_share_rate","allocation_fee_rate","monthly_total_cost_rate","annual_total_cost_rate","pricing_variant","value_type","source_type","conditions","source_url","source_text","updated_at"]),
+303:         ("live_product_fee_rules", "product_fee_rules",
+304:          ["fee_type","fee_label","waived","amount","rate","note","updated_at"]),
+305:         ("live_product_offer_rules", "product_offer_rules",
+306:          ["rule_type","rule_label","min_amount","max_amount","min_inclusive","max_inclusive","max_installments","max_maturity_months","interest_free","condition_text","source_text","updated_at"]),
+307:         ("live_product_features", "product_features",
+308:          ["feature_key","feature_label","feature_value","source_text","extraction_method","updated_at"]),
+309:         ("live_finance_fact_evidence", "finance_fact_evidence",
+310:          ["fact_key","value_text","value_numeric","value_type","source_type","conditions","source_url","source_text","verification_status","updated_at"]),
+category_rules => 1 hit
+
+--- category_rules | LINES 293-310 ---
+293:         cur.execute("SELECT id,legacy_live_id FROM standard_products WHERE legacy_live_id IS NOT NULL")
+294:         product_map = {int(legacy): int(pid) for pid, legacy in cur.fetchall()}
+295: 
+296:     specs = [
+297:         ("live_product_amount_maturity_rules", "product_amount_maturity_rules",
+298:          ["min_amount","max_amount","min_inclusive","max_inclusive","max_maturity_months","source_text","updated_at"]),
+299:         ("live_product_category_rules", "product_category_rules",
+300:          ["category_key","category_label","min_amount","max_amount","min_inclusive","max_inclusive","max_installments","max_maturity_months","condition_text","source_text","updated_at"]),
+301:         ("live_product_pricing_tiers", "product_pricing_tiers",
+302:          ["financing_amount","maturity_months","profit_share_rate","allocation_fee_rate","monthly_total_cost_rate","annual_total_cost_rate","pricing_variant","value_type","source_type","conditions","source_url","source_text","updated_at"]),
+303:         ("live_product_fee_rules", "product_fee_rules",
+304:          ["fee_type","fee_label","waived","amount","rate","note","updated_at"]),
+305:         ("live_product_offer_rules", "product_offer_rules",
+306:          ["rule_type","rule_label","min_amount","max_amount","min_inclusive","max_inclusive","max_installments","max_maturity_months","interest_free","condition_text","source_text","updated_at"]),
+307:         ("live_product_features", "product_features",
+308:          ["feature_key","feature_label","feature_value","source_text","extraction_method","updated_at"]),
+309:         ("live_finance_fact_evidence", "finance_fact_evidence",
+310:          ["fact_key","value_text","value_numeric","value_type","source_type","conditions","source_url","source_text","verification_status","updated_at"]),
+maximum_financing_ratio => 2 hit
+
+--- maximum_financing_ratio | LINES 263-280 ---
+263:                     profit_share_rate=%s,
+264:                     profit_share_rate_text=%s,
+265:                     interest_free=%s,
+266:                     interest_free_text=%s,
+267:                     maturity_rules_text=%s,
+268:                     financing_ratio_rules_text=%s,
+269:                     maximum_financing_ratio=%s,
+270:                     housing_first_home_rules_text=%s,
+271:                     housing_additional_home_rules_text=%s,
+272:                     housing_finance_rules=%s::jsonb,
+273:                     vehicle_finance_rules_text=%s,
+274:                     vehicle_age_rules_text=%s,
+275:                     finance_rules=%s::jsonb
+276:                 WHERE legacy_live_id=%s
+277:             """, (
+278:                 source_page_id,
+279:                 r["minimum_financing_amount"], r["maximum_financing_amount"],
+280:                 r["maximum_maturity_months"], r["profit_share_rate"],
+
+--- maximum_financing_ratio | LINES 277-294 ---
+277:             """, (
+278:                 source_page_id,
+279:                 r["minimum_financing_amount"], r["maximum_financing_amount"],
+280:                 r["maximum_maturity_months"], r["profit_share_rate"],
+281:                 r["profit_share_rate_text"], bool(r["interest_free"]) if r["interest_free"] is not None else None,
+282:                 r["interest_free_text"], r["maturity_rules_text"],
+283:                 r["financing_ratio_rules_text"], r["maximum_financing_ratio"],
+284:                 r["housing_first_home_rules_text"], r["housing_additional_home_rules_text"],
+285:                 r["housing_finance_rules_json"],
+286:                 r["vehicle_finance_rules_text"], r["vehicle_age_rules_text"],
+287:                 r["finance_rules_json"], int(r["legacy_live_id"]),
+288:             ))
+289:     pg.commit()
+290: 
+291:     product_map = {}
+292:     with pg.cursor() as cur:
+293:         cur.execute("SELECT id,legacy_live_id FROM standard_products WHERE legacy_live_id IS NOT NULL")
+294:         product_map = {int(legacy): int(pid) for pid, legacy in cur.fetchall()}
+maximum_maturity_months => 2 hit
+
+--- maximum_maturity_months | LINES 256-273 ---
+256:             source_page_id = int(cur.fetchone()[0])
+257:             cur.execute("""
+258:                 UPDATE standard_products SET
+259:                     source_page_id=%s,
+260:                     minimum_financing_amount=%s,
+261:                     maximum_financing_amount=%s,
+262:                     maximum_maturity_months=%s,
+263:                     profit_share_rate=%s,
+264:                     profit_share_rate_text=%s,
+265:                     interest_free=%s,
+266:                     interest_free_text=%s,
+267:                     maturity_rules_text=%s,
+268:                     financing_ratio_rules_text=%s,
+269:                     maximum_financing_ratio=%s,
+270:                     housing_first_home_rules_text=%s,
+271:                     housing_additional_home_rules_text=%s,
+272:                     housing_finance_rules=%s::jsonb,
+273:                     vehicle_finance_rules_text=%s,
+
+--- maximum_maturity_months | LINES 274-291 ---
+274:                     vehicle_age_rules_text=%s,
+275:                     finance_rules=%s::jsonb
+276:                 WHERE legacy_live_id=%s
+277:             """, (
+278:                 source_page_id,
+279:                 r["minimum_financing_amount"], r["maximum_financing_amount"],
+280:                 r["maximum_maturity_months"], r["profit_share_rate"],
+281:                 r["profit_share_rate_text"], bool(r["interest_free"]) if r["interest_free"] is not None else None,
+282:                 r["interest_free_text"], r["maturity_rules_text"],
+283:                 r["financing_ratio_rules_text"], r["maximum_financing_ratio"],
+284:                 r["housing_first_home_rules_text"], r["housing_additional_home_rules_text"],
+285:                 r["housing_finance_rules_json"],
+286:                 r["vehicle_finance_rules_text"], r["vehicle_age_rules_text"],
+287:                 r["finance_rules_json"], int(r["legacy_live_id"]),
+288:             ))
+289:     pg.commit()
+290: 
+291:     product_map = {}
+maximum_financing_amount => 2 hit
+
+--- maximum_financing_amount | LINES 255-272 ---
+255:             """, (bank_id,source_url,r["product_name"],r["product_family"],r["live_fetch_status"],r["live_last_seen_at"],r["live_last_checked_at"]))
+256:             source_page_id = int(cur.fetchone()[0])
+257:             cur.execute("""
+258:                 UPDATE standard_products SET
+259:                     source_page_id=%s,
+260:                     minimum_financing_amount=%s,
+261:                     maximum_financing_amount=%s,
+262:                     maximum_maturity_months=%s,
+263:                     profit_share_rate=%s,
+264:                     profit_share_rate_text=%s,
+265:                     interest_free=%s,
+266:                     interest_free_text=%s,
+267:                     maturity_rules_text=%s,
+268:                     financing_ratio_rules_text=%s,
+269:                     maximum_financing_ratio=%s,
+270:                     housing_first_home_rules_text=%s,
+271:                     housing_additional_home_rules_text=%s,
+272:                     housing_finance_rules=%s::jsonb,
+
+--- maximum_financing_amount | LINES 273-290 ---
+273:                     vehicle_finance_rules_text=%s,
+274:                     vehicle_age_rules_text=%s,
+275:                     finance_rules=%s::jsonb
+276:                 WHERE legacy_live_id=%s
+277:             """, (
+278:                 source_page_id,
+279:                 r["minimum_financing_amount"], r["maximum_financing_amount"],
+280:                 r["maximum_maturity_months"], r["profit_share_rate"],
+281:                 r["profit_share_rate_text"], bool(r["interest_free"]) if r["interest_free"] is not None else None,
+282:                 r["interest_free_text"], r["maturity_rules_text"],
+283:                 r["financing_ratio_rules_text"], r["maximum_financing_ratio"],
+284:                 r["housing_first_home_rules_text"], r["housing_additional_home_rules_text"],
+285:                 r["housing_finance_rules_json"],
+286:                 r["vehicle_finance_rules_text"], r["vehicle_age_rules_text"],
+287:                 r["finance_rules_json"], int(r["legacy_live_id"]),
+288:             ))
+289:     pg.commit()
+290: 
+
+========================================================================================================================
+SQL WRITE BLOCKS
+========================================================================================================================
+
+--- WRITE BLOCK | LINES 131-173 ---
+131:                         f"SQLite={r['bank_name']} / {r['product_name']}"
+132:                     )
+133:             cur.execute("SELECT id FROM banks WHERE name=%s", (r["bank_name"],))
+134:             bank_row = cur.fetchone()
+135:             if not bank_row:
+136:                 raise RuntimeError(f"PostgreSQL bankası bulunamadı: {r['bank_name']}")
+137:             bank_id = int(bank_row[0])
+138:             cur.execute("""
+139:                 INSERT INTO product_families(family_key,family_name) VALUES (%s,%s)
+140:                 ON CONFLICT(family_key) DO UPDATE SET family_name=EXCLUDED.family_name
+141:                 RETURNING id
+142:             """, (r["product_family_key"], r["product_family"]))
+143:             family_id = int(cur.fetchone()[0])
+144:             # SOURCE_URL_RESOLVER_V1
+145:             # Direkt ?r?nlerde ger?ek live source URL esas al?n?r.
+146:             # #product= ile ?retilen embedded ?r?nlerde fiziksel
+147:             # kaynak sayfas? source_page olarak korunur.
+148:             _live_source_url = str(
+149:                 r["live_source_url"] or ""
+150:             ).strip()
+151:             _source_page = str(
+152:                 r["source_page"] or ""
+153:             ).strip()
+154: 
+155:             if "#product=" in _live_source_url.casefold():
+156:                 source_url = (
+157:                     _source_page
+158:                     or _live_source_url.split("#", 1)[0]
+159:                 )
+160:             else:
+161:                 source_url = (
+162:                     _live_source_url
+163:                     or _source_page
+164:                 )
+165:             cur.execute("""
+166:                 INSERT INTO source_pages(bank_id,url,page_title,source_group,fetch_status,listing_status,first_seen_at,last_seen_at,last_checked_at,is_current,created_at,updated_at)
+167:                 VALUES (%s,%s,%s,%s,%s,'active',%s,%s,%s,TRUE,COALESCE(%s,NOW()),COALESCE(%s,NOW()))
+168:                 ON CONFLICT(bank_id,url) DO UPDATE SET page_title=EXCLUDED.page_title,fetch_status=EXCLUDED.fetch_status,last_seen_at=EXCLUDED.last_seen_at,last_checked_at=EXCLUDED.last_checked_at,is_current=TRUE,updated_at=EXCLUDED.updated_at
+169:                 RETURNING id
+170:             """, (bank_id, source_url, r["product_name"], r["product_family"], r["live_fetch_status"], r["live_first_seen_at"], r["live_last_seen_at"], r["live_last_checked_at"], r["live_created_at"], r["live_updated_at"]))
+171:             source_page_id = int(cur.fetchone()[0])
+172: 
+173:             # PostgreSQL'de aynı mantıksal ürün daha eski bir migrasyondan
+
+--- WRITE BLOCK | LINES 132-174 ---
+132:                     )
+133:             cur.execute("SELECT id FROM banks WHERE name=%s", (r["bank_name"],))
+134:             bank_row = cur.fetchone()
+135:             if not bank_row:
+136:                 raise RuntimeError(f"PostgreSQL bankası bulunamadı: {r['bank_name']}")
+137:             bank_id = int(bank_row[0])
+138:             cur.execute("""
+139:                 INSERT INTO product_families(family_key,family_name) VALUES (%s,%s)
+140:                 ON CONFLICT(family_key) DO UPDATE SET family_name=EXCLUDED.family_name
+141:                 RETURNING id
+142:             """, (r["product_family_key"], r["product_family"]))
+143:             family_id = int(cur.fetchone()[0])
+144:             # SOURCE_URL_RESOLVER_V1
+145:             # Direkt ?r?nlerde ger?ek live source URL esas al?n?r.
+146:             # #product= ile ?retilen embedded ?r?nlerde fiziksel
+147:             # kaynak sayfas? source_page olarak korunur.
+148:             _live_source_url = str(
+149:                 r["live_source_url"] or ""
+150:             ).strip()
+151:             _source_page = str(
+152:                 r["source_page"] or ""
+153:             ).strip()
+154: 
+155:             if "#product=" in _live_source_url.casefold():
+156:                 source_url = (
+157:                     _source_page
+158:                     or _live_source_url.split("#", 1)[0]
+159:                 )
+160:             else:
+161:                 source_url = (
+162:                     _live_source_url
+163:                     or _source_page
+164:                 )
+165:             cur.execute("""
+166:                 INSERT INTO source_pages(bank_id,url,page_title,source_group,fetch_status,listing_status,first_seen_at,last_seen_at,last_checked_at,is_current,created_at,updated_at)
+167:                 VALUES (%s,%s,%s,%s,%s,'active',%s,%s,%s,TRUE,COALESCE(%s,NOW()),COALESCE(%s,NOW()))
+168:                 ON CONFLICT(bank_id,url) DO UPDATE SET page_title=EXCLUDED.page_title,fetch_status=EXCLUDED.fetch_status,last_seen_at=EXCLUDED.last_seen_at,last_checked_at=EXCLUDED.last_checked_at,is_current=TRUE,updated_at=EXCLUDED.updated_at
+169:                 RETURNING id
+170:             """, (bank_id, source_url, r["product_name"], r["product_family"], r["live_fetch_status"], r["live_first_seen_at"], r["live_last_seen_at"], r["live_last_checked_at"], r["live_created_at"], r["live_updated_at"]))
+171:             source_page_id = int(cur.fetchone()[0])
+172: 
+173:             # PostgreSQL'de aynı mantıksal ürün daha eski bir migrasyondan
+174:             # legacy_live_id olmadan (veya farklı eski legacy id ile) mevcut
+
+--- WRITE BLOCK | LINES 158-200 ---
+158:                     or _live_source_url.split("#", 1)[0]
+159:                 )
+160:             else:
+161:                 source_url = (
+162:                     _live_source_url
+163:                     or _source_page
+164:                 )
+165:             cur.execute("""
+166:                 INSERT INTO source_pages(bank_id,url,page_title,source_group,fetch_status,listing_status,first_seen_at,last_seen_at,last_checked_at,is_current,created_at,updated_at)
+167:                 VALUES (%s,%s,%s,%s,%s,'active',%s,%s,%s,TRUE,COALESCE(%s,NOW()),COALESCE(%s,NOW()))
+168:                 ON CONFLICT(bank_id,url) DO UPDATE SET page_title=EXCLUDED.page_title,fetch_status=EXCLUDED.fetch_status,last_seen_at=EXCLUDED.last_seen_at,last_checked_at=EXCLUDED.last_checked_at,is_current=TRUE,updated_at=EXCLUDED.updated_at
+169:                 RETURNING id
+170:             """, (bank_id, source_url, r["product_name"], r["product_family"], r["live_fetch_status"], r["live_first_seen_at"], r["live_last_seen_at"], r["live_last_checked_at"], r["live_created_at"], r["live_updated_at"]))
+171:             source_page_id = int(cur.fetchone()[0])
+172: 
+173:             # PostgreSQL'de aynı mantıksal ürün daha eski bir migrasyondan
+174:             # legacy_live_id olmadan (veya farklı eski legacy id ile) mevcut
+175:             # olabilir. UNIQUE(bank_id,family_id,product_name,source_page_id)
+176:             # bu durumda ikinci INSERT'i haklı olarak reddeder. Aynı doğal
+177:             # kimlik varsa yeni satır açmak yerine mevcut ürünü güncel SQLite
+178:             # kimliğiyle uzlaştır. Böylece ürün çoğalmaz ve alt tablolar aynı
+179:             # standard_products.id üzerinde kalır.
+180:             cur.execute("""
+181:                 SELECT id, legacy_live_id
+182:                 FROM standard_products
+183:                 WHERE bank_id=%s AND family_id=%s AND product_name=%s AND source_page_id=%s
+184:             """, (bank_id, family_id, r["product_name"], source_page_id))
+185:             natural_row = cur.fetchone()
+186:             if natural_row:
+187:                 existing_id, existing_legacy_id = int(natural_row[0]), natural_row[1]
+188:                 cur.execute("""
+189:                     UPDATE standard_products SET
+190:                         legacy_live_id=%s,
+191:                         scope=%s,
+192:                         current_status=%s,
+193:                         fetch_status=%s,
+194:                         is_current=TRUE,
+195:                         first_seen_at=COALESCE(first_seen_at,%s),
+196:                         last_seen_at=%s,
+197:                         last_checked_at=%s,
+198:                         checked_at=%s,
+199:                         extracted_at=%s,
+200:                         updated_at=COALESCE(%s,NOW())
+
+--- WRITE BLOCK | LINES 160-202 ---
+160:             else:
+161:                 source_url = (
+162:                     _live_source_url
+163:                     or _source_page
+164:                 )
+165:             cur.execute("""
+166:                 INSERT INTO source_pages(bank_id,url,page_title,source_group,fetch_status,listing_status,first_seen_at,last_seen_at,last_checked_at,is_current,created_at,updated_at)
+167:                 VALUES (%s,%s,%s,%s,%s,'active',%s,%s,%s,TRUE,COALESCE(%s,NOW()),COALESCE(%s,NOW()))
+168:                 ON CONFLICT(bank_id,url) DO UPDATE SET page_title=EXCLUDED.page_title,fetch_status=EXCLUDED.fetch_status,last_seen_at=EXCLUDED.last_seen_at,last_checked_at=EXCLUDED.last_checked_at,is_current=TRUE,updated_at=EXCLUDED.updated_at
+169:                 RETURNING id
+170:             """, (bank_id, source_url, r["product_name"], r["product_family"], r["live_fetch_status"], r["live_first_seen_at"], r["live_last_seen_at"], r["live_last_checked_at"], r["live_created_at"], r["live_updated_at"]))
+171:             source_page_id = int(cur.fetchone()[0])
+172: 
+173:             # PostgreSQL'de aynı mantıksal ürün daha eski bir migrasyondan
+174:             # legacy_live_id olmadan (veya farklı eski legacy id ile) mevcut
+175:             # olabilir. UNIQUE(bank_id,family_id,product_name,source_page_id)
+176:             # bu durumda ikinci INSERT'i haklı olarak reddeder. Aynı doğal
+177:             # kimlik varsa yeni satır açmak yerine mevcut ürünü güncel SQLite
+178:             # kimliğiyle uzlaştır. Böylece ürün çoğalmaz ve alt tablolar aynı
+179:             # standard_products.id üzerinde kalır.
+180:             cur.execute("""
+181:                 SELECT id, legacy_live_id
+182:                 FROM standard_products
+183:                 WHERE bank_id=%s AND family_id=%s AND product_name=%s AND source_page_id=%s
+184:             """, (bank_id, family_id, r["product_name"], source_page_id))
+185:             natural_row = cur.fetchone()
+186:             if natural_row:
+187:                 existing_id, existing_legacy_id = int(natural_row[0]), natural_row[1]
+188:                 cur.execute("""
+189:                     UPDATE standard_products SET
+190:                         legacy_live_id=%s,
+191:                         scope=%s,
+192:                         current_status=%s,
+193:                         fetch_status=%s,
+194:                         is_current=TRUE,
+195:                         first_seen_at=COALESCE(first_seen_at,%s),
+196:                         last_seen_at=%s,
+197:                         last_checked_at=%s,
+198:                         checked_at=%s,
+199:                         extracted_at=%s,
+200:                         updated_at=COALESCE(%s,NOW())
+201:                     WHERE id=%s
+202:                 """, (
+
+--- WRITE BLOCK | LINES 206-248 ---
+206:                 ))
+207:                 print(
+208:                     f"[PG KIMLIK UZLASTIRMA] {r['bank_name']} / {r['product_name']} "
+209:                     f"-> product_id={existing_id}, legacy {existing_legacy_id!r} => {legacy_id}"
+210:                 )
+211:                 continue
+212: 
+213:             cur.execute("""
+214:                 INSERT INTO standard_products(legacy_live_id,bank_id,source_page_id,family_id,product_name,scope,current_status,fetch_status,is_current,first_seen_at,last_seen_at,last_checked_at,checked_at,extracted_at,created_at,updated_at)
+215:                 VALUES (%s,%s,%s,%s,%s,%s,%s,%s,TRUE,%s,%s,%s,%s,%s,COALESCE(%s,NOW()),COALESCE(%s,NOW()))
+216:                 ON CONFLICT(legacy_live_id) DO NOTHING
+217:             """, (legacy_id,bank_id,source_page_id,family_id,r["product_name"],r["scope"],r["live_current_status"],r["live_fetch_status"],r["live_first_seen_at"],r["live_last_seen_at"],r["live_last_checked_at"],r["checked_at"],r["extracted_at"],r["live_created_at"],r["live_updated_at"]))
+218:         pg.commit()
+219: 
+220:     with pg.cursor() as cur:
+221:         for r in detail_rows:
+222:             # Kaynak sayfası son doğrulanmış ürün URL'sine taşındıysa mevcut
+223:             # PostgreSQL ürününün source_page_id'sini de güncelle.
+224:             # SOURCE_URL_RESOLVER_V1
+225:             # Direkt ?r?nlerde ger?ek live source URL esas al?n?r.
+226:             # #product= ile ?retilen embedded ?r?nlerde fiziksel
+227:             # kaynak sayfas? source_page olarak korunur.
+228:             _live_source_url = str(
+229:                 r["live_source_url"] or ""
+230:             ).strip()
+231:             _source_page = str(
+232:                 r["source_page"] or ""
+233:             ).strip()
+234: 
+235:             if "#product=" in _live_source_url.casefold():
+236:                 source_url = (
+237:                     _source_page
+238:                     or _live_source_url.split("#", 1)[0]
+239:                 )
+240:             else:
+241:                 source_url = (
+242:                     _live_source_url
+243:                     or _source_page
+244:                 )
+245:             cur.execute("SELECT id FROM banks WHERE name=%s", (r["bank_name"],))
+246:             bank_row = cur.fetchone()
+247:             if not bank_row:
+248:                 raise RuntimeError(f"PostgreSQL bankası bulunamadı: {r['bank_name']}")
+
+--- WRITE BLOCK | LINES 208-250 ---
+208:                     f"[PG KIMLIK UZLASTIRMA] {r['bank_name']} / {r['product_name']} "
+209:                     f"-> product_id={existing_id}, legacy {existing_legacy_id!r} => {legacy_id}"
+210:                 )
+211:                 continue
+212: 
+213:             cur.execute("""
+214:                 INSERT INTO standard_products(legacy_live_id,bank_id,source_page_id,family_id,product_name,scope,current_status,fetch_status,is_current,first_seen_at,last_seen_at,last_checked_at,checked_at,extracted_at,created_at,updated_at)
+215:                 VALUES (%s,%s,%s,%s,%s,%s,%s,%s,TRUE,%s,%s,%s,%s,%s,COALESCE(%s,NOW()),COALESCE(%s,NOW()))
+216:                 ON CONFLICT(legacy_live_id) DO NOTHING
+217:             """, (legacy_id,bank_id,source_page_id,family_id,r["product_name"],r["scope"],r["live_current_status"],r["live_fetch_status"],r["live_first_seen_at"],r["live_last_seen_at"],r["live_last_checked_at"],r["checked_at"],r["extracted_at"],r["live_created_at"],r["live_updated_at"]))
+218:         pg.commit()
+219: 
+220:     with pg.cursor() as cur:
+221:         for r in detail_rows:
+222:             # Kaynak sayfası son doğrulanmış ürün URL'sine taşındıysa mevcut
+223:             # PostgreSQL ürününün source_page_id'sini de güncelle.
+224:             # SOURCE_URL_RESOLVER_V1
+225:             # Direkt ?r?nlerde ger?ek live source URL esas al?n?r.
+226:             # #product= ile ?retilen embedded ?r?nlerde fiziksel
+227:             # kaynak sayfas? source_page olarak korunur.
+228:             _live_source_url = str(
+229:                 r["live_source_url"] or ""
+230:             ).strip()
+231:             _source_page = str(
+232:                 r["source_page"] or ""
+233:             ).strip()
+234: 
+235:             if "#product=" in _live_source_url.casefold():
+236:                 source_url = (
+237:                     _source_page
+238:                     or _live_source_url.split("#", 1)[0]
+239:                 )
+240:             else:
+241:                 source_url = (
+242:                     _live_source_url
+243:                     or _source_page
+244:                 )
+245:             cur.execute("SELECT id FROM banks WHERE name=%s", (r["bank_name"],))
+246:             bank_row = cur.fetchone()
+247:             if not bank_row:
+248:                 raise RuntimeError(f"PostgreSQL bankası bulunamadı: {r['bank_name']}")
+249:             bank_id = int(bank_row[0])
+250:             cur.execute("""
+
+--- WRITE BLOCK | LINES 243-285 ---
+243:                     or _source_page
+244:                 )
+245:             cur.execute("SELECT id FROM banks WHERE name=%s", (r["bank_name"],))
+246:             bank_row = cur.fetchone()
+247:             if not bank_row:
+248:                 raise RuntimeError(f"PostgreSQL bankası bulunamadı: {r['bank_name']}")
+249:             bank_id = int(bank_row[0])
+250:             cur.execute("""
+251:                 INSERT INTO source_pages(bank_id,url,page_title,source_group,fetch_status,listing_status,last_seen_at,last_checked_at,is_current,created_at,updated_at)
+252:                 VALUES (%s,%s,%s,%s,%s,'active',COALESCE(%s,NOW()),COALESCE(%s,NOW()),TRUE,NOW(),NOW())
+253:                 ON CONFLICT(bank_id,url) DO UPDATE SET page_title=EXCLUDED.page_title,source_group=EXCLUDED.source_group,fetch_status=EXCLUDED.fetch_status,last_seen_at=EXCLUDED.last_seen_at,last_checked_at=EXCLUDED.last_checked_at,is_current=TRUE,updated_at=NOW()
+254:                 RETURNING id
+255:             """, (bank_id,source_url,r["product_name"],r["product_family"],r["live_fetch_status"],r["live_last_seen_at"],r["live_last_checked_at"]))
+256:             source_page_id = int(cur.fetchone()[0])
+257:             cur.execute("""
+258:                 UPDATE standard_products SET
+259:                     source_page_id=%s,
+260:                     minimum_financing_amount=%s,
+261:                     maximum_financing_amount=%s,
+262:                     maximum_maturity_months=%s,
+263:                     profit_share_rate=%s,
+264:                     profit_share_rate_text=%s,
+265:                     interest_free=%s,
+266:                     interest_free_text=%s,
+267:                     maturity_rules_text=%s,
+268:                     financing_ratio_rules_text=%s,
+269:                     maximum_financing_ratio=%s,
+270:                     housing_first_home_rules_text=%s,
+271:                     housing_additional_home_rules_text=%s,
+272:                     housing_finance_rules=%s::jsonb,
+273:                     vehicle_finance_rules_text=%s,
+274:                     vehicle_age_rules_text=%s,
+275:                     finance_rules=%s::jsonb
+276:                 WHERE legacy_live_id=%s
+277:             """, (
+278:                 source_page_id,
+279:                 r["minimum_financing_amount"], r["maximum_financing_amount"],
+280:                 r["maximum_maturity_months"], r["profit_share_rate"],
+281:                 r["profit_share_rate_text"], bool(r["interest_free"]) if r["interest_free"] is not None else None,
+282:                 r["interest_free_text"], r["maturity_rules_text"],
+283:                 r["financing_ratio_rules_text"], r["maximum_financing_ratio"],
+284:                 r["housing_first_home_rules_text"], r["housing_additional_home_rules_text"],
+285:                 r["housing_finance_rules_json"],
+
+--- WRITE BLOCK | LINES 245-287 ---
+245:             cur.execute("SELECT id FROM banks WHERE name=%s", (r["bank_name"],))
+246:             bank_row = cur.fetchone()
+247:             if not bank_row:
+248:                 raise RuntimeError(f"PostgreSQL bankası bulunamadı: {r['bank_name']}")
+249:             bank_id = int(bank_row[0])
+250:             cur.execute("""
+251:                 INSERT INTO source_pages(bank_id,url,page_title,source_group,fetch_status,listing_status,last_seen_at,last_checked_at,is_current,created_at,updated_at)
+252:                 VALUES (%s,%s,%s,%s,%s,'active',COALESCE(%s,NOW()),COALESCE(%s,NOW()),TRUE,NOW(),NOW())
+253:                 ON CONFLICT(bank_id,url) DO UPDATE SET page_title=EXCLUDED.page_title,source_group=EXCLUDED.source_group,fetch_status=EXCLUDED.fetch_status,last_seen_at=EXCLUDED.last_seen_at,last_checked_at=EXCLUDED.last_checked_at,is_current=TRUE,updated_at=NOW()
+254:                 RETURNING id
+255:             """, (bank_id,source_url,r["product_name"],r["product_family"],r["live_fetch_status"],r["live_last_seen_at"],r["live_last_checked_at"]))
+256:             source_page_id = int(cur.fetchone()[0])
+257:             cur.execute("""
+258:                 UPDATE standard_products SET
+259:                     source_page_id=%s,
+260:                     minimum_financing_amount=%s,
+261:                     maximum_financing_amount=%s,
+262:                     maximum_maturity_months=%s,
+263:                     profit_share_rate=%s,
+264:                     profit_share_rate_text=%s,
+265:                     interest_free=%s,
+266:                     interest_free_text=%s,
+267:                     maturity_rules_text=%s,
+268:                     financing_ratio_rules_text=%s,
+269:                     maximum_financing_ratio=%s,
+270:                     housing_first_home_rules_text=%s,
+271:                     housing_additional_home_rules_text=%s,
+272:                     housing_finance_rules=%s::jsonb,
+273:                     vehicle_finance_rules_text=%s,
+274:                     vehicle_age_rules_text=%s,
+275:                     finance_rules=%s::jsonb
+276:                 WHERE legacy_live_id=%s
+277:             """, (
+278:                 source_page_id,
+279:                 r["minimum_financing_amount"], r["maximum_financing_amount"],
+280:                 r["maximum_maturity_months"], r["profit_share_rate"],
+281:                 r["profit_share_rate_text"], bool(r["interest_free"]) if r["interest_free"] is not None else None,
+282:                 r["interest_free_text"], r["maturity_rules_text"],
+283:                 r["financing_ratio_rules_text"], r["maximum_financing_ratio"],
+284:                 r["housing_first_home_rules_text"], r["housing_additional_home_rules_text"],
+285:                 r["housing_finance_rules_json"],
+286:                 r["vehicle_finance_rules_text"], r["vehicle_age_rules_text"],
+287:                 r["finance_rules_json"], int(r["legacy_live_id"]),
+
+--- WRITE BLOCK | LINES 334-353 ---
+334:                 vals = [int(r["id"]), pg_id]
+335:                 for c in present_cols:
+336:                     v = r[c]
+337:                     if c in {"min_inclusive","max_inclusive","waived","interest_free"} and v is not None:
+338:                         v = bool(v)
+339:                     vals.append(v)
+340:                 placeholders = ",".join(["%s"] * len(vals))
+341:                 cur.execute(
+342:                     f"INSERT INTO {dst}({','.join(insert_cols)}) VALUES ({placeholders})",
+343:                     vals,
+344:                 )
+345:         pg.commit()
+346: 
+347:     sq.close(); pg.close()
+348:     print(f"PostgreSQL Finansman Veri Doğruluk V2 senkronu tamamlandı: {len(product_map)} eşleşen ürün.")
+349:     return 0
+350: 
+351: 
+352: if __name__ == "__main__":
+353:     raise SystemExit(main())
+
+========================================================================================================================
+FILE: scripts\sync_finance_rule_engine.py
+========================================================================================================================
+shopping_general_limit_amount => 2 hit
+
+--- shopping_general_limit_amount | LINES 480-497 ---
+480:     top_numeric = (
+481:         ("minimum_financing_amount", "minimum", "Asgari finansman tutarı"),
+482:         ("maximum_financing_amount", "maximum", "Azami finansman tutarı"),
+483:         ("maximum_maturity_months", "maximum", "Azami vade (ay)"),
+484:         ("profit_share_rate", "exact", "Ürün seviyesi kâr payı"),
+485:         ("maximum_financing_ratio", "maximum", "Azami finansman oranı"),
+486:         ("shopping_general_limit_amount", "maximum", "Alışveriş genel limit"),
+487:         ("shopping_general_max_maturity_months", "maximum", "Alışveriş azami vade (ay)"),
+488:     )
+489:     for field, value_type, label in top_numeric:
+490:         value = detail_row[field] if field in detail_row.keys() else None
+491:         if value is None:
+492:             continue
+493:         add(
+494:             fact_key=field,
+495:             value_text=label,
+496:             value_numeric=value,
+497:             value_type=value_type,
+
+--- shopping_general_limit_amount | LINES 814-831 ---
+814:             d.scope,
+815:             d.minimum_financing_amount,
+816:             d.maximum_financing_amount,
+817:             d.maximum_maturity_months,
+818:             d.profit_share_rate,
+819:             d.maximum_financing_ratio,
+820:             d.shopping_general_limit_amount,
+821:             d.shopping_general_max_maturity_months,
+822:             c.clean_text,
+823:             d.finance_rules_json
+824:         FROM live_campaigns AS c
+825:         JOIN live_standard_product_details AS d
+826:             ON d.product_id = c.id
+827:         WHERE c.record_kind='standard_product'
+828:           AND c.is_current=1
+829:     """
+830:     params = []
+831: 
+shopping_general_max_maturity_months => 2 hit
+
+--- shopping_general_max_maturity_months | LINES 481-498 ---
+481:         ("minimum_financing_amount", "minimum", "Asgari finansman tutarı"),
+482:         ("maximum_financing_amount", "maximum", "Azami finansman tutarı"),
+483:         ("maximum_maturity_months", "maximum", "Azami vade (ay)"),
+484:         ("profit_share_rate", "exact", "Ürün seviyesi kâr payı"),
+485:         ("maximum_financing_ratio", "maximum", "Azami finansman oranı"),
+486:         ("shopping_general_limit_amount", "maximum", "Alışveriş genel limit"),
+487:         ("shopping_general_max_maturity_months", "maximum", "Alışveriş azami vade (ay)"),
+488:     )
+489:     for field, value_type, label in top_numeric:
+490:         value = detail_row[field] if field in detail_row.keys() else None
+491:         if value is None:
+492:             continue
+493:         add(
+494:             fact_key=field,
+495:             value_text=label,
+496:             value_numeric=value,
+497:             value_type=value_type,
+498:             source_type="product_page",
+
+--- shopping_general_max_maturity_months | LINES 815-832 ---
+815:             d.minimum_financing_amount,
+816:             d.maximum_financing_amount,
+817:             d.maximum_maturity_months,
+818:             d.profit_share_rate,
+819:             d.maximum_financing_ratio,
+820:             d.shopping_general_limit_amount,
+821:             d.shopping_general_max_maturity_months,
+822:             c.clean_text,
+823:             d.finance_rules_json
+824:         FROM live_campaigns AS c
+825:         JOIN live_standard_product_details AS d
+826:             ON d.product_id = c.id
+827:         WHERE c.record_kind='standard_product'
+828:           AND c.is_current=1
+829:     """
+830:     params = []
+831: 
+832:     if args.bank:
+shopping_phone_rule_text => 0 hit
+shopping_tablet_max_maturity_months => 0 hit
+shopping_computer_max_maturity_months => 0 hit
+shopping_finance_rules_text => 0 hit
+finance_rules_json => 4 hit
+
+--- finance_rules_json | LINES 794-811 ---
+794:         row[1]
+795:         for row in con.execute(
+796:             "PRAGMA table_info(live_standard_product_details)"
+797:         ).fetchall()
+798:     }
+799: 
+800:     if "finance_rules_json" not in columns:
+801:         raise RuntimeError(
+802:             "finance_rules_json kolonu bulunamadı. "
+803:             "Önce güncel sync_standard_products_to_db.py ile "
+804:             "ürünleri yeniden senkronize edin."
+805:         )
+806: 
+807:     sql = """
+808:         SELECT
+809:             c.id AS product_id,
+810:             c.bank_name,
+811:             c.source_url,
+
+--- finance_rules_json | LINES 796-813 ---
+796:             "PRAGMA table_info(live_standard_product_details)"
+797:         ).fetchall()
+798:     }
+799: 
+800:     if "finance_rules_json" not in columns:
+801:         raise RuntimeError(
+802:             "finance_rules_json kolonu bulunamadı. "
+803:             "Önce güncel sync_standard_products_to_db.py ile "
+804:             "ürünleri yeniden senkronize edin."
+805:         )
+806: 
+807:     sql = """
+808:         SELECT
+809:             c.id AS product_id,
+810:             c.bank_name,
+811:             c.source_url,
+812:             d.product_name,
+813:             d.product_family,
+
+--- finance_rules_json | LINES 817-834 ---
+817:             d.maximum_maturity_months,
+818:             d.profit_share_rate,
+819:             d.maximum_financing_ratio,
+820:             d.shopping_general_limit_amount,
+821:             d.shopping_general_max_maturity_months,
+822:             c.clean_text,
+823:             d.finance_rules_json
+824:         FROM live_campaigns AS c
+825:         JOIN live_standard_product_details AS d
+826:             ON d.product_id = c.id
+827:         WHERE c.record_kind='standard_product'
+828:           AND c.is_current=1
+829:     """
+830:     params = []
+831: 
+832:     if args.bank:
+833:         sql += " AND c.bank_name=?"
+834:         params.append(args.bank)
+
+--- finance_rules_json | LINES 849-866 ---
+849:         "evidence": 0,
+850:     }
+851:     timestamp = now_iso()
+852: 
+853:     with con:
+854:         for row in rows:
+855:             raw = row["finance_rules_json"]
+856:             rules = (
+857:                 json.loads(raw)
+858:                 if raw
+859:                 else {}
+860:             )
+861: 
+862:             rules["pricing_tiers"] = annotate_pricing_rows(
+863:                 rules.get("pricing_tiers", []),
+864:                 bank_name=row["bank_name"],
+865:                 product_name=row["product_name"],
+866:                 source_url=row["source_url"],
+product_category_rules => 7 hit
+
+--- product_category_rules | LINES 36-53 ---
+36: 
+37: 
+38: def ensure_schema(con: sqlite3.Connection) -> None:
+39:     con.executescript(
+40:         """
+41:         CREATE TABLE IF NOT EXISTS
+42:         live_product_category_rules (
+43:             id INTEGER PRIMARY KEY AUTOINCREMENT,
+44:             product_id INTEGER NOT NULL,
+45:             category_key TEXT NOT NULL,
+46:             category_label TEXT NOT NULL,
+47:             min_amount REAL,
+48:             max_amount REAL,
+49:             min_inclusive INTEGER NOT NULL DEFAULT 0,
+50:             max_inclusive INTEGER NOT NULL DEFAULT 1,
+51:             max_installments INTEGER,
+52:             max_maturity_months INTEGER,
+53:             condition_text TEXT,
+
+--- product_category_rules | LINES 174-191 ---
+174: 
+175:         CREATE INDEX IF NOT EXISTS
+176:         idx_product_features_key
+177:         ON live_product_features(feature_key);
+178: 
+179:         CREATE INDEX IF NOT EXISTS
+180:         idx_product_category_rules_product
+181:         ON live_product_category_rules(product_id);
+182: 
+183:         CREATE INDEX IF NOT EXISTS
+184:         idx_product_category_rules_key
+185:         ON live_product_category_rules(category_key);
+186: 
+187:         CREATE INDEX IF NOT EXISTS
+188:         idx_product_amount_maturity_product
+189:         ON live_product_amount_maturity_rules(product_id);
+190: 
+191:         CREATE INDEX IF NOT EXISTS
+
+--- product_category_rules | LINES 175-192 ---
+175:         CREATE INDEX IF NOT EXISTS
+176:         idx_product_features_key
+177:         ON live_product_features(feature_key);
+178: 
+179:         CREATE INDEX IF NOT EXISTS
+180:         idx_product_category_rules_product
+181:         ON live_product_category_rules(product_id);
+182: 
+183:         CREATE INDEX IF NOT EXISTS
+184:         idx_product_category_rules_key
+185:         ON live_product_category_rules(category_key);
+186: 
+187:         CREATE INDEX IF NOT EXISTS
+188:         idx_product_amount_maturity_product
+189:         ON live_product_amount_maturity_rules(product_id);
+190: 
+191:         CREATE INDEX IF NOT EXISTS
+192:         idx_product_pricing_tiers_product
+
+--- product_category_rules | LINES 178-195 ---
+178: 
+179:         CREATE INDEX IF NOT EXISTS
+180:         idx_product_category_rules_product
+181:         ON live_product_category_rules(product_id);
+182: 
+183:         CREATE INDEX IF NOT EXISTS
+184:         idx_product_category_rules_key
+185:         ON live_product_category_rules(category_key);
+186: 
+187:         CREATE INDEX IF NOT EXISTS
+188:         idx_product_amount_maturity_product
+189:         ON live_product_amount_maturity_rules(product_id);
+190: 
+191:         CREATE INDEX IF NOT EXISTS
+192:         idx_product_pricing_tiers_product
+193:         ON live_product_pricing_tiers(product_id);
+194: 
+195:         CREATE INDEX IF NOT EXISTS
+
+--- product_category_rules | LINES 179-196 ---
+179:         CREATE INDEX IF NOT EXISTS
+180:         idx_product_category_rules_product
+181:         ON live_product_category_rules(product_id);
+182: 
+183:         CREATE INDEX IF NOT EXISTS
+184:         idx_product_category_rules_key
+185:         ON live_product_category_rules(category_key);
+186: 
+187:         CREATE INDEX IF NOT EXISTS
+188:         idx_product_amount_maturity_product
+189:         ON live_product_amount_maturity_rules(product_id);
+190: 
+191:         CREATE INDEX IF NOT EXISTS
+192:         idx_product_pricing_tiers_product
+193:         ON live_product_pricing_tiers(product_id);
+194: 
+195:         CREATE INDEX IF NOT EXISTS
+196:         idx_product_fee_rules_product
+
+--- product_category_rules | LINES 247-264 ---
+247:         "fee": 0,
+248:         "offer": 0,
+249:         "feature": 0,
+250:     }
+251: 
+252:     con.execute(
+253:         "DELETE FROM live_product_category_rules "
+254:         "WHERE product_id=?",
+255:         (product_id,),
+256:     )
+257:     con.execute(
+258:         "DELETE FROM live_product_amount_maturity_rules "
+259:         "WHERE product_id=?",
+260:         (product_id,),
+261:     )
+262:     con.execute(
+263:         "DELETE FROM live_product_pricing_tiers "
+264:         "WHERE product_id=?",
+
+--- product_category_rules | LINES 275-292 ---
+275:         (product_id,),
+276:     )
+277: 
+278:     for row in rules.get("category_rules", []):
+279:         con.execute(
+280:             """
+281:             INSERT INTO live_product_category_rules (
+282:                 product_id,
+283:                 category_key,
+284:                 category_label,
+285:                 min_amount,
+286:                 max_amount,
+287:                 min_inclusive,
+288:                 max_inclusive,
+289:                 max_installments,
+290:                 max_maturity_months,
+291:                 condition_text,
+292:                 source_text,
+live_product_category_rules => 5 hit
+
+--- live_product_category_rules | LINES 36-53 ---
+36: 
+37: 
+38: def ensure_schema(con: sqlite3.Connection) -> None:
+39:     con.executescript(
+40:         """
+41:         CREATE TABLE IF NOT EXISTS
+42:         live_product_category_rules (
+43:             id INTEGER PRIMARY KEY AUTOINCREMENT,
+44:             product_id INTEGER NOT NULL,
+45:             category_key TEXT NOT NULL,
+46:             category_label TEXT NOT NULL,
+47:             min_amount REAL,
+48:             max_amount REAL,
+49:             min_inclusive INTEGER NOT NULL DEFAULT 0,
+50:             max_inclusive INTEGER NOT NULL DEFAULT 1,
+51:             max_installments INTEGER,
+52:             max_maturity_months INTEGER,
+53:             condition_text TEXT,
+
+--- live_product_category_rules | LINES 175-192 ---
+175:         CREATE INDEX IF NOT EXISTS
+176:         idx_product_features_key
+177:         ON live_product_features(feature_key);
+178: 
+179:         CREATE INDEX IF NOT EXISTS
+180:         idx_product_category_rules_product
+181:         ON live_product_category_rules(product_id);
+182: 
+183:         CREATE INDEX IF NOT EXISTS
+184:         idx_product_category_rules_key
+185:         ON live_product_category_rules(category_key);
+186: 
+187:         CREATE INDEX IF NOT EXISTS
+188:         idx_product_amount_maturity_product
+189:         ON live_product_amount_maturity_rules(product_id);
+190: 
+191:         CREATE INDEX IF NOT EXISTS
+192:         idx_product_pricing_tiers_product
+
+--- live_product_category_rules | LINES 179-196 ---
+179:         CREATE INDEX IF NOT EXISTS
+180:         idx_product_category_rules_product
+181:         ON live_product_category_rules(product_id);
+182: 
+183:         CREATE INDEX IF NOT EXISTS
+184:         idx_product_category_rules_key
+185:         ON live_product_category_rules(category_key);
+186: 
+187:         CREATE INDEX IF NOT EXISTS
+188:         idx_product_amount_maturity_product
+189:         ON live_product_amount_maturity_rules(product_id);
+190: 
+191:         CREATE INDEX IF NOT EXISTS
+192:         idx_product_pricing_tiers_product
+193:         ON live_product_pricing_tiers(product_id);
+194: 
+195:         CREATE INDEX IF NOT EXISTS
+196:         idx_product_fee_rules_product
+
+--- live_product_category_rules | LINES 247-264 ---
+247:         "fee": 0,
+248:         "offer": 0,
+249:         "feature": 0,
+250:     }
+251: 
+252:     con.execute(
+253:         "DELETE FROM live_product_category_rules "
+254:         "WHERE product_id=?",
+255:         (product_id,),
+256:     )
+257:     con.execute(
+258:         "DELETE FROM live_product_amount_maturity_rules "
+259:         "WHERE product_id=?",
+260:         (product_id,),
+261:     )
+262:     con.execute(
+263:         "DELETE FROM live_product_pricing_tiers "
+264:         "WHERE product_id=?",
+
+--- live_product_category_rules | LINES 275-292 ---
+275:         (product_id,),
+276:     )
+277: 
+278:     for row in rules.get("category_rules", []):
+279:         con.execute(
+280:             """
+281:             INSERT INTO live_product_category_rules (
+282:                 product_id,
+283:                 category_key,
+284:                 category_label,
+285:                 min_amount,
+286:                 max_amount,
+287:                 min_inclusive,
+288:                 max_inclusive,
+289:                 max_installments,
+290:                 max_maturity_months,
+291:                 condition_text,
+292:                 source_text,
+category_rules => 9 hit
+
+--- category_rules | LINES 36-53 ---
+36: 
+37: 
+38: def ensure_schema(con: sqlite3.Connection) -> None:
+39:     con.executescript(
+40:         """
+41:         CREATE TABLE IF NOT EXISTS
+42:         live_product_category_rules (
+43:             id INTEGER PRIMARY KEY AUTOINCREMENT,
+44:             product_id INTEGER NOT NULL,
+45:             category_key TEXT NOT NULL,
+46:             category_label TEXT NOT NULL,
+47:             min_amount REAL,
+48:             max_amount REAL,
+49:             min_inclusive INTEGER NOT NULL DEFAULT 0,
+50:             max_inclusive INTEGER NOT NULL DEFAULT 1,
+51:             max_installments INTEGER,
+52:             max_maturity_months INTEGER,
+53:             condition_text TEXT,
+
+--- category_rules | LINES 174-191 ---
+174: 
+175:         CREATE INDEX IF NOT EXISTS
+176:         idx_product_features_key
+177:         ON live_product_features(feature_key);
+178: 
+179:         CREATE INDEX IF NOT EXISTS
+180:         idx_product_category_rules_product
+181:         ON live_product_category_rules(product_id);
+182: 
+183:         CREATE INDEX IF NOT EXISTS
+184:         idx_product_category_rules_key
+185:         ON live_product_category_rules(category_key);
+186: 
+187:         CREATE INDEX IF NOT EXISTS
+188:         idx_product_amount_maturity_product
+189:         ON live_product_amount_maturity_rules(product_id);
+190: 
+191:         CREATE INDEX IF NOT EXISTS
+
+--- category_rules | LINES 175-192 ---
+175:         CREATE INDEX IF NOT EXISTS
+176:         idx_product_features_key
+177:         ON live_product_features(feature_key);
+178: 
+179:         CREATE INDEX IF NOT EXISTS
+180:         idx_product_category_rules_product
+181:         ON live_product_category_rules(product_id);
+182: 
+183:         CREATE INDEX IF NOT EXISTS
+184:         idx_product_category_rules_key
+185:         ON live_product_category_rules(category_key);
+186: 
+187:         CREATE INDEX IF NOT EXISTS
+188:         idx_product_amount_maturity_product
+189:         ON live_product_amount_maturity_rules(product_id);
+190: 
+191:         CREATE INDEX IF NOT EXISTS
+192:         idx_product_pricing_tiers_product
+
+--- category_rules | LINES 178-195 ---
+178: 
+179:         CREATE INDEX IF NOT EXISTS
+180:         idx_product_category_rules_product
+181:         ON live_product_category_rules(product_id);
+182: 
+183:         CREATE INDEX IF NOT EXISTS
+184:         idx_product_category_rules_key
+185:         ON live_product_category_rules(category_key);
+186: 
+187:         CREATE INDEX IF NOT EXISTS
+188:         idx_product_amount_maturity_product
+189:         ON live_product_amount_maturity_rules(product_id);
+190: 
+191:         CREATE INDEX IF NOT EXISTS
+192:         idx_product_pricing_tiers_product
+193:         ON live_product_pricing_tiers(product_id);
+194: 
+195:         CREATE INDEX IF NOT EXISTS
+
+--- category_rules | LINES 179-196 ---
+179:         CREATE INDEX IF NOT EXISTS
+180:         idx_product_category_rules_product
+181:         ON live_product_category_rules(product_id);
+182: 
+183:         CREATE INDEX IF NOT EXISTS
+184:         idx_product_category_rules_key
+185:         ON live_product_category_rules(category_key);
+186: 
+187:         CREATE INDEX IF NOT EXISTS
+188:         idx_product_amount_maturity_product
+189:         ON live_product_amount_maturity_rules(product_id);
+190: 
+191:         CREATE INDEX IF NOT EXISTS
+192:         idx_product_pricing_tiers_product
+193:         ON live_product_pricing_tiers(product_id);
+194: 
+195:         CREATE INDEX IF NOT EXISTS
+196:         idx_product_fee_rules_product
+
+--- category_rules | LINES 247-264 ---
+247:         "fee": 0,
+248:         "offer": 0,
+249:         "feature": 0,
+250:     }
+251: 
+252:     con.execute(
+253:         "DELETE FROM live_product_category_rules "
+254:         "WHERE product_id=?",
+255:         (product_id,),
+256:     )
+257:     con.execute(
+258:         "DELETE FROM live_product_amount_maturity_rules "
+259:         "WHERE product_id=?",
+260:         (product_id,),
+261:     )
+262:     con.execute(
+263:         "DELETE FROM live_product_pricing_tiers "
+264:         "WHERE product_id=?",
+
+--- category_rules | LINES 272-289 ---
+272:     con.execute(
+273:         "DELETE FROM live_product_offer_rules "
+274:         "WHERE product_id=?",
+275:         (product_id,),
+276:     )
+277: 
+278:     for row in rules.get("category_rules", []):
+279:         con.execute(
+280:             """
+281:             INSERT INTO live_product_category_rules (
+282:                 product_id,
+283:                 category_key,
+284:                 category_label,
+285:                 min_amount,
+286:                 max_amount,
+287:                 min_inclusive,
+288:                 max_inclusive,
+289:                 max_installments,
+
+--- category_rules | LINES 275-292 ---
+275:         (product_id,),
+276:     )
+277: 
+278:     for row in rules.get("category_rules", []):
+279:         con.execute(
+280:             """
+281:             INSERT INTO live_product_category_rules (
+282:                 product_id,
+283:                 category_key,
+284:                 category_label,
+285:                 min_amount,
+286:                 max_amount,
+287:                 min_inclusive,
+288:                 max_inclusive,
+289:                 max_installments,
+290:                 max_maturity_months,
+291:                 condition_text,
+292:                 source_text,
+
+--- category_rules | LINES 511-528 ---
+511:                 f"min_inclusive={bool(row.get('min_inclusive'))}; max_inclusive={bool(row.get('max_inclusive', True))}"
+512:             ),
+513:             source_url=source_url,
+514:             source_text=row.get("source_text"),
+515:         )
+516: 
+517:     for idx, row in enumerate(rules.get("category_rules", []), start=1):
+518:         if row.get("max_installments") is not None:
+519:             add(
+520:                 fact_key=f"category_installment_rule:{idx}",
+521:                 value_text=f"{row.get('category_label')} · azami {row.get('max_installments')} taksit",
+522:                 value_numeric=row.get("max_installments"),
+523:                 value_type="maximum", source_type="product_page",
+524:                 conditions=row.get("condition_text"), source_url=source_url, source_text=row.get("source_text"),
+525:             )
+526:         if row.get("max_maturity_months") is not None:
+527:             add(
+528:                 fact_key=f"category_maturity_rule:{idx}",
+maximum_financing_ratio => 2 hit
+
+--- maximum_financing_ratio | LINES 479-496 ---
+479: 
+480:     top_numeric = (
+481:         ("minimum_financing_amount", "minimum", "Asgari finansman tutarı"),
+482:         ("maximum_financing_amount", "maximum", "Azami finansman tutarı"),
+483:         ("maximum_maturity_months", "maximum", "Azami vade (ay)"),
+484:         ("profit_share_rate", "exact", "Ürün seviyesi kâr payı"),
+485:         ("maximum_financing_ratio", "maximum", "Azami finansman oranı"),
+486:         ("shopping_general_limit_amount", "maximum", "Alışveriş genel limit"),
+487:         ("shopping_general_max_maturity_months", "maximum", "Alışveriş azami vade (ay)"),
+488:     )
+489:     for field, value_type, label in top_numeric:
+490:         value = detail_row[field] if field in detail_row.keys() else None
+491:         if value is None:
+492:             continue
+493:         add(
+494:             fact_key=field,
+495:             value_text=label,
+496:             value_numeric=value,
+
+--- maximum_financing_ratio | LINES 813-830 ---
+813:             d.product_family,
+814:             d.scope,
+815:             d.minimum_financing_amount,
+816:             d.maximum_financing_amount,
+817:             d.maximum_maturity_months,
+818:             d.profit_share_rate,
+819:             d.maximum_financing_ratio,
+820:             d.shopping_general_limit_amount,
+821:             d.shopping_general_max_maturity_months,
+822:             c.clean_text,
+823:             d.finance_rules_json
+824:         FROM live_campaigns AS c
+825:         JOIN live_standard_product_details AS d
+826:             ON d.product_id = c.id
+827:         WHERE c.record_kind='standard_product'
+828:           AND c.is_current=1
+829:     """
+830:     params = []
+maximum_maturity_months => 2 hit
+
+--- maximum_maturity_months | LINES 477-494 ---
+477:         except ValueError:
+478:             return
+479: 
+480:     top_numeric = (
+481:         ("minimum_financing_amount", "minimum", "Asgari finansman tutarı"),
+482:         ("maximum_financing_amount", "maximum", "Azami finansman tutarı"),
+483:         ("maximum_maturity_months", "maximum", "Azami vade (ay)"),
+484:         ("profit_share_rate", "exact", "Ürün seviyesi kâr payı"),
+485:         ("maximum_financing_ratio", "maximum", "Azami finansman oranı"),
+486:         ("shopping_general_limit_amount", "maximum", "Alışveriş genel limit"),
+487:         ("shopping_general_max_maturity_months", "maximum", "Alışveriş azami vade (ay)"),
+488:     )
+489:     for field, value_type, label in top_numeric:
+490:         value = detail_row[field] if field in detail_row.keys() else None
+491:         if value is None:
+492:             continue
+493:         add(
+494:             fact_key=field,
+
+--- maximum_maturity_months | LINES 811-828 ---
+811:             c.source_url,
+812:             d.product_name,
+813:             d.product_family,
+814:             d.scope,
+815:             d.minimum_financing_amount,
+816:             d.maximum_financing_amount,
+817:             d.maximum_maturity_months,
+818:             d.profit_share_rate,
+819:             d.maximum_financing_ratio,
+820:             d.shopping_general_limit_amount,
+821:             d.shopping_general_max_maturity_months,
+822:             c.clean_text,
+823:             d.finance_rules_json
+824:         FROM live_campaigns AS c
+825:         JOIN live_standard_product_details AS d
+826:             ON d.product_id = c.id
+827:         WHERE c.record_kind='standard_product'
+828:           AND c.is_current=1
+maximum_financing_amount => 2 hit
+
+--- maximum_financing_amount | LINES 476-493 ---
+476:             records.append(fact_evidence_record(**kwargs))
+477:         except ValueError:
+478:             return
+479: 
+480:     top_numeric = (
+481:         ("minimum_financing_amount", "minimum", "Asgari finansman tutarı"),
+482:         ("maximum_financing_amount", "maximum", "Azami finansman tutarı"),
+483:         ("maximum_maturity_months", "maximum", "Azami vade (ay)"),
+484:         ("profit_share_rate", "exact", "Ürün seviyesi kâr payı"),
+485:         ("maximum_financing_ratio", "maximum", "Azami finansman oranı"),
+486:         ("shopping_general_limit_amount", "maximum", "Alışveriş genel limit"),
+487:         ("shopping_general_max_maturity_months", "maximum", "Alışveriş azami vade (ay)"),
+488:     )
+489:     for field, value_type, label in top_numeric:
+490:         value = detail_row[field] if field in detail_row.keys() else None
+491:         if value is None:
+492:             continue
+493:         add(
+
+--- maximum_financing_amount | LINES 810-827 ---
+810:             c.bank_name,
+811:             c.source_url,
+812:             d.product_name,
+813:             d.product_family,
+814:             d.scope,
+815:             d.minimum_financing_amount,
+816:             d.maximum_financing_amount,
+817:             d.maximum_maturity_months,
+818:             d.profit_share_rate,
+819:             d.maximum_financing_ratio,
+820:             d.shopping_general_limit_amount,
+821:             d.shopping_general_max_maturity_months,
+822:             c.clean_text,
+823:             d.finance_rules_json
+824:         FROM live_campaigns AS c
+825:         JOIN live_standard_product_details AS d
+826:             ON d.product_id = c.id
+827:         WHERE c.record_kind='standard_product'
+
+========================================================================================================================
+SQL WRITE BLOCKS
+========================================================================================================================
+
+--- WRITE BLOCK | LINES 273-315 ---
+273:         "DELETE FROM live_product_offer_rules "
+274:         "WHERE product_id=?",
+275:         (product_id,),
+276:     )
+277: 
+278:     for row in rules.get("category_rules", []):
+279:         con.execute(
+280:             """
+281:             INSERT INTO live_product_category_rules (
+282:                 product_id,
+283:                 category_key,
+284:                 category_label,
+285:                 min_amount,
+286:                 max_amount,
+287:                 min_inclusive,
+288:                 max_inclusive,
+289:                 max_installments,
+290:                 max_maturity_months,
+291:                 condition_text,
+292:                 source_text,
+293:                 updated_at
+294:             )
+295:             VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+296:             """,
+297:             (
+298:                 product_id,
+299:                 row.get("category_key"),
+300:                 row.get("category_label"),
+301:                 row.get("min_amount"),
+302:                 row.get("max_amount"),
+303:                 1 if row.get("min_inclusive") else 0,
+304:                 1 if row.get("max_inclusive", True) else 0,
+305:                 row.get("max_installments"),
+306:                 row.get("max_maturity_months"),
+307:                 row.get("condition_text"),
+308:                 row.get("source_text"),
+309:                 timestamp,
+310:             ),
+311:         )
+312:         counts["category"] += 1
+313: 
+314:     for row in rules.get("amount_maturity_rules", []):
+315:         con.execute(
+
+--- WRITE BLOCK | LINES 309-351 ---
+309:                 timestamp,
+310:             ),
+311:         )
+312:         counts["category"] += 1
+313: 
+314:     for row in rules.get("amount_maturity_rules", []):
+315:         con.execute(
+316:             """
+317:             INSERT INTO live_product_amount_maturity_rules (
+318:                 product_id,
+319:                 min_amount,
+320:                 max_amount,
+321:                 min_inclusive,
+322:                 max_inclusive,
+323:                 max_maturity_months,
+324:                 source_text,
+325:                 updated_at
+326:             )
+327:             VALUES (?, ?, ?, ?, ?, ?, ?, ?)
+328:             """,
+329:             (
+330:                 product_id,
+331:                 row.get("min_amount"),
+332:                 row.get("max_amount"),
+333:                 1 if row.get("min_inclusive") else 0,
+334:                 1 if row.get("max_inclusive", True) else 0,
+335:                 row.get("max_maturity_months"),
+336:                 row.get("source_text"),
+337:                 timestamp,
+338:             ),
+339:         )
+340:         counts["amount_maturity"] += 1
+341: 
+342:     for row in rules.get("pricing_tiers", []):
+343:         con.execute(
+344:             """
+345:             INSERT INTO live_product_pricing_tiers (
+346:                 product_id,
+347:                 pricing_variant,
+348:                 financing_amount,
+349:                 maturity_months,
+350:                 profit_share_rate,
+351:                 allocation_fee_rate,
+
+--- WRITE BLOCK | LINES 337-379 ---
+337:                 timestamp,
+338:             ),
+339:         )
+340:         counts["amount_maturity"] += 1
+341: 
+342:     for row in rules.get("pricing_tiers", []):
+343:         con.execute(
+344:             """
+345:             INSERT INTO live_product_pricing_tiers (
+346:                 product_id,
+347:                 pricing_variant,
+348:                 financing_amount,
+349:                 maturity_months,
+350:                 profit_share_rate,
+351:                 allocation_fee_rate,
+352:                 monthly_total_cost_rate,
+353:                 annual_total_cost_rate,
+354:                 source_text,
+355:                 value_type,
+356:                 source_type,
+357:                 conditions,
+358:                 source_url,
+359:                 updated_at
+360:             )
+361:             VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+362:             """,
+363:             (
+364:                 product_id,
+365:                 row.get("pricing_variant", "Standart"),
+366:                 row.get("financing_amount"),
+367:                 row.get("maturity_months"),
+368:                 row.get("profit_share_rate"),
+369:                 row.get("allocation_fee_rate"),
+370:                 row.get("monthly_total_cost_rate"),
+371:                 row.get("annual_total_cost_rate"),
+372:                 row.get("source_text"),
+373:                 row.get("value_type", "exact"),
+374:                 row.get("source_type", "official_pricing_table"),
+375:                 row.get("conditions"),
+376:                 row.get("source_url"),
+377:                 timestamp,
+378:             ),
+379:         )
+
+--- WRITE BLOCK | LINES 377-419 ---
+377:                 timestamp,
+378:             ),
+379:         )
+380:         counts["pricing"] += 1
+381: 
+382:     for row in rules.get("fee_rules", []):
+383:         con.execute(
+384:             """
+385:             INSERT INTO live_product_fee_rules (
+386:                 product_id,
+387:                 fee_type,
+388:                 fee_label,
+389:                 waived,
+390:                 amount,
+391:                 rate,
+392:                 note,
+393:                 updated_at
+394:             )
+395:             VALUES (?, ?, ?, ?, ?, ?, ?, ?)
+396:             """,
+397:             (
+398:                 product_id,
+399:                 row.get("fee_type"),
+400:                 row.get("fee_label"),
+401:                 1 if row.get("waived") else 0,
+402:                 row.get("amount"),
+403:                 row.get("rate"),
+404:                 row.get("note"),
+405:                 timestamp,
+406:             ),
+407:         )
+408:         counts["fee"] += 1
+409: 
+410:     for row in rules.get("offer_rules", []):
+411:         con.execute(
+412:             """
+413:             INSERT INTO live_product_offer_rules (
+414:                 product_id,
+415:                 rule_type,
+416:                 rule_label,
+417:                 min_amount,
+418:                 max_amount,
+419:                 min_inclusive,
+
+--- WRITE BLOCK | LINES 405-447 ---
+405:                 timestamp,
+406:             ),
+407:         )
+408:         counts["fee"] += 1
+409: 
+410:     for row in rules.get("offer_rules", []):
+411:         con.execute(
+412:             """
+413:             INSERT INTO live_product_offer_rules (
+414:                 product_id,
+415:                 rule_type,
+416:                 rule_label,
+417:                 min_amount,
+418:                 max_amount,
+419:                 min_inclusive,
+420:                 max_inclusive,
+421:                 max_installments,
+422:                 max_maturity_months,
+423:                 interest_free,
+424:                 condition_text,
+425:                 source_text,
+426:                 updated_at
+427:             )
+428:             VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+429:             """,
+430:             (
+431:                 product_id,
+432:                 row.get("rule_type", "product_offer"),
+433:                 row.get(
+434:                     "rule_label",
+435:                     "Ürüne Özel Finansman Koşulu",
+436:                 ),
+437:                 row.get("min_amount"),
+438:                 row.get("max_amount"),
+439:                 1 if row.get("min_inclusive") else 0,
+440:                 1 if row.get("max_inclusive", True) else 0,
+441:                 row.get("max_installments"),
+442:                 row.get("max_maturity_months"),
+443:                 1 if row.get("interest_free") else 0,
+444:                 row.get("condition_text"),
+445:                 row.get("source_text"),
+446:                 timestamp,
+447:             ),
+
+--- WRITE BLOCK | LINES 627-669 ---
+627:                 value_type=rate_value_type, source_type=source_type,
+628:                 conditions=note or None, source_url=source_url, source_text=note or None,
+629:                 verification_status=verification_status,
+630:             )
+631: 
+632:     for record in records:
+633:         con.execute(
+634:             """
+635:             INSERT INTO live_finance_fact_evidence (
+636:                 product_id,fact_key,value_text,value_numeric,value_type,source_type,
+637:                 conditions,source_url,source_text,verification_status,updated_at
+638:             ) VALUES (?,?,?,?,?,?,?,?,?,?,?)
+639:             """,
+640:             (
+641:                 product_id, record["fact_key"], record["value_text"], record["value_numeric"],
+642:                 record["value_type"], record["source_type"], record["conditions"],
+643:                 record["source_url"], record["source_text"], record["verification_status"], timestamp,
+644:             ),
+645:         )
+646:     return len(records)
+647: 
+648: def sync_product_features(
+649:     con: sqlite3.Connection,
+650:     *,
+651:     product_id: int,
+652:     product_name: str,
+653:     product_family: str,
+654:     scope: str,
+655:     clean_text: str,
+656:     bank_name: str,
+657:     timestamp: str,
+658: ) -> int:
+659:     con.execute(
+660:         "DELETE FROM live_product_features "
+661:         "WHERE product_id=?",
+662:         (product_id,),
+663:     )
+664: 
+665:     # Güncel qualitative extractor imzası bank_name almaz.
+666:     # Bankaya özel source-safe düzeltmeleri generic extraction sonrasında
+667:     # uyguluyoruz; böylece mevcut global extractor lineage'ını bozmuyoruz.
+668:     features = extract_qualitative_features(
+669:         product_name=product_name,
+
+--- WRITE BLOCK | LINES 742-784 ---
+742:                 source_text="Bireysel sürdürülebilir finansman ürünü: Çatı GES Finansmanı",
+743:                 extraction_method="finance_data_accuracy_v2",
+744:             )
+745:         )
+746: 
+747:     for feature in features:
+748:         con.execute(
+749:             """
+750:             INSERT INTO live_product_features (
+751:                 product_id,
+752:                 feature_key,
+753:                 feature_label,
+754:                 feature_value,
+755:                 source_text,
+756:                 extraction_method,
+757:                 updated_at
+758:             )
+759:             VALUES (?, ?, ?, ?, ?, ?, ?)
+760:             """,
+761:             (
+762:                 product_id,
+763:                 feature.feature_key,
+764:                 feature.feature_label,
+765:                 feature.feature_value,
+766:                 feature.source_text,
+767:                 feature.extraction_method,
+768:                 timestamp,
+769:             ),
+770:         )
+771: 
+772:     return len(features)
+773: 
+774: def main() -> int:
+775:     parser = argparse.ArgumentParser()
+776:     parser.add_argument(
+777:         "--db",
+778:         type=Path,
+779:         default=DEFAULT_DB,
+780:     )
+781:     parser.add_argument(
+782:         "--bank",
+783:         default=None,
+784:     )

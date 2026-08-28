@@ -1,0 +1,55 @@
+BANSA COMPETITION FINAL - ACCEPTANCE REPORT
+===========================================
+Date: 2026-08-25
+
+BASELINE FROM USER WINDOWS ENVIRONMENT
+--------------------------------------
+- Stable rollback baseline: 772 passed in 22.89s
+
+FINAL COMPETITION LAYER VALIDATION IN PACKAGE BUILD ENVIRONMENT
+---------------------------------------------------------------
+- Python compile: src/ + pages/ = PASS (109 files)
+- Competition fast-router regression: 10/10 PASS
+- Critical regression bundle: 105/105 PASS
+  Includes:
+  * follow-up context
+  * finance housing condition dedup
+  * local agent answerer
+  * strict live market campaign runtime
+  * campaign topic guards/comparison universe
+  * chatbot answer contracts/router
+
+STRUCTURED CHATBOT SMOKE TESTS
+------------------------------
+PASS - Albaraka Türk İhtiyaç Finansmanı azami vade -> 36 ay
+PASS - "vakf katlm motosklet ..." typo -> Vakıf Katılım Motosiklet -> 48 ay
+PASS - Vakıf Katılım / Türkiye Finans konut comparison -> catalog + verified examples
+PASS - 100.000 TL / 36 ay Vakıf + Türkiye Finans -> exact verified snapshot table
+PASS - 100.000 TL / 36 ay Kuveyt Türk konut -> exact verified snapshot
+PASS - 75.000 TL / 24 ay Türkiye Finans ihtiyaç -> verified local-model variants
+PASS - Albaraka konut ekspertiz -> verified example fee with product source
+PASS - missing fee data -> "Resmî kaynakta belirtilmemiş" (never invented zero)
+PASS - Kuveyt Türk campaign typo query -> current campaign list
+PASS - campaign current-date gate -> expired records not shown
+PASS - campaign topic evidence -> TITLE + URL only
+PASS - short follow-up "kaç ay vade?" inherits last bank/product context
+PASS - raw UNVERIFIED/technical-error strings are not jury-facing
+
+LATENCY OBSERVED FOR FAST STRUCTURED ROUTES
+-------------------------------------------
+Representative direct calls were typically about 0.003-0.08 seconds after local
+snapshot load in the package build environment. These routes do not require a
+Qwen round-trip.
+
+GRACEFUL DEGRADATION CONTRACT
+-----------------------------
+Tier 1 - exact verified local calculation/snapshot where available
+Tier 2 - verified finance catalog + official calculator example where available
+Tier 3 - existing local Qwen/RAG BANSA core for open-ended questions
+Tier 4 - smart guidance fallback; no raw UNVERIFIED or technical error card
+
+FINANCIAL SAFETY
+----------------
+- No sample numbers from prompt were inserted as bank facts.
+- Missing source values are labeled explicitly instead of being converted to 0 TL/Muaf.
+- Exact repayment ranking is not claimed when exact comparable fee coverage is absent.

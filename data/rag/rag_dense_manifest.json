@@ -1,0 +1,8 @@
+{
+  "corpus_hash": "da2f3dbb750ea2340477cf51d900a31b61e6b772f986cfdc3fb5c2ee5acfd534",
+  "created_at": "2026-08-21T17:42:36.990162+00:00",
+  "dimension": 1024,
+  "model_name": "Qwen/Qwen3-Embedding-0.6B",
+  "ordered_chunk_hash": "faaa2c5d6fc1cf41c6d2897a755cafb823f8190fdc82f9214c398bac9a915d0f",
+  "record_count": 2328
+}

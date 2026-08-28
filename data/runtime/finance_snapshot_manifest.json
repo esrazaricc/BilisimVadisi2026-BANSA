@@ -1,0 +1,17 @@
+{
+  "build_time_postgres_required": true,
+  "column_count": 38,
+  "content_hash": "b532a8d2d2262dadc80c4ea7ab18bfbe6315309c545078dcb55dbe2af28bc2de",
+  "full_field_parity": true,
+  "generated_at": "2026-08-22T12:57:22.477080+00:00",
+  "hash_contract": "canonical_finance_v2",
+  "numeric_value_parity": true,
+  "row_count": 274,
+  "runtime_password_required": false,
+  "runtime_port_required": false,
+  "runtime_postgres_required": false,
+  "runtime_table": "standard_products",
+  "schema_version": "finance_snapshot_v1",
+  "source": "PostgreSQL get_standard_products()",
+  "validated_at": "2026-08-26T17:40:00+00:00"
+}

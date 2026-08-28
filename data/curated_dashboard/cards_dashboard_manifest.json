@@ -1,0 +1,47 @@
+{
+  "snapshot_date": "2026-08-27",
+  "bank_universe_source": "BDDK Katılım Bankaları kuruluş listesi",
+  "bank_universe": [
+    "Adil Katılım",
+    "Albaraka Türk",
+    "Dünya Katılım",
+    "Hayat Finans",
+    "Kuveyt Türk",
+    "T.O.M. Katılım",
+    "Türkiye Emlak Katılım",
+    "Türkiye Finans",
+    "Vakıf Katılım",
+    "Ziraat Katılım"
+  ],
+  "row_count": 56,
+  "missing_marker": "Bilgi yok – resmî kaynakta yayımlanmamış",
+  "columns": [
+    "Banka",
+    "Kart Adı",
+    "Kart Türü",
+    "Müşteri Segmenti",
+    "Ödeme Ağı",
+    "Kart Programı / Ödül",
+    "Yıllık Kart Ücreti",
+    "Taksit / Vade Farksız",
+    "Puan / Nakit İade / Mil",
+    "Temassız",
+    "QR / NFC",
+    "Sanal Kart",
+    "Ek Kart",
+    "İnternet Alışverişi",
+    "Yurt Dışı Kullanım",
+    "Nakit Avans",
+    "Öne Çıkan Avantaj",
+    "Başvuru Kanalı",
+    "Resmî Kaynak",
+    "Kontrol Tarihi",
+    "Veri Notu"
+  ],
+  "policy": [
+    "Runtime scraping yok.",
+    "Yalnız kamuya açık resmî banka sayfaları ve resmî ücret/sözleşme belgeleri kullanılır.",
+    "Doğrulanmayan özellik Var/Yok/0 TL diye tahmin edilmez.",
+    "Kart ürünü kamuya açık yayımlanmıyorsa banka evrende tutulur ve durum açıkça yazılır."
+  ]
+}

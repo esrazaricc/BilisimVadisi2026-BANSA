@@ -1,0 +1,66 @@
+BANSA COMPETITION FINAL V3 - NATURAL CHAT
+25 August 2026
+
+Purpose
+-------
+This build keeps BANSA's verified deterministic finance/campaign architecture,
+but adds a natural conversation layer in front of fixed catalog renderers.
+
+What changed
+------------
+1. Natural finance answers
+   - Single-product questions are explained in prose instead of a fixed table.
+   - Amount/maturity questions are interpreted against verified product rules.
+   - Exact verified calculator results remain first priority.
+   - Different-size calculator examples are explicitly labelled as examples,
+     never scaled or presented as the user's requested result.
+
+2. Motorcycle rule reasoning
+   - Vakif Katilim / Kuveyt Turk-style invoice-value bands are interpreted.
+   - Example: a 600,000 TL motorcycle value falls in the 50% / 36 month band,
+     while a request for 600,000 TL financing itself asks for vehicle value
+     before claiming eligibility.
+
+3. Human-like comparison behavior
+   - "Which bank is more advantageous?" asks for amount + maturity when needed.
+   - General housing comparisons may still use compact tables because a table is
+     appropriate for many banks.
+   - Explicit new bank/product questions always override older chat context.
+
+4. Follow-up context
+   - Previous resolved questions are reused by the Streamlit UI.
+   - Short chains keep bank + product + numeric context:
+       Vakif motorcycle -> "Peki 600 bin?" -> "24 ay olur mu?"
+   - A new explicit question cannot be contaminated by an older comparison.
+
+5. Campaign conversation
+   - Misspellings such as "kampnya" are accepted.
+   - Merchant-only questions such as "Gree klimada kac taksit?" route to the
+     campaign detail instead of finance.
+   - Bank campaign lists are compact summaries instead of 12 long raw cards.
+   - Named campaign questions return only the matching campaign.
+
+6. Safety / graceful degradation
+   - No raw UNVERIFIED or technical failure is intended for the jury UI.
+   - Missing financial values are never converted to 0 TL or invented.
+   - Deterministic natural responses do not require Qwen, improving latency.
+
+Validation performed in packaging environment
+---------------------------------------------
+- Modified source files compile successfully.
+- 40 targeted competition/router/follow-up/history tests passed.
+- 14 live local acceptance checks passed with zero failures.
+- Natural structured responses measured roughly 0.005-0.14 seconds in the
+  packaging environment (excluding Streamlit rendering / external services).
+
+Important
+---------
+The legacy full project suite may require optional packages such as psycopg,
+sentence-transformers and browser dependencies. requirements.txt contains the
+competition dependencies. On the original Windows environment the baseline
+suite had previously passed 772 tests before this front-layer change.
+
+Launch
+------
+Preferred: RUN_BANSA_COMPETITION.bat
+Fallback:  RUN_BANSA_OFFLINE_DEMO.bat

@@ -1,0 +1,179 @@
+{
+  "version": "2026-08-16-v2",
+  "source_policy": {
+    "institution_scope": "BDDK Katılım Bankaları",
+    "institution_scope_url": "https://www.bddk.org.tr/Kurulus/Liste/77",
+    "rule": "Bankalar BDDK kapsamından gelir. Ürün, oran, vade, limit ve ücretler yalnız bankanın resmî kaynaklarından doğrulanır; bulunmayan alan tahmin edilmez."
+  },
+  "primary_retail_categories": [
+    {
+      "key": "konut_finansmani",
+      "label": "Konut Finansmanı",
+      "required_comparison_fields": [
+        "Banka",
+        "Ürün Adı",
+        "Kâr Payı / Fiyatlama",
+        "Azami Vade",
+        "Finansman Oranı",
+        "Tahsis Ücreti",
+        "Ekspertiz Ücreti",
+        "İpotek Tesis Ücreti",
+        "Ürün Kaynağı",
+        "Ücret Kaynağı"
+      ]
+    },
+    {
+      "key": "tasit_finansmani",
+      "label": "Taşıt Finansmanı",
+      "required_comparison_fields": [
+        "Banka",
+        "Ürün Adı",
+        "Araç Türü",
+        "Sıfır / İkinci El",
+        "Azami Araç Yaşı",
+        "Araç Değer Aralığı",
+        "Finansman Oranı",
+        "Azami Vade",
+        "Kâr Payı / Fiyatlama",
+        "Tahsis Ücreti",
+        "Özel Koşul",
+        "Ürün Kaynağı",
+        "Ücret Kaynağı"
+      ]
+    },
+    {
+      "key": "ihtiyac_finansmani",
+      "label": "İhtiyaç Finansmanı",
+      "required_comparison_fields": [
+        "Banka",
+        "Ürün Adı",
+        "İhtiyaç Alt Türü",
+        "Asgari Finansman",
+        "Azami Finansman / Limit",
+        "Tutar Aralığı",
+        "Azami Vade",
+        "Kâr Payı / Fiyatlama",
+        "Tahsis Ücreti",
+        "Teminat Türü",
+        "Ödemesiz / Ertelemeli Dönem",
+        "Özel Koşullar",
+        "Ürün Kaynağı",
+        "Ücret Kaynağı"
+      ]
+    },
+    {
+      "key": "gayrimenkul_finansmani",
+      "label": "Gayrimenkul Finansmanı",
+      "required_comparison_fields": [
+        "Banka",
+        "Ürün Adı",
+        "Gayrimenkul Türü",
+        "Kâr Payı / Fiyatlama",
+        "Azami Vade",
+        "Finansman Oranı",
+        "Ekspertiz Değeri Koşulu",
+        "Tahsis Ücreti",
+        "Ekspertiz Ücreti",
+        "İpotek Tesis Ücreti",
+        "Ürün Kaynağı",
+        "Ücret Kaynağı"
+      ]
+    },
+    {
+      "key": "alisveris_finansmani",
+      "label": "Alışveriş Finansmanı",
+      "required_comparison_fields": [
+        "Banka",
+        "Ürün Adı",
+        "Finansman Modeli",
+        "Azami Limit",
+        "Asgari İşlem Tutarı",
+        "Azami Vade / Taksit",
+        "Kâr Payı / Fiyatlama",
+        "Tahsis Ücreti",
+        "Limit Yenilenebilir mi?",
+        "Kullanım Kanalı",
+        "Ürün/Kategori Kısıtları",
+        "Ürün Kaynağı",
+        "Ücret Kaynağı"
+      ]
+    }
+  ],
+  "evidence_types": [
+    "product_page",
+    "official_fee_tariff",
+    "official_pricing_table",
+    "calculator",
+    "example_payment_table",
+    "contract_or_form",
+    "faq",
+    "campaign"
+  ],
+  "value_types": [
+    "exact",
+    "minimum",
+    "maximum",
+    "range",
+    "dynamic",
+    "example",
+    "not_published"
+  ],
+  "guardrails": [
+    "example_payment_table oranı genel/güncel kâr payı oranı olarak gösterilemez",
+    "calculator varsayılan değeri genel/güncel kâr payı oranı olarak gösterilemez",
+    "campaign oranı ana ürünün genel fiyatlaması olarak gösterilemez",
+    "NULL değer 0'a dönüştürülemez",
+    "iki resmî kaynak çelişirse source_conflict olarak işaretlenir ve kullanıcıya iki kaynak da gösterilir",
+    "ürün adında ticari kelimesi geçmesi tek başına scope=ticari yapmaz; resmî scope/product_family korunur",
+    "Bireysel ve İş/Ticari karşılaştırmaları aynı tabloda karıştırılamaz",
+    "banka seçicisinde yalnız seçilen scope+kategoride doğrulanmış ürünü bulunan bankalar gösterilir",
+    "fiyatlama kanıtı ve kaynak URL bilgisi veri katmanında korunur; Fiyatlama Kaynağı ana karşılaştırma tablosunda ayrı sütun olarak gösterilmez"
+  ],
+  "comparison_scopes": [
+    {
+      "key": "bireysel",
+      "label": "Bireysel Finansman",
+      "categories": [
+        "konut_finansmani",
+        "tasit_finansmani",
+        "ihtiyac_finansmani",
+        "gayrimenkul_finansmani",
+        "alisveris_finansmani",
+        "diger_bireysel_finansman"
+      ]
+    },
+    {
+      "key": "ticari",
+      "label": "İş / Ticari Finansman",
+      "categories": [
+        "ticari_finansman",
+        "gayri_nakdi_finansman",
+        "tarim_finansmani",
+        "leasing_finansal_kiralama",
+        "diger_ticari_finansman"
+      ]
+    }
+  ],
+  "business_categories": [
+    {
+      "key": "ticari_finansman",
+      "label": "Ticari Finansman"
+    },
+    {
+      "key": "gayri_nakdi_finansman",
+      "label": "Gayri Nakdi Finansman"
+    },
+    {
+      "key": "tarim_finansmani",
+      "label": "Tarım Finansmanı"
+    },
+    {
+      "key": "leasing_finansal_kiralama",
+      "label": "Leasing / Finansal Kiralama"
+    },
+    {
+      "key": "diger_ticari_finansman",
+      "label": "Diğer İş / Ticari Finansman"
+    }
+  ]
+}

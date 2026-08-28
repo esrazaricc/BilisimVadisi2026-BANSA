@@ -1,0 +1,18 @@
+@echo off
+setlocal
+cd /d "%~dp0"
+
+echo ================================================================
+echo BANSA OFFLINE DEMO MODE - POSTGRESQL GEREKTIRMEZ
+echo ================================================================
+
+echo.
+set BANSA_LOCAL_AGENT_ENABLED=1
+set BANSA_LOCAL_LLM_BASE_URL=http://127.0.0.1:8000/v1
+set BANSA_LOCAL_LLM_MODEL=bansa-qwen-local
+set BANSA_LOCAL_LLM_TIMEOUT_SECONDS=120
+set BANSA_COMPETITION_MODE=1
+
+python -m streamlit run Ana_Sayfa.py
+
+endlocal

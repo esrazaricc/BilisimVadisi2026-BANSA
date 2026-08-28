@@ -1,0 +1,90 @@
+# -----------------------------------------------------------------------------
+# BANSA - Git ignore
+# -----------------------------------------------------------------------------
+
+# Python environments / caches
+.venv/
+venv/
+env/
+__pycache__/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+*.py[cod]
+
+# Environment / secrets
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*.p12
+*.pfx
+
+# IDE / OS
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+
+# Logs / temporary / backup files
+*.log
+*.tmp
+*.bak
+*.swp
+*.swo
+backups/
+config/backups/
+data/logs/
+data/backups/
+
+# Local conversation/runtime state - never publish user chat history
+data/runtime/chat_history.sqlite
+data/runtime/chat_history.sqlite-*
+
+# Generated crawler/audit outputs (can be regenerated)
+data/campaign_pages/
+data/*_report.json
+data/*_audit.json
+data/*audit*.txt
+data/campaign_discovery_errors.json
+data/campaign_discovery_report.json
+data/campaign_page_fetch_errors.json
+data/campaign_page_fetch_report.json
+data/all_banks_live_update_report.json
+data/live_db_sync_report.json
+data/multi_product_audit_v2.txt
+
+# Local database journals / locks
+data/*.db-shm
+data/*.db-wal
+data/*.sqlite-shm
+data/*.sqlite-wal
+
+# Keep the portable demo snapshots and curated source data in Git.
+# These files let a fresh clone open the dashboard without rebuilding data first.
+!data/.gitkeep
+!data/campaigns.db
+!data/campaign_page_index.json
+!data/discovered_campaign_pages.json
+!data/standard_products/
+!data/standard_products/*.json
+!data/runtime/
+!data/runtime/finance_snapshot.sqlite
+!data/runtime/finance_snapshot_manifest.json
+!data/rag/
+!data/rag/rag_chunks.jsonl
+!data/rag/rag_manifest.json
+!data/rag/rag_dense_manifest.json
+!data/rag/rag_dense_vectors.npy
+!data/quality/
+!data/quality/standard_products_global_quality.json
+
+# Packaging
+*.zip
+*.tar.gz
+build/
+dist/
+*.egg-info/

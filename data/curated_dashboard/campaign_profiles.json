@@ -1,0 +1,192 @@
+{
+  "Kart / Taksit Kampanyası": [
+    "Banka",
+    "Kampanya Adı",
+    "Geçerli Kartlar",
+    "Sektör / Üye İşyeri",
+    "Asgari Harcama Tutarı (TL)",
+    "İlave / Ücretsiz Taksit Sayısı",
+    "Azami Taksit Sınırı",
+    "Vade Farkı Durumu",
+    "Örnek Harcama Senaryosu (5.000 TL / Taksit Dağılımı)",
+    "Katılım Şartı (SMS / Mobil Onay)"
+  ],
+  "İndirim Kampanyası": [
+    "Banka",
+    "Kampanya Adı",
+    "Geçerli Marka / Sektör",
+    "İndirim Türü",
+    "İndirim Oranı (%)",
+    "Sabit İndirim Tutarı (TL)",
+    "Asgari Sepet Tutarı (TL)",
+    "Maksimum Kazanılabilir İndirim (TL)",
+    "Kampanya Kod Şartı",
+    "Örnek Harcama Senaryosu (2.000 TL Sepette İndirim Kazancı)"
+  ],
+  "Puan Kampanyası": [
+    "Banka",
+    "Kampanya Adı",
+    "Kart Programı / Puan Türü",
+    "Geçerli Sektör",
+    "Kademeli Harcama Şartı",
+    "İşlem Başına Asgari Tutar (TL)",
+    "Kazanılacak Puan / TL Karşılığı",
+    "Maksimum Puan Limiti",
+    "Puan Yükleme Tarihi",
+    "Puan Son Kullanım Tarihi",
+    "Örnek Harcama Senaryosu (Toplam Puan Kazanımı)"
+  ],
+  "Yeni Müşteri Kampanyası": [
+    "Banka",
+    "Kampanya Adı",
+    "Hedef Kitle (İlk Kez Müşteri Olanlar)",
+    "Hoş Geldin Avantajı Türü",
+    "Sıfır Kâr Paylı / Masrafsız Finansman Üst Limiti (TL)",
+    "Azami Vade",
+    "Ücretsiz EFT / Havale Süresi",
+    "Kart Aidat Muafiyeti Durumu",
+    "Örnek Senaryo (20.000 TL 6 Ay 0 Kâr Payı Maliyeti)"
+  ],
+  "Alışveriş Finansmanı": [
+    "Banka",
+    "Kampanya Adı",
+    "Anlaşmalı Satıcı / Platform",
+    "Kapsanan Ürün Kategorisi",
+    "Peşin Fiyatına Taksit İmkanı",
+    "İndirimli Kâr Payı Oranı (%)",
+    "Asgari - Azami Finansman Limiti (TL)",
+    "Tahsis / Masraf Durumu",
+    "Örnek Senaryo (50.000 TL Alışveriş / 12 Ay Taksit Tutarı)"
+  ],
+  "İhtiyaç Finansmanı": [
+    "Banka",
+    "Kampanya Adı",
+    "Kampanyalı Kâr Payı Oranı (%)",
+    "Standart Oran Farkı (İndirim Puanı)",
+    "Tahsis Ücreti İndirimi / Muafiyeti",
+    "Kapsanan Tutar / Vade Bandı",
+    "Ek Ürün Koşulu",
+    "Erteleme İmkanı",
+    "Örnek Senaryo (100.000 TL 36 Ay Kampanyalı Taksit)"
+  ],
+  "Togg Taşıt Finansmanı": [
+    "Banka",
+    "Kampanya Adı",
+    "Togg Model / Donanım Kapsamı",
+    "Kampanyalı Finansman Tutarı (TL)",
+    "Kampanyalı Vade (Ay)",
+    "Sübvansiyonlu Kâr Payı Oranı (%)",
+    "Tahsis Ücreti",
+    "Kasko / Sigorta Koşulu",
+    "Örnek Senaryo (800.000 TL 12 Ay Togg Finansmanı Geri Ödeme)"
+  ],
+  "Umre Finansmanı": [
+    "Banka",
+    "Kampanya Adı",
+    "Anlaşmalı Acente / Diyanet Kapsamı",
+    "Vade Farksız Taksit Sayısı (Ay)",
+    "Kampanyalı Kâr Payı Oranı (%)_Umre",
+    "Belge / Kayıt Şartı",
+    "Masraf Muafiyeti",
+    "Örnek Senaryo (60.000 TL 12 Ay Umre Finansmanı)"
+  ],
+  "Sigorta Kampanyası": [
+    "Banka",
+    "Kampanya Adı",
+    "Sigorta Türü",
+    "Prim İndirim Oranı (%)",
+    "Hediye Puan / İade Tutarı (TL)",
+    "Taksit İmkanı (Vade Farksız Taksit Sayısı)",
+    "Asgari Prim Tutarı",
+    "Örnek Senaryo (15.000 TL Kasko Poliçesine Puan / İndirim Getirisi)"
+  ],
+  "Diğer Kampanya": [
+    "Banka",
+    "Kampanya Adı",
+    "Kampanya Konusu",
+    "İşlem Türü",
+    "Kazanım Şartı",
+    "Ödül Tutarı / Türü",
+    "Maksimum Kazanım Limiti",
+    "Örnek Senaryo"
+  ],
+  "Diğer Finansman": [
+    "Banka",
+    "Kampanya Adı",
+    "Finansman Amacı",
+    "Kampanyalı Kâr Payı (%)",
+    "Azami Tutar ve Vade Sınırı",
+    "Fatura / Kurum Sözleşme Zorunluluğu",
+    "Örnek Senaryo"
+  ],
+  "Esnek Ödeme Finansmanı": [
+    "Banka",
+    "Kampanya Adı",
+    "Ödeme Planı Türü",
+    "Azami Erteleme Süresi (Ay)",
+    "Kâr Payı Hesaplama Tipi",
+    "Asgari - Azami Vade",
+    "Örnek Senaryo (100.000 TL için İlk 3 Ay Ödemesiz Taksit Planı)"
+  ],
+  "Konut ve Taşıt Finansmanı": [
+    "Banka",
+    "Kampanya Adı",
+    "Finansman Türü (Konut / Taşıt)",
+    "İndirimli Kâr Payı Oranı (%)_Paket",
+    "Paket Şartları",
+    "Tahsis / Ekspertiz İndirim Oranı (%)",
+    "Azami Finansman Oranı (LTV %)",
+    "Örnek Senaryo (1.000.000 TL Konut / 120 Ay Kampanyalı Maliyet)"
+  ],
+  "Sağlık Finansmanı": [
+    "Banka",
+    "Kampanya Adı",
+    "Anlaşmalı Sağlık Kurumu / Hastane",
+    "Kapsanan Tedavi Türü",
+    "Peşin Fiyatına Taksit Sayısı",
+    "Kampanyalı Kâr Payı (%)_Sağlık",
+    "Asgari - Azami Finansman Tutarı",
+    "Doğrudan Kuruma Transfer Şartı",
+    "Örnek Senaryo (40.000 TL Tedavi / 12 Ay Taksit)"
+  ],
+  "Tarım Leasing Finansmanı": [
+    "Banka",
+    "Kampanya Adı",
+    "Ekipman Türü",
+    "KDV Teşvik Oranı (%)",
+    "Hasatta Ödeme / Esnek Kira Takvimi",
+    "Sübvansiyonlu Kâr Payı / Hazine Desteği",
+    "Örnek Senaryo (500.000 TL Ekipman / Yıllık Tek Ödemeli 3 Yıl Leasing)"
+  ],
+  "Ticari Kart Taksitlendirme": [
+    "Banka",
+    "Kampanya Adı",
+    "Geçerli Ticari Kart",
+    "Sektör Kapsamı",
+    "Sonradan Ücretsiz / Kampanyalı Taksit Sayısı",
+    "Kâr Paylı Ek Taksit Oranı (%)",
+    "Aylık / İşlem Başına Ciro / Tutar Sınırı",
+    "Örnek Senaryo (50.000 TL Kurumsal Harcamaya 4 Taksit)"
+  ],
+  "Veresiye Finansmanı": [
+    "Banka / Platform",
+    "Kampanya Adı",
+    "Anlaşmalı Tedarikçi / Toptancı Ağı",
+    "Vadesiz / Masrafsız Ödeme Süresi (30-60-90 Gün)",
+    "Vade Aşımı Kâr Payı Oranı (%)",
+    "Tanımlanan Esnaf / Müşteri Limiti (TL)",
+    "Kullanım Kanalı (Barkod / B2B Portal)",
+    "Örnek Senaryo (20.000 TL Mal Alımı 45 Gün Masrafsız Erteleme)"
+  ],
+  "Yatırım Finansmanı": [
+    "Banka",
+    "Kampanya Adı",
+    "Yatırım Teşvik Belgesi Şartı (Var / Yok)",
+    "Finansman Modeli (Müşareke, Mudaraba, İstisna, İcare)",
+    "Ödemesiz Anapara Dönemi (Ay/Yıl)",
+    "Azami Finansman Vadesi",
+    "Para Birimi (TL / Döviz)",
+    "Kâr Payı / Kâr-Zarar Ortaklık Oranı",
+    "Örnek Proje Finansmanı Senaryosu"
+  ]
+}

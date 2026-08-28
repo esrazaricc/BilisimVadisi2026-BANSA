@@ -1,0 +1,14 @@
+﻿family_key,family_label,products,banks,pricing_fill_pct,main_terms_fill_pct,fees_fill_pct,product_summary_fill_pct,usage_access_fill_pct,special_conditions_fill_pct,source_url_fill_pct
+alisveris_finansmani,Alışveriş Finansmanı,15,5,40.0,86.7,53.3,100.0,86.7,40.0,100.0
+arsa_finansmani,Arsa Finansmanı,8,6,75.0,100.0,50.0,100.0,87.5,0.0,100.0
+finansman,Diğer Finansman,1,1,0.0,100.0,0.0,100.0,100.0,0.0,100.0
+gayri_nakdi_finansman,Gayri Nakdi Finansman,32,8,0.0,0.0,0.0,100.0,100.0,100.0,100.0
+gayrimenkul_finansmani,Gayrimenkul Finansmanı,2,1,50.0,50.0,0.0,100.0,50.0,0.0,100.0
+konut_finansmani,Konut Finansmanı,19,7,57.9,78.9,78.9,100.0,73.7,26.3,100.0
+leasing,Leasing / Finansal Kiralama,11,6,9.1,45.5,18.2,100.0,90.9,0.0,100.0
+surdurulebilir_finansman,Sürdürülebilir Finansman,4,2,75.0,25.0,0.0,100.0,50.0,0.0,100.0
+tarim_finansmani,Tarım Finansmanı,25,5,0.0,32.0,0.0,100.0,16.0,12.0,100.0
+arac_finansmani,Taşıt Finansmanı,24,7,79.2,83.3,45.8,100.0,95.8,45.8,100.0
+ticari_finansman,Ticari Finansman,76,9,2.6,18.4,2.6,100.0,82.9,2.6,100.0
+ihtiyac_finansmani,İhtiyaç Finansmanı,50,9,76.0,50.0,16.0,100.0,58.0,22.0,100.0
+isyeri_finansmani,İş Yeri Finansmanı,7,6,42.9,100.0,28.6,100.0,100.0,14.3,100.0

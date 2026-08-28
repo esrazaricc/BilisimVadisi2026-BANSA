@@ -1,0 +1,47 @@
+{
+  "schema_version": "1.0",
+  "verified_at": "2026-08-26",
+  "description": "Official calculator UI constraints kept separate from product eligibility/LTV rules. A constraint is enforced only within its explicit product/variant/term scope.",
+  "constraints": [
+    {
+      "bank_name": "Dünya Katılım",
+      "family_key": "arac_finansmani",
+      "calculator_product": "Araç Binek 2.El",
+      "variant": "2el_binek",
+      "query_markers": [
+        "2 el",
+        "2.el",
+        "ikinci el",
+        "arac binek 2el",
+        "arac binek 2 el",
+        "2. el"
+      ],
+      "max_financing_amount": 400000,
+      "min_maturity_months": 12,
+      "max_maturity_months": 48,
+      "max_vehicle_age": 12,
+      "amount_limit_mode": "hard_ui_limit",
+      "source_url": "https://dunyakatilim.com.tr/kendim-icin/finansmanlar/arac-finansmanlari/arac-finansmani",
+      "evidence_note": "Official calculator UI shows Finance Need slider up to 400,000 TL, maturity 12-48, and second-hand vehicle financing up to age 12 for Araç Binek 2.El."
+    },
+    {
+      "bank_name": "Vakıf Katılım",
+      "family_key": "arac_finansmani",
+      "calculator_product": "Taşıt Finansmanı 2.El",
+      "variant": "2el",
+      "query_markers": [
+        "2 el",
+        "2.el",
+        "ikinci el",
+        "tasit finansmani 2el",
+        "tasit finansmani 2 el",
+        "2. el"
+      ],
+      "max_financing_amount": 400000,
+      "observed_maturity_months": 18,
+      "amount_limit_mode": "term_scoped_observation",
+      "source_url": "https://www.vakifkatilim.com.tr/tr/yardimci-sayfalar/hesaplama-araclari/finansman-hesaplama",
+      "evidence_note": "Official calculator UI returned 'Seçilen vade için 400.000 TL’ye kadar hesaplama yapılabilmektedir.' in the observed Taşıt Finansmanı 2.El / 18 ay scenario. Do not generalize this ceiling to other terms without live verification."
+    }
+  ]
+}

@@ -1,0 +1,10 @@
+{
+  "chunk_count": 2397,
+  "corpus_hash": "da2f3dbb750ea2340477cf51d900a31b61e6b772f986cfdc3fb5c2ee5acfd534",
+  "created_at": "2026-08-21T17:33:38.418345+00:00",
+  "document_count": 740,
+  "grounding_limited_document_count": 160,
+  "live_only_chunk_count": 69,
+  "model_name": "Qwen/Qwen3-Embedding-0.6B",
+  "semantic_chunk_count": 858
+}

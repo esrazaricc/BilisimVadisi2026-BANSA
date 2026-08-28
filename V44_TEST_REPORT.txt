@@ -1,0 +1,29 @@
+BANSA V44 OFFICIAL LIVE CALCULATORS - VALIDATION REPORT
+======================================================
+
+Validation date: 2026-08-28
+
+Targeted regression/contract suite:
+- tests/test_v44_official_live_calculators.py
+- tests/test_v43_official_rate_calibration.py
+- tests/test_v40_internal_finance_calculation.py
+- tests/test_finance_capability_registry.py
+- tests/test_finance_live_housing_extensions_v2_1.py
+
+Result: 30 passed in 0.49s
+
+Additional smoke check:
+- scripts/test_official_live_calculators_v44.py runs correctly.
+- Current sandbox has no outbound DNS/network, therefore official bank endpoints
+  returned UNVERIFIED here as designed. No guessed numeric data was produced.
+
+Compile validation:
+- python -m compileall -q src pages : PASS
+
+Important:
+Real live endpoint reachability should be smoke-tested on the competition machine
+with internet access before the jury demo:
+
+  python scripts/test_official_live_calculators_v44.py --family konut --amount 100000 --maturity 36
+  python scripts/test_official_live_calculators_v44.py --family tasit --amount 100000 --maturity 24
+  python scripts/test_official_live_calculators_v44.py --family ihtiyac --amount 100000 --maturity 24

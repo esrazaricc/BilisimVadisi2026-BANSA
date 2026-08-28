@@ -1,0 +1,1504 @@
+{
+  "banks": [
+    {
+      "name": "Adil Katılım",
+      "slug": "adil_katilim",
+      "base_url": "https://www.adilkatilim.com.tr",
+      "listing_pages": [
+        {
+          "url": "https://www.adilkatilim.com.tr/katilim-bankaciligi/urun-ve-hizmetler",
+          "scope": "bireysel",
+          "allowed_prefix": "/katilim-bankaciligi/"
+        }
+      ],
+      "family_rules": [],
+      "exclude_exact_paths": [
+        "/katilim-bankaciligi/urun-ve-hizmetler"
+      ],
+      "embedded_product_pages": [
+        {
+          "url": "https://www.adilkatilim.com.tr/katilim-bankaciligi/urun-ve-hizmetler",
+          "scope": "bireysel",
+          "product_family_key": "ihtiyac_finansmani",
+          "product_family": "İhtiyaç Finansmanı",
+          "stop_headings": [
+            "Katılma Hesapları",
+            "Kurumsal"
+          ],
+          "products": [
+            {
+              "product_name": "Bireysel Finansman"
+            },
+            {
+              "product_name": "Ticari Finansman",
+              "scope": "ticari",
+              "product_family_key": "ticari_finansman",
+              "product_family": "Ticari Finansman"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Albaraka Türk",
+      "slug": "albaraka_turk",
+      "base_url": "https://www.albaraka.com.tr",
+      "seed_exact_paths": true,
+      "listing_pages": [
+        {
+          "url": "https://www.albaraka.com.tr/tr/bireysel/finansmanlar",
+          "scope": "bireysel",
+          "allowed_prefix": "/tr/bireysel/finansmanlar/"
+        },
+        {
+          "url": "https://www.albaraka.com.tr/tr/kobi/finansmanlar/kobi-nakdi-finansman",
+          "scope": "ticari",
+          "allowed_prefix": "/tr/kobi/finansmanlar/"
+        },
+        {
+          "url": "https://www.albaraka.com.tr/tr/kobi/finansmanlar/kobi-gayri-nakdi-finansman",
+          "scope": "ticari",
+          "allowed_prefix": "/tr/kobi/finansmanlar/"
+        },
+        {
+          "url": "https://www.albaraka.com.tr/tr/kobi/finansmanlar",
+          "scope": "ticari",
+          "allowed_prefix": "/tr/kobi/finansmanlar/"
+        }
+      ],
+      "family_rules": [
+        {
+          "family_key": "konut_finansmani",
+          "family_label": "Konut Finansmanı",
+          "path_contains": [],
+          "exact_paths": [
+            "/tr/bireysel/finansmanlar/konut-finansmani/konut-finansmani"
+          ]
+        },
+        {
+          "family_key": "arac_finansmani",
+          "family_label": "Araç Finansmanı",
+          "path_contains": [
+            "/tr/bireysel/finansmanlar/tasit-finansmani/"
+          ],
+          "exact_paths": [
+            "/tr/bireysel/finansmanlar/tasit-finansmani/tasit-finansmani",
+            "/tr/bireysel/finansmanlar/tasit-finansmani/togg-finansmani",
+            "/tr/bireysel/finansmanlar/tasit-finansmani/dijital-arac-finansmani",
+            "/tr/bireysel/finansmanlar/tasit-finansmani/deniz-tasitlari-finansmani",
+            "/tr/bireysel/finansmanlar/tasit-finansmani/tasit-kiralama-finansmani"
+          ]
+        },
+        {
+          "family_key": "isyeri_finansmani",
+          "family_label": "İş Yeri Finansmanı",
+          "path_contains": [],
+          "exact_paths": [
+            "/tr/bireysel/finansmanlar/gayrimenkul-finansmani/is-yeri-finansman"
+          ]
+        },
+        {
+          "family_key": "arsa_finansmani",
+          "family_label": "Arsa Finansmanı",
+          "path_contains": [],
+          "exact_paths": [
+            "/tr/bireysel/finansmanlar/gayrimenkul-finansmani/arsa-finansmani",
+            "/tr/bireysel/finansmanlar/gayrimenkul-finansmani/2b-arazi-finansmani"
+          ]
+        },
+        {
+          "family_key": "ihtiyac_finansmani",
+          "family_label": "İhtiyaç Finansmanı",
+          "path_contains": [
+            "/tr/bireysel/finansmanlar/ihtiyac/"
+          ],
+          "exact_paths": [
+            "/tr/bireysel/finansmanlar/ihtiyac",
+            "/tr/bireysel/finansmanlar/ihtiyac/pratik-finansman-kart",
+            "/tr/bireysel/finansmanlar/ihtiyac/sms-li-finansman",
+            "/tr/bireysel/finansmanlar/ihtiyac/subesiz-umre-finansmani",
+            "/tr/bireysel/finansmanlar/ihtiyac/jet-finansman",
+            "/tr/bireysel/finansmanlar/ihtiyac/motosiklet-atv-bisiklet",
+            "/tr/bireysel/finansmanlar/ihtiyac/egitim-finansmani",
+            "/tr/bireysel/finansmanlar/birikimlerinizi-koruyan-bes-teminatli-finansman-albarakada",
+            "/tr/bireysel/finansmanlar/ihtiyac/hac-ve-umre-finansmani"
+          ]
+        },
+        {
+          "family_key": "alisveris_finansmani",
+          "family_label": "Alışveriş Finansmanı",
+          "path_contains": [],
+          "exact_paths": [
+            "/tr/bireysel/finansmanlar/bayide-finansman"
+          ]
+        },
+        {
+          "family_key": "ticari_finansman",
+          "family_label": "Ticari Finansman",
+          "path_contains": [
+            "/tr/kobi/finansmanlar/kobi-nakdi-finansman/"
+          ],
+          "exact_paths": [
+            "/tr/kobi/finansmanlar/kobi-nakdi-finansman/kobi-finansman-destegi/is-yeri-finansmani",
+            "/tr/kobi/finansmanlar/kobi-nakdi-finansman/proje-finansmani",
+            "/tr/kobi/finansmanlar/kobi-nakdi-finansman/dbs-fatura-teminatli-kredi",
+            "/tr/kobi/finansmanlar/kobi-nakdi-finansman/kira-sertifikasi-teminatli-kredi",
+            "/tr/kobi/finansmanlar/kobi-nakdi-finansman/elus-teminatli-kredi",
+            "/tr/kobi/finansmanlar/kobi-nakdi-finansman/jet-ticari-finansman",
+            "/tr/kobi/finansmanlar/kobi-nakdi-finansman/pratik-kobi-kart",
+            "/tr/kobi/finansmanlar/kobi-nakdi-finansman/tedarikci-finansmani",
+            "/tr/kobi/finansmanlar/katilim-finans-kefalet-kfk",
+            "/tr/kobi/finansmanlar/bayide-finansman"
+          ]
+        },
+        {
+          "family_key": "gayri_nakdi_finansman",
+          "family_label": "Gayri Nakdi Finansman",
+          "path_contains": [
+            "/tr/kobi/finansmanlar/kobi-gayri-nakdi-finansman/"
+          ],
+          "exact_paths": [
+            "/tr/kobi/finansmanlar/kobi-gayri-nakdi-finansman/teminat-mektuplari",
+            "/tr/kobi/finansmanlar/kobi-gayri-nakdi-finansman/jet-teminat-mektubu",
+            "/tr/kobi/finansmanlar/kobi-gayri-nakdi-finansman/akreditifler",
+            "/tr/kobi/finansmanlar/kobi-gayri-nakdi-finansman/kabul-aval-finansmanlari",
+            "/tr/kobi/finansmanlar/kobi-gayri-nakdi-finansman/referans-mektuplari"
+          ]
+        },
+        {
+          "family_key": "leasing",
+          "family_label": "Leasing",
+          "path_contains": [],
+          "exact_paths": [
+            "/tr/kobi/finansmanlar/leasing-finansal-kiralama"
+          ]
+        }
+      ],
+      "embedded_product_pages": [
+        {
+          "url": "https://www.albaraka.com.tr/tr/kobi/tarim-bankaciligi/tarim-finansmanlari",
+          "scope": "ticari",
+          "product_family_key": "tarim_finansmani",
+          "product_family": "Tarım Finansmanı",
+          "products": [
+            {
+              "product_name": "Makine Ekipman Finansmanı",
+              "aliases": [
+                "Makine Ekipman"
+              ]
+            },
+            {
+              "product_name": "Bitkisel Üretim Finansmanı",
+              "aliases": [
+                "Bitkisel Üretim"
+              ]
+            },
+            {
+              "product_name": "Tarla Alım Finansmanı",
+              "aliases": [
+                "Tarla Alım"
+              ]
+            },
+            {
+              "product_name": "Seracılık Finansmanı",
+              "aliases": [
+                "Seracılık"
+              ]
+            },
+            {
+              "product_name": "Traktör Finansmanı",
+              "aliases": [
+                "Traktör"
+              ]
+            },
+            {
+              "product_name": "Biçerdöver Finansmanı",
+              "aliases": [
+                "Biçerdöver"
+              ]
+            }
+          ]
+        }
+      ],
+      "exclude_exact_paths": [
+        "/tr/bireysel/finansmanlar",
+        "/tr/bireysel/finansmanlar/konut-finansmani",
+        "/tr/bireysel/finansmanlar/tasit-finansmani",
+        "/tr/bireysel/finansmanlar/gayrimenkul-finansmani",
+        "/tr/kobi/finansmanlar",
+        "/tr/kobi/finansmanlar/kobi-nakdi-finansman",
+        "/tr/kobi/finansmanlar/kobi-gayri-nakdi-finansman",
+        "/tr/kobi/tarim-bankaciligi/tarim-finansmanlari"
+      ]
+    },
+    {
+      "name": "Dünya Katılım",
+      "slug": "dunya_katilim",
+      "base_url": "https://dunyakatilim.com.tr",
+      "listing_pages": [
+        {
+          "url": "https://dunyakatilim.com.tr/kendim-icin/finansmanlar",
+          "scope": "bireysel",
+          "allowed_prefix": "/kendim-icin/finansmanlar/"
+        },
+        {
+          "url": "https://dunyakatilim.com.tr/isim-icin/finansmanlar",
+          "scope": "ticari",
+          "allowed_prefix": "/isim-icin/finansmanlar/"
+        }
+      ],
+      "family_rules": [
+        {
+          "family_key": "ihtiyac_finansmani",
+          "family_label": "İhtiyaç Finansmanı",
+          "path_contains": [
+            "/kendim-icin/finansmanlar/ihtiyac-finansmanlari/"
+          ],
+          "exact_paths": [
+            "/kendim-icin/finansmanlar/ihtiyac-finansmani"
+          ]
+        },
+        {
+          "family_key": "arac_finansmani",
+          "family_label": "Araç Finansmanı",
+          "path_contains": [
+            "/kendim-icin/finansmanlar/arac-finansmanlari/"
+          ],
+          "exact_paths": []
+        },
+        {
+          "family_key": "konut_finansmani",
+          "family_label": "Konut Finansmanı",
+          "path_contains": [
+            "/kendim-icin/finansmanlar/konut-finansmanlari/"
+          ],
+          "exact_paths": []
+        },
+        {
+          "family_key": "ticari_finansman",
+          "family_label": "Ticari Finansman",
+          "path_contains": [
+            "/isim-icin/finansmanlar/nakdi-finansman/"
+          ],
+          "exact_paths": []
+        },
+        {
+          "family_key": "gayri_nakdi_finansman",
+          "family_label": "Gayri Nakdi Finansman",
+          "path_contains": [
+            "/isim-icin/finansmanlar/gayri-nakdi-finansman/"
+          ],
+          "exact_paths": []
+        }
+      ],
+      "exclude_exact_paths": [
+        "/kendim-icin/finansmanlar",
+        "/kendim-icin/finansmanlar/ihtiyac-finansmanlari",
+        "/kendim-icin/finansmanlar/arac-finansmanlari",
+        "/kendim-icin/finansmanlar/konut-finansmanlari",
+        "/isim-icin/finansmanlar",
+        "/isim-icin/finansmanlar/nakdi-finansman",
+        "/isim-icin/finansmanlar/gayri-nakdi-finansman"
+      ]
+    },
+    {
+      "name": "Hayat Finans",
+      "slug": "hayat_finans",
+      "base_url": "https://hayatfinans.com.tr",
+      "listing_pages": [
+        {
+          "url": "https://hayatfinans.com.tr/krediler",
+          "scope": "bireysel",
+          "allowed_prefix": "/"
+        },
+        {
+          "url": "https://hayatfinans.com.tr/finansmanlar-is",
+          "scope": "ticari",
+          "allowed_prefix": "/finansmanlar-is/"
+        }
+      ],
+      "family_rules": [
+        {
+          "family_key": "ihtiyac_finansmani",
+          "family_label": "İhtiyaç Finansmanı",
+          "path_contains": [],
+          "exact_paths": [
+            "/krediler/hayat-finans-egitim-finansmani-sistemi",
+            "/finansmanlar/bana-bunu-al-is-ortagim",
+            "/krediler/bana-bunu-al"
+          ]
+        },
+        {
+          "family_key": "ticari_finansman",
+          "family_label": "Ticari Finansman",
+          "path_contains": [],
+          "exact_paths": [
+            "/finansmanlar-is/mikro-finansman",
+            "/finansmanlar-is/isletme-finansmani",
+            "/finansmanlar-is/ticari-finansman"
+          ]
+        },
+        {
+          "family_key": "gayri_nakdi_finansman",
+          "family_label": "Gayri Nakdi Finansman",
+          "path_contains": [],
+          "exact_paths": [
+            "/finansmanlar-is/e-teminat-mektubu"
+          ]
+        }
+      ],
+      "exclude_exact_paths": [
+        "/krediler",
+        "/finansmanlar",
+        "/finansmanlar-is"
+      ]
+    },
+    {
+      "name": "Kuveyt Türk",
+      "slug": "kuveyt_turk",
+      "base_url": "https://www.kuveytturk.com.tr",
+      "listing_pages": [
+        {
+          "url": "https://www.kuveytturk.com.tr/kendim-icin/finansmanlar",
+          "scope": "bireysel",
+          "allowed_prefix": "/kendim-icin/finansmanlar/"
+        },
+        {
+          "url": "https://www.kuveytturk.com.tr/isim-icin/finansman-urunleri",
+          "scope": "ticari",
+          "allowed_prefix": "/isim-icin/finansman-urunleri/"
+        }
+      ],
+      "family_rules": [
+        {
+          "family_key": "arsa_finansmani",
+          "family_label": "Arsa Finansmanı",
+          "path_contains": [],
+          "exact_paths": [
+            "/kendim-icin/finansmanlar/konut-finansmanlari/2b-finansmani",
+            "/kendim-icin/finansmanlar/konut-finansmanlari/arsa-finansmani"
+          ]
+        },
+        {
+          "family_key": "isyeri_finansmani",
+          "family_label": "İş Yeri Finansmanı",
+          "path_contains": [],
+          "exact_paths": [
+            "/kendim-icin/finansmanlar/konut-finansmanlari/is-yeri-finansmani"
+          ]
+        },
+        {
+          "family_key": "konut_finansmani",
+          "family_label": "Konut Finansmanı",
+          "path_contains": [
+            "/kendim-icin/finansmanlar/konut-finansmanlari/"
+          ],
+          "exact_paths": [
+            "/kendim-icin/finansmanlar/surdurulebilir-finansmanlar/yesil-konut-finansmani"
+          ]
+        },
+        {
+          "family_key": "arac_finansmani",
+          "family_label": "Araç Finansmanı",
+          "path_contains": [
+            "/kendim-icin/finansmanlar/arac-finansmanlari/"
+          ],
+          "exact_paths": [
+            "/kendim-icin/finansmanlar/surdurulebilir-finansmanlar/surdurulebilir-arac-finansmani",
+            "/kendim-icin/finansmanlar/surdurulebilir-finansmanlar/togg-finansmani"
+          ]
+        },
+        {
+          "family_key": "alisveris_finansmani",
+          "family_label": "Alışveriş Finansmanı",
+          "path_contains": [
+            "/kendim-icin/finansmanlar/alisveris-finansmanlari/"
+          ],
+          "exact_paths": []
+        },
+        {
+          "family_key": "ihtiyac_finansmani",
+          "family_label": "İhtiyaç Finansmanı",
+          "path_contains": [
+            "/kendim-icin/finansmanlar/ihtiyac-finansmanlari/",
+            "/kendim-icin/finansmanlar/ihtiyac-finansmani/"
+          ],
+          "exact_paths": []
+        },
+        {
+          "family_key": "surdurulebilir_finansman",
+          "family_label": "Sürdürülebilir Finansman",
+          "path_contains": [],
+          "exact_paths": [
+            "/kendim-icin/finansmanlar/surdurulebilir-finansmanlar/cati-ges-finansmani"
+          ]
+        },
+        {
+          "family_key": "ticari_finansman",
+          "family_label": "Ticari Finansman",
+          "path_contains": [
+            "/isim-icin/finansman-urunleri/nakdi-finansman/"
+          ],
+          "exact_paths": []
+        },
+        {
+          "family_key": "gayri_nakdi_finansman",
+          "family_label": "Gayri Nakdi Finansman",
+          "path_contains": [
+            "/isim-icin/finansman-urunleri/gayri-nakdi-finansman/"
+          ],
+          "exact_paths": []
+        },
+        {
+          "family_key": "surdurulebilir_finansman",
+          "family_label": "Sürdürülebilir Finansman",
+          "path_contains": [],
+          "exact_paths": [
+            "/isim-icin/finansman-urunleri/cati-ges-finansmani"
+          ]
+        },
+        {
+          "family_key": "tarim_finansmani",
+          "family_label": "Tarım Finansmanı",
+          "path_contains": [],
+          "exact_paths": [
+            "/isim-icin/finansman-urunleri/tarim-ve-hayvancilik-finansmani",
+            "/isim-icin/tarim-bankaciligi/tarim-ve-hayvancilik-finansmani",
+            "/isim-icin/tarim-bankaciligi/elektronik-urun-senedi-elus-teminatli-finansman"
+          ]
+        },
+        {
+          "family_key": "leasing",
+          "family_label": "Leasing",
+          "path_contains": [],
+          "exact_paths": [
+            "/isim-icin/finansman-urunleri/leasing"
+          ]
+        }
+      ],
+      "exclude_exact_paths": [
+        "/kendim-icin/finansmanlar",
+        "/kendim-icin/finansmanlar/konut-finansmanlari",
+        "/kendim-icin/finansmanlar/arac-finansmanlari",
+        "/kendim-icin/finansmanlar/alisveris-finansmanlari",
+        "/kendim-icin/finansmanlar/ihtiyac-finansmanlari",
+        "/kendim-icin/finansmanlar/ihtiyac-finansmani",
+        "/kendim-icin/finansmanlar/surdurulebilir-finansmanlar",
+        "/isim-icin/finansman-urunleri",
+        "/isim-icin/finansman-urunleri/nakdi-finansman",
+        "/isim-icin/finansman-urunleri/gayri-nakdi-finansman"
+      ],
+      "seed_exact_paths": [
+        "/isim-icin/tarim-bankaciligi/tarim-ve-hayvancilik-finansmani",
+        "/isim-icin/tarim-bankaciligi/elektronik-urun-senedi-elus-teminatli-finansman"
+      ]
+    },
+    {
+      "name": "T.O.M. Katılım",
+      "slug": "tom_katilim",
+      "base_url": "https://tombank.com.tr",
+      "seed_exact_paths": true,
+      "listing_pages": [
+        {
+          "url": "https://tombank.com.tr/urunlerimiz.html",
+          "scope": "bireysel",
+          "allowed_prefix": "/"
+        }
+      ],
+      "family_rules": [
+        {
+          "family_key": "alisveris_finansmani",
+          "family_label": "Alışveriş Finansmanı",
+          "path_contains": [],
+          "exact_paths": [
+            "/veresiye.html",
+            "/taksitle.html",
+            "/magazadan-alisveris-kredisi.html"
+          ]
+        }
+      ],
+      "exclude_exact_paths": [
+        "/urunlerimiz.html"
+      ]
+    },
+    {
+      "name": "Türkiye Emlak Katılım",
+      "slug": "turkiye_emlak_katilim",
+      "base_url": "https://www.emlakkatilim.com.tr",
+      "seed_exact_paths": true,
+      "listing_pages": [
+        {
+          "url": "https://www.emlakkatilim.com.tr/tr/bireysel/finansmanlar",
+          "scope": "bireysel",
+          "allowed_prefix": "/tr/bireysel/finansmanlar/"
+        },
+        {
+          "url": "https://www.emlakkatilim.com.tr/tr/kurumsal/finansmanlar",
+          "scope": "ticari",
+          "allowed_prefix": "/tr/kurumsal/finansmanlar/"
+        },
+        {
+          "url": "https://www.emlakkatilim.com.tr/tr/kurumsal/leasing",
+          "scope": "ticari",
+          "allowed_prefix": "/tr/kurumsal/leasing/"
+        }
+      ],
+      "family_rules": [
+        {
+          "family_key": "konut_finansmani",
+          "family_label": "Konut Finansmanı",
+          "path_contains": [],
+          "exact_paths": [
+            "/tr/bireysel/finansmanlar/konut-finansmani",
+            "/tr/bireysel/finansmanlar/tamamlayici-konut-finansmani",
+            "/tr/bireysel/finansmanlar/kentsel-donusum-finansmani",
+            "/tr/bireysel/finansmanlar/gonlune-gore-konut-finansmani"
+          ]
+        },
+        {
+          "family_key": "arac_finansmani",
+          "family_label": "Araç Finansmanı",
+          "path_contains": [],
+          "exact_paths": [
+            "/tr/bireysel/finansmanlar/tasit-finansmani"
+          ]
+        },
+        {
+          "family_key": "isyeri_finansmani",
+          "family_label": "İş Yeri Finansmanı",
+          "path_contains": [],
+          "exact_paths": [
+            "/tr/bireysel/finansmanlar/isyeri-finansmani",
+            "/tr/bireysel/finansmanlar/birlikte-isyeri-finansmani"
+          ]
+        },
+        {
+          "family_key": "arsa_finansmani",
+          "family_label": "Arsa Finansmanı",
+          "path_contains": [],
+          "exact_paths": [
+            "/tr/bireysel/finansmanlar/birlikte-arsa-finansmani"
+          ]
+        },
+        {
+          "family_key": "gayrimenkul_finansmani",
+          "family_label": "Gayrimenkul Finansmanı",
+          "path_contains": [],
+          "exact_paths": [
+            "/tr/bireysel/finansmanlar/gayrimenkul-sertifikasi-finansmani"
+          ]
+        },
+        {
+          "family_key": "finansman",
+          "family_label": "Finansman",
+          "path_contains": [
+            "/tr/bireysel/finansmanlar/"
+          ],
+          "exact_paths": [
+            "/tr/bireysel/finansmanlar/elektronik-urun-senedi-elus-alim-finansmani"
+          ]
+        },
+        {
+          "family_key": "gayri_nakdi_finansman",
+          "family_label": "Gayri Nakdi Finansman",
+          "path_contains": [
+            "/tr/kurumsal/finansmanlar/gayrinakdi-finansman/"
+          ],
+          "exact_paths": []
+        },
+        {
+          "family_key": "ticari_finansman",
+          "family_label": "Ticari Finansman",
+          "path_contains": [
+            "/tr/kurumsal/finansmanlar/nakdi-finansman/"
+          ],
+          "exact_paths": []
+        },
+        {
+          "family_key": "leasing",
+          "family_label": "Leasing",
+          "path_contains": [
+            "/tr/kurumsal/leasing/"
+          ],
+          "exact_paths": []
+        }
+      ],
+      "exclude_exact_paths": [
+        "/tr/bireysel/finansmanlar",
+        "/tr/bireysel/finansmanlar/toki-islemleri",
+        "/tr/bireysel/finansmanlar/ihtiyac-finansmani",
+        "/tr/kurumsal/finansmanlar",
+        "/tr/kurumsal/finansmanlar/nakdi-finansman",
+        "/tr/kurumsal/finansmanlar/gayrinakdi-finansman",
+        "/tr/kurumsal/leasing"
+      ],
+      "embedded_product_pages": [
+        {
+          "url": "https://www.emlakkatilim.com.tr/tr/bireysel/finansmanlar/ihtiyac-finansmani",
+          "scope": "bireysel",
+          "product_family_key": "ihtiyac_finansmani",
+          "product_family": "İhtiyaç Finansmanı",
+          "stop_headings": [
+            "Örnek İhtiyaç Finansmanı Tablosu"
+          ],
+          "products": [
+            {
+              "product_name": "Eğitim Tüketici Finansmanı"
+            },
+            {
+              "product_name": "Ev/Ofis Gereçleri Tüketici Finansmanı"
+            },
+            {
+              "product_name": "Ev/Ofis Tadilat Finansmanı"
+            },
+            {
+              "product_name": "Hac Tüketici Finansmanı"
+            },
+            {
+              "product_name": "Umre Tüketici Finansmanı"
+            },
+            {
+              "product_name": "Sağlık Finansmanı"
+            },
+            {
+              "product_name": "Çevreci Finansman"
+            },
+            {
+              "product_name": "Doğalgaz Dönüşüm Finansmanı"
+            },
+            {
+              "product_name": "Yurt Hizmeti Finansmanı"
+            },
+            {
+              "product_name": "Beyaz Eşya Finansmanı"
+            },
+            {
+              "product_name": "Teknoloji Finansmanı"
+            },
+            {
+              "product_name": "Bilgisayar Finansmanı"
+            },
+            {
+              "product_name": "Tablet Finansmanı"
+            },
+            {
+              "product_name": "Cep Telefonu Finansmanı"
+            },
+            {
+              "product_name": "Bireysel Enerji Verimliliği Finansmanı"
+            },
+            {
+              "product_name": "Devre Mülk Finansmanı",
+              "aliases": [
+                "Devre Mülk Finansmanı:"
+              ],
+              "product_family_key": "gayrimenkul_finansmani",
+              "product_family": "Gayrimenkul Finansmanı"
+            }
+          ]
+        },
+        {
+          "url": "https://www.emlakkatilim.com.tr/tr/bireysel/finansmanlar/konut-finansmani",
+          "scope": "bireysel",
+          "product_family_key": "konut_finansmani",
+          "product_family": "Konut Finansmanı",
+          "products": [
+            {
+              "product_name": "Birlikte Konut Finansmanı"
+            },
+            {
+              "product_name": "Çevreci Konut Finansmanı"
+            },
+            {
+              "product_name": "Memlekette Konut Finansmanı"
+            }
+          ],
+          "stop_headings": [
+            "KONUT ALIMINDA VE KONUT TEMİNATLI KREDİLERDE KULLANDIRILABİLECEK AZAMİ KREDİ TUTARI"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Türkiye Finans",
+      "slug": "turkiye_finans",
+      "base_url": "https://www.turkiyefinans.com.tr",
+      "listing_pages": [
+        {
+          "url": "https://www.turkiyefinans.com.tr/tr-tr/bireysel/ihtiyac-finansmani/sayfalar/ihtiyac-finansmani.aspx",
+          "scope": "bireysel",
+          "allowed_prefix": "/tr-tr/bireysel/ihtiyac-finansmani/sayfalar/"
+        },
+        {
+          "url": "https://www.turkiyefinans.com.tr/tr-tr/bireysel/hizli-finansman/Sayfalar/default.aspx",
+          "scope": "bireysel",
+          "allowed_prefix": "/tr-tr/bireysel/hizli-finansman/sayfalar/"
+        },
+        {
+          "url": "https://www.turkiyefinans.com.tr/tr-tr/bireysel/tasit-finansmani/sayfalar/tasit-finansmani.aspx",
+          "scope": "bireysel",
+          "allowed_prefix": "/tr-tr/bireysel/tasit-finansmani/sayfalar/"
+        },
+        {
+          "url": "https://www.turkiyefinans.com.tr/tr-tr/bireysel/konut-finansmani/sayfalar/konut-finansmani.aspx",
+          "scope": "bireysel",
+          "allowed_prefix": "/tr-tr/bireysel/konut-finansmani/sayfalar/"
+        },
+        {
+          "url": "https://www.turkiyefinans.com.tr/tr-tr/bireysel/Sayfalar/default.aspx",
+          "scope": "bireysel",
+          "allowed_prefix": "/tr-tr/bireysel/sayfalar/"
+        },
+        {
+          "url": "https://www.turkiyefinans.com.tr/tr-tr/kobi/Sayfalar/dijital-taksitli-ticari-finansman-destegi.aspx",
+          "scope": "ticari",
+          "allowed_prefix": "/tr-tr/kobi/"
+        },
+        {
+          "url": "https://www.turkiyefinans.com.tr/tr-tr/ticari/nakdi-finansman/Sayfalar/nakdi-finansman.aspx",
+          "scope": "ticari",
+          "allowed_prefix": "/tr-tr/ticari/nakdi-finansman/sayfalar/"
+        }
+      ],
+      "family_rules": [
+        {
+          "family_key": "ihtiyac_finansmani",
+          "family_label": "İhtiyaç Finansmanı",
+          "path_contains": [],
+          "exact_paths": [
+            "/tr-tr/bireysel/ihtiyac-finansmani/sayfalar/ihtiyac-finansmani.aspx",
+            "/tr-tr/bireysel/ihtiyac-finansmani/sayfalar/dijital-ihtiyac-finansmani.aspx",
+            "/tr-tr/bireysel/ihtiyac-finansmani/sayfalar/extra-limit.aspx"
+          ]
+        },
+        {
+          "family_key": "alisveris_finansmani",
+          "family_label": "Alışveriş Finansmanı",
+          "path_contains": [],
+          "exact_paths": [
+            "/tr-tr/bireysel/hizli-finansman/sayfalar/trendyol-alisveris-finansmani.aspx"
+          ]
+        },
+        {
+          "family_key": "arac_finansmani",
+          "family_label": "Araç Finansmanı",
+          "path_contains": [],
+          "exact_paths": [
+            "/tr-tr/bireysel/tasit-finansmani/sayfalar/tasit-finansmani.aspx",
+            "/tr-tr/bireysel/tasit-finansmani/sayfalar/dijital-tasit-finansmani.aspx",
+            "/tr-tr/bireysel/tasit-finansmani/sayfalar/motosiklet-finansmani.aspx",
+            "/tr-tr/bireysel/tasit-finansmani/sayfalar/ticari-hat-ticari-plaka-finansmani.aspx",
+            "/tr-tr/bireysel/tasit-finansmani/sayfalar/taksitli-ticari-tasit-finansmani.aspx"
+          ]
+        },
+        {
+          "family_key": "konut_finansmani",
+          "family_label": "Konut Finansmanı",
+          "path_contains": [],
+          "exact_paths": [
+            "/tr-tr/bireysel/konut-finansmani/sayfalar/konut-finansmani.aspx"
+          ]
+        },
+        {
+          "family_key": "arsa_finansmani",
+          "family_label": "Arsa Finansmanı",
+          "path_contains": [],
+          "exact_paths": [
+            "/tr-tr/bireysel/sayfalar/arsa-finansmani.aspx"
+          ]
+        },
+        {
+          "family_key": "isyeri_finansmani",
+          "family_label": "İş Yeri Finansmanı",
+          "path_contains": [],
+          "exact_paths": [
+            "/tr-tr/bireysel/sayfalar/isyeri-finansmani.aspx"
+          ]
+        },
+        {
+          "family_key": "ticari_finansman",
+          "family_label": "Ticari Finansman",
+          "path_contains": [],
+          "exact_paths": [
+            "/tr-tr/kobi/sayfalar/dijital-taksitli-ticari-finansman-destegi.aspx",
+            "/tr-tr/ticari/nakdi-finansman/sayfalar/finansman-destegi.aspx",
+            "/tr-tr/ticari/nakdi-finansman/sayfalar/kgf-destekli-krediler.aspx",
+            "/tr-tr/ticari/nakdi-finansman/sayfalar/esnek-destek-finansmani.aspx",
+            "/tr-tr/ticari/nakdi-finansman/sayfalar/taksitli-ticari-finansman.aspx"
+          ]
+        },
+        {
+          "family_key": "leasing",
+          "family_label": "Leasing",
+          "path_contains": [],
+          "exact_paths": [
+            "/tr-tr/ticari/nakdi-finansman/sayfalar/leasing.aspx"
+          ]
+        },
+        {
+          "family_key": "tarim_finansmani",
+          "family_label": "Tarım Finansmanı",
+          "path_contains": [],
+          "exact_paths": [
+            "/tr-tr/ticari/nakdi-finansman/sayfalar/elektronik-urun-senedi.aspx"
+          ]
+        },
+        {
+          "family_key": "gayri_nakdi_finansman",
+          "family_label": "Gayri Nakdi Finansman",
+          "exact_paths": [
+            "/tr-tr/kobi/kobi-kredileri/gayri-nakdi-krediler/sayfalar/teminat-mektuplari.aspx",
+            "/tr-tr/kobi/kobi-kredileri/gayri-nakdi-krediler/sayfalar/aval-kabul.aspx",
+            "/tr-tr/kobi/kobi-kredileri/gayri-nakdi-krediler/sayfalar/referans-mektuplari.aspx"
+          ],
+          "path_contains": []
+        }
+      ],
+      "exclude_exact_paths": [
+        "/tr-tr/bireysel/ihtiyac-finansmani/sayfalar/arsiv.aspx",
+        "/tr-tr/bireysel/tasit-finansmani/sayfalar/arsiv.aspx",
+        "/tr-tr/bireysel/konut-finansmani/sayfalar/arsiv.aspx",
+        "/tr-tr/bireysel/hizli-finansman/sayfalar/default.aspx",
+        "/tr-tr/bireysel/sayfalar/default.aspx",
+        "/tr-tr/ticari/nakdi-finansman/sayfalar/nakdi-finansman.aspx",
+        "/tr-tr/ticari/nakdi-finansman/sayfalar/kar-zarar-ortakligi.aspx"
+      ],
+      "seed_exact_paths": true,
+      "embedded_product_pages": [
+        {
+          "url": "https://www.turkiyefinans.com.tr/tr-tr/ticari/gayri-nakdi-finansman/sayfalar/default.aspx",
+          "scope": "ticari",
+          "product_family_key": "gayri_nakdi_finansman",
+          "product_family": "Gayri Nakdi Finansman",
+          "products": [
+            {
+              "product_name": "Elektronik Teminat Mektubu"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Vakıf Katılım",
+      "slug": "vakif_katilim",
+      "base_url": "https://www.vakifkatilim.com.tr",
+      "seed_exact_paths": true,
+      "listing_pages": [
+        {
+          "url": "https://www.vakifkatilim.com.tr/tr/kendim-icin/finansmanlar",
+          "scope": "bireysel",
+          "allowed_prefix": "/tr/kendim-icin/finansmanlar/"
+        },
+        {
+          "url": "https://www.vakifkatilim.com.tr/tr/isim-icin/finansmanlar/finansal-kiralamalar",
+          "scope": "ticari",
+          "allowed_prefix": "/tr/isim-icin/finansmanlar/finansal-kiralamalar/"
+        },
+        {
+          "url": "https://www.vakifkatilim.com.tr/tr/isim-icin/finansmanlar/kobi-destekli-finansmanlar",
+          "scope": "ticari",
+          "allowed_prefix": "/tr/isim-icin/finansmanlar/kobi-destekli-finansmanlar/"
+        },
+        {
+          "url": "https://www.vakifkatilim.com.tr/tr/isim-icin/finansmanlar/tarim-finansmanlari",
+          "scope": "ticari",
+          "allowed_prefix": "/tr/isim-icin/finansmanlar/tarim-finansmanlari/"
+        },
+        {
+          "url": "https://www.vakifkatilim.com.tr/tr/isim-icin/finansmanlar/gayrinakdi-finansmanlar",
+          "scope": "ticari",
+          "allowed_prefix": "/tr/isim-icin/finansmanlar/gayrinakdi-finansmanlar/"
+        },
+        {
+          "url": "https://www.vakifkatilim.com.tr/tr/isim-icin/finansmanlar/nakdi-finansmanlar",
+          "scope": "ticari",
+          "allowed_prefix": "/tr/isim-icin/finansmanlar/nakdi-finansmanlar/"
+        }
+      ],
+      "family_rules": [
+        {
+          "family_key": "konut_finansmani",
+          "family_label": "Konut Finansmanı",
+          "path_contains": [],
+          "exact_paths": [
+            "/tr/kendim-icin/finansmanlar/konut-finansmani",
+            "/tr/kendim-icin/finansmanlar/kentsel-donusum-finansmani"
+          ]
+        },
+        {
+          "family_key": "arac_finansmani",
+          "family_label": "Araç Finansmanı",
+          "path_contains": [],
+          "exact_paths": [
+            "/tr/kendim-icin/finansmanlar/tasit-finansmani",
+            "/tr/kendim-icin/finansmanlar/motosiklet-finansmani"
+          ]
+        },
+        {
+          "family_key": "ihtiyac_finansmani",
+          "family_label": "İhtiyaç Finansmanı",
+          "path_contains": [],
+          "exact_paths": [
+            "/tr/kendim-icin/finansmanlar/ihtiyac-finansmani",
+            "/tr/kendim-icin/finansmanlar/hizli-fon-finansmani"
+          ]
+        },
+        {
+          "family_key": "arsa_finansmani",
+          "family_label": "Arsa Finansmanı",
+          "path_contains": [],
+          "exact_paths": [
+            "/tr/kendim-icin/finansmanlar/arsa-finansmani"
+          ]
+        },
+        {
+          "family_key": "isyeri_finansmani",
+          "family_label": "İş Yeri Finansmanı",
+          "path_contains": [],
+          "exact_paths": [
+            "/tr/kendim-icin/finansmanlar/is-yeri-finansmani"
+          ]
+        },
+        {
+          "family_key": "leasing",
+          "family_label": "Leasing",
+          "path_contains": [
+            "/tr/isim-icin/finansmanlar/finansal-kiralamalar/"
+          ],
+          "exact_paths": []
+        },
+        {
+          "family_key": "tarim_finansmani",
+          "family_label": "Tarım Finansmanı",
+          "path_contains": [
+            "/tr/isim-icin/finansmanlar/tarim-finansmanlari/"
+          ],
+          "exact_paths": []
+        },
+        {
+          "family_key": "gayri_nakdi_finansman",
+          "family_label": "Gayri Nakdi Finansman",
+          "path_contains": [
+            "/tr/isim-icin/finansmanlar/gayrinakdi-finansmanlar/"
+          ],
+          "exact_paths": []
+        },
+        {
+          "family_key": "ticari_finansman",
+          "family_label": "Ticari Finansman",
+          "path_contains": [
+            "/tr/isim-icin/finansmanlar/kobi-destekli-finansmanlar/",
+            "/tr/isim-icin/finansmanlar/nakdi-finansmanlar/"
+          ],
+          "exact_paths": []
+        }
+      ],
+      "exclude_exact_paths": [
+        "/tr/kendim-icin/finansmanlar",
+        "/tr/isim-icin/finansmanlar/finansal-kiralamalar",
+        "/tr/isim-icin/finansmanlar/kobi-destekli-finansmanlar",
+        "/tr/isim-icin/finansmanlar/tarim-finansmanlari",
+        "/tr/isim-icin/finansmanlar/gayrinakdi-finansmanlar",
+        "/tr/isim-icin/finansmanlar/nakdi-finansmanlar"
+      ]
+    },
+    {
+      "name": "Ziraat Katılım",
+      "slug": "ziraat_katilim",
+      "base_url": "https://www.ziraatkatilim.com.tr",
+      "seed_exact_paths": true,
+      "listing_pages": [
+        {
+          "url": "https://www.ziraatkatilim.com.tr/bireysel/finansman-urunleri/konut-gayrimenkul-finansmani",
+          "scope": "bireysel",
+          "allowed_prefix": "/bireysel/finansman-urunleri/konut-gayrimenkul-finansmani/"
+        },
+        {
+          "url": "https://www.ziraatkatilim.com.tr/bireysel/finansman-urunleri/tasit-finansmani",
+          "scope": "bireysel",
+          "allowed_prefix": "/bireysel/finansman-urunleri/tasit-finansmani/"
+        },
+        {
+          "url": "https://www.ziraatkatilim.com.tr/bireysel/finansman-urunleri/ihtiyac-finansmani",
+          "scope": "bireysel",
+          "allowed_prefix": "/bireysel/finansman-urunleri/ihtiyac-finansmani/"
+        },
+        {
+          "url": "https://www.ziraatkatilim.com.tr/bireysel/finansman-urunleri/surdurulebilirlik-temali-bireysel-urunler",
+          "scope": "bireysel",
+          "allowed_prefix": "/bireysel/finansman-urunleri/surdurulebilirlik-temali-bireysel-urunler/"
+        },
+        {
+          "url": "https://www.ziraatkatilim.com.tr/ticari/finansman-urunleri/nakdi-finansman-urunleri",
+          "scope": "ticari",
+          "allowed_prefix": "/ticari/finansman-urunleri/nakdi-finansman-urunleri/"
+        },
+        {
+          "url": "https://www.ziraatkatilim.com.tr/ticari/finansman-urunleri/gayri-nakdi-finansman-urunleri",
+          "scope": "ticari",
+          "allowed_prefix": "/ticari/finansman-urunleri/gayri-nakdi-finansman-urunleri/"
+        },
+        {
+          "url": "https://www.ziraatkatilim.com.tr/ticari/finansman-urunleri/finansman_is_birlikleri",
+          "scope": "ticari",
+          "allowed_prefix": "/ticari/finansman-urunleri/finansman_is_birlikleri/"
+        },
+        {
+          "url": "https://www.ziraatkatilim.com.tr/ticari/finansman-urunleri/surdurulebilirlik-temali-ticari-urunler",
+          "scope": "ticari",
+          "allowed_prefix": "/ticari/finansman-urunleri/surdurulebilirlik-temali-ticari-urunler/"
+        },
+        {
+          "url": "https://www.ziraatkatilim.com.tr/ticari/finansman-urunleri/dis-ticaret-finansmanlari",
+          "scope": "ticari",
+          "allowed_prefix": "/ticari/finansman-urunleri/dis-ticaret-finansmanlari/"
+        },
+        {
+          "url": "https://www.ziraatkatilim.com.tr/ticari/finansal-kiralama-leasing",
+          "scope": "ticari",
+          "allowed_prefix": "/ticari/finansal-kiralama-leasing/"
+        },
+        {
+          "url": "https://www.ziraatkatilim.com.tr/tarim/tarimsal-finansman-%C3%BCr%C3%BCnleri",
+          "scope": "ticari",
+          "allowed_prefix": "/tarim/"
+        }
+      ],
+      "family_rules": [
+        {
+          "family_key": "konut_finansmani",
+          "family_label": "Konut Finansmanı",
+          "path_contains": [],
+          "exact_paths": [
+            "/bireysel/finansman-urunleri/konut-gayrimenkul-finansmani/konut-finansmani",
+            "/bireysel/finansman-urunleri/konut-finansmani/kentsel-donusum-finansmani",
+            "/bireysel/finansman-urunleri/surdurulebilirlik-temali-bireysel-urunler/yesil-ev-konut-finansmani"
+          ]
+        },
+        {
+          "family_key": "arsa_finansmani",
+          "family_label": "Arsa Finansmanı",
+          "path_contains": [],
+          "exact_paths": [
+            "/bireysel/finansman-urunleri/konut-gayrimenkul-finansmani/bireysel-arsa-finansmani"
+          ]
+        },
+        {
+          "family_key": "isyeri_finansmani",
+          "family_label": "İş Yeri Finansmanı",
+          "path_contains": [],
+          "exact_paths": [
+            "/bireysel/finansman-urunleri/konut-gayrimenkul-finansmani/bireysel-is-yeri-finansmani"
+          ]
+        },
+        {
+          "family_key": "arac_finansmani",
+          "family_label": "Araç Finansmanı",
+          "path_contains": [
+            "/bireysel/finansman-urunleri/tasit-finansmani/"
+          ],
+          "exact_paths": [
+            "/bireysel/finansman-urunleri/surdurulebilirlik-temali-bireysel-urunler/yesil-tasit-finansmani",
+            "/bireysel/finansman-urunleri/tasit-finansmani/tasit-finansmani",
+            "/bireysel/finansman-urunleri/tasit-finansmani/togg-finansmani"
+          ]
+        },
+        {
+          "family_key": "ihtiyac_finansmani",
+          "family_label": "İhtiyaç Finansmanı",
+          "path_contains": [
+            "/bireysel/finansman-urunleri/ihtiyac-finansmani/"
+          ],
+          "exact_paths": []
+        },
+        {
+          "family_key": "surdurulebilir_finansman",
+          "family_label": "Sürdürülebilir Finansman",
+          "path_contains": [
+            "/bireysel/finansman-urunleri/surdurulebilirlik-temali-bireysel-urunler/"
+          ],
+          "exact_paths": [
+            "/bireysel/finansman-urunleri/surdurulebilirlik-temali-bireysel-urunler/bireysel-enerji-verimliligi-finansmani"
+          ]
+        },
+        {
+          "family_key": "gayri_nakdi_finansman",
+          "family_label": "Gayri Nakdi Finansman",
+          "path_contains": [
+            "/ticari/finansman-urunleri/gayri-nakdi-finansman-urunleri/"
+          ],
+          "exact_paths": []
+        },
+        {
+          "family_key": "ticari_finansman",
+          "family_label": "Ticari Finansman",
+          "path_contains": [
+            "/ticari/finansman-urunleri/nakdi-finansman-urunleri/",
+            "/ticari/finansman-urunleri/finansman_is_birlikleri/",
+            "/ticari/finansman-urunleri/surdurulebilirlik-temali-ticari-urunler/",
+            "/ticari/finansman-urunleri/dis-ticaret-finansmanlari/"
+          ],
+          "exact_paths": []
+        },
+        {
+          "family_key": "leasing",
+          "family_label": "Leasing",
+          "path_contains": [
+            "/ticari/finansal-kiralama-leasing/"
+          ],
+          "exact_paths": [
+            "/ticari/finansal-kiralama-leasing/finansal-kiralama-leasing",
+            "/ticari/finansal-kiralama-leasing/eximbank-finansal-kiralama-programi"
+          ]
+        },
+        {
+          "family_key": "tarim_finansmani",
+          "family_label": "Tarım Finansmanı",
+          "path_contains": [
+            "/tarim/tarimsal-finansman-%c3%bcr%c3%bcnleri/",
+            "/tarim/tarimsal-finansman-ürünleri/"
+          ],
+          "exact_paths": [
+            "/tarim/tarimsal-finansman-ürünleri/bitkiseluretim",
+            "/tarim/tarimsal-finansman-ürünleri/hayvansal-uretim-finansmani",
+            "/tarim/tarimsal-finansman-urunleri/su-urunleri-finansmani",
+            "/tarim/tarimsal-finansman-ürünleri/basinclisulama",
+            "/tarim/tarimsal-finansman-ürünleri/yenilenebilir-enerji-yatirimlari-finansmani",
+            "/tarim/tarimsal-finansman-ürünleri/tarimsal-urunlerin-islenmesi-finansmani",
+            "/tarim/tarimsal-finansman-ürünleri/arazi-alimi-finansmani",
+            "/tarim/tarimsal-finansman-ürünleri/tarimsal-mekanizasyon-finansmani",
+            "/tarim/tarimsal-finansman-ürünleri/kucuk-ekipman-finansmani",
+            "/tarim/tarimsal-finansman-ürünleri/tarim-makineleri-parki-finansmani",
+            "/tarim/tarimsal-finansman-ürünleri/soguk-hava-deposu-finansmani",
+            "/tarim/tarimsal-finansman-ürünleri/lisansli-depoculuk-finansmani",
+            "/tarim/tarimsal-finansman-ürünleri/biyo-tarim-yatirimlari-finansmani",
+            "/tarim/tarimsal-finansman-ürünleri/tarimsal-ar-ge-yatirimlari-finansmani"
+          ]
+        }
+      ],
+      "exclude_exact_paths": [
+        "/bireysel/finansman-urunleri/konut-gayrimenkul-finansmani",
+        "/bireysel/finansman-urunleri/tasit-finansmani",
+        "/bireysel/finansman-urunleri/ihtiyac-finansmani",
+        "/bireysel/finansman-urunleri/surdurulebilirlik-temali-bireysel-urunler",
+        "/ticari/finansman-urunleri/nakdi-finansman-urunleri",
+        "/ticari/finansman-urunleri/gayri-nakdi-finansman-urunleri",
+        "/ticari/finansman-urunleri/finansman_is_birlikleri",
+        "/ticari/finansman-urunleri/surdurulebilirlik-temali-ticari-urunler",
+        "/ticari/finansman-urunleri/dis-ticaret-finansmanlari",
+        "/ticari/finansal-kiralama-leasing",
+        "/tarim/tarimsal-finansman-%c3%bcr%c3%bcnleri"
+      ],
+      "embedded_product_pages": [
+        {
+          "url": "https://www.ziraatkatilim.com.tr/bireysel/finansman-urunleri/konut-gayrimenkul-finansmani",
+          "scope": "bireysel",
+          "product_family_key": "konut_finansmani",
+          "product_family": "Konut Finansmanı",
+          "stop_headings": [
+            "Ziraat Finans Grubu",
+            "Yatırımcı İlişkileri"
+          ],
+          "products": [
+            {
+              "product_name": "Konut Finansmanı"
+            },
+            {
+              "product_name": "Kentsel Dönüşüm Finansmanı"
+            },
+            {
+              "product_name": "Bireysel Arsa Finansmanı",
+              "product_family_key": "arsa_finansmani",
+              "product_family": "Arsa Finansmanı"
+            },
+            {
+              "product_name": "Bireysel İş Yeri Finansmanı",
+              "product_family_key": "isyeri_finansmani",
+              "product_family": "İş Yeri Finansmanı"
+            }
+          ]
+        },
+        {
+          "url": "https://www.ziraatkatilim.com.tr/bireysel/finansman-urunleri/tasit-finansmani",
+          "scope": "bireysel",
+          "product_family_key": "arac_finansmani",
+          "product_family": "Araç Finansmanı",
+          "stop_headings": [
+            "Ziraat Finans Grubu",
+            "Yatırımcı İlişkileri"
+          ],
+          "products": [
+            {
+              "product_name": "Taşıt Finansmanı"
+            },
+            {
+              "product_name": "TOGG Finansmanı"
+            }
+          ]
+        },
+        {
+          "url": "https://www.ziraatkatilim.com.tr/bireysel/finansman-urunleri/ihtiyac-finansmani",
+          "scope": "bireysel",
+          "product_family_key": "ihtiyac_finansmani",
+          "product_family": "İhtiyaç Finansmanı",
+          "stop_headings": [
+            "Ziraat Finans Grubu",
+            "Yatırımcı İlişkileri"
+          ],
+          "products": [
+            {
+              "product_name": "Eğitim Finansmanı"
+            },
+            {
+              "product_name": "Doğalgaz Dönüşüm Finansmanı"
+            },
+            {
+              "product_name": "Hac ve Umre Finansmanı"
+            },
+            {
+              "product_name": "İpotekli Bireysel Finansman"
+            },
+            {
+              "product_name": "Yasa Kapsamında İpotekli Bireysel Finansman"
+            },
+            {
+              "product_name": "Dayanıklı Tüketim Finansmanı"
+            },
+            {
+              "product_name": "Kolay Fon Finansmanı"
+            },
+            {
+              "product_name": "Anında Finansman"
+            }
+          ]
+        },
+        {
+          "url": "https://www.ziraatkatilim.com.tr/bireysel/finansman-urunleri/surdurulebilirlik-temali-bireysel-urunler",
+          "scope": "bireysel",
+          "product_family_key": "surdurulebilir_finansman",
+          "product_family": "Sürdürülebilir Finansman",
+          "stop_headings": [
+            "Ziraat Finans Grubu",
+            "Yatırımcı İlişkileri"
+          ],
+          "products": [
+            {
+              "product_name": "Bireysel Enerji Verimliliği Finansmanı"
+            },
+            {
+              "product_name": "Enerji Verimliliği Yönetim Finansmanı"
+            },
+            {
+              "product_name": "Yeşil Ev Konut Finansmanı",
+              "product_family_key": "konut_finansmani",
+              "product_family": "Konut Finansmanı"
+            },
+            {
+              "product_name": "Yeşil Taşıt Finansmanı",
+              "product_family_key": "arac_finansmani",
+              "product_family": "Araç Finansmanı"
+            }
+          ]
+        },
+        {
+          "url": "https://www.ziraatkatilim.com.tr/ticari/finansman-urunleri/nakdi-finansman-urunleri",
+          "scope": "ticari",
+          "product_family_key": "ticari_finansman",
+          "product_family": "Ticari Finansman",
+          "stop_headings": [
+            "Ziraat Finans Grubu",
+            "Yatırımcı İlişkileri"
+          ],
+          "products": [
+            {
+              "product_name": "Kurumsal Finansman"
+            },
+            {
+              "product_name": "Taksitli Ticari Finansman"
+            },
+            {
+              "product_name": "Döviz Finansmanı"
+            }
+          ]
+        },
+        {
+          "url": "https://www.ziraatkatilim.com.tr/ticari/finansman-urunleri/gayri-nakdi-finansman-urunleri",
+          "scope": "ticari",
+          "product_family_key": "gayri_nakdi_finansman",
+          "product_family": "Gayri Nakdi Finansman",
+          "stop_headings": [
+            "Ziraat Finans Grubu",
+            "Yatırımcı İlişkileri"
+          ],
+          "products": [
+            {
+              "product_name": "Teminat Mektupları"
+            },
+            {
+              "product_name": "Referans Mektupları"
+            },
+            {
+              "product_name": "Kabul/Aval Finansmanı",
+              "aliases": [
+                "Kabul Aval Finansmanı"
+              ]
+            },
+            {
+              "product_name": "Akreditif"
+            }
+          ]
+        },
+        {
+          "url": "https://www.ziraatkatilim.com.tr/ticari/finansman-urunleri/finansman_is_birlikleri",
+          "scope": "ticari",
+          "product_family_key": "ticari_finansman",
+          "product_family": "Ticari Finansman",
+          "stop_headings": [
+            "Ziraat Finans Grubu",
+            "Yatırımcı İlişkileri"
+          ],
+          "products": [
+            {
+              "product_name": "KFK Teminatlı Finansmanlar"
+            },
+            {
+              "product_name": "KOSGEB Destekli Finansmanlar"
+            },
+            {
+              "product_name": "Eximbank Destekli Finansmanlar",
+              "aliases": [
+                "EXIMBANK Destekli Finansmanlar"
+              ]
+            },
+            {
+              "product_name": "Yatırım Teşvik Belgesi Kapsamında Kâr Payı Desteği"
+            }
+          ]
+        },
+        {
+          "url": "https://www.ziraatkatilim.com.tr/ticari/finansman-urunleri/surdurulebilirlik-temali-ticari-urunler",
+          "scope": "ticari",
+          "product_family_key": "ticari_finansman",
+          "product_family": "Ticari Finansman",
+          "stop_headings": [
+            "Ziraat Finans Grubu",
+            "Yatırımcı İlişkileri"
+          ],
+          "products": [
+            {
+              "product_name": "Atık Su Arıtma ve Geri Kazanımı Yatırım ve İşletme Finansmanı"
+            },
+            {
+              "product_name": "Enerji Verimliliği Yatırım ve İşletme Finansmanları"
+            },
+            {
+              "product_name": "GES / Çatı GES / GES Yatırım ve İşletme Finansmanı"
+            },
+            {
+              "product_name": "Yenilenebilir Enerji Kapsamındaki Yatırım ve İşletme Finansmanları"
+            }
+          ]
+        },
+        {
+          "url": "https://www.ziraatkatilim.com.tr/ticari/finansman-urunleri/dis-ticaret-finansmanlari",
+          "scope": "ticari",
+          "product_family_key": "ticari_finansman",
+          "product_family": "Ticari Finansman",
+          "stop_headings": [
+            "Ziraat Finans Grubu",
+            "Yatırımcı İlişkileri"
+          ],
+          "products": [
+            {
+              "product_name": "İhracata Hazırlık Destek Finansmanı"
+            },
+            {
+              "product_name": "İhracat Finansmanı"
+            },
+            {
+              "product_name": "İthalat Finansmanı"
+            },
+            {
+              "product_name": "Vadeli İhracat Finansmanı"
+            }
+          ]
+        },
+        {
+          "url": "https://www.ziraatkatilim.com.tr/ticari/finansal-kiralama-leasing",
+          "scope": "ticari",
+          "product_family_key": "leasing",
+          "product_family": "Leasing",
+          "stop_headings": [
+            "Ziraat Finans Grubu",
+            "Yatırımcı İlişkileri"
+          ],
+          "products": [
+            {
+              "product_name": "Finansal Kiralama (Leasing)",
+              "aliases": [
+                "Finansal Kiralama (Leasing) Nedir?"
+              ]
+            },
+            {
+              "product_name": "EXIMBANK Finansal Kiralama Programı"
+            }
+          ]
+        },
+        {
+          "url": "https://www.ziraatkatilim.com.tr/tarim/tarimsal-finansman-%C3%BCr%C3%BCnleri",
+          "scope": "ticari",
+          "product_family_key": "tarim_finansmani",
+          "product_family": "Tarım Finansmanı",
+          "stop_headings": [
+            "Ziraat Finans Grubu",
+            "Yatırımcı İlişkileri"
+          ],
+          "products": [
+            {
+              "product_name": "Bitkisel Üretim Finansmanı"
+            },
+            {
+              "product_name": "Hayvansal Üretim Finansmanı"
+            },
+            {
+              "product_name": "Su Ürünleri Finansmanı"
+            },
+            {
+              "product_name": "Basınçlı Sulama Finansmanı"
+            },
+            {
+              "product_name": "Yenilenebilir Enerji Yatırımları Finansmanı"
+            },
+            {
+              "product_name": "Tarımsal Ürünlerin İşlenmesi Finansmanı"
+            },
+            {
+              "product_name": "Arazi Alımı Finansmanı"
+            },
+            {
+              "product_name": "Tarımsal Mekanizasyon Finansmanı"
+            },
+            {
+              "product_name": "Küçük Ekipman Finansmanı"
+            },
+            {
+              "product_name": "Tarım Makineleri Parkı Finansmanı"
+            },
+            {
+              "product_name": "Soğuk Hava Deposu Finansmanı"
+            },
+            {
+              "product_name": "Lisanslı Depoculuk Finansmanı"
+            },
+            {
+              "product_name": "Biyo-Tarım Yatırımları Finansmanı"
+            },
+            {
+              "product_name": "Tarımsal AR-GE Yatırımları Finansmanı"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

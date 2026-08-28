@@ -1,0 +1,1021 @@
+========================================================================================================================
+FILE: src\finance_data_quality.py
+========================================================================================================================
+
+--- LINES 82-102 ---
+82:     "/enerji-verimliligi-yatirim-isletme-finansmanlari": ("Enerji Verimliliği Yatırım ve İşletme Finansmanları", "ticari_finansman", "Ticari Finansman"),
+83:     "/ges-cati-ges-ges-yatirim-ve-isletme-finansmani": ("GES / Çatı GES / GES Yatırım ve İşletme Finansmanı", "ticari_finansman", "Ticari Finansman"),
+84:     "/yenilenebilir-enerji-kapsamindaki-yatirim-ve-isletme-finansmanlari": ("Yenilenebilir Enerji Kapsamındaki Yatırım ve İşletme Finansmanları", "ticari_finansman", "Ticari Finansman"),
+85:     # Ticari — dış ticaret
+86:     "/ithalat-finansmani": ("İthalat Finansmanı", "ticari_finansman", "Ticari Finansman"),
+87:     "/ihracat-finansmani": ("İhracat Finansmanı", "ticari_finansman", "Ticari Finansman"),
+88:     "/vadeli-ihracat-finansmani": ("Vadeli İhracat Finansmanı", "ticari_finansman", "Ticari Finansman"),
+89:     "/ihracata-hazirlik-destek-finansman": ("İhracata Hazırlık Destek Finansmanı", "ticari_finansman", "Ticari Finansman"),
+90:     # Leasing
+91:     "/finansal-kiralama-leasing/finansal-kiralama-leasing": ("Finansal Kiralama (Leasing)", "leasing", "Leasing"),
+92:     "/eximbank-finansal-kiralama-programi": ("EXIMBANK Finansal Kiralama Programı", "leasing", "Leasing"),
+93:     # Tarım
+94:     "/bitkiseluretim": ("Bitkisel Üretim Finansmanı", "tarim_finansmani", "Tarım Finansmanı"),
+95:     "/hayvansal-uretim-finansmani": ("Hayvansal Üretim Finansmanı", "tarim_finansmani", "Tarım Finansmanı"),
+96:     "/su-urunleri-finansmani": ("Su Ürünleri Finansmanı", "tarim_finansmani", "Tarım Finansmanı"),
+97:     "/basinclisulama": ("Basınçlı Sulama Finansmanı", "tarim_finansmani", "Tarım Finansmanı"),
+98:     "/yenilenebilir-enerji-yatirimlari-finansmani": ("Yenilenebilir Enerji Yatırımları Finansmanı", "tarim_finansmani", "Tarım Finansmanı"),
+99:     "/tarimsal-urunlerin-islenmesi-finansmani": ("Tarımsal Ürünlerin İşlenmesi Finansmanı", "tarim_finansmani", "Tarım Finansmanı"),
+100:     "/arazi-alimi-finansmani": ("Arazi Alımı Finansmanı", "tarim_finansmani", "Tarım Finansmanı"),
+101:     "/tarimsal-mekanizasyon-finansmani": ("Tarımsal Mekanizasyon Finansmanı", "tarim_finansmani", "Tarım Finansmanı"),
+102:     "/kucuk-ekipman-finansmani": ("Küçük Ekipman Finansmanı", "tarim_finansmani", "Tarım Finansmanı"),
+
+--- LINES 83-103 ---
+83:     "/ges-cati-ges-ges-yatirim-ve-isletme-finansmani": ("GES / Çatı GES / GES Yatırım ve İşletme Finansmanı", "ticari_finansman", "Ticari Finansman"),
+84:     "/yenilenebilir-enerji-kapsamindaki-yatirim-ve-isletme-finansmanlari": ("Yenilenebilir Enerji Kapsamındaki Yatırım ve İşletme Finansmanları", "ticari_finansman", "Ticari Finansman"),
+85:     # Ticari — dış ticaret
+86:     "/ithalat-finansmani": ("İthalat Finansmanı", "ticari_finansman", "Ticari Finansman"),
+87:     "/ihracat-finansmani": ("İhracat Finansmanı", "ticari_finansman", "Ticari Finansman"),
+88:     "/vadeli-ihracat-finansmani": ("Vadeli İhracat Finansmanı", "ticari_finansman", "Ticari Finansman"),
+89:     "/ihracata-hazirlik-destek-finansman": ("İhracata Hazırlık Destek Finansmanı", "ticari_finansman", "Ticari Finansman"),
+90:     # Leasing
+91:     "/finansal-kiralama-leasing/finansal-kiralama-leasing": ("Finansal Kiralama (Leasing)", "leasing", "Leasing"),
+92:     "/eximbank-finansal-kiralama-programi": ("EXIMBANK Finansal Kiralama Programı", "leasing", "Leasing"),
+93:     # Tarım
+94:     "/bitkiseluretim": ("Bitkisel Üretim Finansmanı", "tarim_finansmani", "Tarım Finansmanı"),
+95:     "/hayvansal-uretim-finansmani": ("Hayvansal Üretim Finansmanı", "tarim_finansmani", "Tarım Finansmanı"),
+96:     "/su-urunleri-finansmani": ("Su Ürünleri Finansmanı", "tarim_finansmani", "Tarım Finansmanı"),
+97:     "/basinclisulama": ("Basınçlı Sulama Finansmanı", "tarim_finansmani", "Tarım Finansmanı"),
+98:     "/yenilenebilir-enerji-yatirimlari-finansmani": ("Yenilenebilir Enerji Yatırımları Finansmanı", "tarim_finansmani", "Tarım Finansmanı"),
+99:     "/tarimsal-urunlerin-islenmesi-finansmani": ("Tarımsal Ürünlerin İşlenmesi Finansmanı", "tarim_finansmani", "Tarım Finansmanı"),
+100:     "/arazi-alimi-finansmani": ("Arazi Alımı Finansmanı", "tarim_finansmani", "Tarım Finansmanı"),
+101:     "/tarimsal-mekanizasyon-finansmani": ("Tarımsal Mekanizasyon Finansmanı", "tarim_finansmani", "Tarım Finansmanı"),
+102:     "/kucuk-ekipman-finansmani": ("Küçük Ekipman Finansmanı", "tarim_finansmani", "Tarım Finansmanı"),
+103:     "/tarim-makineleri-parki-finansmani": ("Tarım Makineleri Parkı Finansmanı", "tarim_finansmani", "Tarım Finansmanı"),
+
+--- LINES 84-104 ---
+84:     "/yenilenebilir-enerji-kapsamindaki-yatirim-ve-isletme-finansmanlari": ("Yenilenebilir Enerji Kapsamındaki Yatırım ve İşletme Finansmanları", "ticari_finansman", "Ticari Finansman"),
+85:     # Ticari — dış ticaret
+86:     "/ithalat-finansmani": ("İthalat Finansmanı", "ticari_finansman", "Ticari Finansman"),
+87:     "/ihracat-finansmani": ("İhracat Finansmanı", "ticari_finansman", "Ticari Finansman"),
+88:     "/vadeli-ihracat-finansmani": ("Vadeli İhracat Finansmanı", "ticari_finansman", "Ticari Finansman"),
+89:     "/ihracata-hazirlik-destek-finansman": ("İhracata Hazırlık Destek Finansmanı", "ticari_finansman", "Ticari Finansman"),
+90:     # Leasing
+91:     "/finansal-kiralama-leasing/finansal-kiralama-leasing": ("Finansal Kiralama (Leasing)", "leasing", "Leasing"),
+92:     "/eximbank-finansal-kiralama-programi": ("EXIMBANK Finansal Kiralama Programı", "leasing", "Leasing"),
+93:     # Tarım
+94:     "/bitkiseluretim": ("Bitkisel Üretim Finansmanı", "tarim_finansmani", "Tarım Finansmanı"),
+95:     "/hayvansal-uretim-finansmani": ("Hayvansal Üretim Finansmanı", "tarim_finansmani", "Tarım Finansmanı"),
+96:     "/su-urunleri-finansmani": ("Su Ürünleri Finansmanı", "tarim_finansmani", "Tarım Finansmanı"),
+97:     "/basinclisulama": ("Basınçlı Sulama Finansmanı", "tarim_finansmani", "Tarım Finansmanı"),
+98:     "/yenilenebilir-enerji-yatirimlari-finansmani": ("Yenilenebilir Enerji Yatırımları Finansmanı", "tarim_finansmani", "Tarım Finansmanı"),
+99:     "/tarimsal-urunlerin-islenmesi-finansmani": ("Tarımsal Ürünlerin İşlenmesi Finansmanı", "tarim_finansmani", "Tarım Finansmanı"),
+100:     "/arazi-alimi-finansmani": ("Arazi Alımı Finansmanı", "tarim_finansmani", "Tarım Finansmanı"),
+101:     "/tarimsal-mekanizasyon-finansmani": ("Tarımsal Mekanizasyon Finansmanı", "tarim_finansmani", "Tarım Finansmanı"),
+102:     "/kucuk-ekipman-finansmani": ("Küçük Ekipman Finansmanı", "tarim_finansmani", "Tarım Finansmanı"),
+103:     "/tarim-makineleri-parki-finansmani": ("Tarım Makineleri Parkı Finansmanı", "tarim_finansmani", "Tarım Finansmanı"),
+104:     "/soguk-hava-deposu-finansmani": ("Soğuk Hava Deposu Finansmanı", "tarim_finansmani", "Tarım Finansmanı"),
+
+--- LINES 181-201 ---
+181:     # yalnız yanlış bağlamdan sızabilecek örnek/default değerleri bastırır.
+182:     # ------------------------------------------------------------
+183:     if _same(bank, "Adil Katılım"):
+184:         # Adil Katılım'ın kamuya açık sayfası bireysel ve ticari finansmanı
+185:         # genel olarak tanımlar; sayısal limit/vade/oran yayımlamaz. Sayfa
+186:         # footer'ındaki %99,8 hizmet sürekliliği gibi ilgisiz sayılar asla
+187:         # finansman metriğine dönüşemez.
+188:         for key in (
+189:             "minimum_financing_amount", "maximum_financing_amount",
+190:             "minimum_maturity_months", "maximum_maturity_months",
+191:             "profit_share_rate", "maximum_financing_ratio",
+192:             "maturity_reference_upper_amount", "shopping_general_limit_amount",
+193:             "shopping_general_max_maturity_months", "shopping_tablet_max_maturity_months",
+194:             "shopping_computer_max_maturity_months",
+195:         ):
+196:             out[key] = None
+197:         out["profit_share_rate_text"] = "Resmî genel tanıtım sayfasında sayısal güncel oran yayımlanmamış"
+198:         out["maturity_rules_text"] = None
+199:         out["financing_ratio_rules_text"] = None
+200:         out["housing_first_home_rules_text"] = None
+201:         out["housing_additional_home_rules_text"] = None
+
+--- LINES 182-202 ---
+182:     # ------------------------------------------------------------
+183:     if _same(bank, "Adil Katılım"):
+184:         # Adil Katılım'ın kamuya açık sayfası bireysel ve ticari finansmanı
+185:         # genel olarak tanımlar; sayısal limit/vade/oran yayımlamaz. Sayfa
+186:         # footer'ındaki %99,8 hizmet sürekliliği gibi ilgisiz sayılar asla
+187:         # finansman metriğine dönüşemez.
+188:         for key in (
+189:             "minimum_financing_amount", "maximum_financing_amount",
+190:             "minimum_maturity_months", "maximum_maturity_months",
+191:             "profit_share_rate", "maximum_financing_ratio",
+192:             "maturity_reference_upper_amount", "shopping_general_limit_amount",
+193:             "shopping_general_max_maturity_months", "shopping_tablet_max_maturity_months",
+194:             "shopping_computer_max_maturity_months",
+195:         ):
+196:             out[key] = None
+197:         out["profit_share_rate_text"] = "Resmî genel tanıtım sayfasında sayısal güncel oran yayımlanmamış"
+198:         out["maturity_rules_text"] = None
+199:         out["financing_ratio_rules_text"] = None
+200:         out["housing_first_home_rules_text"] = None
+201:         out["housing_additional_home_rules_text"] = None
+202:         out["housing_finance_rules_json"] = None
+
+--- LINES 183-203 ---
+183:     if _same(bank, "Adil Katılım"):
+184:         # Adil Katılım'ın kamuya açık sayfası bireysel ve ticari finansmanı
+185:         # genel olarak tanımlar; sayısal limit/vade/oran yayımlamaz. Sayfa
+186:         # footer'ındaki %99,8 hizmet sürekliliği gibi ilgisiz sayılar asla
+187:         # finansman metriğine dönüşemez.
+188:         for key in (
+189:             "minimum_financing_amount", "maximum_financing_amount",
+190:             "minimum_maturity_months", "maximum_maturity_months",
+191:             "profit_share_rate", "maximum_financing_ratio",
+192:             "maturity_reference_upper_amount", "shopping_general_limit_amount",
+193:             "shopping_general_max_maturity_months", "shopping_tablet_max_maturity_months",
+194:             "shopping_computer_max_maturity_months",
+195:         ):
+196:             out[key] = None
+197:         out["profit_share_rate_text"] = "Resmî genel tanıtım sayfasında sayısal güncel oran yayımlanmamış"
+198:         out["maturity_rules_text"] = None
+199:         out["financing_ratio_rules_text"] = None
+200:         out["housing_first_home_rules_text"] = None
+201:         out["housing_additional_home_rules_text"] = None
+202:         out["housing_finance_rules_json"] = None
+203:         out["vehicle_finance_rules_text"] = None
+
+--- LINES 185-205 ---
+185:         # genel olarak tanımlar; sayısal limit/vade/oran yayımlamaz. Sayfa
+186:         # footer'ındaki %99,8 hizmet sürekliliği gibi ilgisiz sayılar asla
+187:         # finansman metriğine dönüşemez.
+188:         for key in (
+189:             "minimum_financing_amount", "maximum_financing_amount",
+190:             "minimum_maturity_months", "maximum_maturity_months",
+191:             "profit_share_rate", "maximum_financing_ratio",
+192:             "maturity_reference_upper_amount", "shopping_general_limit_amount",
+193:             "shopping_general_max_maturity_months", "shopping_tablet_max_maturity_months",
+194:             "shopping_computer_max_maturity_months",
+195:         ):
+196:             out[key] = None
+197:         out["profit_share_rate_text"] = "Resmî genel tanıtım sayfasında sayısal güncel oran yayımlanmamış"
+198:         out["maturity_rules_text"] = None
+199:         out["financing_ratio_rules_text"] = None
+200:         out["housing_first_home_rules_text"] = None
+201:         out["housing_additional_home_rules_text"] = None
+202:         out["housing_finance_rules_json"] = None
+203:         out["vehicle_finance_rules_text"] = None
+204:         out["vehicle_age_rules_text"] = None
+205:         out["shopping_finance_rules_text"] = None
+
+--- LINES 237-257 ---
+237:         out["profit_share_rate_text"] = "Aylık %3,99'dan başlayan · koşullara göre"
+238:         rules["pricing_tiers"] = []
+239:         display_metadata["pricing_value_type"] = "minimum"
+240:         display_metadata["pricing_condition_note"] = "Resmî sayfa aylık %3,99'dan başlayan oran ifadesini kullanır; örnek senaryo genel oran değildir."
+241: 
+242:     if _same(bank, "T.O.M. Katılım") and (_same(product, "Mağazadan Alışveriş Kredisi") or _contains(source_url, "/magazadan-alisveris-kredisi.html")):
+243:         # Resmî ürün sayfasında doğrudan yayımlanan ürün-özel sınırlar.
+244:         out["minimum_financing_amount"] = 1000.0
+245:         out["maximum_financing_amount"] = 200000.0
+246:         out["maximum_maturity_months"] = 36
+247:         out["maturity_rules_text"] = "36 aya kadar"
+248:         display_metadata["product_specific_limit_text"] = "1.000 TL – 200.000 TL"
+249:         display_metadata["product_specific_maturity_text"] = "36 aya kadar"
+250:         display_metadata["verified_channel"] = "Anlaşmalı mağaza · Hadi uygulaması / QR"
+251: 
+252:     if _same(bank, "Ziraat Katılım"):
+253:         # Ziraat Katılım sayfalarında ortak hesaplama aracında varsayılan
+254:         # %0,99 yer alıyor ve banka bunun bilgi amaçlı, bağlayıcı fiyat
+255:         # olmadığını açıkça belirtiyor. Bu default değer headline olamaz.
+256:         try:
+257:             numeric_rate = float(out.get("profit_share_rate")) if out.get("profit_share_rate") is not None else None
+
+--- LINES 238-258 ---
+238:         rules["pricing_tiers"] = []
+239:         display_metadata["pricing_value_type"] = "minimum"
+240:         display_metadata["pricing_condition_note"] = "Resmî sayfa aylık %3,99'dan başlayan oran ifadesini kullanır; örnek senaryo genel oran değildir."
+241: 
+242:     if _same(bank, "T.O.M. Katılım") and (_same(product, "Mağazadan Alışveriş Kredisi") or _contains(source_url, "/magazadan-alisveris-kredisi.html")):
+243:         # Resmî ürün sayfasında doğrudan yayımlanan ürün-özel sınırlar.
+244:         out["minimum_financing_amount"] = 1000.0
+245:         out["maximum_financing_amount"] = 200000.0
+246:         out["maximum_maturity_months"] = 36
+247:         out["maturity_rules_text"] = "36 aya kadar"
+248:         display_metadata["product_specific_limit_text"] = "1.000 TL – 200.000 TL"
+249:         display_metadata["product_specific_maturity_text"] = "36 aya kadar"
+250:         display_metadata["verified_channel"] = "Anlaşmalı mağaza · Hadi uygulaması / QR"
+251: 
+252:     if _same(bank, "Ziraat Katılım"):
+253:         # Ziraat Katılım sayfalarında ortak hesaplama aracında varsayılan
+254:         # %0,99 yer alıyor ve banka bunun bilgi amaçlı, bağlayıcı fiyat
+255:         # olmadığını açıkça belirtiyor. Bu default değer headline olamaz.
+256:         try:
+257:             numeric_rate = float(out.get("profit_share_rate")) if out.get("profit_share_rate") is not None else None
+258:         except (TypeError, ValueError):
+
+--- LINES 289-309 ---
+289:             else:
+290:                 display_metadata["state_support_note"] = "Devlet destekli (s\u00fcbvansiyonlu) finansman imk\u00e2n\u0131 belirtilmi\u015ftir; g\u00fcncel k\u00e2r pay\u0131 oran\u0131 resm\u00ee kaynakta ayr\u0131ca do\u011frulanmam\u0131\u015ft\u0131r."
+291: 
+292:     if _same(bank, "Vakıf Katılım") and _same(product, "Konut Finansmanı"):
+293:         # Resmî sayfanın ana ürün açıklaması 120 ay ve %90'a kadar finansmanı
+294:         # doğruluyor. Aynı sayfadaki 2. ev tablosunda %150 görünen bir hücre
+295:         # vardır. Amaçlanan değer tahmin edilmez; şüpheli tablo BANSA ana
+296:         # karşılaştırmasında kullanılmaz.
+297:         out["maximum_maturity_months"] = 120
+298:         out["maximum_financing_ratio"] = 90.0
+299:         out["financing_ratio_rules_text"] = "Ekspertiz değeri, enerji sınıfı ve konut sahipliği koşullarına göre; azami %90"
+300:         out["housing_first_home_rules_text"] = None
+301:         out["housing_additional_home_rules_text"] = None
+302:         out["housing_finance_rules_json"] = None
+303:         display_metadata["source_anomaly_warning"] = "Resmî 2. ev tablosunda %100 üzeri (%150) görünen hücre karşılaştırmada kullanılmaz; amaçlanan değer tahmin edilmez."
+304: 
+305:     if _same(bank, "Türkiye Emlak Katılım") and _same(product, "Konut Finansmanı"):
+306:         # Ana açıklama ekspertiz değerinin %80'ine kadar finansmanı açıkça
+307:         # yayımlar. Sayfanın aşağısındaki kredi-değer tablosunda 0% ve tekrar
+308:         # eden tutar bandı gibi tutarsız hücreler bulunduğundan o tabloyu
+309:         # otomatik karar verisi olarak kullanmıyoruz.
+
+--- LINES 290-310 ---
+290:                 display_metadata["state_support_note"] = "Devlet destekli (s\u00fcbvansiyonlu) finansman imk\u00e2n\u0131 belirtilmi\u015ftir; g\u00fcncel k\u00e2r pay\u0131 oran\u0131 resm\u00ee kaynakta ayr\u0131ca do\u011frulanmam\u0131\u015ft\u0131r."
+291: 
+292:     if _same(bank, "Vakıf Katılım") and _same(product, "Konut Finansmanı"):
+293:         # Resmî sayfanın ana ürün açıklaması 120 ay ve %90'a kadar finansmanı
+294:         # doğruluyor. Aynı sayfadaki 2. ev tablosunda %150 görünen bir hücre
+295:         # vardır. Amaçlanan değer tahmin edilmez; şüpheli tablo BANSA ana
+296:         # karşılaştırmasında kullanılmaz.
+297:         out["maximum_maturity_months"] = 120
+298:         out["maximum_financing_ratio"] = 90.0
+299:         out["financing_ratio_rules_text"] = "Ekspertiz değeri, enerji sınıfı ve konut sahipliği koşullarına göre; azami %90"
+300:         out["housing_first_home_rules_text"] = None
+301:         out["housing_additional_home_rules_text"] = None
+302:         out["housing_finance_rules_json"] = None
+303:         display_metadata["source_anomaly_warning"] = "Resmî 2. ev tablosunda %100 üzeri (%150) görünen hücre karşılaştırmada kullanılmaz; amaçlanan değer tahmin edilmez."
+304: 
+305:     if _same(bank, "Türkiye Emlak Katılım") and _same(product, "Konut Finansmanı"):
+306:         # Ana açıklama ekspertiz değerinin %80'ine kadar finansmanı açıkça
+307:         # yayımlar. Sayfanın aşağısındaki kredi-değer tablosunda 0% ve tekrar
+308:         # eden tutar bandı gibi tutarsız hücreler bulunduğundan o tabloyu
+309:         # otomatik karar verisi olarak kullanmıyoruz.
+310:         out["maximum_financing_ratio"] = 80.0
+
+--- LINES 302-322 ---
+302:         out["housing_finance_rules_json"] = None
+303:         display_metadata["source_anomaly_warning"] = "Resmî 2. ev tablosunda %100 üzeri (%150) görünen hücre karşılaştırmada kullanılmaz; amaçlanan değer tahmin edilmez."
+304: 
+305:     if _same(bank, "Türkiye Emlak Katılım") and _same(product, "Konut Finansmanı"):
+306:         # Ana açıklama ekspertiz değerinin %80'ine kadar finansmanı açıkça
+307:         # yayımlar. Sayfanın aşağısındaki kredi-değer tablosunda 0% ve tekrar
+308:         # eden tutar bandı gibi tutarsız hücreler bulunduğundan o tabloyu
+309:         # otomatik karar verisi olarak kullanmıyoruz.
+310:         out["maximum_financing_ratio"] = 80.0
+311:         out["financing_ratio_rules_text"] = "Ekspertiz değerinin %80'ine kadar (ana ürün açıklaması)"
+312:         out["housing_first_home_rules_text"] = None
+313:         out["housing_additional_home_rules_text"] = None
+314:         out["housing_finance_rules_json"] = None
+315:         display_metadata["source_anomaly_warning"] = "Resmî sayfadaki ayrıntılı kredi-değer tablosunda tutarsız hücreler bulunduğu için BANSA yalnız ana ürün açıklamasındaki doğrulanmış %80 üst sınırı kullanır."
+316: 
+317:     if _same(bank, "Türkiye Emlak Katılım") and _contains(source_url, "/tr/bireysel/finansmanlar/ihtiyac-finansmani"):
+318:         # Alt ihtiyaç ürünleri ortak sayfanın sonunda yer alan 30.000 TL /
+319:         # 12 ay / %1,69 'Örnek İhtiyaç Finansmanı Tablosu'ndan fiyatlama
+320:         # devralamaz. Alt bölüm kendisi sayısal güncel fiyat yayımlamıyorsa
+321:         # oran boş kalır.
+322:         out["profit_share_rate"] = None
+
+--- LINES 339-359 ---
+339:         rules["amount_maturity_rules"] = [
+340:             {
+341:                 "min_amount": lo, "max_amount": hi, "min_inclusive": False,
+342:                 "max_inclusive": True, "max_maturity_months": months,
+343:                 "source_text": ((f"Değer ≤ {_money(hi)} TL" if lo is None else f"{_money(lo)} TL < Değer ≤ {_money(hi)} TL") + f" → Azami %{ratio:g} · {months} ay"),
+344:             }
+345:             for lo, hi, months, ratio in canonical
+346:         ]
+347:         out["maximum_financing_ratio"] = 70.0
+348:         out["maximum_maturity_months"] = 48
+349:         out["maturity_rules_text"] = "≤ 400.000 TL → 48 ay | 400.001–800.000 TL → 36 ay | 800.001–1.200.000 TL → 24 ay | 1.200.001–2.000.000 TL → 12 ay | > 2.000.000 TL → kullandırım yok"
+350:         out["vehicle_finance_rules_text"] = "≤ 400.000 TL: %70 / 48 ay · 400.001–800.000 TL: %50 / 36 ay · 800.001–1.200.000 TL: %30 / 24 ay · 1.200.001–2.000.000 TL: %20 / 12 ay · > 2.000.000 TL: Kullandırım yok"
+351: 
+352:     # Hac/Umre sayfasındaki 125/250 bin TL değerleri ürün limiti değil,
+353:     # yalnız azami vade bantlarıdır.
+354:     if _same(bank, "Albaraka Türk") and _same(product, "Hac ve Umre Finansmanı"):
+355:         out["minimum_financing_amount"] = None
+356:         out["maximum_financing_amount"] = None
+357:         out["maximum_maturity_months"] = 36
+358:         rules["amount_maturity_rules"] = [
+359:             {"min_amount": None, "max_amount": 125000.0, "min_inclusive": False, "max_inclusive": True, "max_maturity_months": 36, "source_text": "125.000 TL'ye kadar maksimum 36 ay"},
+
+--- LINES 340-360 ---
+340:             {
+341:                 "min_amount": lo, "max_amount": hi, "min_inclusive": False,
+342:                 "max_inclusive": True, "max_maturity_months": months,
+343:                 "source_text": ((f"Değer ≤ {_money(hi)} TL" if lo is None else f"{_money(lo)} TL < Değer ≤ {_money(hi)} TL") + f" → Azami %{ratio:g} · {months} ay"),
+344:             }
+345:             for lo, hi, months, ratio in canonical
+346:         ]
+347:         out["maximum_financing_ratio"] = 70.0
+348:         out["maximum_maturity_months"] = 48
+349:         out["maturity_rules_text"] = "≤ 400.000 TL → 48 ay | 400.001–800.000 TL → 36 ay | 800.001–1.200.000 TL → 24 ay | 1.200.001–2.000.000 TL → 12 ay | > 2.000.000 TL → kullandırım yok"
+350:         out["vehicle_finance_rules_text"] = "≤ 400.000 TL: %70 / 48 ay · 400.001–800.000 TL: %50 / 36 ay · 800.001–1.200.000 TL: %30 / 24 ay · 1.200.001–2.000.000 TL: %20 / 12 ay · > 2.000.000 TL: Kullandırım yok"
+351: 
+352:     # Hac/Umre sayfasındaki 125/250 bin TL değerleri ürün limiti değil,
+353:     # yalnız azami vade bantlarıdır.
+354:     if _same(bank, "Albaraka Türk") and _same(product, "Hac ve Umre Finansmanı"):
+355:         out["minimum_financing_amount"] = None
+356:         out["maximum_financing_amount"] = None
+357:         out["maximum_maturity_months"] = 36
+358:         rules["amount_maturity_rules"] = [
+359:             {"min_amount": None, "max_amount": 125000.0, "min_inclusive": False, "max_inclusive": True, "max_maturity_months": 36, "source_text": "125.000 TL'ye kadar maksimum 36 ay"},
+360:             {"min_amount": 125000.0, "max_amount": 250000.0, "min_inclusive": False, "max_inclusive": True, "max_maturity_months": 24, "source_text": "125.001-250.000 TL maksimum 24 ay"},
+
+--- LINES 348-368 ---
+348:         out["maximum_maturity_months"] = 48
+349:         out["maturity_rules_text"] = "≤ 400.000 TL → 48 ay | 400.001–800.000 TL → 36 ay | 800.001–1.200.000 TL → 24 ay | 1.200.001–2.000.000 TL → 12 ay | > 2.000.000 TL → kullandırım yok"
+350:         out["vehicle_finance_rules_text"] = "≤ 400.000 TL: %70 / 48 ay · 400.001–800.000 TL: %50 / 36 ay · 800.001–1.200.000 TL: %30 / 24 ay · 1.200.001–2.000.000 TL: %20 / 12 ay · > 2.000.000 TL: Kullandırım yok"
+351: 
+352:     # Hac/Umre sayfasındaki 125/250 bin TL değerleri ürün limiti değil,
+353:     # yalnız azami vade bantlarıdır.
+354:     if _same(bank, "Albaraka Türk") and _same(product, "Hac ve Umre Finansmanı"):
+355:         out["minimum_financing_amount"] = None
+356:         out["maximum_financing_amount"] = None
+357:         out["maximum_maturity_months"] = 36
+358:         rules["amount_maturity_rules"] = [
+359:             {"min_amount": None, "max_amount": 125000.0, "min_inclusive": False, "max_inclusive": True, "max_maturity_months": 36, "source_text": "125.000 TL'ye kadar maksimum 36 ay"},
+360:             {"min_amount": 125000.0, "max_amount": 250000.0, "min_inclusive": False, "max_inclusive": True, "max_maturity_months": 24, "source_text": "125.001-250.000 TL maksimum 24 ay"},
+361:             {"min_amount": 250000.0, "max_amount": None, "min_inclusive": False, "max_inclusive": True, "max_maturity_months": 12, "source_text": "250.000 TL üzeri maksimum 12 ay"},
+362:         ]
+363:         out["maturity_rules_text"] = "≤ 125.000 TL → 36 ay | 125.001–250.000 TL → 24 ay | > 250.000 TL → 12 ay"
+364:         display_metadata["product_limit_note"] = "Hac/Umre bedelinin tamamı finanse edilebilir; resmî sayfada ayrıca sayısal azami ürün limiti yayımlanmamıştır."
+365: 
+366:         # HAC_UMRE_FINANCING_RATIO_FINAL_V1
+367:         # Resmi urun ifadesindeki "hac ve umre bedelinin tamami"
+368:         # normalize edilerek azami %100 finansman orani olarak tutulur.
+
+--- LINES 349-369 ---
+349:         out["maturity_rules_text"] = "≤ 400.000 TL → 48 ay | 400.001–800.000 TL → 36 ay | 800.001–1.200.000 TL → 24 ay | 1.200.001–2.000.000 TL → 12 ay | > 2.000.000 TL → kullandırım yok"
+350:         out["vehicle_finance_rules_text"] = "≤ 400.000 TL: %70 / 48 ay · 400.001–800.000 TL: %50 / 36 ay · 800.001–1.200.000 TL: %30 / 24 ay · 1.200.001–2.000.000 TL: %20 / 12 ay · > 2.000.000 TL: Kullandırım yok"
+351: 
+352:     # Hac/Umre sayfasındaki 125/250 bin TL değerleri ürün limiti değil,
+353:     # yalnız azami vade bantlarıdır.
+354:     if _same(bank, "Albaraka Türk") and _same(product, "Hac ve Umre Finansmanı"):
+355:         out["minimum_financing_amount"] = None
+356:         out["maximum_financing_amount"] = None
+357:         out["maximum_maturity_months"] = 36
+358:         rules["amount_maturity_rules"] = [
+359:             {"min_amount": None, "max_amount": 125000.0, "min_inclusive": False, "max_inclusive": True, "max_maturity_months": 36, "source_text": "125.000 TL'ye kadar maksimum 36 ay"},
+360:             {"min_amount": 125000.0, "max_amount": 250000.0, "min_inclusive": False, "max_inclusive": True, "max_maturity_months": 24, "source_text": "125.001-250.000 TL maksimum 24 ay"},
+361:             {"min_amount": 250000.0, "max_amount": None, "min_inclusive": False, "max_inclusive": True, "max_maturity_months": 12, "source_text": "250.000 TL üzeri maksimum 12 ay"},
+362:         ]
+363:         out["maturity_rules_text"] = "≤ 125.000 TL → 36 ay | 125.001–250.000 TL → 24 ay | > 250.000 TL → 12 ay"
+364:         display_metadata["product_limit_note"] = "Hac/Umre bedelinin tamamı finanse edilebilir; resmî sayfada ayrıca sayısal azami ürün limiti yayımlanmamıştır."
+365: 
+366:         # HAC_UMRE_FINANCING_RATIO_FINAL_V1
+367:         # Resmi urun ifadesindeki "hac ve umre bedelinin tamami"
+368:         # normalize edilerek azami %100 finansman orani olarak tutulur.
+369:         out["maximum_financing_ratio"] = 100.0
+
+--- LINES 361-381 ---
+361:             {"min_amount": 250000.0, "max_amount": None, "min_inclusive": False, "max_inclusive": True, "max_maturity_months": 12, "source_text": "250.000 TL üzeri maksimum 12 ay"},
+362:         ]
+363:         out["maturity_rules_text"] = "≤ 125.000 TL → 36 ay | 125.001–250.000 TL → 24 ay | > 250.000 TL → 12 ay"
+364:         display_metadata["product_limit_note"] = "Hac/Umre bedelinin tamamı finanse edilebilir; resmî sayfada ayrıca sayısal azami ürün limiti yayımlanmamıştır."
+365: 
+366:         # HAC_UMRE_FINANCING_RATIO_FINAL_V1
+367:         # Resmi urun ifadesindeki "hac ve umre bedelinin tamami"
+368:         # normalize edilerek azami %100 finansman orani olarak tutulur.
+369:         out["maximum_financing_ratio"] = 100.0
+370:         out["financing_ratio_rules_text"] = (
+371:             "Hac/Umre bedelinin tamamına kadar"
+372:         )
+373:         display_metadata["financing_ratio_note"] = (
+374:             "Hac/Umre bedelinin tamamı finanse edilebilir."
+375:         )
+376: 
+377:     # Jet ürün limiti 1.000–60.000 TL olduğundan genel ihtiyaç vade
+378:     # bantlarının 60.000 TL üzerindeki kısmı bu üründe gösterilmez.
+379: 
+380:     # ------------------------------------------------------------
+381:     # TF_DIGITAL_TICARI_COMPLETENESS_FINAL_V1
+
+--- LINES 389-409 ---
+389:             product,
+390:             "Dijital Taksitli Ticari Finansman Desteği",
+391:         )
+392:         and _contains(
+393:             source_url,
+394:             "dijital-taksitli-ticari-finansman-destegi.aspx",
+395:         )
+396:     ):
+397:         out["maximum_financing_amount"] = 1_000_000.0
+398:         out["maximum_maturity_months"] = 12
+399:         out["maturity_rules_text"] = "12 ay"
+400: 
+401:         display_metadata["product_specific_limit_text"] = (
+402:             "1.000.000 TL'ye kadar"
+403:         )
+404:         display_metadata["product_specific_maturity_text"] = (
+405:             "12 ay"
+406:         )
+407: 
+408:     if _same(bank, "Albaraka Türk") and _same(product, "Jet Finansman"):
+409:         out["minimum_financing_amount"] = 1000.0
+
+--- LINES 390-410 ---
+390:             "Dijital Taksitli Ticari Finansman Desteği",
+391:         )
+392:         and _contains(
+393:             source_url,
+394:             "dijital-taksitli-ticari-finansman-destegi.aspx",
+395:         )
+396:     ):
+397:         out["maximum_financing_amount"] = 1_000_000.0
+398:         out["maximum_maturity_months"] = 12
+399:         out["maturity_rules_text"] = "12 ay"
+400: 
+401:         display_metadata["product_specific_limit_text"] = (
+402:             "1.000.000 TL'ye kadar"
+403:         )
+404:         display_metadata["product_specific_maturity_text"] = (
+405:             "12 ay"
+406:         )
+407: 
+408:     if _same(bank, "Albaraka Türk") and _same(product, "Jet Finansman"):
+409:         out["minimum_financing_amount"] = 1000.0
+410:         out["maximum_financing_amount"] = 60000.0
+
+--- LINES 402-422 ---
+402:             "1.000.000 TL'ye kadar"
+403:         )
+404:         display_metadata["product_specific_maturity_text"] = (
+405:             "12 ay"
+406:         )
+407: 
+408:     if _same(bank, "Albaraka Türk") and _same(product, "Jet Finansman"):
+409:         out["minimum_financing_amount"] = 1000.0
+410:         out["maximum_financing_amount"] = 60000.0
+411:         out["maximum_maturity_months"] = 36
+412:         rules["amount_maturity_rules"] = [
+413:             {"min_amount": 1000.0, "max_amount": 50000.0, "min_inclusive": True, "max_inclusive": True, "max_maturity_months": 36, "source_text": "1.000-50.000 TL arası finansmanlarda 36 ay"},
+414:             {"min_amount": 50000.0, "max_amount": 60000.0, "min_inclusive": False, "max_inclusive": True, "max_maturity_months": 24, "source_text": "Ürün üst limiti 60.000 TL ile kesiştirilmiş 50.001-60.000 TL bandı; resmî genel bant 50.001-100.000 TL için 24 ay"},
+415:         ]
+416:         out["maturity_rules_text"] = "1.000–50.000 TL → 36 ay | 50.001–60.000 TL → 24 ay"
+417: 
+418:     # Türkiye Finans normal ihtiyaç ürününde aynı 24 ay bandının iki farklı
+419:     # biçimde çoğalmasını engelle; fiyatlama koşullu tablo olarak kalır.
+420:     if _same(bank, "Türkiye Finans") and _contains(product, "İhtiyaç Finansmanı") and not _contains(product, "Dijital"):
+421:         rules["amount_maturity_rules"] = [
+422:             {"min_amount": None, "max_amount": 125000.0, "min_inclusive": False, "max_inclusive": True, "max_maturity_months": 36, "source_text": "125.000 TL'ye kadar maksimum 36 ay"},
+
+--- LINES 403-423 ---
+403:         )
+404:         display_metadata["product_specific_maturity_text"] = (
+405:             "12 ay"
+406:         )
+407: 
+408:     if _same(bank, "Albaraka Türk") and _same(product, "Jet Finansman"):
+409:         out["minimum_financing_amount"] = 1000.0
+410:         out["maximum_financing_amount"] = 60000.0
+411:         out["maximum_maturity_months"] = 36
+412:         rules["amount_maturity_rules"] = [
+413:             {"min_amount": 1000.0, "max_amount": 50000.0, "min_inclusive": True, "max_inclusive": True, "max_maturity_months": 36, "source_text": "1.000-50.000 TL arası finansmanlarda 36 ay"},
+414:             {"min_amount": 50000.0, "max_amount": 60000.0, "min_inclusive": False, "max_inclusive": True, "max_maturity_months": 24, "source_text": "Ürün üst limiti 60.000 TL ile kesiştirilmiş 50.001-60.000 TL bandı; resmî genel bant 50.001-100.000 TL için 24 ay"},
+415:         ]
+416:         out["maturity_rules_text"] = "1.000–50.000 TL → 36 ay | 50.001–60.000 TL → 24 ay"
+417: 
+418:     # Türkiye Finans normal ihtiyaç ürününde aynı 24 ay bandının iki farklı
+419:     # biçimde çoğalmasını engelle; fiyatlama koşullu tablo olarak kalır.
+420:     if _same(bank, "Türkiye Finans") and _contains(product, "İhtiyaç Finansmanı") and not _contains(product, "Dijital"):
+421:         rules["amount_maturity_rules"] = [
+422:             {"min_amount": None, "max_amount": 125000.0, "min_inclusive": False, "max_inclusive": True, "max_maturity_months": 36, "source_text": "125.000 TL'ye kadar maksimum 36 ay"},
+423:             {"min_amount": 125000.0, "max_amount": 250000.0, "min_inclusive": False, "max_inclusive": True, "max_maturity_months": 24, "source_text": "125.001-250.000 TL maksimum 24 ay"},
+
+--- LINES 418-438 ---
+418:     # Türkiye Finans normal ihtiyaç ürününde aynı 24 ay bandının iki farklı
+419:     # biçimde çoğalmasını engelle; fiyatlama koşullu tablo olarak kalır.
+420:     if _same(bank, "Türkiye Finans") and _contains(product, "İhtiyaç Finansmanı") and not _contains(product, "Dijital"):
+421:         rules["amount_maturity_rules"] = [
+422:             {"min_amount": None, "max_amount": 125000.0, "min_inclusive": False, "max_inclusive": True, "max_maturity_months": 36, "source_text": "125.000 TL'ye kadar maksimum 36 ay"},
+423:             {"min_amount": 125000.0, "max_amount": 250000.0, "min_inclusive": False, "max_inclusive": True, "max_maturity_months": 24, "source_text": "125.001-250.000 TL maksimum 24 ay"},
+424:             {"min_amount": 250000.0, "max_amount": None, "min_inclusive": False, "max_inclusive": True, "max_maturity_months": 12, "source_text": "250.000 TL üzeri maksimum 12 ay"},
+425:         ]
+426:         out["maximum_maturity_months"] = 36
+427:         out["maturity_rules_text"] = "≤ 125.000 TL → 36 ay | 125.001–250.000 TL → 24 ay | > 250.000 TL → 12 ay"
+428: 
+429:     # Trendyol'un ürün-özel limiti/vadesi genel ihtiyaç vade bandıyla
+430:     # karışmaz.
+431:     if _same(bank, "Türkiye Finans") and _contains(product, "Trendyol Alışveriş Finansmanı"):
+432:         out["minimum_financing_amount"] = 1000.0
+433:         out["maximum_financing_amount"] = 70000.0
+434:         out["maximum_maturity_months"] = 36
+435:         rules["amount_maturity_rules"] = []
+436:         out["maturity_rules_text"] = "36 aya kadar"
+437:         display_metadata["product_specific_limit_text"] = "1.000 TL – 70.000 TL"
+438:         display_metadata["product_specific_maturity_text"] = "36 aya kadar"
+
+--- LINES 425-445 ---
+425:         ]
+426:         out["maximum_maturity_months"] = 36
+427:         out["maturity_rules_text"] = "≤ 125.000 TL → 36 ay | 125.001–250.000 TL → 24 ay | > 250.000 TL → 12 ay"
+428: 
+429:     # Trendyol'un ürün-özel limiti/vadesi genel ihtiyaç vade bandıyla
+430:     # karışmaz.
+431:     if _same(bank, "Türkiye Finans") and _contains(product, "Trendyol Alışveriş Finansmanı"):
+432:         out["minimum_financing_amount"] = 1000.0
+433:         out["maximum_financing_amount"] = 70000.0
+434:         out["maximum_maturity_months"] = 36
+435:         rules["amount_maturity_rules"] = []
+436:         out["maturity_rules_text"] = "36 aya kadar"
+437:         display_metadata["product_specific_limit_text"] = "1.000 TL – 70.000 TL"
+438:         display_metadata["product_specific_maturity_text"] = "36 aya kadar"
+439: 
+440:     # LC Waikiki koşulu ana karşılaştırmada limit/vade alanlarına taşınır.
+441:     if _same(bank, "Kuveyt Türk") and _contains(product, "LC Waikiki Alışveriş Finansmanı"):
+442:         out["maximum_financing_amount"] = 5000.0
+443:         out["maximum_maturity_months"] = 3
+444:         out["maturity_rules_text"] = "3 ay"
+445:         out["profit_share_rate"] = None
+
+--- LINES 426-446 ---
+426:         out["maximum_maturity_months"] = 36
+427:         out["maturity_rules_text"] = "≤ 125.000 TL → 36 ay | 125.001–250.000 TL → 24 ay | > 250.000 TL → 12 ay"
+428: 
+429:     # Trendyol'un ürün-özel limiti/vadesi genel ihtiyaç vade bandıyla
+430:     # karışmaz.
+431:     if _same(bank, "Türkiye Finans") and _contains(product, "Trendyol Alışveriş Finansmanı"):
+432:         out["minimum_financing_amount"] = 1000.0
+433:         out["maximum_financing_amount"] = 70000.0
+434:         out["maximum_maturity_months"] = 36
+435:         rules["amount_maturity_rules"] = []
+436:         out["maturity_rules_text"] = "36 aya kadar"
+437:         display_metadata["product_specific_limit_text"] = "1.000 TL – 70.000 TL"
+438:         display_metadata["product_specific_maturity_text"] = "36 aya kadar"
+439: 
+440:     # LC Waikiki koşulu ana karşılaştırmada limit/vade alanlarına taşınır.
+441:     if _same(bank, "Kuveyt Türk") and _contains(product, "LC Waikiki Alışveriş Finansmanı"):
+442:         out["maximum_financing_amount"] = 5000.0
+443:         out["maximum_maturity_months"] = 3
+444:         out["maturity_rules_text"] = "3 ay"
+445:         out["profit_share_rate"] = None
+446:         out["profit_share_rate_text"] = None
+
+--- LINES 434-454 ---
+434:         out["maximum_maturity_months"] = 36
+435:         rules["amount_maturity_rules"] = []
+436:         out["maturity_rules_text"] = "36 aya kadar"
+437:         display_metadata["product_specific_limit_text"] = "1.000 TL – 70.000 TL"
+438:         display_metadata["product_specific_maturity_text"] = "36 aya kadar"
+439: 
+440:     # LC Waikiki koşulu ana karşılaştırmada limit/vade alanlarına taşınır.
+441:     if _same(bank, "Kuveyt Türk") and _contains(product, "LC Waikiki Alışveriş Finansmanı"):
+442:         out["maximum_financing_amount"] = 5000.0
+443:         out["maximum_maturity_months"] = 3
+444:         out["maturity_rules_text"] = "3 ay"
+445:         out["profit_share_rate"] = None
+446:         out["profit_share_rate_text"] = None
+447:         out["interest_free"] = True
+448:         out["interest_free_text"] = "Vade farksız"
+449:         display_metadata["product_specific_limit_text"] = "5.000 TL'ye kadar"
+450:         display_metadata["product_specific_maturity_text"] = "3 ay"
+451:         display_metadata["verified_channel"] = "LC Waikiki uygulaması / web sitesi"
+452: 
+453:     # Kuveyt Türk genel tarım ürünü ELÜS ürünü değildir. ELÜS ayrı ürün
+454:     # sayfasında tutulur; genel üründe esnek ödeme ve TL/USD/EUR vardır.
+
+--- LINES 435-455 ---
+435:         rules["amount_maturity_rules"] = []
+436:         out["maturity_rules_text"] = "36 aya kadar"
+437:         display_metadata["product_specific_limit_text"] = "1.000 TL – 70.000 TL"
+438:         display_metadata["product_specific_maturity_text"] = "36 aya kadar"
+439: 
+440:     # LC Waikiki koşulu ana karşılaştırmada limit/vade alanlarına taşınır.
+441:     if _same(bank, "Kuveyt Türk") and _contains(product, "LC Waikiki Alışveriş Finansmanı"):
+442:         out["maximum_financing_amount"] = 5000.0
+443:         out["maximum_maturity_months"] = 3
+444:         out["maturity_rules_text"] = "3 ay"
+445:         out["profit_share_rate"] = None
+446:         out["profit_share_rate_text"] = None
+447:         out["interest_free"] = True
+448:         out["interest_free_text"] = "Vade farksız"
+449:         display_metadata["product_specific_limit_text"] = "5.000 TL'ye kadar"
+450:         display_metadata["product_specific_maturity_text"] = "3 ay"
+451:         display_metadata["verified_channel"] = "LC Waikiki uygulaması / web sitesi"
+452: 
+453:     # Kuveyt Türk genel tarım ürünü ELÜS ürünü değildir. ELÜS ayrı ürün
+454:     # sayfasında tutulur; genel üründe esnek ödeme ve TL/USD/EUR vardır.
+455:     if _same(bank, "Kuveyt Türk") and _same(product, "Tarım ve Hayvancılık Finansmanı"):
+
+--- LINES 488-508 ---
+488:                 "max_maturity_months": 12,
+489:                 "source_text": "250.000 TL'den fazla olması durumunda maksimum vade 12 ay",
+490:             },
+491:         ]
+492:         out["maturity_rules_text"] = (
+493:             "≤ 125.000 TL → 36 ay | 125.000 TL < Tutar ≤ 250.000 TL → 24 ay | "
+494:             "Tutar > 250.000 TL → 12 ay"
+495:         )
+496:         out["maximum_maturity_months"] = 36
+497: 
+498:     # ------------------------------------------------------------
+499:     # Hayat Finans — Bana Bunu Al: genel yasal ihtiyaç vade bantları ürünün
+500:     # 50.000 TL / 18 ay gerçek ürün sınırlarının önüne geçemez.
+501:     # ------------------------------------------------------------
+502:     if _same(bank, "Hayat Finans") and _same(product, "Bana Bunu Al"):
+503:         out["minimum_financing_amount"] = 500.0
+504:         out["maximum_financing_amount"] = 50000.0
+505:         out["maximum_maturity_months"] = 18
+506:         out["maturity_rules_text"] = "Ürün azami vadesi 18 ay"
+507:         # 125/250 bin TL bantları mevzuat/genel bilgi; bu ürünün gerçek limiti
+508:         # 50 bin TL olduğundan ana ürün kuralı olarak saklanmaz.
+
+--- LINES 496-516 ---
+496:         out["maximum_maturity_months"] = 36
+497: 
+498:     # ------------------------------------------------------------
+499:     # Hayat Finans — Bana Bunu Al: genel yasal ihtiyaç vade bantları ürünün
+500:     # 50.000 TL / 18 ay gerçek ürün sınırlarının önüne geçemez.
+501:     # ------------------------------------------------------------
+502:     if _same(bank, "Hayat Finans") and _same(product, "Bana Bunu Al"):
+503:         out["minimum_financing_amount"] = 500.0
+504:         out["maximum_financing_amount"] = 50000.0
+505:         out["maximum_maturity_months"] = 18
+506:         out["maturity_rules_text"] = "Ürün azami vadesi 18 ay"
+507:         # 125/250 bin TL bantları mevzuat/genel bilgi; bu ürünün gerçek limiti
+508:         # 50 bin TL olduğundan ana ürün kuralı olarak saklanmaz.
+509:         rules["amount_maturity_rules"] = []
+510:         display_metadata["product_specific_limit_text"] = "500 TL – 50.000 TL"
+511:         display_metadata["product_specific_maturity_text"] = "18 aya kadar"
+512: 
+513:     # ------------------------------------------------------------
+514:     # Dünya Katılım — Araç: bütün değer/vade bantları detayda da tek tek
+515:     # görünmeli ve ikinci el yaş sınırı kaybolmamalıdır.
+516:     # ------------------------------------------------------------
+
+--- LINES 497-517 ---
+497: 
+498:     # ------------------------------------------------------------
+499:     # Hayat Finans — Bana Bunu Al: genel yasal ihtiyaç vade bantları ürünün
+500:     # 50.000 TL / 18 ay gerçek ürün sınırlarının önüne geçemez.
+501:     # ------------------------------------------------------------
+502:     if _same(bank, "Hayat Finans") and _same(product, "Bana Bunu Al"):
+503:         out["minimum_financing_amount"] = 500.0
+504:         out["maximum_financing_amount"] = 50000.0
+505:         out["maximum_maturity_months"] = 18
+506:         out["maturity_rules_text"] = "Ürün azami vadesi 18 ay"
+507:         # 125/250 bin TL bantları mevzuat/genel bilgi; bu ürünün gerçek limiti
+508:         # 50 bin TL olduğundan ana ürün kuralı olarak saklanmaz.
+509:         rules["amount_maturity_rules"] = []
+510:         display_metadata["product_specific_limit_text"] = "500 TL – 50.000 TL"
+511:         display_metadata["product_specific_maturity_text"] = "18 aya kadar"
+512: 
+513:     # ------------------------------------------------------------
+514:     # Dünya Katılım — Araç: bütün değer/vade bantları detayda da tek tek
+515:     # görünmeli ve ikinci el yaş sınırı kaybolmamalıdır.
+516:     # ------------------------------------------------------------
+517:     if _same(bank, "Dünya Katılım") and _same(product, "Araç Finansmanı"):
+
+--- LINES 544-564 ---
+544:             ]
+545:         )
+546:         out["vehicle_finance_rules_text"] = (
+547:             "≤ 400.000 TL: %70 / 48 ay · 400.000–800.000 TL: %50 / 36 ay · "
+548:             "800.000–1.200.000 TL: %30 / 24 ay · 1.200.000–2.000.000 TL: %20 / 12 ay · "
+549:             "> 2.000.000 TL: kullandırım yok"
+550:         )
+551:         out["vehicle_age_rules_text"] = "0 km ve 2. el · ikinci elde 12 yaşa kadar"
+552:         out["maximum_financing_ratio"] = 70.0
+553:         out["maximum_maturity_months"] = 48
+554:         display_metadata["vehicle_value_rules"] = [
+555:             {"max_value": hi, "min_value": lo, "max_maturity_months": months, "max_financing_ratio": ratio}
+556:             for lo, hi, months, ratio in canonical
+557:         ]
+558:         display_metadata["vehicle_blocked_above"] = 2000000.0
+559: 
+560:     # ------------------------------------------------------------
+561:     # Standart araç değer bandı yayımlayan diğer ürünlerde de yüzde/vade
+562:     # ilişkisinin varsayılan araç değerinden veya örnek fiyatlamadan
+563:     # türetilmesini engelle.
+564:     # ------------------------------------------------------------
+
+--- LINES 545-565 ---
+545:         )
+546:         out["vehicle_finance_rules_text"] = (
+547:             "≤ 400.000 TL: %70 / 48 ay · 400.000–800.000 TL: %50 / 36 ay · "
+548:             "800.000–1.200.000 TL: %30 / 24 ay · 1.200.000–2.000.000 TL: %20 / 12 ay · "
+549:             "> 2.000.000 TL: kullandırım yok"
+550:         )
+551:         out["vehicle_age_rules_text"] = "0 km ve 2. el · ikinci elde 12 yaşa kadar"
+552:         out["maximum_financing_ratio"] = 70.0
+553:         out["maximum_maturity_months"] = 48
+554:         display_metadata["vehicle_value_rules"] = [
+555:             {"max_value": hi, "min_value": lo, "max_maturity_months": months, "max_financing_ratio": ratio}
+556:             for lo, hi, months, ratio in canonical
+557:         ]
+558:         display_metadata["vehicle_blocked_above"] = 2000000.0
+559: 
+560:     # ------------------------------------------------------------
+561:     # Standart araç değer bandı yayımlayan diğer ürünlerde de yüzde/vade
+562:     # ilişkisinin varsayılan araç değerinden veya örnek fiyatlamadan
+563:     # türetilmesini engelle.
+564:     # ------------------------------------------------------------
+565:     common_vehicle_products = (
+
+--- LINES 569-589 ---
+569:     )
+570:     if any(common_vehicle_products):
+571:         canonical_vehicle_text = (
+572:             "≤ 400.000 TL: %70 / 48 ay · 400.001–800.000 TL: %50 / 36 ay · "
+573:             "800.001–1.200.000 TL: %30 / 24 ay · 1.200.001–2.000.000 TL: %20 / 12 ay · "
+574:             "> 2.000.000 TL: kullandırım yok"
+575:         )
+576:         out["vehicle_finance_rules_text"] = canonical_vehicle_text
+577:         out["maximum_financing_ratio"] = 70.0
+578:         out["maximum_maturity_months"] = 48
+579:         canonical = [
+580:             (None, 400000.0, 48, 70.0),
+581:             (400000.0, 800000.0, 36, 50.0),
+582:             (800000.0, 1200000.0, 24, 30.0),
+583:             (1200000.0, 2000000.0, 12, 20.0),
+584:         ]
+585:         rules["amount_maturity_rules"] = [
+586:             {
+587:                 "min_amount": lo, "max_amount": hi, "min_inclusive": False,
+588:                 "max_inclusive": True, "max_maturity_months": months,
+589:                 "source_text": ((f"Değer ≤ {_money(hi)} TL" if lo is None else f"{_money(lo)} TL < Değer ≤ {_money(hi)} TL") + f" → Azami %{ratio:g} · {months} ay"),
+
+--- LINES 570-590 ---
+570:     if any(common_vehicle_products):
+571:         canonical_vehicle_text = (
+572:             "≤ 400.000 TL: %70 / 48 ay · 400.001–800.000 TL: %50 / 36 ay · "
+573:             "800.001–1.200.000 TL: %30 / 24 ay · 1.200.001–2.000.000 TL: %20 / 12 ay · "
+574:             "> 2.000.000 TL: kullandırım yok"
+575:         )
+576:         out["vehicle_finance_rules_text"] = canonical_vehicle_text
+577:         out["maximum_financing_ratio"] = 70.0
+578:         out["maximum_maturity_months"] = 48
+579:         canonical = [
+580:             (None, 400000.0, 48, 70.0),
+581:             (400000.0, 800000.0, 36, 50.0),
+582:             (800000.0, 1200000.0, 24, 30.0),
+583:             (1200000.0, 2000000.0, 12, 20.0),
+584:         ]
+585:         rules["amount_maturity_rules"] = [
+586:             {
+587:                 "min_amount": lo, "max_amount": hi, "min_inclusive": False,
+588:                 "max_inclusive": True, "max_maturity_months": months,
+589:                 "source_text": ((f"Değer ≤ {_money(hi)} TL" if lo is None else f"{_money(lo)} TL < Değer ≤ {_money(hi)} TL") + f" → Azami %{ratio:g} · {months} ay"),
+590:             }
+
+--- LINES 621-641 ---
+621:     _ke_name = str(out.get("product_name") or "").casefold()
+622: 
+623:     if (
+624:         "ziraat kat\u0131l\u0131m" in _ke_bank
+625:         and str(out.get("product_family_key") or "") == "tarim_finansmani"
+626:         and _ke_name == "k\u00fc\u00e7\u00fck ekipman finansman\u0131"
+627:     ):
+628:         # Satis bedelinin tamamina kadar kredilendirme.
+629:         out["maximum_financing_ratio"] = 100.0
+630: 
+631:         # 250.000 TL maximum_amount olarak YAZILMAZ.
+632:         # Bu deger ekipmanin satis bedeli uygunluk kosuludur.
+633:         try:
+634:             _ke_rules = json.loads(
+635:                 out.get("finance_rules_json") or "{}"
+636:             )
+637:         except Exception:
+638:             _ke_rules = {}
+639: 
+640:         if not isinstance(_ke_rules, dict):
+641:             _ke_rules = {}
+========================================================================================================================
+FILE: src\qualitative_feature_extractor.py
+========================================================================================================================
+
+--- LINES 952-972 ---
+952:     if not raw:
+953:         return None, ""
+954: 
+955:     # Kuveyt Türk SSB Destek Paketi
+956:     if (
+957:         "savunma sanayii başkanlığı" in name
+958:         and "finansman destek paketi" in name
+959:     ):
+960:         leasing = re.search(
+961:             r"leasing\s+finansman"
+962:             r"[^.!?]{0,300}?"
+963:             r"(?:toplamda\s+)?60\s*aya?\s+kadar",
+964:             raw,
+965:             flags=re.IGNORECASE,
+966:         )
+967: 
+968:         business = re.search(
+969:             r"işletme\s+finansman"
+970:             r"[^.!?]{0,300}?"
+971:             r"maksimum\s+12\s*ay",
+972:             raw,
+
+--- LINES 953-973 ---
+953:         return None, ""
+954: 
+955:     # Kuveyt Türk SSB Destek Paketi
+956:     if (
+957:         "savunma sanayii başkanlığı" in name
+958:         and "finansman destek paketi" in name
+959:     ):
+960:         leasing = re.search(
+961:             r"leasing\s+finansman"
+962:             r"[^.!?]{0,300}?"
+963:             r"(?:toplamda\s+)?60\s*aya?\s+kadar",
+964:             raw,
+965:             flags=re.IGNORECASE,
+966:         )
+967: 
+968:         business = re.search(
+969:             r"işletme\s+finansman"
+970:             r"[^.!?]{0,300}?"
+971:             r"maksimum\s+12\s*ay",
+972:             raw,
+973:             flags=re.IGNORECASE,
+
+--- LINES 968-988 ---
+968:         business = re.search(
+969:             r"işletme\s+finansman"
+970:             r"[^.!?]{0,300}?"
+971:             r"maksimum\s+12\s*ay",
+972:             raw,
+973:             flags=re.IGNORECASE,
+974:         )
+975: 
+976:         if leasing and business:
+977:             start = max(
+978:                 0,
+979:                 min(
+980:                     leasing.start(),
+981:                     business.start(),
+982:                 ) - 80,
+983:             )
+984:             end = min(
+985:                 len(raw),
+986:                 max(
+987:                     leasing.end(),
+988:                     business.end(),
+
+--- LINES 972-992 ---
+972:             raw,
+973:             flags=re.IGNORECASE,
+974:         )
+975: 
+976:         if leasing and business:
+977:             start = max(
+978:                 0,
+979:                 min(
+980:                     leasing.start(),
+981:                     business.start(),
+982:                 ) - 80,
+983:             )
+984:             end = min(
+985:                 len(raw),
+986:                 max(
+987:                     leasing.end(),
+988:                     business.end(),
+989:                 ) + 120,
+990:             )
+991: 
+992:             evidence = _clean(
+
+--- LINES 979-999 ---
+979:                 min(
+980:                     leasing.start(),
+981:                     business.start(),
+982:                 ) - 80,
+983:             )
+984:             end = min(
+985:                 len(raw),
+986:                 max(
+987:                     leasing.end(),
+988:                     business.end(),
+989:                 ) + 120,
+990:             )
+991: 
+992:             evidence = _clean(
+993:                 raw[start:end]
+994:             )
+995: 
+996:             return (
+997:                 "Leasing: azami 60 ay · "
+998:                 "İşletme Finansmanı: azami 12 ay",
+999:                 evidence,
+
+--- LINES 989-1009 ---
+989:                 ) + 120,
+990:             )
+991: 
+992:             evidence = _clean(
+993:                 raw[start:end]
+994:             )
+995: 
+996:             return (
+997:                 "Leasing: azami 60 ay · "
+998:                 "İşletme Finansmanı: azami 12 ay",
+999:                 evidence,
+1000:             )
+1001: 
+1002:     # Türkiye Finans / Finansman Desteği
+1003:     #
+1004:     # 18 ay değeri ürünün tamamının vadesi değil,
+1005:     # Döviz Kredileri alt bölümünün taksit koşuludur.
+1006:     if name == "finansman desteği":
+1007:         fx_match = re.search(
+1008:             r"döviz\s+kredileri"
+1009:             r"[^.!?]{0,500}?"
+========================================================================================================================
+FILE: src\extraction\comparison_field_extractor.py
+========================================================================================================================
+
+--- LINES 303-323 ---
+303:             ("hadi veresiye",),
+304:             "Veresiye Finansmanı",
+305:         ),
+306:         (
+307:             ("taksitlio", "alisveris finansmani"),
+308:             "Alışveriş Finansmanı",
+309:         ),
+310:         (
+311:             ("tarimda kuveyt turk", "tarim leasing"),
+312:             "Tarım Leasing Finansmanı",
+313:         ),
+314:         (("payini sen sec",), "Esnek Ödeme Finansmanı"),
+315:         (("togg",), "Togg Taşıt Finansmanı"),
+316:         (
+317:             ("konut ve tasit",),
+318:             "Konut ve Taşıt Finansmanı",
+319:         ),
+320:         (("pratik finansman kart",), "İhtiyaç Finansmanı"),
+321:         (("alisveris finansmani",), "İhtiyaç Finansmanı"),
+322:         (("konut",), "Konut Finansmanı"),
+323:         (("tasit",), "Taşıt Finansmanı"),
+
+--- LINES 304-324 ---
+304:             "Veresiye Finansmanı",
+305:         ),
+306:         (
+307:             ("taksitlio", "alisveris finansmani"),
+308:             "Alışveriş Finansmanı",
+309:         ),
+310:         (
+311:             ("tarimda kuveyt turk", "tarim leasing"),
+312:             "Tarım Leasing Finansmanı",
+313:         ),
+314:         (("payini sen sec",), "Esnek Ödeme Finansmanı"),
+315:         (("togg",), "Togg Taşıt Finansmanı"),
+316:         (
+317:             ("konut ve tasit",),
+318:             "Konut ve Taşıt Finansmanı",
+319:         ),
+320:         (("pratik finansman kart",), "İhtiyaç Finansmanı"),
+321:         (("alisveris finansmani",), "İhtiyaç Finansmanı"),
+322:         (("konut",), "Konut Finansmanı"),
+323:         (("tasit",), "Taşıt Finansmanı"),
+324:         (("umre",), "Umre Finansmanı"),
+
+--- LINES 365-385 ---
+365:             ("hadi veresiye",),
+366:             "Veresiye Finansmanı",
+367:         ),
+368:         (
+369:             ("taksitlio", "alisveris finansmani"),
+370:             "Alışveriş Finansmanı",
+371:         ),
+372:         (
+373:             ("leasing finansmani", "tarim makineleri"),
+374:             "Tarım Leasing Finansmanı",
+375:         ),
+376:         (("pratik finansman kart",), "İhtiyaç Finansmanı"),
+377:         (("ihtiyac finansmani",), "İhtiyaç Finansmanı"),
+378:         (("togg finansmani",), "Togg Taşıt Finansmanı"),
+379:         (("umre finansmani",), "Umre Finansmanı"),
+380:         (("konut finansmani",), "Konut Finansmanı"),
+381:         (("tasit finansmani",), "Taşıt Finansmanı"),
+382:     )
+383: 
+384:     for terms, label in body_rules:
+385:         if any(term in body_key for term in terms):
+
+--- LINES 366-386 ---
+366:             "Veresiye Finansmanı",
+367:         ),
+368:         (
+369:             ("taksitlio", "alisveris finansmani"),
+370:             "Alışveriş Finansmanı",
+371:         ),
+372:         (
+373:             ("leasing finansmani", "tarim makineleri"),
+374:             "Tarım Leasing Finansmanı",
+375:         ),
+376:         (("pratik finansman kart",), "İhtiyaç Finansmanı"),
+377:         (("ihtiyac finansmani",), "İhtiyaç Finansmanı"),
+378:         (("togg finansmani",), "Togg Taşıt Finansmanı"),
+379:         (("umre finansmani",), "Umre Finansmanı"),
+380:         (("konut finansmani",), "Konut Finansmanı"),
+381:         (("tasit finansmani",), "Taşıt Finansmanı"),
+382:     )
+383: 
+384:     for terms, label in body_rules:
+385:         if any(term in body_key for term in terms):
+386:             return label

@@ -1,0 +1,21 @@
+BANSA COMPETITION FINAL V2 - 25.08.2026
+
+Critical fixes added after jury-style conversation testing:
+- Named campaign/merchant queries work even when the user omits the word "kampanya".
+  Example: "gree klimada kac taksit imkani var" -> Gree campaign, 12 installments.
+- Specific campaign detail questions return the matching campaign instead of dumping the whole bank campaign list.
+- Bank + finance family scenario questions return the best canonical product instead of unrelated specialty products.
+- Short numeric follow-ups inherit the immediately relevant finance bank/product context instead of an older comparison.
+  Example: "Vakif Katilim motosiklet finansmani hakkinda bilgi ver" -> "Peki 600 bin TL icin?"
+- Vade/tutar suitability wording is graceful and grounded: known published limits are checked, missing amount limits are explicitly stated as unverified rather than invented.
+- Raw UNVERIFIED/technical failure text remains hidden by the competition response facade.
+
+Validation in packaging environment:
+- 47 critical router/follow-up/campaign/local-agent tests passed.
+- Direct smoke checks passed for Gree, ShipEntegra, Albaraka needs, Vakif motorcycle and numeric follow-up.
+- Broader legacy tests requiring psycopg could not be collected in the packaging Linux environment because psycopg is not installed there; requirements.txt includes psycopg[binary] for the Windows competition environment.
+
+Launch:
+1) Start local Qwen server if using free-form/RAG answers.
+2) Double-click RUN_BANSA_COMPETITION.bat
+3) If PostgreSQL is unavailable, use RUN_BANSA_OFFLINE_DEMO.bat

@@ -1,0 +1,107 @@
+{
+  "checked_at": "2026-08-27",
+  "turkiye_finans_vehicle_rates": {
+    "checked_at": "2026-08-27",
+    "source_url": "https://www.turkiyefinans.com.tr/tr-tr/bireysel/tasit-finansmani/Sayfalar/tasit-Finansmani.aspx",
+    "insured": {
+      "3": 3.67,
+      "6": 3.67,
+      "12": 3.63,
+      "18": 3.56,
+      "24": 3.52,
+      "36": 3.48,
+      "48": 3.42
+    },
+    "uninsured": {
+      "3": 4.27,
+      "6": 4.27,
+      "12": 4.23,
+      "18": 4.16,
+      "24": 4.12,
+      "36": 4.08,
+      "48": 4.02
+    },
+    "allocation_fee_rate": 0.5
+  },
+  "dunya_vehicle_ltv": {
+    "checked_at": "2026-08-27",
+    "source_url": "https://dunyakatilim.com.tr/kendim-icin/finansmanlar/arac-finansmanlari/arac-finansmani",
+    "bands": [
+      {
+        "min": 0,
+        "max": 400000,
+        "ratio": 70,
+        "maturity": 48
+      },
+      {
+        "min": 400001,
+        "max": 800000,
+        "ratio": 50,
+        "maturity": 36
+      },
+      {
+        "min": 800001,
+        "max": 1200000,
+        "ratio": 30,
+        "maturity": 24
+      },
+      {
+        "min": 1200001,
+        "max": 2000000,
+        "ratio": 20,
+        "maturity": 12
+      },
+      {
+        "min": 2000001,
+        "max": null,
+        "ratio": 0,
+        "maturity": 0
+      }
+    ]
+  },
+  "first_home_ltv": {
+    "checked_at": "2026-08-27",
+    "matrix": [
+      {
+        "band": "≤ 5 milyon TL",
+        "ab": "%90",
+        "c": "%80",
+        "other": "%70"
+      },
+      {
+        "band": "5–7 milyon TL",
+        "ab": "%80",
+        "c": "%70",
+        "other": "%60"
+      },
+      {
+        "band": "7–10 milyon TL",
+        "ab": "%70",
+        "c": "%60",
+        "other": "%50"
+      },
+      {
+        "band": "10–20 milyon TL",
+        "ab": "%50",
+        "c": "%40",
+        "other": "%30"
+      },
+      {
+        "band": "> 20 milyon TL",
+        "ab": "%40",
+        "c": "%30",
+        "other": "%20"
+      }
+    ],
+    "published_by": [
+      "Dünya Katılım",
+      "Kuveyt Türk",
+      "Türkiye Finans"
+    ],
+    "sources": [
+      "https://dunyakatilim.com.tr/kendim-icin/finansmanlar/konut-finansmanlari/konut-finansmani",
+      "https://www.kuveytturk.com.tr/kendim-icin/finansmanlar/konut-finansmanlari/ilk-evim-konut-finansmani",
+      "https://www.turkiyefinans.com.tr/tr-tr/bireysel/konut-finansmani/Sayfalar/konut-finansmani.aspx"
+    ]
+  }
+}

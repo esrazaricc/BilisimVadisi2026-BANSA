@@ -1,0 +1,298 @@
+==============================================================================================================
+1) Albaraka Türk | Dijital Araç Finansmanı
+SCOPE=bireysel | FAMILY=arac_finansmani
+ADAY ALAN=financing_amount
+PRODUCT_ID=86
+SOURCE=https://www.albaraka.com.tr/tr/bireysel/finansmanlar/tasit-finansmani/dijital-arac-finansmani
+
+MEVCUT YAPILANDIRILMIS DEGERLER:
+  minimum_financing_amount = None
+  maximum_financing_amount = None
+  minimum_maturity_months = None
+  maximum_maturity_months = 48
+  maturity_rules_text = '≤ 400.000 TL → 48 ay | 400.001–800.000 TL → 36 ay | 800.001–1.200.000 TL → 24 ay | 1.200.001–2.000.000 TL → 12 ay | > 2.000.000 TL → kullandırım yok'
+  maximum_financing_ratio = Decimal('70.000000')
+  financing_ratio_rules_text = '≤ 400.000 TL → %70 | 400.001–800.000 TL → %50 | 800.001–1.200.000 TL → %30 | 1.200.001–2.000.000 TL → %20 | > 2.000.000 TL → %0 / kullandırım yok'
+  profit_share_rate = None
+  profit_share_rate_text = None
+
+KAYNAK KANIT PARCALARI:
+  [1] i el araçlar için finansman başvurusu yapılabilir. İkinci el araç finansmanlarında 10 yaşa kadar finansman desteği sunulmaktadır. Dijital Araç Finansmanı’nda kullanılabilecek maksimum finansman tutarı ve vade seçenekleri için ikinci el araçlarda kasko değeri dikkate alınmaktadır. Detaylı bilgi için aşağıdaki tabloyu inceleyebilirsiniz: Kasko/Satış Değeri Finansman Tutarının Taşıt Tutarına Oranı Vade Üst Sınırı (Ay) 0- 400.000 TL %70 48 400.001- 800.000 T
+  [2] lir? Kaç TL tutarında Dijital Araç Finansmanı kullanılabileceği ikinci elde ise kasko değerleri göz önünde bulundurularak hesaplanır. Bu koşula uygun olarak finansman desteği limitleri şu şekilde sıralanır: Kasko değeri 400 bin TL ve altında olan araçlar için maksimum %70 Değeri 400.001 ila 800.000 TL aralığındaki araçlar için maksimum %50 Değeri 800.001 ila 1.200.000 TL aralığındaki araçlar için maksimum %30 Değeri 1.200.001 ila 2.000.000 T
+
+==============================================================================================================
+2) Albaraka Türk | Taşıt Finansmanı
+SCOPE=bireysel | FAMILY=arac_finansmani
+ADAY ALAN=financing_amount
+PRODUCT_ID=87
+SOURCE=https://www.albaraka.com.tr/tr/bireysel/finansmanlar/tasit-finansmani/tasit-finansmani
+
+MEVCUT YAPILANDIRILMIS DEGERLER:
+  minimum_financing_amount = None
+  maximum_financing_amount = None
+  minimum_maturity_months = None
+  maximum_maturity_months = 48
+  maturity_rules_text = '≤ 400.000 TL → 48 ay | 400.001–800.000 TL → 36 ay | 800.001–1.200.000 TL → 24 ay | 1.200.001–2.000.000 TL → 12 ay | > 2.000.000 TL → kullandırım yok'
+  maximum_financing_ratio = Decimal('70.000000')
+  financing_ratio_rules_text = '≤ 400.000 TL → %70 | 400.001–800.000 TL → %50 | 800.001–1.200.000 TL → %30 | 1.200.001–2.000.000 TL → %20 | > 2.000.000 TL → %0 / kullandırım yok'
+  profit_share_rate = None
+  profit_share_rate_text = 'Hesaplama aracında dinamik'
+
+KAYNAK KANIT PARCALARI:
+  UYARI: Anahtar kelime cevresinde kanit parcasi bulunamadi.
+
+==============================================================================================================
+3) Albaraka Türk | Hac ve Umre Finansmanı
+SCOPE=bireysel | FAMILY=ihtiyac_finansmani
+ADAY ALAN=financing_amount
+PRODUCT_ID=124
+SOURCE=https://www.albaraka.com.tr/tr/bireysel/finansmanlar/ihtiyac/hac-ve-umre-finansmani
+
+MEVCUT YAPILANDIRILMIS DEGERLER:
+  minimum_financing_amount = None
+  maximum_financing_amount = None
+  minimum_maturity_months = None
+  maximum_maturity_months = 36
+  maturity_rules_text = '≤ 125.000 TL → 36 ay | 125.001–250.000 TL → 24 ay | > 250.000 TL → 12 ay'
+  maximum_financing_ratio = None
+  financing_ratio_rules_text = None
+  profit_share_rate = None
+  profit_share_rate_text = None
+
+KAYNAK KANIT PARCALARI:
+  UYARI: Anahtar kelime cevresinde kanit parcasi bulunamadi.
+
+==============================================================================================================
+4) Albaraka Türk | Hac ve Umre Finansmanı
+SCOPE=bireysel | FAMILY=ihtiyac_finansmani
+ADAY ALAN=financing_ratio
+PRODUCT_ID=124
+SOURCE=https://www.albaraka.com.tr/tr/bireysel/finansmanlar/ihtiyac/hac-ve-umre-finansmani
+
+MEVCUT YAPILANDIRILMIS DEGERLER:
+  minimum_financing_amount = None
+  maximum_financing_amount = None
+  minimum_maturity_months = None
+  maximum_maturity_months = 36
+  maturity_rules_text = '≤ 125.000 TL → 36 ay | 125.001–250.000 TL → 24 ay | > 250.000 TL → 12 ay'
+  maximum_financing_ratio = None
+  financing_ratio_rules_text = None
+  profit_share_rate = None
+  profit_share_rate_text = None
+
+KAYNAK KANIT PARCALARI:
+  [1] eği alabilir, avantajlı kâr payı oranlarıyla 36 aya kadar vade imkanından yararlanabilirsiniz. Hac/Umre Finansmanının Avantajları Nelerdir? Hac ve umre finansmanında hac ve umre bedelinin tamamı için uygun kâr payı oranlarıyla finansman kullanabilirsiniz 125.000 TL’ye kadar olan tüketici finansmanı başvuruları maksimum 36 ay, 125.001 TL ile 250.000 TL arasındaki finansman başvuruları maksimum 24 ay, 250.000 TL üzerindeki finansman başvurularınız
+
+==============================================================================================================
+5) Kuveyt Türk | Araç Finansmanı
+SCOPE=bireysel | FAMILY=arac_finansmani
+ADAY ALAN=financing_amount
+PRODUCT_ID=19
+SOURCE=https://www.kuveytturk.com.tr/kendim-icin/finansmanlar/arac-finansmanlari/arac-finansmani
+
+MEVCUT YAPILANDIRILMIS DEGERLER:
+  minimum_financing_amount = None
+  maximum_financing_amount = None
+  minimum_maturity_months = None
+  maximum_maturity_months = 48
+  maturity_rules_text = None
+  maximum_financing_ratio = Decimal('70.000000')
+  financing_ratio_rules_text = None
+  profit_share_rate = None
+  profit_share_rate_text = 'Hesaplama aracında dinamik'
+
+KAYNAK KANIT PARCALARI:
+  [1] yaşa kadar finansman desteğinden yararlanılabilir. 0-5 yaş araçlar için maksimum 48 ay vadeyle finansman kullanılabilir. 6-10 yaş araçlar içinse maksimum vade süresi 36 aydır. Maksimum finansman tutarı ve vade seçeneklerinin belirlenmesinde sıfır araçlarda satış, ikinci elde kasko değeri dikkate alınır. Bu konuda daha fazla bilgi sahibi olmak için aşağıdaki tabloyu inceleyebilirsiniz. Kasko/Satış Değeri Finansman Tutarının Taşıt Tutarına Oranı Vade Üst S
+  [2] Finansmanı kullanılabilir? Kaç TL tutarında finansman kullanılabileceği sıfır araçlarda satış, ikinci elde ise kasko değerleri baz alınarak belirlenir. Bu koşula uygun olarak limitler şu şekildedir: Sıfır araçlarda satış, ikinci elde kasko değerleri 400 bin TL ve altında olan motorlu taşıtlar için maksimum %70 Değeri 400.001 ila 800.000 TL aralığındaki araçlar için maksimum %50 Değeri 800.001 ila 1.200.000 TL aralığındaki araçlar için maksim
+
+==============================================================================================================
+6) Türkiye Finans | Kabul-Aval Kredileri
+SCOPE=ticari | FAMILY=gayri_nakdi_finansman
+ADAY ALAN=maturity
+PRODUCT_ID=81
+SOURCE=https://www.turkiyefinans.com.tr/tr-tr/kobi/Sayfalar/dijital-taksitli-ticari-finansman-destegi.aspx
+
+MEVCUT YAPILANDIRILMIS DEGERLER:
+  minimum_financing_amount = None
+  maximum_financing_amount = None
+  minimum_maturity_months = None
+  maximum_maturity_months = None
+  maturity_rules_text = None
+  maximum_financing_ratio = None
+  financing_ratio_rules_text = None
+  profit_share_rate = None
+  profit_share_rate_text = None
+
+KAYNAK KANIT PARCALARI:
+  [1] elemeyin, ödemelerini aksatmayın. Dijital Taksitli Ticari Finansman başvurunuzu şimdi yapın, 1 milyon TL’ye varan finansman tutarına 12 ay vade ile hemen ulaşın. İş akışınızı kesintisiz sürdürün. Üstelik artık Türkiye Finans Mobil üzerinden kolayca başvurabilir, onaylanan finansmanınızla tüm tedarikçi ödemelerini uygulama üzerinden anında yapabilirsiniz. Dijital Taksitli Ticari Finansman Nedir? Dijital Taksitli Ticari Finansman; işletmenizi
+  [2] Navigasyonu görüntüle İçeriği görüntüle GÜNCELLE Çerez Politikası ve 6698 sayılı Kişisel Verilerin Korunması Kanunu kapsamında Bankamız ile paylaşmış olduğunuz kişisel verileriniz ile ilgili detaylı bilgiye Kişisel Verilerin Korunması Hakkında Aydınlatma metninden ulaşabilirsiniz. Tüm Çerezleri Reddet Çerez Tercihlerini Yönet Tüm Çerezl
+  [3] Navigasyonu görüntüle İçeriği görüntüle GÜNCELLE Çerez Politikası ve 6698 sayılı Kişisel Verilerin Korunması Kanunu kapsamında Bankamız ile paylaşmış olduğunuz kişisel verileriniz ile ilgili detaylı bilgiye Kişisel Verilerin Korunması Hakkında Aydınlatma metninden ulaşabilirsiniz. Tüm Çerezleri Reddet Çerez Tercihlerini Yönet Tüm Çerezleri Kabul Et Ana Menüye Git İçeriğe Git Bölüm Menüsüne Git İçeriğe
+  [4] üntüle İçeriği görüntüle GÜNCELLE Çerez Politikası ve 6698 sayılı Kişisel Verilerin Korunması Kanunu kapsamında Bankamız ile paylaşmış olduğunuz kişisel verileriniz ile ilgili detaylı bilgiye Kişisel Verilerin Korunması Hakkında Aydınlatma metninden ulaşabilirsiniz. Tüm Çerezleri Reddet Çerez Tercihlerini Yönet Tüm Çerezleri Kabul Et Ana Menüye Git İçeriğe Git Bölüm Menüsüne Git İçeriğe Git English العربية Şube ve ATM'ler Hakkımızda Ürün
+
+==============================================================================================================
+7) Türkiye Finans | Kabul-Aval Kredileri
+SCOPE=ticari | FAMILY=gayri_nakdi_finansman
+ADAY ALAN=financing_amount
+PRODUCT_ID=81
+SOURCE=https://www.turkiyefinans.com.tr/tr-tr/kobi/Sayfalar/dijital-taksitli-ticari-finansman-destegi.aspx
+
+MEVCUT YAPILANDIRILMIS DEGERLER:
+  minimum_financing_amount = None
+  maximum_financing_amount = None
+  minimum_maturity_months = None
+  maximum_maturity_months = None
+  maturity_rules_text = None
+  maximum_financing_ratio = None
+  financing_ratio_rules_text = None
+  profit_share_rate = None
+  profit_share_rate_text = None
+
+KAYNAK KANIT PARCALARI:
+  [1] sıl Kullanılır? Taksitli Ticari Finansman talebinizin onaylanmasının ardından sisteme yüklediğiniz faturaların ödemelerini tanımlanan finansman limitinizle rahatlıkla ödeyebilirsiniz. Bunun için aşağıdaki adımları izlemeniz yeterli: Mobil uygulama üzerinden onaylanan finansman başvurunuza tıklayın. Finansman başvurunuz hakkındaki genel bilgilendirmeleri inceleyin ve “Devam” butonuna tıklayın. “Tahsilat Hesabı” ekranı açılır. Bu ekrandan taksitlerinizin
+  [2] lgilerinin üzerine tıklayarak satıcıya ait IBAN bilgisini girin ya da seçin. “Devam” butonuna tıklayın. Tedarikçi ödemeniz tanımlanan finansman limitinizden yapılacaktır. Başvuru Merkezi Hesaplama Araçları Müşteri Memnuniyet Merkezi Yatırımcı İlişkileri Finans Portalı Satılık Gayrimenkuller Hesaplama Araçları Türkiye Finans Linkleri Türkiye Finans Blog Sıkça Ziyaret Edilen Sayfalar Sıkça Sorulan Sorular Hesaplama Araçları Kredi Kartları İhtiyaç Finansm
+  [3] umsal Dijital Şifre Al Bireysel İhtiyaç Finansmanı Hızlı Finansman Taşıt Finansmanı Konut Finansmanı Arsa Finansmanı İş yeri Finansmanı (İş yeri Kredisi)* Yedek Hesap Hazır Limit Günlük Hesap Cari Hesaplar Katılma Hesapları Kâr Payı Oranları Kâr Paylaşım Oranları Kıymetli Maden Ürünleri Kredi Kartları Banka Kartları Yatırım Hizmetleri Bankacılık Hizmetleri Ödemeler Bireysel Emeklilik Sistemi Sigortacılık Hizmetleri Ürün & Hizmet Ücretleri Sö
+  [4] yın. Açılan bilgilendirme metnini okuyun ve “Devam Et” butonuna tıklayın. “Finansman Bilgileri” ekranı açılır. Bu ekranda “Kullanılabilir Limit” bilginizi görebilirsiniz. Talep edilen bilgileri eksiksiz doldurun ve “Devam” butonuna tıklayın. “Ek Ürün Bilgileri” ekranı açılır. Sigorta ya da Masraf Paketi gibi ek ürünler kullanmak istiyorsanız bu ekrandan seçim yapabilirsiniz. Gerekli seçimleri takiben “Devam” butona tıklayın ve “Örnek Ödeme P
+
+==============================================================================================================
+8) Türkiye Finans | Referans Mektupları
+SCOPE=ticari | FAMILY=gayri_nakdi_finansman
+ADAY ALAN=maturity
+PRODUCT_ID=82
+SOURCE=https://www.turkiyefinans.com.tr/tr-tr/kobi/Sayfalar/dijital-taksitli-ticari-finansman-destegi.aspx
+
+MEVCUT YAPILANDIRILMIS DEGERLER:
+  minimum_financing_amount = None
+  maximum_financing_amount = None
+  minimum_maturity_months = None
+  maximum_maturity_months = None
+  maturity_rules_text = None
+  maximum_financing_ratio = None
+  financing_ratio_rules_text = None
+  profit_share_rate = None
+  profit_share_rate_text = None
+
+KAYNAK KANIT PARCALARI:
+  [1] elemeyin, ödemelerini aksatmayın. Dijital Taksitli Ticari Finansman başvurunuzu şimdi yapın, 1 milyon TL’ye varan finansman tutarına 12 ay vade ile hemen ulaşın. İş akışınızı kesintisiz sürdürün. Üstelik artık Türkiye Finans Mobil üzerinden kolayca başvurabilir, onaylanan finansmanınızla tüm tedarikçi ödemelerini uygulama üzerinden anında yapabilirsiniz. Dijital Taksitli Ticari Finansman Nedir? Dijital Taksitli Ticari Finansman; işletmenizi
+  [2] Navigasyonu görüntüle İçeriği görüntüle GÜNCELLE Çerez Politikası ve 6698 sayılı Kişisel Verilerin Korunması Kanunu kapsamında Bankamız ile paylaşmış olduğunuz kişisel verileriniz ile ilgili detaylı bilgiye Kişisel Verilerin Korunması Hakkında Aydınlatma metninden ulaşabilirsiniz. Tüm Çerezleri Reddet Çerez Tercihlerini Yönet Tüm Çerezl
+  [3] Navigasyonu görüntüle İçeriği görüntüle GÜNCELLE Çerez Politikası ve 6698 sayılı Kişisel Verilerin Korunması Kanunu kapsamında Bankamız ile paylaşmış olduğunuz kişisel verileriniz ile ilgili detaylı bilgiye Kişisel Verilerin Korunması Hakkında Aydınlatma metninden ulaşabilirsiniz. Tüm Çerezleri Reddet Çerez Tercihlerini Yönet Tüm Çerezleri Kabul Et Ana Menüye Git İçeriğe Git Bölüm Menüsüne Git İçeriğe
+  [4] üntüle İçeriği görüntüle GÜNCELLE Çerez Politikası ve 6698 sayılı Kişisel Verilerin Korunması Kanunu kapsamında Bankamız ile paylaşmış olduğunuz kişisel verileriniz ile ilgili detaylı bilgiye Kişisel Verilerin Korunması Hakkında Aydınlatma metninden ulaşabilirsiniz. Tüm Çerezleri Reddet Çerez Tercihlerini Yönet Tüm Çerezleri Kabul Et Ana Menüye Git İçeriğe Git Bölüm Menüsüne Git İçeriğe Git English العربية Şube ve ATM'ler Hakkımızda Ürün
+
+==============================================================================================================
+9) Türkiye Finans | Referans Mektupları
+SCOPE=ticari | FAMILY=gayri_nakdi_finansman
+ADAY ALAN=financing_amount
+PRODUCT_ID=82
+SOURCE=https://www.turkiyefinans.com.tr/tr-tr/kobi/Sayfalar/dijital-taksitli-ticari-finansman-destegi.aspx
+
+MEVCUT YAPILANDIRILMIS DEGERLER:
+  minimum_financing_amount = None
+  maximum_financing_amount = None
+  minimum_maturity_months = None
+  maximum_maturity_months = None
+  maturity_rules_text = None
+  maximum_financing_ratio = None
+  financing_ratio_rules_text = None
+  profit_share_rate = None
+  profit_share_rate_text = None
+
+KAYNAK KANIT PARCALARI:
+  [1] sıl Kullanılır? Taksitli Ticari Finansman talebinizin onaylanmasının ardından sisteme yüklediğiniz faturaların ödemelerini tanımlanan finansman limitinizle rahatlıkla ödeyebilirsiniz. Bunun için aşağıdaki adımları izlemeniz yeterli: Mobil uygulama üzerinden onaylanan finansman başvurunuza tıklayın. Finansman başvurunuz hakkındaki genel bilgilendirmeleri inceleyin ve “Devam” butonuna tıklayın. “Tahsilat Hesabı” ekranı açılır. Bu ekrandan taksitlerinizin
+  [2] lgilerinin üzerine tıklayarak satıcıya ait IBAN bilgisini girin ya da seçin. “Devam” butonuna tıklayın. Tedarikçi ödemeniz tanımlanan finansman limitinizden yapılacaktır. Başvuru Merkezi Hesaplama Araçları Müşteri Memnuniyet Merkezi Yatırımcı İlişkileri Finans Portalı Satılık Gayrimenkuller Hesaplama Araçları Türkiye Finans Linkleri Türkiye Finans Blog Sıkça Ziyaret Edilen Sayfalar Sıkça Sorulan Sorular Hesaplama Araçları Kredi Kartları İhtiyaç Finansm
+  [3] umsal Dijital Şifre Al Bireysel İhtiyaç Finansmanı Hızlı Finansman Taşıt Finansmanı Konut Finansmanı Arsa Finansmanı İş yeri Finansmanı (İş yeri Kredisi)* Yedek Hesap Hazır Limit Günlük Hesap Cari Hesaplar Katılma Hesapları Kâr Payı Oranları Kâr Paylaşım Oranları Kıymetli Maden Ürünleri Kredi Kartları Banka Kartları Yatırım Hizmetleri Bankacılık Hizmetleri Ödemeler Bireysel Emeklilik Sistemi Sigortacılık Hizmetleri Ürün & Hizmet Ücretleri Sö
+  [4] yın. Açılan bilgilendirme metnini okuyun ve “Devam Et” butonuna tıklayın. “Finansman Bilgileri” ekranı açılır. Bu ekranda “Kullanılabilir Limit” bilginizi görebilirsiniz. Talep edilen bilgileri eksiksiz doldurun ve “Devam” butonuna tıklayın. “Ek Ürün Bilgileri” ekranı açılır. Sigorta ya da Masraf Paketi gibi ek ürünler kullanmak istiyorsanız bu ekrandan seçim yapabilirsiniz. Gerekli seçimleri takiben “Devam” butona tıklayın ve “Örnek Ödeme P
+
+==============================================================================================================
+10) Türkiye Finans | Teminat Mektubu
+SCOPE=ticari | FAMILY=gayri_nakdi_finansman
+ADAY ALAN=maturity
+PRODUCT_ID=83
+SOURCE=https://www.turkiyefinans.com.tr/tr-tr/kobi/Sayfalar/dijital-taksitli-ticari-finansman-destegi.aspx
+
+MEVCUT YAPILANDIRILMIS DEGERLER:
+  minimum_financing_amount = None
+  maximum_financing_amount = None
+  minimum_maturity_months = None
+  maximum_maturity_months = None
+  maturity_rules_text = None
+  maximum_financing_ratio = None
+  financing_ratio_rules_text = None
+  profit_share_rate = None
+  profit_share_rate_text = None
+
+KAYNAK KANIT PARCALARI:
+  [1] elemeyin, ödemelerini aksatmayın. Dijital Taksitli Ticari Finansman başvurunuzu şimdi yapın, 1 milyon TL’ye varan finansman tutarına 12 ay vade ile hemen ulaşın. İş akışınızı kesintisiz sürdürün. Üstelik artık Türkiye Finans Mobil üzerinden kolayca başvurabilir, onaylanan finansmanınızla tüm tedarikçi ödemelerini uygulama üzerinden anında yapabilirsiniz. Dijital Taksitli Ticari Finansman Nedir? Dijital Taksitli Ticari Finansman; işletmenizi
+  [2] Navigasyonu görüntüle İçeriği görüntüle GÜNCELLE Çerez Politikası ve 6698 sayılı Kişisel Verilerin Korunması Kanunu kapsamında Bankamız ile paylaşmış olduğunuz kişisel verileriniz ile ilgili detaylı bilgiye Kişisel Verilerin Korunması Hakkında Aydınlatma metninden ulaşabilirsiniz. Tüm Çerezleri Reddet Çerez Tercihlerini Yönet Tüm Çerezl
+  [3] Navigasyonu görüntüle İçeriği görüntüle GÜNCELLE Çerez Politikası ve 6698 sayılı Kişisel Verilerin Korunması Kanunu kapsamında Bankamız ile paylaşmış olduğunuz kişisel verileriniz ile ilgili detaylı bilgiye Kişisel Verilerin Korunması Hakkında Aydınlatma metninden ulaşabilirsiniz. Tüm Çerezleri Reddet Çerez Tercihlerini Yönet Tüm Çerezleri Kabul Et Ana Menüye Git İçeriğe Git Bölüm Menüsüne Git İçeriğe
+  [4] üntüle İçeriği görüntüle GÜNCELLE Çerez Politikası ve 6698 sayılı Kişisel Verilerin Korunması Kanunu kapsamında Bankamız ile paylaşmış olduğunuz kişisel verileriniz ile ilgili detaylı bilgiye Kişisel Verilerin Korunması Hakkında Aydınlatma metninden ulaşabilirsiniz. Tüm Çerezleri Reddet Çerez Tercihlerini Yönet Tüm Çerezleri Kabul Et Ana Menüye Git İçeriğe Git Bölüm Menüsüne Git İçeriğe Git English العربية Şube ve ATM'ler Hakkımızda Ürün
+
+==============================================================================================================
+11) Türkiye Finans | Teminat Mektubu
+SCOPE=ticari | FAMILY=gayri_nakdi_finansman
+ADAY ALAN=financing_amount
+PRODUCT_ID=83
+SOURCE=https://www.turkiyefinans.com.tr/tr-tr/kobi/Sayfalar/dijital-taksitli-ticari-finansman-destegi.aspx
+
+MEVCUT YAPILANDIRILMIS DEGERLER:
+  minimum_financing_amount = None
+  maximum_financing_amount = None
+  minimum_maturity_months = None
+  maximum_maturity_months = None
+  maturity_rules_text = None
+  maximum_financing_ratio = None
+  financing_ratio_rules_text = None
+  profit_share_rate = None
+  profit_share_rate_text = None
+
+KAYNAK KANIT PARCALARI:
+  [1] sıl Kullanılır? Taksitli Ticari Finansman talebinizin onaylanmasının ardından sisteme yüklediğiniz faturaların ödemelerini tanımlanan finansman limitinizle rahatlıkla ödeyebilirsiniz. Bunun için aşağıdaki adımları izlemeniz yeterli: Mobil uygulama üzerinden onaylanan finansman başvurunuza tıklayın. Finansman başvurunuz hakkındaki genel bilgilendirmeleri inceleyin ve “Devam” butonuna tıklayın. “Tahsilat Hesabı” ekranı açılır. Bu ekrandan taksitlerinizin
+  [2] lgilerinin üzerine tıklayarak satıcıya ait IBAN bilgisini girin ya da seçin. “Devam” butonuna tıklayın. Tedarikçi ödemeniz tanımlanan finansman limitinizden yapılacaktır. Başvuru Merkezi Hesaplama Araçları Müşteri Memnuniyet Merkezi Yatırımcı İlişkileri Finans Portalı Satılık Gayrimenkuller Hesaplama Araçları Türkiye Finans Linkleri Türkiye Finans Blog Sıkça Ziyaret Edilen Sayfalar Sıkça Sorulan Sorular Hesaplama Araçları Kredi Kartları İhtiyaç Finansm
+  [3] umsal Dijital Şifre Al Bireysel İhtiyaç Finansmanı Hızlı Finansman Taşıt Finansmanı Konut Finansmanı Arsa Finansmanı İş yeri Finansmanı (İş yeri Kredisi)* Yedek Hesap Hazır Limit Günlük Hesap Cari Hesaplar Katılma Hesapları Kâr Payı Oranları Kâr Paylaşım Oranları Kıymetli Maden Ürünleri Kredi Kartları Banka Kartları Yatırım Hizmetleri Bankacılık Hizmetleri Ödemeler Bireysel Emeklilik Sistemi Sigortacılık Hizmetleri Ürün & Hizmet Ücretleri Sö
+  [4] yın. Açılan bilgilendirme metnini okuyun ve “Devam Et” butonuna tıklayın. “Finansman Bilgileri” ekranı açılır. Bu ekranda “Kullanılabilir Limit” bilginizi görebilirsiniz. Talep edilen bilgileri eksiksiz doldurun ve “Devam” butonuna tıklayın. “Ek Ürün Bilgileri” ekranı açılır. Sigorta ya da Masraf Paketi gibi ek ürünler kullanmak istiyorsanız bu ekrandan seçim yapabilirsiniz. Gerekli seçimleri takiben “Devam” butona tıklayın ve “Örnek Ödeme P
+
+==============================================================================================================
+12) Türkiye Finans | Dijital Taksitli Ticari Finansman Desteği
+SCOPE=ticari | FAMILY=ticari_finansman
+ADAY ALAN=maturity
+PRODUCT_ID=68
+SOURCE=https://www.turkiyefinans.com.tr/tr-tr/kobi/Sayfalar/dijital-taksitli-ticari-finansman-destegi.aspx
+
+MEVCUT YAPILANDIRILMIS DEGERLER:
+  minimum_financing_amount = None
+  maximum_financing_amount = None
+  minimum_maturity_months = None
+  maximum_maturity_months = None
+  maturity_rules_text = None
+  maximum_financing_ratio = None
+  financing_ratio_rules_text = None
+  profit_share_rate = None
+  profit_share_rate_text = None
+
+KAYNAK KANIT PARCALARI:
+  [1] elemeyin, ödemelerini aksatmayın. Dijital Taksitli Ticari Finansman başvurunuzu şimdi yapın, 1 milyon TL’ye varan finansman tutarına 12 ay vade ile hemen ulaşın. İş akışınızı kesintisiz sürdürün. Üstelik artık Türkiye Finans Mobil üzerinden kolayca başvurabilir, onaylanan finansmanınızla tüm tedarikçi ödemelerini uygulama üzerinden anında yapabilirsiniz. Dijital Taksitli Ticari Finansman Nedir? Dijital Taksitli Ticari Finansman; işletmenizi
+  [2] Navigasyonu görüntüle İçeriği görüntüle GÜNCELLE Çerez Politikası ve 6698 sayılı Kişisel Verilerin Korunması Kanunu kapsamında Bankamız ile paylaşmış olduğunuz kişisel verileriniz ile ilgili detaylı bilgiye Kişisel Verilerin Korunması Hakkında Aydınlatma metninden ulaşabilirsiniz. Tüm Çerezleri Reddet Çerez Tercihlerini Yönet Tüm Çerezl
+  [3] Navigasyonu görüntüle İçeriği görüntüle GÜNCELLE Çerez Politikası ve 6698 sayılı Kişisel Verilerin Korunması Kanunu kapsamında Bankamız ile paylaşmış olduğunuz kişisel verileriniz ile ilgili detaylı bilgiye Kişisel Verilerin Korunması Hakkında Aydınlatma metninden ulaşabilirsiniz. Tüm Çerezleri Reddet Çerez Tercihlerini Yönet Tüm Çerezleri Kabul Et Ana Menüye Git İçeriğe Git Bölüm Menüsüne Git İçeriğe
+  [4] üntüle İçeriği görüntüle GÜNCELLE Çerez Politikası ve 6698 sayılı Kişisel Verilerin Korunması Kanunu kapsamında Bankamız ile paylaşmış olduğunuz kişisel verileriniz ile ilgili detaylı bilgiye Kişisel Verilerin Korunması Hakkında Aydınlatma metninden ulaşabilirsiniz. Tüm Çerezleri Reddet Çerez Tercihlerini Yönet Tüm Çerezleri Kabul Et Ana Menüye Git İçeriğe Git Bölüm Menüsüne Git İçeriğe Git English العربية Şube ve ATM'ler Hakkımızda Ürün
+
+==============================================================================================================
+13) Türkiye Finans | Dijital Taksitli Ticari Finansman Desteği
+SCOPE=ticari | FAMILY=ticari_finansman
+ADAY ALAN=financing_amount
+PRODUCT_ID=68
+SOURCE=https://www.turkiyefinans.com.tr/tr-tr/kobi/Sayfalar/dijital-taksitli-ticari-finansman-destegi.aspx
+
+MEVCUT YAPILANDIRILMIS DEGERLER:
+  minimum_financing_amount = None
+  maximum_financing_amount = None
+  minimum_maturity_months = None
+  maximum_maturity_months = None
+  maturity_rules_text = None
+  maximum_financing_ratio = None
+  financing_ratio_rules_text = None
+  profit_share_rate = None
+  profit_share_rate_text = None
+
+KAYNAK KANIT PARCALARI:
+  [1] sıl Kullanılır? Taksitli Ticari Finansman talebinizin onaylanmasının ardından sisteme yüklediğiniz faturaların ödemelerini tanımlanan finansman limitinizle rahatlıkla ödeyebilirsiniz. Bunun için aşağıdaki adımları izlemeniz yeterli: Mobil uygulama üzerinden onaylanan finansman başvurunuza tıklayın. Finansman başvurunuz hakkındaki genel bilgilendirmeleri inceleyin ve “Devam” butonuna tıklayın. “Tahsilat Hesabı” ekranı açılır. Bu ekrandan taksitlerinizin
+  [2] lgilerinin üzerine tıklayarak satıcıya ait IBAN bilgisini girin ya da seçin. “Devam” butonuna tıklayın. Tedarikçi ödemeniz tanımlanan finansman limitinizden yapılacaktır. Başvuru Merkezi Hesaplama Araçları Müşteri Memnuniyet Merkezi Yatırımcı İlişkileri Finans Portalı Satılık Gayrimenkuller Hesaplama Araçları Türkiye Finans Linkleri Türkiye Finans Blog Sıkça Ziyaret Edilen Sayfalar Sıkça Sorulan Sorular Hesaplama Araçları Kredi Kartları İhtiyaç Finansm
+  [3] umsal Dijital Şifre Al Bireysel İhtiyaç Finansmanı Hızlı Finansman Taşıt Finansmanı Konut Finansmanı Arsa Finansmanı İş yeri Finansmanı (İş yeri Kredisi)* Yedek Hesap Hazır Limit Günlük Hesap Cari Hesaplar Katılma Hesapları Kâr Payı Oranları Kâr Paylaşım Oranları Kıymetli Maden Ürünleri Kredi Kartları Banka Kartları Yatırım Hizmetleri Bankacılık Hizmetleri Ödemeler Bireysel Emeklilik Sistemi Sigortacılık Hizmetleri Ürün & Hizmet Ücretleri Sö
+  [4] yın. Açılan bilgilendirme metnini okuyun ve “Devam Et” butonuna tıklayın. “Finansman Bilgileri” ekranı açılır. Bu ekranda “Kullanılabilir Limit” bilginizi görebilirsiniz. Talep edilen bilgileri eksiksiz doldurun ve “Devam” butonuna tıklayın. “Ek Ürün Bilgileri” ekranı açılır. Sigorta ya da Masraf Paketi gibi ek ürünler kullanmak istiyorsanız bu ekrandan seçim yapabilirsiniz. Gerekli seçimleri takiben “Devam” butona tıklayın ve “Örnek Ödeme P

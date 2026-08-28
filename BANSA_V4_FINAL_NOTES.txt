@@ -1,0 +1,24 @@
+BANSA COMPETITION FINAL V4 - 25.08.2026
+
+Baslatma:
+1) Yerel Qwen sunucusu aciksa RUN_BANSA_COMPETITION.bat dosyasina cift tiklayin.
+2) PostgreSQL son dakika sorun cikarirsa RUN_BANSA_OFFLINE_DEMO.bat kullanin.
+
+V4 kritik duzeltmeler:
+- Finansal masraf bilgisinde kaynak kural > hesaplama ornegi onceligi.
+- Albaraka Konut tahsis ucreti genel soruda finansman tutarinin %0,50'si olarak gosterilir.
+- Tutar verilirse yuzde kuralindan TL karsiligi deterministik hesaplanir (100.000 TL -> 500 TL).
+- Tek bir hesaplama senaryosundaki TL masrafi tum urunun sabit tarifesi gibi sunulmaz.
+- Ekspertiz/ipotek/sigorta alanlarinda ham web navigasyon/cop metni ekrana basılmaz.
+- '100 bin TL 36 ay vade icin konut finansmanlarini kiyasla' artik vade-fact rotasina dusmez; karsilastirma yapar.
+- Exact konut karsilastirmasi kar payi, aylik taksit, toplam geri odeme ve dogrulanmis masraf bilgilerini birlikte sunar.
+- Banka bazli karsilastirma siralamasi varyantlari dikkate alir; Albaraka gibi ayni sonucu veren kosullar yanlislikla siralama disi kalmaz.
+- Iki bankali karsilastirmadan sonra yalniz '500.000 TL 36 ay' yazilinca iki banka + urun baglami korunur.
+- Global 'konut finansmanlarini kiyasla' / 'en uzun vadeli motosiklet...' sorulari onceki banka baglamindan temizlenir.
+- Kampanya 'karsilastir' sorulari mevcut deterministik campaign_compare motoruna birakilir; tek kampanya detayina dusmez.
+- BANSA 360 dashboard finansman masraf sutunlari da ayni kaynak-oncelik kuralini kullanir.
+
+Dogrulama:
+- V4 hedefli regression: 45/45 PASS
+- Juri senaryosu acceptance: 14/14 PASS
+- Kaynakta bulunmayan finansal rakamlar uydurulmaz.

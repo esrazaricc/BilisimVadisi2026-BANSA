@@ -1,0 +1,22 @@
+BANSA V47 USER-FACING ACCURACY FINAL
+====================================
+
+Focused regression bundle:
+- test_v47_user_facing_accuracy.py
+- test_campaign_followup_context.py
+- test_v46_chatbot_recommendation.py
+- test_v45_live_authority_and_maturity_integrity.py
+- test_v44_official_live_calculators.py
+- test_v43_official_rate_calibration.py
+- test_chatbot_response_service.py
+- test_chatbot_finance_renderer.py
+
+RESULT: 50 passed
+
+Python compile check:
+- src: PASS
+- pages: PASS
+- scripts: PASS
+- Ana_Sayfa.py: PASS
+
+Note: The historical V44 dashboard-label regression was updated to V47's cleaner user-facing metric labels; live-vs-model distinction remains covered.

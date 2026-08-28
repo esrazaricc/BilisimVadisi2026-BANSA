@@ -1,0 +1,807 @@
+[
+  {
+    "name": "Adil Katılım",
+    "legal_name": "ADİL KATILIM BANKASI A.Ş.",
+    "slug": "adil_katilim",
+    "base_url": "https://www.adilkatilim.com.tr",
+    "campaign_pages": [],
+    "detail_paths": [],
+    "exclude_paths": [
+      "/katilim-bankaciligi/urun-ve-hizmetler"
+    ],
+    "discovery_mode": "unavailable",
+    "source_status": "public_campaign_page_not_found",
+    "scanner_ready": false
+  },
+  {
+    "name": "Albaraka Türk",
+    "legal_name": "ALBARAKA TÜRK KATILIM BANKASI A.Ş.",
+    "slug": "albaraka_turk",
+    "base_url": "https://www.albaraka.com.tr",
+    "campaign_pages": [
+      "https://www.albaraka.com.tr/tr/kampanyalar",
+      "https://www.albaraka.com.tr/tr/world-dunyasi/kampanyalar"
+    ],
+    "detail_paths": [
+      "/tr/kampanyalar/detay/",
+      "/tr/world-dunyasi/detay/"
+    ],
+    "exclude_paths": [
+      "/tr/bireysel/finansmanlar/",
+      "/tr/hesaplama-araclari/"
+    ],
+    "discovery_mode": "detail_links",
+    "source_status": "verified",
+    "scanner_ready": true,
+    "render_mode": "selenium",
+    "load_more": true,
+    "load_more_terms": [
+      "Daha Fazla Kampanya Göster",
+      "Daha Fazla Göster",
+      "Daha Fazla Kampanya"
+    ],
+    "cookie_accept_terms": [
+      "Tümünü Kabul Et",
+      "Kabul Et",
+      "Onayla"
+    ],
+    "maximum_load_more_clicks": 20,
+    "campaign_sources": [
+      {
+        "source_group": "Genel Kampanyalar",
+        "url": "https://www.albaraka.com.tr/tr/kampanyalar",
+        "detail_paths": [
+          "/tr/kampanyalar/detay/"
+        ],
+        "render_mode": "selenium",
+        "load_more_terms": [
+          "Daha Fazla Kampanya Göster",
+          "Daha Fazla Göster",
+          "Daha Fazla Kampanya"
+        ],
+        "cookie_accept_terms": [
+          "Tümünü Kabul Et",
+          "Kabul Et",
+          "Onayla"
+        ],
+        "maximum_load_more_clicks": 20,
+        "reference_visible_count": 52
+      },
+      {
+        "source_group": "Albaraka World Kampanyaları",
+        "url": "https://www.albaraka.com.tr/tr/world-dunyasi/kampanyalar",
+        "detail_paths": [
+          "/tr/world-dunyasi/detay/"
+        ],
+        "render_mode": "selenium",
+        "load_more_terms": [
+          "Daha Fazla Kampanya Göster",
+          "Daha Fazla Göster",
+          "Daha Fazla Kampanya"
+        ],
+        "cookie_accept_terms": [
+          "Tümünü Kabul Et",
+          "Kabul Et",
+          "Onayla"
+        ],
+        "maximum_load_more_clicks": 20,
+        "reference_visible_count": 17
+      }
+    ]
+  },
+  {
+    "name": "Dünya Katılım",
+    "legal_name": "DÜNYA KATILIM BANKASI A.Ş.",
+    "slug": "dunya_katilim",
+    "base_url": "https://dunyakatilim.com.tr",
+    "campaign_pages": [
+      "https://dunyakatilim.com.tr/kampanyalar"
+    ],
+    "detail_paths": [
+      "/kampanyalar/"
+    ],
+    "exclude_paths": [
+      "/blog/",
+      "/kendim-icin/kartlar"
+    ],
+    "discovery_mode": "detail_links_dynamic",
+    "source_status": "verified",
+    "scanner_ready": true,
+    "dynamic_api": {
+      "url": "https://dunyakatilim.com.tr/GetCampaigns",
+      "source_page": "https://dunyakatilim.com.tr/kampanyalar",
+      "site_id": 1,
+      "campaign_types": [
+        1,
+        2
+      ],
+      "category_ids": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12
+      ],
+      "maximum_pages": 30,
+      "show_history": false,
+      "reference_visible_count": 39,
+      "source_groups": {
+        "1": "Dünya Katılım Kendim İçin",
+        "2": "Dünya Katılım İşim İçin"
+      }
+    }
+  },
+  {
+    "name": "Hayat Finans",
+    "legal_name": "HAYAT FİNANS KATILIM BANKASI A.Ş.",
+    "slug": "hayat_finans",
+    "base_url": "https://hayatfinans.com.tr",
+    "campaign_pages": [
+      "https://hayatfinans.com.tr/kampanyalar"
+    ],
+    "detail_paths": [
+      "/kampanyalar/",
+      "/hesaplar/avantajli-hesap"
+    ],
+    "exclude_paths": [
+      "/urunler/",
+      "/hesaplama-araclari/"
+    ],
+    "discovery_mode": "detail_links",
+    "source_status": "verified",
+    "scanner_ready": true
+  },
+  {
+    "name": "Kuveyt Türk",
+    "legal_name": "KUVEYT TÜRK KATILIM BANKASI A.Ş.",
+    "slug": "kuveyt_turk",
+    "base_url": "https://www.kuveytturk.com.tr",
+    "campaign_pages": [
+      "https://www.kuveytturk.com.tr/kampanyalar/kendim-icin",
+      "https://www.kuveytturk.com.tr/kampanyalar/isim-icin"
+    ],
+    "detail_paths": [
+      "/kampanyalar/kendim-icin/",
+      "/kampanyalar/isim-icin/"
+    ],
+    "exclude_paths": [
+      "/kampanyalar/kampanya-arsivi/",
+      "/hesaplama-araclari/"
+    ],
+    "discovery_mode": "nested_detail_links",
+    "source_status": "verified",
+    "scanner_ready": true,
+    "exclude_exact_paths": [
+      "/kampanyalar/kendim-icin",
+      "/kampanyalar/isim-icin"
+    ],
+    "render_mode": "selenium",
+    "load_more": true,
+    "load_more_terms": [
+      "Daha Fazla Yükle",
+      "Daha Fazla Göster",
+      "Daha Fazla Kampanya"
+    ],
+    "cookie_accept_terms": [
+      "Tümünü Kabul Et",
+      "Kabul Et",
+      "Onayla"
+    ],
+    "maximum_load_more_clicks": 30,
+    "campaign_sources": [
+      {
+        "source_group": "Kuveyt Türk Bireysel Tüm Kampanyalar",
+        "url": "https://www.kuveytturk.com.tr/kampanyalar/kendim-icin",
+        "detail_paths": [
+          "/kampanyalar/kendim-icin/"
+        ],
+        "exclude_exact_paths": [
+          "/kampanyalar/kendim-icin/kart-kampanyalari",
+          "/kampanyalar/kendim-icin/musteri-ol-kampanyalari",
+          "/kampanyalar/kendim-icin/finansman-kampanyalari"
+        ],
+        "render_mode": "selenium",
+        "load_more_terms": [
+          "Daha Fazla Yükle",
+          "Daha Fazla Göster",
+          "Daha Fazla Kampanya"
+        ],
+        "cookie_accept_terms": [
+          "Tümünü Kabul Et",
+          "Kabul Et",
+          "Onayla"
+        ],
+        "maximum_load_more_clicks": 30
+      },
+      {
+        "source_group": "Kuveyt Türk Bireysel Kart Kampanyaları",
+        "url": "https://www.kuveytturk.com.tr/kampanyalar/kendim-icin/kart-kampanyalari",
+        "detail_paths": [
+          "/kampanyalar/kendim-icin/kart-kampanyalari/"
+        ],
+        "render_mode": "selenium",
+        "load_more_terms": [
+          "Daha Fazla Yükle",
+          "Daha Fazla Göster"
+        ],
+        "cookie_accept_terms": [
+          "Tümünü Kabul Et",
+          "Kabul Et",
+          "Onayla"
+        ],
+        "maximum_load_more_clicks": 30
+      },
+      {
+        "source_group": "Kuveyt Türk Bireysel Müşteri Ol Kampanyaları",
+        "url": "https://www.kuveytturk.com.tr/kampanyalar/kendim-icin/musteri-ol-kampanyalari",
+        "detail_paths": [
+          "/kampanyalar/kendim-icin/musteri-ol-kampanyalari/"
+        ],
+        "render_mode": "selenium",
+        "load_more_terms": [
+          "Daha Fazla Yükle",
+          "Daha Fazla Göster"
+        ],
+        "cookie_accept_terms": [
+          "Tümünü Kabul Et",
+          "Kabul Et",
+          "Onayla"
+        ],
+        "maximum_load_more_clicks": 30
+      },
+      {
+        "source_group": "Kuveyt Türk Bireysel Finansman Kampanyaları",
+        "url": "https://www.kuveytturk.com.tr/kampanyalar/kendim-icin/finansman-kampanyalari",
+        "detail_paths": [
+          "/kampanyalar/kendim-icin/finansman-kampanyalari/"
+        ],
+        "render_mode": "selenium",
+        "load_more_terms": [
+          "Daha Fazla Yükle",
+          "Daha Fazla Göster"
+        ],
+        "cookie_accept_terms": [
+          "Tümünü Kabul Et",
+          "Kabul Et",
+          "Onayla"
+        ],
+        "maximum_load_more_clicks": 30
+      },
+      {
+        "source_group": "Kuveyt Türk Ticari Tüm Kampanyalar",
+        "url": "https://www.kuveytturk.com.tr/kampanyalar/isim-icin",
+        "detail_paths": [
+          "/kampanyalar/isim-icin/"
+        ],
+        "exclude_exact_paths": [
+          "/kampanyalar/isim-icin/kart-kampanyalari",
+          "/kampanyalar/isim-icin/musteri-ol-kampanyalari",
+          "/kampanyalar/isim-icin/pos-kampanyalari",
+          "/kampanyalar/isim-icin/kobi-kampanyalari"
+        ],
+        "render_mode": "selenium",
+        "load_more_terms": [
+          "Daha Fazla Yükle",
+          "Daha Fazla Göster",
+          "Daha Fazla Kampanya"
+        ],
+        "cookie_accept_terms": [
+          "Tümünü Kabul Et",
+          "Kabul Et",
+          "Onayla"
+        ],
+        "maximum_load_more_clicks": 30
+      },
+      {
+        "source_group": "Kuveyt Türk Ticari Kart Kampanyaları",
+        "url": "https://www.kuveytturk.com.tr/kampanyalar/isim-icin/kart-kampanyalari",
+        "detail_paths": [
+          "/kampanyalar/isim-icin/kart-kampanyalari/"
+        ],
+        "render_mode": "selenium",
+        "load_more_terms": [
+          "Daha Fazla Yükle",
+          "Daha Fazla Göster"
+        ],
+        "cookie_accept_terms": [
+          "Tümünü Kabul Et",
+          "Kabul Et",
+          "Onayla"
+        ],
+        "maximum_load_more_clicks": 30
+      },
+      {
+        "source_group": "Kuveyt Türk Ticari Müşteri Ol Kampanyaları",
+        "url": "https://www.kuveytturk.com.tr/kampanyalar/isim-icin/musteri-ol-kampanyalari",
+        "detail_paths": [
+          "/kampanyalar/isim-icin/musteri-ol-kampanyalari/"
+        ],
+        "render_mode": "selenium",
+        "load_more_terms": [
+          "Daha Fazla Yükle",
+          "Daha Fazla Göster"
+        ],
+        "cookie_accept_terms": [
+          "Tümünü Kabul Et",
+          "Kabul Et",
+          "Onayla"
+        ],
+        "maximum_load_more_clicks": 30
+      },
+      {
+        "source_group": "Kuveyt Türk Ticari POS Kampanyaları",
+        "url": "https://www.kuveytturk.com.tr/kampanyalar/isim-icin/pos-kampanyalari",
+        "detail_paths": [
+          "/kampanyalar/isim-icin/pos-kampanyalari/"
+        ],
+        "render_mode": "selenium",
+        "load_more_terms": [
+          "Daha Fazla Yükle",
+          "Daha Fazla Göster"
+        ],
+        "cookie_accept_terms": [
+          "Tümünü Kabul Et",
+          "Kabul Et",
+          "Onayla"
+        ],
+        "maximum_load_more_clicks": 30
+      },
+      {
+        "source_group": "Kuveyt Türk Ticari KOBİ Kampanyaları",
+        "url": "https://www.kuveytturk.com.tr/kampanyalar/isim-icin/kobi-kampanyalari",
+        "detail_paths": [
+          "/kampanyalar/isim-icin/kobi-kampanyalari/"
+        ],
+        "render_mode": "requests",
+        "maximum_load_more_clicks": 0
+      }
+    ]
+  },
+  {
+    "name": "T.O.M. Katılım",
+    "legal_name": "T.O.M. KATILIM BANKASI A.Ş.",
+    "slug": "tom_katilim",
+    "base_url": "https://tombank.com.tr",
+    "campaign_pages": [
+      "https://tombankhadi.com/hadi-kazan/kampanyalar"
+    ],
+    "detail_paths": [
+      "/kampanyalar/"
+    ],
+    "exclude_paths": [
+      "/urunlerimiz.html",
+      "/taksitle.html",
+      "/magazadan-alisveris-kredisi.html",
+      "/hesaplama-araclari.html"
+    ],
+    "discovery_mode": "detail_links",
+    "source_status": "verified_official_hadi_campaign_source",
+    "scanner_ready": true,
+    "campaign_sources": [
+      {
+        "source_group": "T.O.M. Katılım / TOM Bank Hadi Kampanyaları",
+        "url": "https://tombankhadi.com/hadi-kazan/kampanyalar",
+        "base_url": "https://tombankhadi.com",
+        "detail_paths": [
+          "/kampanyalar/"
+        ],
+        "exclude_exact_paths": [
+          "/hadi-kazan/kampanyalar",
+          "/kampanyalar"
+        ],
+        "render_mode": "selenium",
+        "load_more_terms": [
+          "Daha fazla göster",
+          "Daha Fazla Göster",
+          "Daha fazla",
+          "Daha Fazla"
+        ],
+        "cookie_accept_terms": [
+          "Tümünü Kabul Et",
+          "Kabul Et",
+          "Onayla"
+        ],
+        "maximum_load_more_clicks": 30
+      }
+    ]
+  },
+  {
+    "name": "Türkiye Emlak Katılım",
+    "legal_name": "TÜRKİYE EMLAK KATILIM BANKASI A.Ş.",
+    "slug": "turkiye_emlak_katilim",
+    "base_url": "https://www.emlakkatilim.com.tr",
+    "campaign_pages": [
+      "https://www.emlakkatilim.com.tr/tr/bireysel/kampanyalar",
+      "https://www.emlakkatilim.com.tr/tr/kurumsal/kampanyalar"
+    ],
+    "detail_paths": [
+      "/tr/bireysel/kampanyalar/kampanya/",
+      "/tr/kurumsal/kampanyalar/kampanya/"
+    ],
+    "exclude_paths": [
+      "/tr/bireysel/finansmanlar/",
+      "/tr/kurumsal/finansmanlar/"
+    ],
+    "discovery_mode": "detail_links",
+    "source_status": "verified",
+    "scanner_ready": true,
+    "listing_presence_implies_active": true,
+    "campaign_sources": [
+      {
+        "source_group": "Türkiye Emlak Katılım Bireysel Kampanyalar",
+        "url": "https://www.emlakkatilim.com.tr/tr/bireysel/kampanyalar",
+        "detail_paths": [
+          "/tr/bireysel/kampanyalar/kampanya/"
+        ],
+        "exclude_paths": [
+          "/tr/bireysel/finansmanlar/",
+          "/tr/kurumsal/finansmanlar/"
+        ],
+        "render_mode": "requests",
+        "maximum_load_more_clicks": 0,
+        "listing_presence_implies_active": true
+      },
+      {
+        "source_group": "Türkiye Emlak Katılım Kurumsal Kampanyalar",
+        "url": "https://www.emlakkatilim.com.tr/tr/kurumsal/kampanyalar",
+        "detail_paths": [
+          "/tr/kurumsal/kampanyalar/kampanya/"
+        ],
+        "exclude_paths": [
+          "/tr/bireysel/finansmanlar/",
+          "/tr/kurumsal/finansmanlar/"
+        ],
+        "render_mode": "requests",
+        "maximum_load_more_clicks": 0,
+        "listing_presence_implies_active": true
+      }
+    ]
+  },
+  {
+    "name": "Türkiye Finans",
+    "legal_name": "TÜRKİYE FİNANS KATILIM BANKASI A.Ş.",
+    "slug": "turkiye_finans",
+    "base_url": "https://www.turkiyefinans.com.tr",
+    "campaign_pages": [
+      "https://www.turkiyefinans.com.tr/tr-tr/kampanyalar/sayfalar/dijital-bankacilik-kampanyalari.aspx",
+      "https://www.turkiyefinans.com.tr/tr-tr/kampanyalar/sayfalar/kart-kampanyalari.aspx",
+      "https://www.happycard.com.tr/kampanyalar/Sayfalar/default.aspx",
+      "https://www.turkiyefinansala.com/tr-tr/kampanyalar/Sayfalar/default.aspx",
+      "https://www.turkiyefinans.com.tr/tr-tr/kampanyalar/sayfalar/odeme-kampanyalari.aspx",
+      "https://www.turkiyefinans.com.tr/tr-tr/kampanyalar/sayfalar/yatirim-kampanyalari.aspx",
+      "https://www.turkiyefinans.com.tr/tr-tr/kampanyalar/Sayfalar/gunluk-hesap-vade-kampanyasi.aspx",
+      "https://www.turkiyefinans.com.tr/tr-tr/kampanyalar/Sayfalar/katilim-hesabi-kampanyasi.aspx",
+      "https://www.turkiyefinans.com.tr/tr-tr/kampanyalar/sayfalar/sigorta-kampanyalari.aspx",
+      "https://www.turkiyefinans.com.tr/tr-tr/kampanyalar/sayfalar/finansman-kampanyalari.aspx",
+      "https://www.turkiyefinans.com.tr/tr-tr/kampanyalar/sayfalar/ticari-kampanyalar.aspx",
+      "https://www.turkiyefinans.com.tr/tr-tr/kampanyalar/sayfalar/diger-kampanyalar.aspx"
+    ],
+    "detail_paths": [
+      "/tr-tr/kampanyalar/sayfalar/"
+    ],
+    "exclude_paths": [
+      "/tr-tr/bireysel/"
+    ],
+    "discovery_mode": "same_folder_with_exclusions",
+    "source_status": "verified",
+    "scanner_ready": true,
+    "exclude_exact_paths": [
+      "/tr-tr/kampanyalar/sayfalar/default.aspx",
+      "/tr-tr/kampanyalar/sayfalar/dijital-bankacilik-kampanyalari.aspx",
+      "/tr-tr/kampanyalar/sayfalar/kart-kampanyalari.aspx",
+      "/tr-tr/kampanyalar/sayfalar/odeme-kampanyalari.aspx",
+      "/tr-tr/kampanyalar/sayfalar/yatirim-kampanyalari.aspx",
+      "/tr-tr/kampanyalar/sayfalar/mevduat-kampanyalari.aspx",
+      "/tr-tr/kampanyalar/sayfalar/sigorta-kampanyalari.aspx",
+      "/tr-tr/kampanyalar/sayfalar/finansman-kampanyalari.aspx",
+      "/tr-tr/kampanyalar/sayfalar/ticari-kampanyalar.aspx",
+      "/tr-tr/kampanyalar/sayfalar/diger-kampanyalar.aspx",
+      "/tr-tr/kampanyalar/sayfalar/biten-kampanyalar.aspx"
+    ],
+    "render_mode": "requests",
+    "campaign_sources": [
+      {
+        "source_group": "Türkiye Finans Dijital Bankacılık Kampanyaları",
+        "url": "https://www.turkiyefinans.com.tr/tr-tr/kampanyalar/sayfalar/dijital-bankacilik-kampanyalari.aspx",
+        "detail_paths": [
+          "/tr-tr/kampanyalar/sayfalar/"
+        ],
+        "exclude_exact_paths": [
+          "/tr-tr/kampanyalar/sayfalar/default.aspx",
+          "/tr-tr/kampanyalar/sayfalar/dijital-bankacilik-kampanyalari.aspx",
+          "/tr-tr/kampanyalar/sayfalar/kart-kampanyalari.aspx",
+          "/tr-tr/kampanyalar/sayfalar/odeme-kampanyalari.aspx",
+          "/tr-tr/kampanyalar/sayfalar/yatirim-kampanyalari.aspx",
+          "/tr-tr/kampanyalar/sayfalar/birikim-fon-kampanyalari.aspx",
+          "/tr-tr/kampanyalar/sayfalar/sigorta-kampanyalari.aspx",
+          "/tr-tr/kampanyalar/sayfalar/finansman-kampanyalari.aspx",
+          "/tr-tr/kampanyalar/sayfalar/ticari-kampanyalar.aspx",
+          "/tr-tr/kampanyalar/sayfalar/diger-kampanyalar.aspx",
+          "/tr-tr/kampanyalar/sayfalar/biten-kampanyalar.aspx",
+          "/tr-tr/kampanyalar/sayfalar/mevduat-kampanyalari.aspx"
+        ],
+        "render_mode": "requests",
+        "maximum_load_more_clicks": 0
+      },
+      {
+        "source_group": "Türkiye Finans Happy Kart Kampanyaları",
+        "url": "https://www.happycard.com.tr/kampanyalar/Sayfalar/default.aspx",
+        "base_url": "https://www.happycard.com.tr",
+        "detail_paths": [
+          "/kampanyalar/Sayfalar/"
+        ],
+        "exclude_paths": [],
+        "exclude_exact_paths": [
+          "/kampanyalar/Sayfalar/default.aspx",
+          "/tr-tr/kampanyalar/sayfalar/birikim-fon-kampanyalari.aspx",
+          "/tr-tr/kampanyalar/sayfalar/mevduat-kampanyalari.aspx"
+        ],
+        "render_mode": "selenium",
+        "maximum_load_more_clicks": 0
+      },
+      {
+        "source_group": "Türkiye Finans Âlâ Kart Kampanyaları",
+        "url": "https://www.turkiyefinansala.com/tr-tr/kampanyalar/Sayfalar/default.aspx",
+        "base_url": "https://www.turkiyefinansala.com",
+        "detail_paths": [
+          "/tr-tr/kampanyalar/Sayfalar/"
+        ],
+        "exclude_paths": [],
+        "exclude_exact_paths": [
+          "/tr-tr/kampanyalar/Sayfalar/default.aspx",
+          "/tr-tr/kampanyalar/sayfalar/birikim-fon-kampanyalari.aspx",
+          "/tr-tr/kampanyalar/sayfalar/mevduat-kampanyalari.aspx"
+        ],
+        "render_mode": "selenium",
+        "maximum_load_more_clicks": 0
+      },
+      {
+        "source_group": "Türkiye Finans Ticari Kart Kampanyaları",
+        "url": "https://www.turkiyefinans.com.tr/tr-tr/kampanyalar/sayfalar/kart-kampanyalari.aspx",
+        "detail_paths": [
+          "/tr-tr/kampanyalar/sayfalar/"
+        ],
+        "exclude_exact_paths": [
+          "/tr-tr/kampanyalar/sayfalar/default.aspx",
+          "/tr-tr/kampanyalar/sayfalar/dijital-bankacilik-kampanyalari.aspx",
+          "/tr-tr/kampanyalar/sayfalar/kart-kampanyalari.aspx",
+          "/tr-tr/kampanyalar/sayfalar/odeme-kampanyalari.aspx",
+          "/tr-tr/kampanyalar/sayfalar/yatirim-kampanyalari.aspx",
+          "/tr-tr/kampanyalar/sayfalar/birikim-fon-kampanyalari.aspx",
+          "/tr-tr/kampanyalar/sayfalar/sigorta-kampanyalari.aspx",
+          "/tr-tr/kampanyalar/sayfalar/finansman-kampanyalari.aspx",
+          "/tr-tr/kampanyalar/sayfalar/ticari-kampanyalar.aspx",
+          "/tr-tr/kampanyalar/sayfalar/diger-kampanyalar.aspx",
+          "/tr-tr/kampanyalar/sayfalar/biten-kampanyalar.aspx",
+          "/tr-tr/kampanyalar/sayfalar/mevduat-kampanyalari.aspx"
+        ],
+        "render_mode": "requests",
+        "maximum_load_more_clicks": 0
+      },
+      {
+        "source_group": "Türkiye Finans Maaş Ödemesi Kampanyaları",
+        "url": "https://www.turkiyefinans.com.tr/tr-tr/kampanyalar/sayfalar/odeme-kampanyalari.aspx",
+        "detail_paths": [
+          "/tr-tr/kampanyalar/sayfalar/"
+        ],
+        "exclude_exact_paths": [
+          "/tr-tr/kampanyalar/sayfalar/default.aspx",
+          "/tr-tr/kampanyalar/sayfalar/dijital-bankacilik-kampanyalari.aspx",
+          "/tr-tr/kampanyalar/sayfalar/kart-kampanyalari.aspx",
+          "/tr-tr/kampanyalar/sayfalar/odeme-kampanyalari.aspx",
+          "/tr-tr/kampanyalar/sayfalar/yatirim-kampanyalari.aspx",
+          "/tr-tr/kampanyalar/sayfalar/birikim-fon-kampanyalari.aspx",
+          "/tr-tr/kampanyalar/sayfalar/sigorta-kampanyalari.aspx",
+          "/tr-tr/kampanyalar/sayfalar/finansman-kampanyalari.aspx",
+          "/tr-tr/kampanyalar/sayfalar/ticari-kampanyalar.aspx",
+          "/tr-tr/kampanyalar/sayfalar/diger-kampanyalar.aspx",
+          "/tr-tr/kampanyalar/sayfalar/biten-kampanyalar.aspx",
+          "/tr-tr/kampanyalar/sayfalar/mevduat-kampanyalari.aspx"
+        ],
+        "render_mode": "requests",
+        "maximum_load_more_clicks": 0
+      },
+      {
+        "source_group": "Türkiye Finans Yatırım Kampanyaları",
+        "url": "https://www.turkiyefinans.com.tr/tr-tr/kampanyalar/sayfalar/yatirim-kampanyalari.aspx",
+        "detail_paths": [
+          "/tr-tr/kampanyalar/sayfalar/"
+        ],
+        "exclude_exact_paths": [
+          "/tr-tr/kampanyalar/sayfalar/default.aspx",
+          "/tr-tr/kampanyalar/sayfalar/dijital-bankacilik-kampanyalari.aspx",
+          "/tr-tr/kampanyalar/sayfalar/kart-kampanyalari.aspx",
+          "/tr-tr/kampanyalar/sayfalar/odeme-kampanyalari.aspx",
+          "/tr-tr/kampanyalar/sayfalar/yatirim-kampanyalari.aspx",
+          "/tr-tr/kampanyalar/sayfalar/birikim-fon-kampanyalari.aspx",
+          "/tr-tr/kampanyalar/sayfalar/sigorta-kampanyalari.aspx",
+          "/tr-tr/kampanyalar/sayfalar/finansman-kampanyalari.aspx",
+          "/tr-tr/kampanyalar/sayfalar/ticari-kampanyalar.aspx",
+          "/tr-tr/kampanyalar/sayfalar/diger-kampanyalar.aspx",
+          "/tr-tr/kampanyalar/sayfalar/biten-kampanyalar.aspx",
+          "/tr-tr/kampanyalar/sayfalar/mevduat-kampanyalari.aspx"
+        ],
+        "render_mode": "requests",
+        "maximum_load_more_clicks": 0
+      },
+      {
+        "source_group": "Türkiye Finans Birikim / Fon Kampanyaları",
+        "url": "https://www.turkiyefinans.com.tr/tr-tr/kampanyalar/Sayfalar/gunluk-hesap-vade-kampanyasi.aspx",
+        "base_url": "https://www.turkiyefinans.com.tr",
+        "detail_paths": [
+          "/tr-tr/kampanyalar/sayfalar/gunluk-hesap-vade-kampanyasi.aspx"
+        ],
+        "exclude_paths": [],
+        "exclude_exact_paths": [],
+        "discovery_mode": "single_listing_page",
+        "render_mode": "requests",
+        "maximum_load_more_clicks": 0
+      },
+      {
+        "source_group": "Türkiye Finans Birikim / Fon Kampanyaları",
+        "url": "https://www.turkiyefinans.com.tr/tr-tr/kampanyalar/Sayfalar/katilim-hesabi-kampanyasi.aspx",
+        "base_url": "https://www.turkiyefinans.com.tr",
+        "detail_paths": [
+          "/tr-tr/kampanyalar/sayfalar/katilim-hesabi-kampanyasi.aspx"
+        ],
+        "exclude_paths": [],
+        "exclude_exact_paths": [],
+        "discovery_mode": "single_listing_page",
+        "render_mode": "requests",
+        "maximum_load_more_clicks": 0
+      },
+      {
+        "source_group": "Türkiye Finans Sigorta Kampanyaları",
+        "url": "https://www.turkiyefinans.com.tr/tr-tr/kampanyalar/sayfalar/sigorta-kampanyalari.aspx",
+        "detail_paths": [
+          "/tr-tr/kampanyalar/sayfalar/"
+        ],
+        "exclude_exact_paths": [
+          "/tr-tr/kampanyalar/sayfalar/default.aspx",
+          "/tr-tr/kampanyalar/sayfalar/dijital-bankacilik-kampanyalari.aspx",
+          "/tr-tr/kampanyalar/sayfalar/kart-kampanyalari.aspx",
+          "/tr-tr/kampanyalar/sayfalar/odeme-kampanyalari.aspx",
+          "/tr-tr/kampanyalar/sayfalar/yatirim-kampanyalari.aspx",
+          "/tr-tr/kampanyalar/sayfalar/birikim-fon-kampanyalari.aspx",
+          "/tr-tr/kampanyalar/sayfalar/sigorta-kampanyalari.aspx",
+          "/tr-tr/kampanyalar/sayfalar/finansman-kampanyalari.aspx",
+          "/tr-tr/kampanyalar/sayfalar/ticari-kampanyalar.aspx",
+          "/tr-tr/kampanyalar/sayfalar/diger-kampanyalar.aspx",
+          "/tr-tr/kampanyalar/sayfalar/biten-kampanyalar.aspx",
+          "/tr-tr/kampanyalar/sayfalar/mevduat-kampanyalari.aspx"
+        ],
+        "render_mode": "requests",
+        "maximum_load_more_clicks": 0
+      },
+      {
+        "source_group": "Türkiye Finans Finansman Kampanyaları",
+        "url": "https://www.turkiyefinans.com.tr/tr-tr/kampanyalar/sayfalar/finansman-kampanyalari.aspx",
+        "detail_paths": [
+          "/tr-tr/kampanyalar/sayfalar/"
+        ],
+        "exclude_exact_paths": [
+          "/tr-tr/kampanyalar/sayfalar/default.aspx",
+          "/tr-tr/kampanyalar/sayfalar/dijital-bankacilik-kampanyalari.aspx",
+          "/tr-tr/kampanyalar/sayfalar/kart-kampanyalari.aspx",
+          "/tr-tr/kampanyalar/sayfalar/odeme-kampanyalari.aspx",
+          "/tr-tr/kampanyalar/sayfalar/yatirim-kampanyalari.aspx",
+          "/tr-tr/kampanyalar/sayfalar/birikim-fon-kampanyalari.aspx",
+          "/tr-tr/kampanyalar/sayfalar/sigorta-kampanyalari.aspx",
+          "/tr-tr/kampanyalar/sayfalar/finansman-kampanyalari.aspx",
+          "/tr-tr/kampanyalar/sayfalar/ticari-kampanyalar.aspx",
+          "/tr-tr/kampanyalar/sayfalar/diger-kampanyalar.aspx",
+          "/tr-tr/kampanyalar/sayfalar/biten-kampanyalar.aspx",
+          "/tr-tr/kampanyalar/sayfalar/mevduat-kampanyalari.aspx"
+        ],
+        "render_mode": "requests",
+        "maximum_load_more_clicks": 0
+      },
+      {
+        "source_group": "Türkiye Finans Ticari Kampanyalar",
+        "url": "https://www.turkiyefinans.com.tr/tr-tr/kampanyalar/sayfalar/ticari-kampanyalar.aspx",
+        "detail_paths": [
+          "/tr-tr/kampanyalar/sayfalar/"
+        ],
+        "exclude_exact_paths": [
+          "/tr-tr/kampanyalar/sayfalar/default.aspx",
+          "/tr-tr/kampanyalar/sayfalar/dijital-bankacilik-kampanyalari.aspx",
+          "/tr-tr/kampanyalar/sayfalar/kart-kampanyalari.aspx",
+          "/tr-tr/kampanyalar/sayfalar/odeme-kampanyalari.aspx",
+          "/tr-tr/kampanyalar/sayfalar/yatirim-kampanyalari.aspx",
+          "/tr-tr/kampanyalar/sayfalar/birikim-fon-kampanyalari.aspx",
+          "/tr-tr/kampanyalar/sayfalar/sigorta-kampanyalari.aspx",
+          "/tr-tr/kampanyalar/sayfalar/finansman-kampanyalari.aspx",
+          "/tr-tr/kampanyalar/sayfalar/ticari-kampanyalar.aspx",
+          "/tr-tr/kampanyalar/sayfalar/diger-kampanyalar.aspx",
+          "/tr-tr/kampanyalar/sayfalar/biten-kampanyalar.aspx",
+          "/tr-tr/kampanyalar/sayfalar/mevduat-kampanyalari.aspx"
+        ],
+        "render_mode": "requests",
+        "maximum_load_more_clicks": 0
+      },
+      {
+        "source_group": "Türkiye Finans Diğer Kampanyalar",
+        "url": "https://www.turkiyefinans.com.tr/tr-tr/kampanyalar/sayfalar/diger-kampanyalar.aspx",
+        "detail_paths": [
+          "/tr-tr/kampanyalar/sayfalar/"
+        ],
+        "exclude_exact_paths": [
+          "/tr-tr/kampanyalar/sayfalar/default.aspx",
+          "/tr-tr/kampanyalar/sayfalar/dijital-bankacilik-kampanyalari.aspx",
+          "/tr-tr/kampanyalar/sayfalar/kart-kampanyalari.aspx",
+          "/tr-tr/kampanyalar/sayfalar/odeme-kampanyalari.aspx",
+          "/tr-tr/kampanyalar/sayfalar/yatirim-kampanyalari.aspx",
+          "/tr-tr/kampanyalar/sayfalar/birikim-fon-kampanyalari.aspx",
+          "/tr-tr/kampanyalar/sayfalar/sigorta-kampanyalari.aspx",
+          "/tr-tr/kampanyalar/sayfalar/finansman-kampanyalari.aspx",
+          "/tr-tr/kampanyalar/sayfalar/ticari-kampanyalar.aspx",
+          "/tr-tr/kampanyalar/sayfalar/diger-kampanyalar.aspx",
+          "/tr-tr/kampanyalar/sayfalar/biten-kampanyalar.aspx",
+          "/tr-tr/kampanyalar/sayfalar/mevduat-kampanyalari.aspx"
+        ],
+        "render_mode": "requests",
+        "maximum_load_more_clicks": 0
+      }
+    ]
+  },
+  {
+    "name": "Vakıf Katılım",
+    "legal_name": "VAKIF KATILIM BANKASI A.Ş.",
+    "slug": "vakif_katilim",
+    "base_url": "https://www.vakifkatilim.com.tr",
+    "campaign_pages": [
+      "https://www.vakifkatilim.com.tr/tr/kendim-icin/kampanyalar/mevcut-kampanyalar"
+    ],
+    "detail_paths": [
+      "/tr/kendim-icin/kampanyalar/detay/",
+      "/tr/isim-icin/kampanyalar/detay/"
+    ],
+    "exclude_paths": [
+      "/tr/kendim-icin/finansmanlar/",
+      "/tr/isim-icin/finansmanlar/"
+    ],
+    "discovery_mode": "detail_links",
+    "source_status": "verified",
+    "scanner_ready": true,
+    "campaign_sources": [
+      {
+        "source_group": "Vakıf Katılım Kampanyaları",
+        "url": "https://www.vakifkatilim.com.tr/plugins/CampaignListJson?langId=bf2689d9-071e-4a20-9450-b1dbdd39778f&language=tr&pageItemSize=9&page=1&kendimIcin=true&isimIcin=true",
+        "public_source_page": "https://www.vakifkatilim.com.tr/tr/kendim-icin/kampanyalar/mevcut-kampanyalar",
+        "detail_url_prefix": "https://www.vakifkatilim.com.tr/tr/kendim-icin/kampanyalar/detay/",
+        "render_mode": "json_api",
+        "api_max_pages": 100
+      }
+    ],
+    "render_mode": "json_api"
+  },
+  {
+    "name": "Ziraat Katılım",
+    "legal_name": "ZİRAAT KATILIM BANKASI A.Ş.",
+    "slug": "ziraat_katilim",
+    "base_url": "https://www.ziraatkatilim.com.tr",
+    "campaign_pages": [
+      "https://www.ziraatkatilim.com.tr/bireysel/kampanyalar",
+      "https://www.ziraatkatilim.com.tr/kart-kampanyalari"
+    ],
+    "detail_paths": [
+      "/kart-kampanyalari/",
+      "/bireysel/kampanyalar/"
+    ],
+    "exclude_paths": [
+      "/bireysel/finansman-urunleri/",
+      "/aile-destek-paketi"
+    ],
+    "discovery_mode": "detail_links",
+    "source_status": "verified",
+    "scanner_ready": true
+  }
+]
